@@ -29,30 +29,30 @@ public class UVCube : MonoBehaviour
                 meshUVCoordinates[2] = new Vector2(0f, 1f); //Top Left
                 meshUVCoordinates[3] = new Vector2(tileSize, 1f); // Top Right
                 // Right
-                meshUVCoordinates[20] = new Vector2(tileSize * 1.001f, 0f);
-                meshUVCoordinates[22] = new Vector2(tileSize * 2.001f, 0f);
-                meshUVCoordinates[23] = new Vector2(tileSize * 1.001f, 1f);
-                meshUVCoordinates[21] = new Vector2(tileSize * 2.001f, 1f);
+                meshUVCoordinates[16] = new Vector2(tileSize * 1.001f, 0f);
+                meshUVCoordinates[19] = new Vector2(tileSize * 2.001f, 0f);
+                meshUVCoordinates[17] = new Vector2(tileSize * 1.001f, 1f);
+                meshUVCoordinates[18] = new Vector2(tileSize * 2.001f, 1f);
                 // Back
                 meshUVCoordinates[10] = new Vector2((tileSize * 2.001f), 1f);
                 meshUVCoordinates[11] = new Vector2((tileSize * 3.001f), 1f);
                 meshUVCoordinates[6] = new Vector2((tileSize * 2.001f), 0f);
                 meshUVCoordinates[7] = new Vector2((tileSize * 3.001f), 0f);
                 // Right
-                meshUVCoordinates[16] = new Vector2(tileSize * 3.001f, 0f);
-                meshUVCoordinates[18] = new Vector2(tileSize * 4.001f, 0f);
-                meshUVCoordinates[19] = new Vector2(tileSize * 3.001f, 1f);
-                meshUVCoordinates[17] = new Vector2(tileSize * 4.001f, 1f);
+                meshUVCoordinates[20] = new Vector2(tileSize * 3.001f, 0f);
+                meshUVCoordinates[23] = new Vector2(tileSize * 4.001f, 0f);
+                meshUVCoordinates[21] = new Vector2(tileSize * 3.001f, 1f);
+                meshUVCoordinates[22] = new Vector2(tileSize * 4.001f, 1f);
                 // Left
                 meshUVCoordinates[8] = new Vector2(tileSize * 4.001f, 0f);
                 meshUVCoordinates[9] = new Vector2(tileSize * 5.001f, 0f);
                 meshUVCoordinates[4] = new Vector2(tileSize * 4.001f, 1f);
                 meshUVCoordinates[5] = new Vector2(tileSize * 5.001f, 1f);
                 // Down
-                meshUVCoordinates[12] = new Vector2(tileSize * 5.001f, 0f);
-                meshUVCoordinates[14] = new Vector2(tileSize * 6.001f, 0f);
+                meshUVCoordinates[14] = new Vector2(tileSize * 5.001f, 0f);
+                meshUVCoordinates[13] = new Vector2(tileSize * 6.001f, 0f);
                 meshUVCoordinates[15] = new Vector2(tileSize * 5.001f, 1f);
-                meshUVCoordinates[13] = new Vector2(tileSize * 6.001f, 1f);
+                meshUVCoordinates[12] = new Vector2(tileSize * 6.001f, 1f);
 
                 mesh.uv = meshUVCoordinates;
                 // // Front
