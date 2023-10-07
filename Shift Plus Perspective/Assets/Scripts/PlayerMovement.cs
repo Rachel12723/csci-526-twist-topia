@@ -1,41 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
-public class PlayerMovement : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour {
+
+    private int Horizontal = 0;
+    public Animator animator;
     public float moveSpeed = 5.0f;
-    private float leftBoundary;
-    private float rightBoundary;
+    private float degree = 0;
+    
+    // Update is called once per frame
+    void Update () {
+        if (Input.GetAxis ("Horizontal") < 0)
+            Horizontal = -1;
+        else if (Input.GetAxis ("Horizontal") > 0)
+            Horizontal = 1;
+        else
+            Horizontal = 0;
 
-    private void Update()
-    {
-        float horizontal = Input.GetAxis("Horizontal");
-        
-        // Calculate the next position
-        float nextXPosition = transform.position.x + horizontal * moveSpeed * Time.deltaTime;
-        
-        // Check if the next position is within the boundaries
-        if (nextXPosition > leftBoundary && nextXPosition < rightBoundary)
+        if(animator)
         {
-            transform.Translate(Vector3.right * horizontal * moveSpeed * Time.deltaTime);
-        }
-    }
+            animator.SetInteger("Horizontal", Horizontal);
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            // Calculate boundaries based on the platform's size and position
-            Renderer platformRenderer = collision.gameObject.GetComponent<Renderer>();
-            if (platformRenderer)
-            {
-                float platformWidth = platformRenderer.bounds.size.x;
-                float platformCenter = collision.gameObject.transform.position.x;
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
 
-                leftBoundary = platformCenter - platformWidth / 2;
-                rightBoundary = platformCenter + platformWidth / 2;
-            }
+            Vector3 movement = new Vector3(horizontal, 0f, vertical).normalized;
+
+            transform.Translate(movement * moveSpeed * Time.deltaTime);
         }
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, degree, 0), 8);
     }
 }

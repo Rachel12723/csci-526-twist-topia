@@ -23,32 +23,32 @@ public class UVCube : MonoBehaviour
                 //FRBLUD - Freeblood - stands for Front, Right, Back, Left, Up and Down.
                 //This is the order in which our image should be constructed to keep track when designing textures
                 Vector2[] meshUVCoordinates = mesh.uv;
-                
-                meshUVCoordinates[0] = new Vector2(0f, 0f);			 //左下
-                meshUVCoordinates[1] = new Vector2(tileSize, 0f);	 	 //右下
-                meshUVCoordinates[2] = new Vector2(0f, 1f); 		 	 //左上
-                meshUVCoordinates[3] = new Vector2(tileSize, 1f); 	 	 //右上
-                // 右
+                // Front
+                meshUVCoordinates[0] = new Vector2(0f, 0f);	//Bottom Left
+                meshUVCoordinates[1] = new Vector2(tileSize, 0f); //Bottom Right
+                meshUVCoordinates[2] = new Vector2(0f, 1f); //Top Left
+                meshUVCoordinates[3] = new Vector2(tileSize, 1f); // Top Right
+                // Right
                 meshUVCoordinates[20] = new Vector2(tileSize * 1.001f, 0f);
                 meshUVCoordinates[22] = new Vector2(tileSize * 2.001f, 0f);
                 meshUVCoordinates[23] = new Vector2(tileSize * 1.001f, 1f);
                 meshUVCoordinates[21] = new Vector2(tileSize * 2.001f, 1f);
-                // 后
+                // Back
                 meshUVCoordinates[10] = new Vector2((tileSize * 2.001f), 1f);
                 meshUVCoordinates[11] = new Vector2((tileSize * 3.001f), 1f);
                 meshUVCoordinates[6] = new Vector2((tileSize * 2.001f), 0f);
                 meshUVCoordinates[7] = new Vector2((tileSize * 3.001f), 0f);
-                // 左
+                // Right
                 meshUVCoordinates[16] = new Vector2(tileSize * 3.001f, 0f);
                 meshUVCoordinates[18] = new Vector2(tileSize * 4.001f, 0f);
                 meshUVCoordinates[19] = new Vector2(tileSize * 3.001f, 1f);
                 meshUVCoordinates[17] = new Vector2(tileSize * 4.001f, 1f);
-                // 上
+                // Left
                 meshUVCoordinates[8] = new Vector2(tileSize * 4.001f, 0f);
                 meshUVCoordinates[9] = new Vector2(tileSize * 5.001f, 0f);
                 meshUVCoordinates[4] = new Vector2(tileSize * 4.001f, 1f);
                 meshUVCoordinates[5] = new Vector2(tileSize * 5.001f, 1f);
-                // 下
+                // Down
                 meshUVCoordinates[12] = new Vector2(tileSize * 5.001f, 0f);
                 meshUVCoordinates[14] = new Vector2(tileSize * 6.001f, 0f);
                 meshUVCoordinates[15] = new Vector2(tileSize * 5.001f, 1f);
