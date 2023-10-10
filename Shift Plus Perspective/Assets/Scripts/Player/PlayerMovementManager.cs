@@ -117,54 +117,54 @@ public class PlayerMovementManager : MonoBehaviour {
 		bool moveCloser = false;
 		foreach(Transform item in level)
 		{
-			if(facingDirection == FacingDirection.Front || facingDirection == FacingDirection.Back)
-			{
-				//When facing Front, find cubes that are close enough in the x position and the just below our current y value
-				//This would have to be updated if using cubes bigger or smaller than (1,1,1)
-				if(Mathf.Abs(item.position.x - playerMove.transform.position.x) < worldUnits +0.1f)
-				{
+			//if(facingDirection == FacingDirection.Front || facingDirection == FacingDirection.Back)
+			//{
+			//	//When facing Front, find cubes that are close enough in the x position and the just below our current y value
+			//	//This would have to be updated if using cubes bigger or smaller than (1,1,1)
+			//	if(Mathf.Abs(item.position.x - playerMove.transform.position.x) < worldUnits +0.1f)
+			//	{
 					
-					if(playerMove.transform.position.y - item.position.y <= worldUnits + 0.2f && playerMove.transform.position.y - item.position.y >0)
-					{
-						if(facingDirection == FacingDirection.Front && item.position.z < playerMove.transform.position.z)
-							moveCloser = true;
+			//		if(playerMove.transform.position.y - item.position.y <= worldUnits + 0.2f && playerMove.transform.position.y - item.position.y >0)
+			//		{
+			//			if(facingDirection == FacingDirection.Front && item.position.z < playerMove.transform.position.z)
+			//				moveCloser = true;
 
-						if(facingDirection == FacingDirection.Back && item.position.z > playerMove.transform.position.z)
-							moveCloser = true;
+			//			if(facingDirection == FacingDirection.Back && item.position.z > playerMove.transform.position.z)
+			//				moveCloser = true;
 						
 
-						if(moveCloser)
-						{
+			//			if(moveCloser)
+			//			{
 
-							playerMove.transform.position = new Vector3(playerMove.transform.position.x, playerMove.transform.position.y, item.position.z);
-							return true;
-						}
-					}
+			//				playerMove.transform.position = new Vector3(playerMove.transform.position.x, playerMove.transform.position.y, item.position.z);
+			//				return true;
+			//			}
+			//		}
 
-				}
+			//	}
 				
-			}
-			else{
-				if(Mathf.Abs(item.position.z - playerMove.transform.position.z) < worldUnits + 0.1f)
-				{
-					if(playerMove.transform.position.y - item.position.y <= worldUnits + 0.2f && playerMove.transform.position.y - item.position.y >0)
-					{
-						if(facingDirection == FacingDirection.Right && item.position.x > playerMove.transform.position.x)
-							moveCloser = true;
+			//}
+			//else{
+			//	if(Mathf.Abs(item.position.z - playerMove.transform.position.z) < worldUnits + 0.1f)
+			//	{
+			//		if(playerMove.transform.position.y - item.position.y <= worldUnits + 0.2f && playerMove.transform.position.y - item.position.y >0)
+			//		{
+			//			if(facingDirection == FacingDirection.Right && item.position.x > playerMove.transform.position.x)
+			//				moveCloser = true;
 
-						if(facingDirection == FacingDirection.Left && item.position.x < playerMove.transform.position.x)
-							moveCloser = true;
+			//			if(facingDirection == FacingDirection.Left && item.position.x < playerMove.transform.position.x)
+			//				moveCloser = true;
 
-						if(moveCloser)
-						{
-							playerMove.transform.position = new Vector3(item.position.x, playerMove.transform.position.y, playerMove.transform.position.z);
-							return true;
-						}
+			//			if(moveCloser)
+			//			{
+			//				playerMove.transform.position = new Vector3(item.position.x, playerMove.transform.position.y, playerMove.transform.position.z);
+			//				return true;
+			//			}
 
-					}
+			//		}
 
-				}
-			}
+			//	}
+			//}
 
 			
 		}
@@ -201,26 +201,26 @@ public class PlayerMovementManager : MonoBehaviour {
 	{
 		foreach(Transform item in building)
 		{
-			if(facingDirection == FacingDirection.Front )
-			{
-				if(item.position.x == cube.x && item.position.y == cube.y && item.position.z < cube.z)
-					return true;
-			}
-			else if(facingDirection == FacingDirection.Back )
-			{
-				if(item.position.x == cube.x && item.position.y == cube.y && item.position.z > cube.z)
-					return true;
-			}
-			else if(facingDirection == FacingDirection.Right )
-			{
-				if(item.position.z == cube.z && item.position.y == cube.y && item.position.x > cube.x)
-					return true;
-			}
-			else
-			{
-				if(item.position.z == cube.z && item.position.y == cube.y && item.position.x < cube.x)
-					return true;
-			}
+			//if(facingDirection == FacingDirection.Front )
+			//{
+			//	if(item.position.x == cube.x && item.position.y == cube.y && item.position.z < cube.z)
+			//		return true;
+			//}
+			//else if(facingDirection == FacingDirection.Back )
+			//{
+			//	if(item.position.x == cube.x && item.position.y == cube.y && item.position.z > cube.z)
+			//		return true;
+			//}
+			//else if(facingDirection == FacingDirection.Right )
+			//{
+			//	if(item.position.z == cube.z && item.position.y == cube.y && item.position.x > cube.x)
+			//		return true;
+			//}
+			//else
+			//{
+			//	if(item.position.z == cube.z && item.position.y == cube.y && item.position.x < cube.x)
+			//		return true;
+			//}
 		}
 		return false;
 	}
@@ -231,24 +231,24 @@ public class PlayerMovementManager : MonoBehaviour {
 	{
 		foreach(Transform item in level)
 		{
-			if(facingDirection == FacingDirection.Front || facingDirection == FacingDirection.Back)
-			{
-				if(Mathf.Abs(item.position.x - playerMove.transform.position.x) < worldUnits + 0.1f)
-					if(playerMove.transform.position.y - item.position.y <= worldUnits + 0.2f && playerMove.transform.position.y - item.position.y > 0)
-					{
-						playerMove.transform.position = new Vector3(playerMove.transform.position.x, playerMove.transform.position.y, item.position.z);
-						return true;
-					}
-			}
-			else
-			{
-				if(Mathf.Abs(item.position.z - playerMove.transform.position.z) < worldUnits + 0.1f)
-					if(playerMove.transform.position.y - item.position.y <= worldUnits + 0.2f && playerMove.transform.position.y - item.position.y > 0)
-					{
-						playerMove.transform.position = new Vector3(item.position.x, playerMove.transform.position.y, playerMove.transform.position.z);
-						return true;
-					}
-			}
+			//if(facingDirection == FacingDirection.Front || facingDirection == FacingDirection.Back)
+			//{
+			//	if(Mathf.Abs(item.position.x - playerMove.transform.position.x) < worldUnits + 0.1f)
+			//		if(playerMove.transform.position.y - item.position.y <= worldUnits + 0.2f && playerMove.transform.position.y - item.position.y > 0)
+			//		{
+			//			playerMove.transform.position = new Vector3(playerMove.transform.position.x, playerMove.transform.position.y, item.position.z);
+			//			return true;
+			//		}
+			//}
+			//else
+			//{
+			//	if(Mathf.Abs(item.position.z - playerMove.transform.position.z) < worldUnits + 0.1f)
+			//		if(playerMove.transform.position.y - item.position.y <= worldUnits + 0.2f && playerMove.transform.position.y - item.position.y > 0)
+			//		{
+			//			playerMove.transform.position = new Vector3(item.position.x, playerMove.transform.position.y, playerMove.transform.position.z);
+			//			return true;
+			//		}
+			//}
 		}
 		return false;
 	}
@@ -269,26 +269,26 @@ public class PlayerMovementManager : MonoBehaviour {
 		Vector3 tempCube = Vector3.zero;
 		foreach(Transform child in level)
 		{
-			if(facingDirection == FacingDirection.Front || facingDirection == FacingDirection.Back)
-			{
-				tempCube = new Vector3(child.position.x, child.position.y, newDepth);
-				if(!FindTransformInvisibleList(tempCube) && !FindTransformLevel(tempCube) && !FindTransformBuilding(child.position))
-				{
-					Transform go = CreateInvisibleCube(tempCube);
-					invisibleList.Add(go);
-				}
-			}
-			//z and y must match a level cube
-			else if(facingDirection == FacingDirection.Right || facingDirection == FacingDirection.Left)
-			{
-				tempCube = new Vector3(newDepth, child.position.y, child.position.z);
-				if (!FindTransformInvisibleList(tempCube) && !FindTransformLevel(tempCube) &&
-				    !FindTransformBuilding(child.position))
-				{
-					Transform go = CreateInvisibleCube(tempCube);
-					invisibleList.Add(go);
-				}
-			}
+			//if(facingDirection == FacingDirection.Front || facingDirection == FacingDirection.Back)
+			//{
+			//	tempCube = new Vector3(child.position.x, child.position.y, newDepth);
+			//	if(!FindTransformInvisibleList(tempCube) && !FindTransformLevel(tempCube) && !FindTransformBuilding(child.position))
+			//	{
+			//		Transform go = CreateInvisibleCube(tempCube);
+			//		invisibleList.Add(go);
+			//	}
+			//}
+			////z and y must match a level cube
+			//else if(facingDirection == FacingDirection.Right || facingDirection == FacingDirection.Left)
+			//{
+			//	tempCube = new Vector3(newDepth, child.position.y, child.position.z);
+			//	if (!FindTransformInvisibleList(tempCube) && !FindTransformLevel(tempCube) &&
+			//	    !FindTransformBuilding(child.position))
+			//	{
+			//		Transform go = CreateInvisibleCube(tempCube);
+			//		invisibleList.Add(go);
+			//	}
+			//}
 		}
 	}
 
@@ -307,15 +307,15 @@ public class PlayerMovementManager : MonoBehaviour {
 	{
 		float ClosestPoint = 0f;
 
-		if(facingDirection == FacingDirection.Front || facingDirection == FacingDirection.Back)
-		{
-			ClosestPoint = playerMove.transform.position.z;
+		//if(facingDirection == FacingDirection.Front || facingDirection == FacingDirection.Back)
+		//{
+		//	ClosestPoint = playerMove.transform.position.z;
 				
-		}
-		else if(facingDirection == FacingDirection.Right || facingDirection == FacingDirection.Left)
-		{
-			ClosestPoint = playerMove.transform.position.x;
-		}
+		//}
+		//else if(facingDirection == FacingDirection.Right || facingDirection == FacingDirection.Left)
+		//{
+		//	ClosestPoint = playerMove.transform.position.x;
+		//}
 		return Mathf.Round(ClosestPoint);
 
 	}
@@ -355,11 +355,3 @@ public class PlayerMovementManager : MonoBehaviour {
 }
 
 //Used frequently to keep track of the orientation of our player and camera
-public enum FacingDirection
-{
-	Front = 0,
-	Right = 1,
-	Back = 2,
-	Left = 3
-	
-}
