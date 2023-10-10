@@ -1,18 +1,24 @@
 using UnityEngine;
 using System.Collections;
 
-public class ReturnPlayer : MonoBehaviour {
- 
-    public Transform returnPoint;
-    // public void OnCollisionEnter(Collision other)
-    // {
-    //     Debug.Log ("Collision");
-    //     other.transform.position = returnPoint.position;
-    // }
-    public void OnTriggerEnter(Collider other)
+public class ReturnPlayer : MonoBehaviour
+{
+
+    public GameObject player;
+    public float ReturnX;
+    public float ReturnY;
+    public float ReturnZ;
+    public float MinY;
+    public GameObject directionManager;
+
+    void Update()
     {
-        other.GetComponent<CharacterController>().enabled = false;
-        other.transform.position = returnPoint.position;
-        other.GetComponent<CharacterController>().enabled = true;
+        if (player.transform.position.y < MinY)
+        {
+            player.GetComponent<CharacterController>().enabled = false;
+            player.transform.position = new Vector3(ReturnX, ReturnY, ReturnZ);
+            directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
+            player.GetComponent<CharacterController>().enabled = true;
+        }
     }
 }
