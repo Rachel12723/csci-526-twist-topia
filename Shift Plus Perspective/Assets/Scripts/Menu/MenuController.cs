@@ -12,7 +12,15 @@ public class MenuController : MonoBehaviour
 
     public void ToggleMenu()
     {
-        
-        menuPanel.SetActive(!menuPanel.activeSelf);
+        if (menuPanel.activeSelf)
+        {
+            menuPanel.SetActive(!menuPanel.activeSelf);
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            menuPanel.SetActive(!menuPanel.activeSelf);
+            Time.timeScale = 0f;
+        }
     }
 }
