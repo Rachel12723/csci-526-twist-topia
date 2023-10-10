@@ -15,8 +15,11 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController characterController;
 
     // Camera and Light Rotation
+    private bool isRotating=false;
     private FacingDirection facingDirection;
     private float degree = 0;
+    private float lastRotationX = 0f;
+    private float currentRotationX = 0f;
 
 
     void Start()
@@ -67,13 +70,42 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(trans);
 
         // Camera and Light Rotation
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(degree, 0, 0), 8 * Time.deltaTime);
+        Quaternion rotate = Quaternion.Slerp(transform.rotation, Quaternion.Euler(degree, 0, 0), 8 * Time.deltaTime);
+        transform.rotation = rotate;
+        lastRotationX = currentRotationX;
+        currentRotationX = rotate.x;
+        if (Mathf.Abs(currentRotationX - lastRotationX) < 0.0001)
+        {
+            isRotating = false;
+        }else
+        {
+            isRotating = true;
+        }
     }
 
     // Update the Facing Firection
-    public void UpdateFacingDirection(FacingDirection newDirection, float angle)
+    public void UpdateFacingDirection(FacingDirection newDirection)
     {
         facingDirection = newDirection;
-        degree = angle;
+        if (facingDirection == FacingDirection.Front)
+        {
+            degree = 0f;
+        }
+        else if (facingDirection == FacingDirection.Up)
+        {
+            degree = 90f;
+        }
+    }
+
+    // Set isRotating
+    public void SetIsRotating(bool isRotating)
+    {
+        this.isRotating = isRotating;
+    }
+
+    // Get isRotating
+    public bool GetIsRotating()
+    {
+        return isRotating;
     }
 }

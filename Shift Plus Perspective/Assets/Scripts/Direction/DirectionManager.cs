@@ -36,20 +36,26 @@ public class DirectionManager : MonoBehaviour
             if (facingDirection == FacingDirection.Front)
             {
                 facingDirection = FacingDirection.Up;
-                playerMovement.UpdateFacingDirection(facingDirection, 90f);
+                playerMovement.UpdateFacingDirection(facingDirection);
             }
             else if (facingDirection == FacingDirection.Up)
             {
+                MovePlayerToClosestPlatformCube();
                 facingDirection = FacingDirection.Front;
-                playerMovement.UpdateFacingDirection(facingDirection, 0f);
+                playerMovement.UpdateFacingDirection(facingDirection);
             }
+            playerMovement.SetIsRotating(true);
             UpdateInvisibleCubes();
         }
-        if (OnInvisibleCube())
+        if (facingDirection == FacingDirection.Up && !playerMovement.GetIsRotating())
         {
-            MovePlayerToClosestPlatformCube();
-            if (facingDirection == FacingDirection.Front)
+            MovePlayerToClosestInvisibleCube();
+        }
+        if (facingDirection == FacingDirection.Front)
+        {
+            if (OnInvisibleCube())
             {
+                MovePlayerToClosestPlatformCube();
                 UpdateInvisibleCubes();
             }
         }
@@ -127,6 +133,49 @@ public class DirectionManager : MonoBehaviour
         }
     }
 
+    // Move player to the closest invisible cube when player on a platform cube
+    private void MovePlayerToClosestInvisibleCube()
+    {
+        // Get the Vector
+        float frontZ = float.MaxValue;
+        float upY = float.MaxValue;
+        foreach (Transform cube in invisibleCubes)
+        {
+            if (facingDirection == FacingDirection.Front)
+            {
+                if (Mathf.Abs(cube.position.x - player.transform.position.x) < WorldUnit / 2
+                && player.transform.position.y - cube.position.y <= WorldUnit + 0.2f
+                && player.transform.position.y - cube.position.y > 0)
+                {
+                    frontZ = Mathf.Min(frontZ, cube.position.z);
+                }
+            }
+            else if (facingDirection == FacingDirection.Up)
+            {
+                if (Mathf.Abs(cube.position.x - player.transform.position.x) < WorldUnit
+                && Mathf.Abs(cube.position.z - player.transform.position.z) < WorldUnit
+                && player.transform.position.y >= 1)
+                {
+                    upY = Mathf.Min(upY, cube.position.y + 1);
+                }
+            }
+        }
+
+        // Change the Position
+        if (facingDirection == FacingDirection.Front && frontZ != float.MaxValue)
+        {
+            player.GetComponent<CharacterController>().enabled = false;
+            player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, frontZ);
+            player.GetComponent<CharacterController>().enabled = true;
+        }
+        else if (facingDirection == FacingDirection.Up && upY != float.MaxValue)
+        {
+            player.GetComponent<CharacterController>().enabled = false;
+            player.transform.position = new Vector3(player.transform.position.x, upY, player.transform.position.z);
+            player.GetComponent<CharacterController>().enabled = true;
+        }
+    }
+
     // Update the invisible cubes when the direction changes
     public void UpdateInvisibleCubes()
     {
@@ -168,10 +217,10 @@ public class DirectionManager : MonoBehaviour
     // Get y axis of cube by platform cubes
     private float GetCubeYByPlatformCubes()
     {
-        float platformCubeDepth = float.MaxValue;
+        float platformCubeDepth = float.MinValue;
         foreach (Transform cube in platformCubes)
         {
-            platformCubeDepth = Mathf.Min(platformCubeDepth, cube.transform.position.y);
+            platformCubeDepth = Mathf.Max(platformCubeDepth, cube.transform.position.y + 1);
         }
         return Mathf.Round(platformCubeDepth);
     }
