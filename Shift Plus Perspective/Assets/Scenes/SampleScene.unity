@@ -7467,7 +7467,7 @@ MonoBehaviour:
   openDoorCode: 102
   buildings: {fileID: 325492705}
   keys: {fileID: 1603065676}
-  keyText: {fileID: 0}
+  keyText: {fileID: 2125272593}
   WorldUnit: 1
   menuPanel: {fileID: 1156613432}
   directionManager: {fileID: 1793793660}
@@ -8010,7 +8010,7 @@ GameObject:
   - component: {fileID: 2125272594}
   - component: {fileID: 2125272593}
   m_Layer: 5
-  m_Name: HP
+  m_Name: Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
