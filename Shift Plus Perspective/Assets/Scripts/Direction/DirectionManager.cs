@@ -31,6 +31,9 @@ public class DirectionManager : MonoBehaviour
     // World Unit
     public float WorldUnit = 1.000f;
 
+    //Menu
+    public GameObject menuPanel;
+
     void Start()
     {
         playerMovement = player.GetComponent<PlayerMovement>();
@@ -39,42 +42,45 @@ public class DirectionManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(rotateKeyCode))
+        if (!menuPanel.activeSelf)
         {
-            if (facingDirection == FacingDirection.Front)
+            if (Input.GetKeyDown(rotateKeyCode))
             {
-                facingDirection = FacingDirection.Up;
-                playerMovement.UpdateFacingDirection(facingDirection);
-            }
-            else if (facingDirection == FacingDirection.Up)
-            {
-                MovePlayerToClosestPlatformCube();
-                facingDirection = FacingDirection.Front;
-                playerMovement.UpdateFacingDirection(facingDirection);
-            }
-            playerMovement.SetIsRotating(true);
-            UpdateInvisibleCubes();
-        }
-        if (facingDirection == FacingDirection.Up && !playerMovement.GetIsRotating())
-        {
-            MovePlayerToClosestInvisibleCube();
-        }
-        if (facingDirection == FacingDirection.Front)
-        {
-            if (OnInvisibleCube())
-            {
-                MovePlayerToClosestPlatformCube();
+                if (facingDirection == FacingDirection.Front)
+                {
+                    facingDirection = FacingDirection.Up;
+                    playerMovement.UpdateFacingDirection(facingDirection);
+                }
+                else if (facingDirection == FacingDirection.Up)
+                {
+                    MovePlayerToClosestPlatformCube();
+                    facingDirection = FacingDirection.Front;
+                    playerMovement.UpdateFacingDirection(facingDirection);
+                }
+                playerMovement.SetIsRotating(true);
                 UpdateInvisibleCubes();
             }
-        }
+            if (facingDirection == FacingDirection.Up && !playerMovement.GetIsRotating())
+            {
+                MovePlayerToClosestInvisibleCube();
+            }
+            if (facingDirection == FacingDirection.Front)
+            {
+                if (OnInvisibleCube())
+                {
+                    MovePlayerToClosestPlatformCube();
+                    UpdateInvisibleCubes();
+                }
+            }
 
-        if (Input.GetKeyDown(pickUpKeyCode))
-        {
-            pickUpKey();
-        }
-        if (Input.GetKeyDown(openDoorCode) && keyCounter > 0)
-        {
-            openDoor();
+            if (Input.GetKeyDown(pickUpKeyCode))
+            {
+                pickUpKey();
+            }
+            if (Input.GetKeyDown(openDoorCode) && keyCounter > 0)
+            {
+                openDoor();
+            }
         }
     }
 
