@@ -35,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
     //Menu
     public GameObject menuPanel;
 
+    //Direction manager
+    public GameObject directionManager;
+
     void Start()
     {
 
@@ -193,12 +196,14 @@ public class PlayerMovement : MonoBehaviour
                 if (Mathf.Abs(buildingBlock.position.z - transform.position.z) < WorldUnit + 0.5f &&
                     Mathf.Abs(buildingBlock.position.x - transform.position.x) < WorldUnit + 0.5f)
                 {
+                    directionManager.GetComponent<DirectionManager>().DeleteBlockCubes(buildingBlock);
                     Destroy(buildingBlock.gameObject);
                     keyCounter--;
                     Debug.Log("Keys:" + keyCounter);
                     break;
                 }
-            } 
+            }
+            directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
         }
     }
 }

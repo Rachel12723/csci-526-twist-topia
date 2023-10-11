@@ -21,12 +21,12 @@ public class DirectionManager : MonoBehaviour
 
     // Block Cubes
     public Transform blockCubes;
-    private List<Transform> buildingBlockList = new List<Transform>();
+    public List<Transform> blockList = new List<Transform>();
 
     // Invisible Cubes
     public GameObject invisibleCube;
     public Transform invisibleCubes;
-    public float invisibleCubesOffsetY=50f;
+    public float invisibleCubesOffsetY = 50f;
     private List<Transform> invisibleList = new List<Transform>();
 
 
@@ -41,6 +41,10 @@ public class DirectionManager : MonoBehaviour
         playerMovement = player.GetComponent<PlayerMovement>();
         UpdateInvisibleCubes();
         playerReturn.GetComponent<PlayerReturn>().SetCheckPoint(player.transform.position);
+        for (int i = 0; i < blockCubes.childCount; i++)
+        {
+            blockList.Add(blockCubes.GetChild(i));
+        }
     }
 
     void Update()
@@ -115,7 +119,7 @@ public class DirectionManager : MonoBehaviour
         float upY = float.MinValue;
         foreach (Transform platform in platformCubes)
         {
-            for(int i = 0; i < platform.childCount; i++)
+            for (int i = 0; i < platform.childCount; i++)
             {
                 if (facingDirection == FacingDirection.Front)
                 {
@@ -197,6 +201,12 @@ public class DirectionManager : MonoBehaviour
         }
     }
 
+    // Delete the block in the blockList
+    public void DeleteBlockCubes(Transform block)
+    {
+        blockList.Remove(block);
+    }
+
     // Update the invisible cubes when the direction changes
     public void UpdateInvisibleCubes()
     {
@@ -213,7 +223,7 @@ public class DirectionManager : MonoBehaviour
         float newCubeY = GetCubeYByPlatformAndBlockCubes();
         foreach (Transform platform in platformCubes)
         {
-            for(int i = 0; i < platform.childCount; i++)
+            for (int i = 0; i < platform.childCount; i++)
             {
                 if (facingDirection == FacingDirection.Front)
                 {
@@ -236,13 +246,13 @@ public class DirectionManager : MonoBehaviour
                 }
             }
         }
-        foreach(Transform block in blockCubes)
+        foreach (Transform block in blockList)
         {
-            for(int i = 0; i < block.childCount; i++)
+            for (int i = 0; i < block.childCount; i++)
             {
                 if (facingDirection == FacingDirection.Up)
                 {
-                    newCubePosition = new Vector3(block.GetChild(i).position.x, newCubeY+1, block.GetChild(i).position.z);
+                    newCubePosition = new Vector3(block.GetChild(i).position.x, newCubeY + 1, block.GetChild(i).position.z);
                     GameObject newCube = Instantiate(invisibleCube) as GameObject;
                     newCube.transform.position = newCubePosition;
                     invisibleList.Add(newCube.transform);

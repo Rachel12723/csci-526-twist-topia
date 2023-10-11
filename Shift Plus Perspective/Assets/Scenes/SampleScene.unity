@@ -6650,13 +6650,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateKeyCode: 32
-  pickUpKeyCode: 113
+  pickUpKeyCode: 0
   openDoorCode: 102
   player: {fileID: 2011617863}
   Goal: {fileID: 1252295774}
   playerReturn: {fileID: 106263880}
   platformCubes: {fileID: 514260046}
   blockCubes: {fileID: 325492705}
+  blockList: []
   invisibleCube: {fileID: 7107542243581654823, guid: 988bc367a953248ada623e8ef449a279, type: 3}
   invisibleCubes: {fileID: 1442724119}
   invisibleCubesOffsetY: 20
@@ -7467,6 +7468,7 @@ MonoBehaviour:
   keys: {fileID: 1603065676}
   WorldUnit: 1
   menuPanel: {fileID: 1156613432}
+  directionManager: {fileID: 1793793660}
 --- !u!4 &2011617866
 Transform:
   m_ObjectHideFlags: 0
