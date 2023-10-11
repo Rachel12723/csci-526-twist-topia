@@ -7460,7 +7460,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ddd2fef426edd4f9d0cc411d3eb4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpText: {fileID: 2125272593}
   movementSpeed: 5
   gravity: 50
   characterController: {fileID: 2011617864}
@@ -7468,6 +7467,7 @@ MonoBehaviour:
   openDoorCode: 102
   buildings: {fileID: 325492705}
   keys: {fileID: 1603065676}
+  keyText: {fileID: 0}
   WorldUnit: 1
   menuPanel: {fileID: 1156613432}
   directionManager: {fileID: 1793793660}
@@ -8069,7 +8069,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'HP: 3'
+  m_Text: 'Key: 0'
 --- !u!222 &2125272594
 CanvasRenderer:
   m_ObjectHideFlags: 0

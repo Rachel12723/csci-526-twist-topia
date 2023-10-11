@@ -8,9 +8,6 @@ public class PlayerMovement : MonoBehaviour
     private int Horizontal = 0;
     // Down: -1  Up: 1
     private int Vertical = 0;
-	// hp
-	private int health = 3;
-	public UnityEngine.UI.Text hpText;
 
     // Physical Parameter
     public float movementSpeed = 5f;
@@ -30,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
 	public Transform buildings;
     public Transform keys;
     private int keyCounter = 0;
+	public UnityEngine.UI.Text keyText;
 	private List<Transform> buildingBlockList = new List<Transform>();
 
 	// World Unit
@@ -48,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-		hpText.text = "HP: " + health;
+		keyText.text = "Key: " + keyCounter;
 		if (!menuPanel.activeSelf)
         {
             if (!isRotating)
@@ -209,19 +207,16 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-	public void healthDecrease(){
-		if(health > 1){
-			health--;
-			Debug.Log("Oops! Be careful! " + health);
-		}
-		else if(health == 1){
-			health--;
-			Debug.Log("YOU DIED!");
+	public void keyDrop(){
+		if(keyCounter > 0){
+			keyCounter--;
+			Debug.Log("Oops! Be careful! " + keyCounter);
 		}
 	}
-
+	/*
 	public void healthIncrease(){
 		health++;
 		Debug.Log("Aughhhhh! "  + health);
 	}
+	*/
 }

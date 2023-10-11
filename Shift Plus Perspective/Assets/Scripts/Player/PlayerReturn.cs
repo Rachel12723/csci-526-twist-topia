@@ -20,7 +20,7 @@ public class PlayerReturn : MonoBehaviour
         if (player.transform.position.y < MinY)
         {
             player.GetComponent<CharacterController>().enabled = false;
-            playerMovement.healthDecrease();
+            playerMovement.keyDrop();
             player.transform.position = checkPoint;
             directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
             player.GetComponent<CharacterController>().enabled = true;
