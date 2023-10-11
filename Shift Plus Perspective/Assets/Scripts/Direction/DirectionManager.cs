@@ -205,6 +205,7 @@ public class DirectionManager : MonoBehaviour
     public void DeleteBlockCubes(Transform block)
     {
         blockList.Remove(block);
+		UpdateInvisibleCubes();
     }
 
     // Update the invisible cubes when the direction changes

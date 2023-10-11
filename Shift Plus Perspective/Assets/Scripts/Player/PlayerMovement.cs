@@ -8,6 +8,9 @@ public class PlayerMovement : MonoBehaviour
     private int Horizontal = 0;
     // Down: -1  Up: 1
     private int Vertical = 0;
+	// hp
+	private int health = 3;
+	public UnityEngine.UI.Text hpText;
 
     // Physical Parameter
     public float movementSpeed = 5f;
@@ -45,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+		hpText.text = "HP: " + health;
 		if (!menuPanel.activeSelf)
         {
             if (!isRotating)
@@ -203,7 +207,21 @@ public class PlayerMovement : MonoBehaviour
                     break;
                 }
             }
-            directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
         }
     }
+	public void healthDecrease(){
+		if(health > 1){
+			health--;
+			Debug.Log("Oops! Be careful! " + health);
+		}
+		else if(health == 1){
+			health--;
+			Debug.Log("YOU DIED!");
+		}
+	}
+
+	public void healthIncrease(){
+		health++;
+		Debug.Log("Aughhhhh! "  + health);
+	}
 }
