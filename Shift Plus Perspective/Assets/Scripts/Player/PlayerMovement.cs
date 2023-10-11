@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController characterController;
 
     // Camera and Light Rotation
-    private bool isRotating=false;
+    private bool isRotating = false;
     private FacingDirection facingDirection;
     private float degree = 0;
     private float lastRotationX = 0f;
@@ -44,66 +44,69 @@ public class PlayerMovement : MonoBehaviour
     {
 		if (!menuPanel.activeSelf)
         {
-        	// Left/Right Key
-        	if (Input.GetAxis("Horizontal") < 0)
-        	{
-            	Horizontal = -1;
-        	}
-        	else if (Input.GetAxis("Horizontal") > 0)
-        	{
-            	Horizontal = 1;
-        	}
-        	else
-        	{
-            	Horizontal = 0;
-        	}
+            if (!isRotating)
+            {
+                // Left/Right Key
+                if (Input.GetAxis("Horizontal") < 0)
+                {
+                    Horizontal = -1;
+                }
+                else if (Input.GetAxis("Horizontal") > 0)
+                {
+                    Horizontal = 1;
+                }
+                else
+                {
+                    Horizontal = 0;
+                }
 
-        	// Down/Up Key
-        	if (Input.GetAxis("Vertical") < 0)
-        	{
-            	Vertical = -1;
-        	}
-        	else if (Input.GetAxis("Vertical") > 0)
-        	{
-            	Vertical = 1;
-        	}
-        	else
-       		{
-            	Vertical = 0;
-        	}
+                // Down/Up Key
+                if (Input.GetAxis("Vertical") < 0)
+                {
+                    Vertical = -1;
+                }
+                else if (Input.GetAxis("Vertical") > 0)
+                {
+                    Vertical = 1;
+                }
+                else
+                {
+                    Vertical = 0;
+                }
 
-        	// Movement
-        	Vector3 trans = Vector3.zero;
-        	if (facingDirection == FacingDirection.Front)
-        	{
-            	trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, 0f);
-        	}
-        	else if (facingDirection == FacingDirection.Up)
-        	{
-            	trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, Vertical * movementSpeed * Time.deltaTime);
-        	}
-        	characterController.Move(trans);
+                // Movement
+                Vector3 trans = Vector3.zero;
+                if (facingDirection == FacingDirection.Front)
+                {
+                    trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, 0f);
+                }
+                else if (facingDirection == FacingDirection.Up)
+                {
+                    trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, Vertical * movementSpeed * Time.deltaTime);
+                }
+                characterController.Move(trans);
 
-        	// Camera and Light Rotation
-        	Quaternion rotate = Quaternion.Slerp(transform.rotation, Quaternion.Euler(degree, 0, 0), 8 * Time.deltaTime);
-        	transform.rotation = rotate;
-        	lastRotationX = currentRotationX;
-        	currentRotationX = rotate.x;
-        	if (Mathf.Abs(currentRotationX - lastRotationX) < 0.0001)
-        	{
-            	isRotating = false;
-        	}else
-        	{
-            	isRotating = true;
-        	}
-		}
-		//if (Input.GetKeyDown(pickUpKeyCode))
-		//{
-			pickUpKey();
-        //}
-        if (Input.GetKeyDown(openDoorCode) && keyCounter > 0)
-        {
-            openDoor();
+                // Camera and Light Rotation
+                Quaternion rotate = Quaternion.Slerp(transform.rotation, Quaternion.Euler(degree, 0, 0), 8 * Time.deltaTime);
+                transform.rotation = rotate;
+                lastRotationX = currentRotationX;
+                currentRotationX = rotate.x;
+                if (Mathf.Abs(currentRotationX - lastRotationX) < 0.0001)
+                {
+                    isRotating = false;
+                }else
+                {
+                    isRotating = true;
+                }
+                //if (Input.GetKeyDown(pickUpKeyCode))
+                //{
+                    pickUpKey();
+                //}
+                if (Input.GetKeyDown(openDoorCode) && keyCounter > 0)
+                {
+                    openDoor();
+                }
+            }
         }
     }
 
@@ -132,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
     {
         return isRotating;
     }
+
     private void pickUpKey()
     {
         if (facingDirection == FacingDirection.Front)
@@ -169,7 +173,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (facingDirection == FacingDirection.Front)
         {
-            int index = 0;
             foreach (Transform buildingBlock in buildings)
             {
                 if (Mathf.Abs(buildingBlock.position.y - transform.position.y) < WorldUnit + 0.5f &&
@@ -181,13 +184,10 @@ public class PlayerMovement : MonoBehaviour
                     Debug.Log("Keys:" + keyCounter);
                     break;
                 }
-
-                index++;
             }
         }
         else if (facingDirection == FacingDirection.Up)
         {
-            int index = 0;
             foreach (Transform buildingBlock in buildings)
             {
                 if (Mathf.Abs(buildingBlock.position.z - transform.position.z) < WorldUnit + 0.5f &&
@@ -198,7 +198,6 @@ public class PlayerMovement : MonoBehaviour
                     Debug.Log("Keys:" + keyCounter);
                     break;
                 }
-                index++;
             } 
         }
     }
