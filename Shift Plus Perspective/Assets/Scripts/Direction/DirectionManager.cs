@@ -14,149 +14,69 @@ public class DirectionManager : MonoBehaviour
     public GameObject player;
     public GameObject Goal;
     private PlayerMovement playerMovement;
+    public GameObject playerReturn;
 
     // Platform Cubes
     public Transform platformCubes;
 
+    // Block Cubes
+    public Transform blockCubes;
+    private List<Transform> buildingBlockList = new List<Transform>();
+
     // Invisible Cubes
     public GameObject invisibleCube;
     public Transform invisibleCubes;
-    public Transform buildings;
-    public Transform keys;
-    private int keyCounter = 0;
+    public float invisibleCubesOffsetY=50f;
     private List<Transform> invisibleList = new List<Transform>();
-    private List<Transform> buildingBlockList = new List<Transform>();
-    
+
 
     // World Unit
     public float WorldUnit = 1.000f;
+
+    //Menu
+    public GameObject menuPanel;
 
     void Start()
     {
         playerMovement = player.GetComponent<PlayerMovement>();
         UpdateInvisibleCubes();
+        playerReturn.GetComponent<PlayerReturn>().SetCheckPoint(player.transform.position);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(rotateKeyCode))
+        if (!menuPanel.activeSelf)
         {
-            if (facingDirection == FacingDirection.Front)
+            if (Input.GetKeyDown(rotateKeyCode))
             {
-                facingDirection = FacingDirection.Up;
-                playerMovement.UpdateFacingDirection(facingDirection);
-            }
-            else if (facingDirection == FacingDirection.Up)
-            {
-                MovePlayerToClosestPlatformCube();
-                facingDirection = FacingDirection.Front;
-                playerMovement.UpdateFacingDirection(facingDirection);
-            }
-            playerMovement.SetIsRotating(true);
-            UpdateInvisibleCubes();
-        }
-        if (facingDirection == FacingDirection.Up && !playerMovement.GetIsRotating())
-        {
-            MovePlayerToClosestInvisibleCube();
-        }
-        if (facingDirection == FacingDirection.Front)
-        {
-            if (OnInvisibleCube())
-            {
-                MovePlayerToClosestPlatformCube();
+                if (facingDirection == FacingDirection.Front)
+                {
+                    facingDirection = FacingDirection.Up;
+                    playerMovement.UpdateFacingDirection(facingDirection);
+                }
+                else if (facingDirection == FacingDirection.Up)
+                {
+                    MovePlayerToClosestPlatformCube();
+                    facingDirection = FacingDirection.Front;
+                    playerMovement.UpdateFacingDirection(facingDirection);
+                }
+                playerMovement.SetIsRotating(true);
                 UpdateInvisibleCubes();
             }
-        }
-
-        if (Input.GetKeyDown(pickUpKeyCode))
-        {
-            pickUpKey();
-        }
-        if (Input.GetKeyDown(openDoorCode) && keyCounter > 0)
-        {
-            openDoor();
-        }
-    }
-
-    private void pickUpKey()
-    {
-        if (facingDirection == FacingDirection.Front)
-        {
-            foreach (Transform key in keys)
+            if (facingDirection == FacingDirection.Up && !playerMovement.GetIsRotating())
             {
-                if (Mathf.Abs(key.position.y - player.transform.position.y) < WorldUnit &&
-                    Mathf.Abs(key.position.x - player.transform.position.x) < WorldUnit)
+                MovePlayerToClosestInvisibleCube();
+            }
+            if (facingDirection == FacingDirection.Front)
+            {
+                if (OnInvisibleCube())
                 {
-                    Destroy(key.gameObject);
-                    keyCounter++;
-                    Debug.Log("Keys:" + keyCounter);
-                    break;
+                    MovePlayerToClosestPlatformCube();
+                    UpdateInvisibleCubes();
                 }
             }
         }
-        else if (facingDirection == FacingDirection.Up)
-        {
-            foreach (Transform key in keys)
-            {
-                if (Mathf.Abs(key.position.z - player.transform.position.z) < WorldUnit &&
-                    Mathf.Abs(key.position.x - player.transform.position.x) < WorldUnit)
-                {
-                    Destroy(key.gameObject);
-                    keyCounter++;
-                    Debug.Log("Keys:" + keyCounter);
-                    break;
-                }
-            } 
-        }
     }
-
-    private void openDoor()
-    {
-
-        if (facingDirection == FacingDirection.Front)
-        {
-            int index = 0;
-            foreach (Transform buildingBlock in buildings)
-            {
-                if (Mathf.Abs(buildingBlock.position.y - player.transform.position.y) < WorldUnit + 0.5f &&
-                    Mathf.Abs(buildingBlock.position.x - player.transform.position.x) < WorldUnit + 0.5f)
-                {
-                    Debug.Log("true dude!");
-                    Destroy(buildingBlock.gameObject);
-                    keyCounter--;
-                    Debug.Log("Keys:" + keyCounter);
-                    break;
-                }
-
-                index++;
-            }
-        }
-        else if (facingDirection == FacingDirection.Up)
-        {
-            int index = 0;
-            foreach (Transform buildingBlock in buildings)
-            {
-                if (Mathf.Abs(buildingBlock.position.z - player.transform.position.z) < WorldUnit + 0.5f &&
-                    Mathf.Abs(buildingBlock.position.x - player.transform.position.x) < WorldUnit + 0.5f)
-                {
-                    Destroy(buildingBlock.gameObject);
-                    keyCounter--;
-                    Debug.Log("Keys:" + keyCounter);
-                    break;
-                }
-                index++;
-            } 
-        }
-    }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Goal"))
-        {
-            Debug.Log("Game Over!");
-        }
-    }
-    
 
     // Determines if the player is on an invisible cube
     private bool OnInvisibleCube()
@@ -193,25 +113,29 @@ public class DirectionManager : MonoBehaviour
         // Get the Vector
         float frontZ = float.MaxValue;
         float upY = float.MinValue;
-        foreach (Transform cube in platformCubes)
+        foreach (Transform platform in platformCubes)
         {
-            if (facingDirection == FacingDirection.Front)
+            for(int i = 0; i < platform.childCount; i++)
             {
-                if (Mathf.Abs(cube.position.x - player.transform.position.x) < WorldUnit / 2
-                && player.transform.position.y - cube.position.y <= WorldUnit + 0.2f
-                && player.transform.position.y - cube.position.y > 0)
+                if (facingDirection == FacingDirection.Front)
                 {
-                    frontZ = Mathf.Min(frontZ, cube.transform.position.z);
+                    if (Mathf.Abs(platform.GetChild(i).position.x - player.transform.position.x) < WorldUnit / 2
+                    && player.transform.position.y - platform.GetChild(i).position.y <= WorldUnit + 0.2f
+                    && player.transform.position.y - platform.GetChild(i).position.y > 0)
+                    {
+                        frontZ = Mathf.Min(frontZ, platform.GetChild(i).transform.position.z);
+                    }
                 }
-            }
-            else if (facingDirection == FacingDirection.Up)
-            {
-                if (Mathf.Abs(cube.position.x - player.transform.position.x) < WorldUnit
-                && Mathf.Abs(cube.position.z - player.transform.position.z) < WorldUnit
-                && player.transform.position.y > 1)
+                else if (facingDirection == FacingDirection.Up)
                 {
-                    upY = Mathf.Max(upY, cube.transform.position.y + 1);
+                    if (Mathf.Abs(platform.GetChild(i).position.x - player.transform.position.x) < WorldUnit
+                    && Mathf.Abs(platform.GetChild(i).position.z - player.transform.position.z) < WorldUnit
+                    && player.transform.position.y > 1)
+                    {
+                        upY = Mathf.Max(upY, platform.GetChild(i).transform.position.y + 1);
+                    }
                 }
+
             }
         }
 
@@ -285,24 +209,48 @@ public class DirectionManager : MonoBehaviour
 
         // Create new invisible cubes
         Vector3 newCubePosition = Vector3.zero;
-        foreach (Transform cube in platformCubes)
+        float newCubeZ = GetCubeZByPlayer();
+        float newCubeY = GetCubeYByPlatformAndBlockCubes();
+        foreach (Transform platform in platformCubes)
         {
-            if (facingDirection == FacingDirection.Front)
+            for(int i = 0; i < platform.childCount; i++)
             {
-                newCubePosition = new Vector3(cube.position.x, cube.position.y, GetCubeZByPlayer());
-            }
-            else if (facingDirection == FacingDirection.Up)
-            {
-                newCubePosition = new Vector3(cube.position.x, GetCubeYByPlatformCubes(), cube.position.z);
-            }
-            if (!ExistCube(invisibleList, newCubePosition) && !ExistCube(platformCubes, newCubePosition))
-            {
-                GameObject newCube = Instantiate(invisibleCube) as GameObject;
-                newCube.transform.position = newCubePosition;
-                invisibleList.Add(newCube.transform);
-                newCube.transform.SetParent(invisibleCubes);
+                if (facingDirection == FacingDirection.Front)
+                {
+                    newCubePosition = new Vector3(platform.GetChild(i).position.x, platform.GetChild(i).position.y, newCubeZ);
+                    if (!ExistCube(invisibleList, newCubePosition) && !ExistCube(platformCubes, newCubePosition) && !ExistCube(blockCubes, newCubePosition))
+                    {
+                        GameObject newCube = Instantiate(invisibleCube) as GameObject;
+                        newCube.transform.position = newCubePosition;
+                        invisibleList.Add(newCube.transform);
+                        newCube.transform.SetParent(invisibleCubes);
+                    }
+                }
+                else if (facingDirection == FacingDirection.Up)
+                {
+                    newCubePosition = new Vector3(platform.GetChild(i).position.x, newCubeY, platform.GetChild(i).position.z);
+                    GameObject newCube = Instantiate(invisibleCube) as GameObject;
+                    newCube.transform.position = newCubePosition;
+                    invisibleList.Add(newCube.transform);
+                    newCube.transform.SetParent(invisibleCubes);
+                }
             }
         }
+        foreach(Transform block in blockCubes)
+        {
+            for(int i = 0; i < block.childCount; i++)
+            {
+                if (facingDirection == FacingDirection.Up)
+                {
+                    newCubePosition = new Vector3(block.GetChild(i).position.x, newCubeY+1, block.GetChild(i).position.z);
+                    GameObject newCube = Instantiate(invisibleCube) as GameObject;
+                    newCube.transform.position = newCubePosition;
+                    invisibleList.Add(newCube.transform);
+                    newCube.transform.SetParent(invisibleCubes);
+                }
+            }
+        }
+
     }
 
     // Get z axis of cube by player
@@ -311,13 +259,23 @@ public class DirectionManager : MonoBehaviour
         return Mathf.Round(player.transform.position.z);
     }
 
-    // Get y axis of cube by platform cubes
-    private float GetCubeYByPlatformCubes()
+    // Get y axis of cube by platform and block cubes
+    private float GetCubeYByPlatformAndBlockCubes()
     {
         float platformCubeDepth = float.MinValue;
-        foreach (Transform cube in platformCubes)
+        foreach (Transform platform in platformCubes)
         {
-            platformCubeDepth = Mathf.Max(platformCubeDepth, cube.transform.position.y + 1);
+            for (int i = 0; i < platform.childCount; i++)
+            {
+                platformCubeDepth = Mathf.Max(platformCubeDepth, platform.GetChild(i).position.y + invisibleCubesOffsetY);
+            }
+        }
+        foreach (Transform block in blockCubes)
+        {
+            for (int i = 0; i < block.childCount; i++)
+            {
+                platformCubeDepth = Mathf.Max(platformCubeDepth, block.GetChild(i).position.y + invisibleCubesOffsetY);
+            }
         }
         return Mathf.Round(platformCubeDepth);
     }
@@ -338,11 +296,14 @@ public class DirectionManager : MonoBehaviour
     // Find if exists platform cube
     private bool ExistCube(Transform transform, Vector3 newCube)
     {
-        foreach (Transform cube in transform)
+        foreach (Transform cubes in transform)
         {
-            if (cube.position == newCube)
+            for (int i = 0; i < cubes.childCount; i++)
             {
-                return true;
+                if (cubes.GetChild(i).position == newCube)
+                {
+                    return true;
+                }
             }
         }
         return false;
