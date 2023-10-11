@@ -85,19 +85,6 @@ public class PlayerMovement : MonoBehaviour
                     trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, Vertical * movementSpeed * Time.deltaTime);
                 }
                 characterController.Move(trans);
-
-                // Camera and Light Rotation
-                Quaternion rotate = Quaternion.Slerp(transform.rotation, Quaternion.Euler(degree, 0, 0), 8 * Time.deltaTime);
-                transform.rotation = rotate;
-                lastRotationX = currentRotationX;
-                currentRotationX = rotate.x;
-                if (Mathf.Abs(currentRotationX - lastRotationX) < 0.0001)
-                {
-                    isRotating = false;
-                }else
-                {
-                    isRotating = true;
-                }
                 //if (Input.GetKeyDown(pickUpKeyCode))
                 //{
                     pickUpKey();
@@ -106,6 +93,19 @@ public class PlayerMovement : MonoBehaviour
                 {
                     openDoor();
                 }
+            }
+
+            // Camera and Light Rotation
+            Quaternion rotate = Quaternion.Slerp(transform.rotation, Quaternion.Euler(degree, 0, 0), 8 * Time.deltaTime);
+            transform.rotation = rotate;
+            lastRotationX = currentRotationX;
+            currentRotationX = rotate.x;
+            if (Mathf.Abs(currentRotationX - lastRotationX) < 0.00001)
+            {
+                isRotating = false;
+            }else
+            {
+                isRotating = true;
             }
         }
     }
