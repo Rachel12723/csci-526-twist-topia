@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6559,7 +6559,6 @@ MonoBehaviour:
   invisibleCube: {fileID: 7107542243581654823, guid: 988bc367a953248ada623e8ef449a279, type: 3}
   invisibleCubes: {fileID: 1442724119}
   buildings: {fileID: 325492705}
-  keys: {fileID: 1603065676}
   WorldUnit: 1
   menuPanel: {fileID: 1156613432}
 --- !u!4 &1793793662
@@ -7361,6 +7360,12 @@ MonoBehaviour:
   movementSpeed: 5
   gravity: 50
   characterController: {fileID: 2011617864}
+  pickUpKeyCode: 113
+  openDoorCode: 102
+  buildings: {fileID: 325492705}
+  keys: {fileID: 1603065676}
+  WorldUnit: 1
+  menuPanel: {fileID: 1156613432}
 --- !u!4 &2011617866
 Transform:
   m_ObjectHideFlags: 0

@@ -22,8 +22,6 @@ public class DirectionManager : MonoBehaviour
     public GameObject invisibleCube;
     public Transform invisibleCubes;
     public Transform buildings;
-    public Transform keys;
-    private int keyCounter = 0;
     private List<Transform> invisibleList = new List<Transform>();
     private List<Transform> buildingBlockList = new List<Transform>();
     
@@ -72,97 +70,8 @@ public class DirectionManager : MonoBehaviour
                     UpdateInvisibleCubes();
                 }
             }
-
-            if (Input.GetKeyDown(pickUpKeyCode))
-            {
-                pickUpKey();
-            }
-            if (Input.GetKeyDown(openDoorCode) && keyCounter > 0)
-            {
-                openDoor();
-            }
         }
     }
-
-    private void pickUpKey()
-    {
-        if (facingDirection == FacingDirection.Front)
-        {
-            foreach (Transform key in keys)
-            {
-                if (Mathf.Abs(key.position.y - player.transform.position.y) < WorldUnit &&
-                    Mathf.Abs(key.position.x - player.transform.position.x) < WorldUnit)
-                {
-                    Destroy(key.gameObject);
-                    keyCounter++;
-                    Debug.Log("Keys:" + keyCounter);
-                    break;
-                }
-            }
-        }
-        else if (facingDirection == FacingDirection.Up)
-        {
-            foreach (Transform key in keys)
-            {
-                if (Mathf.Abs(key.position.z - player.transform.position.z) < WorldUnit &&
-                    Mathf.Abs(key.position.x - player.transform.position.x) < WorldUnit)
-                {
-                    Destroy(key.gameObject);
-                    keyCounter++;
-                    Debug.Log("Keys:" + keyCounter);
-                    break;
-                }
-            } 
-        }
-    }
-
-    private void openDoor()
-    {
-
-        if (facingDirection == FacingDirection.Front)
-        {
-            int index = 0;
-            foreach (Transform buildingBlock in buildings)
-            {
-                if (Mathf.Abs(buildingBlock.position.y - player.transform.position.y) < WorldUnit + 0.5f &&
-                    Mathf.Abs(buildingBlock.position.x - player.transform.position.x) < WorldUnit + 0.5f)
-                {
-                    Debug.Log("true dude!");
-                    Destroy(buildingBlock.gameObject);
-                    keyCounter--;
-                    Debug.Log("Keys:" + keyCounter);
-                    break;
-                }
-
-                index++;
-            }
-        }
-        else if (facingDirection == FacingDirection.Up)
-        {
-            int index = 0;
-            foreach (Transform buildingBlock in buildings)
-            {
-                if (Mathf.Abs(buildingBlock.position.z - player.transform.position.z) < WorldUnit + 0.5f &&
-                    Mathf.Abs(buildingBlock.position.x - player.transform.position.x) < WorldUnit + 0.5f)
-                {
-                    Destroy(buildingBlock.gameObject);
-                    keyCounter--;
-                    Debug.Log("Keys:" + keyCounter);
-                    break;
-                }
-                index++;
-            } 
-        }
-    }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Goal"))
-        {
-            Debug.Log("Game Over!");
-        }
-    }
-    
 
     // Determines if the player is on an invisible cube
     private bool OnInvisibleCube()
