@@ -25,6 +25,7 @@ public class PlayerReturn : MonoBehaviour
             directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
             player.GetComponent<CharacterController>().enabled = true;
         }
+        
     }
 
     public void SetCheckPoint(Vector3 checkPoint)

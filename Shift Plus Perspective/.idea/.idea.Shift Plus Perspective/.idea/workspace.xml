@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bd4a2fa2-cc1b-46fb-b05a-6c33a7d1ca63" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Shift Plus Perspective/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Shift Plus Perspective/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerMovement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerReturn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerReturn.cs" afterDir="false" />
     </list>
@@ -114,7 +114,7 @@
       <workItem from="1696603390380" duration="9000" />
       <workItem from="1696603407349" duration="3926000" />
       <workItem from="1696617308746" duration="24382000" />
-      <workItem from="1697072927796" duration="7581000" />
+      <workItem from="1697072927796" duration="8954000" />
     </task>
     <servers />
   </component>

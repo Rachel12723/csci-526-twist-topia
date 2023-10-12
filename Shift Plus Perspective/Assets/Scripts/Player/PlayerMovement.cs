@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 	private List<Transform> blockList = new List<Transform>();
     // Contact with Enemy
     public Transform enemies;
+    public PlayerReturn playerReturn;
 
 	// World Unit
     public float WorldUnit = 1.000f;
@@ -187,6 +188,10 @@ public class PlayerMovement : MonoBehaviour
                     Mathf.Abs(enemy.position.x - transform.position.x) < WorldUnit)
                 {
                     Debug.Log("Player touched the enemy and died!");
+                    characterController.enabled = false; // stop current movement.
+                    transform.position = playerReturn.checkPoint;
+                    directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
+                    characterController.enabled = true;
                     break;
                 }
             }
@@ -199,6 +204,10 @@ public class PlayerMovement : MonoBehaviour
                     Mathf.Abs(enemy.position.x - transform.position.x) < WorldUnit)
                 {
                     Debug.Log("Player touched the enemy and died!");
+                    characterController.enabled = false; // stop current movement.
+                    transform.position = playerReturn.checkPoint;
+                    directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
+                    characterController.enabled = true;
                     break;
                 }
             } 
