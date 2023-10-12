@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     private int keyCounter = 0;
 	public UnityEngine.UI.Text keyText;
 	private List<Transform> blockList = new List<Transform>();
+    // Contact with Enemy
+    public Transform enemies;
 
 	// World Unit
     public float WorldUnit = 1.000f;
@@ -47,8 +49,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-		keyText.text = "Key: " + keyCounter;
-		if (!menuPanel.activeSelf)
+		keyText.text = "Key: " + keyCounter; // updates the displayed key count? where is text?
+		if (!menuPanel.activeSelf) // If the menu is not active
         {
             if (!isRotating)
             {
@@ -94,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
                 //if (Input.GetKeyDown(pickUpKeyCode))
                 //{
                     pickUpKey();
+                TouchEnemy();
                 //}
                 if (Input.GetKeyDown(openDoorCode) && keyCounter > 0)
                 {
@@ -168,6 +171,34 @@ public class PlayerMovement : MonoBehaviour
                     Destroy(key.gameObject);
                     keyCounter++;
                     Debug.Log("Keys:" + keyCounter);
+                    break;
+                }
+            } 
+        }
+    }
+    
+    private void TouchEnemy()
+    {
+        if (facingDirection == FacingDirection.Front)
+        {
+            foreach (Transform enemy in enemies)
+            {
+                if (Mathf.Abs(enemy.position.y - transform.position.y) < WorldUnit &&
+                    Mathf.Abs(enemy.position.x - transform.position.x) < WorldUnit)
+                {
+                    Debug.Log("Player touched the enemy and died!");
+                    break;
+                }
+            }
+        }
+        else if (facingDirection == FacingDirection.Up)
+        {
+            foreach (Transform enemy in enemies)
+            {
+                if (Mathf.Abs(enemy.position.z - transform.position.z) < WorldUnit &&
+                    Mathf.Abs(enemy.position.x - transform.position.x) < WorldUnit)
+                {
+                    Debug.Log("Player touched the enemy and died!");
                     break;
                 }
             } 

@@ -34,12 +34,12 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // Logic to handle player death goes here
-            Debug.Log("Player touched the enemy and died!");
-        }
-    }
+    // void OnCollisionEnter(Collision collision)
+    // {
+    //     if (collision.gameObject.CompareTag("Player"))
+    //     {
+    //         // Logic to handle player death goes here
+    //         Debug.Log("Player touched the enemy and died!");
+    //     }
+    // }
 }
