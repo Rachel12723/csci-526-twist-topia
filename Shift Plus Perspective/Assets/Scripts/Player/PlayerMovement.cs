@@ -21,14 +21,15 @@ public class PlayerMovement : MonoBehaviour
     private float lastRotationX = 0f;
     private float currentRotationX = 0f;
 	
+	// player action keyCode
 	public KeyCode pickUpKeyCode;
     public KeyCode openDoorCode;
-	// pick up key and open building
-	public Transform buildings;
+	// pick up key and open blocks
+	public Transform blocks;
     public Transform keys;
     private int keyCounter = 0;
 	public UnityEngine.UI.Text keyText;
-	private List<Transform> buildingBlockList = new List<Transform>();
+	private List<Transform> blockList = new List<Transform>();
 
 	// World Unit
     public float WorldUnit = 1.000f;
@@ -178,13 +179,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (facingDirection == FacingDirection.Front)
         {
-            foreach (Transform buildingBlock in buildings)
+            foreach (Transform block in blocks)
             {
-                if (Mathf.Abs(buildingBlock.position.y - transform.position.y) < WorldUnit + 0.5f &&
-                    Mathf.Abs(buildingBlock.position.x - transform.position.x) < WorldUnit + 0.5f)
+                if (Mathf.Abs(block.position.y - transform.position.y) < WorldUnit + 0.5f &&
+                    Mathf.Abs(block.position.x - transform.position.x) < WorldUnit + 0.5f)
                 {
                     //Debug.Log("true dude!");
-                    Destroy(buildingBlock.gameObject);
+					directionManager.GetComponent<DirectionManager>().DeleteBlockCubes(block);
+                    Destroy(block.gameObject);
                     keyCounter--;
                     Debug.Log("Keys:" + keyCounter);
                     break;
@@ -193,13 +195,13 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (facingDirection == FacingDirection.Up)
         {
-            foreach (Transform buildingBlock in buildings)
+            foreach (Transform block in blocks)
             {
-                if (Mathf.Abs(buildingBlock.position.z - transform.position.z) < WorldUnit + 0.5f &&
-                    Mathf.Abs(buildingBlock.position.x - transform.position.x) < WorldUnit + 0.5f)
+                if (Mathf.Abs(block.position.z - transform.position.z) < WorldUnit + 0.5f &&
+                    Mathf.Abs(block.position.x - transform.position.x) < WorldUnit + 0.5f)
                 {
-                    directionManager.GetComponent<DirectionManager>().DeleteBlockCubes(buildingBlock);
-                    Destroy(buildingBlock.gameObject);
+                    directionManager.GetComponent<DirectionManager>().DeleteBlockCubes(block);
+                    Destroy(block.gameObject);
                     keyCounter--;
                     Debug.Log("Keys:" + keyCounter);
                     break;
