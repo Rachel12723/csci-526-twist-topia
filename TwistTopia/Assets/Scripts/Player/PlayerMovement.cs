@@ -21,18 +21,14 @@ public class PlayerMovement : MonoBehaviour
     private float lastRotationX = 0f;
     private float currentRotationX = 0f;
 	
-	// player action keyCode
 	public KeyCode pickUpKeyCode;
     public KeyCode openDoorCode;
-	// pick up key and open blocks
-	public Transform blocks;
+	// pick up key and open building
+	public Transform buildings;
     public Transform keys;
     private int keyCounter = 0;
 	public UnityEngine.UI.Text keyText;
-	private List<Transform> blockList = new List<Transform>();
-    // Contact with Enemy
-    public Transform enemies;
-    public PlayerReturn playerReturn;
+	private List<Transform> buildingBlockList = new List<Transform>();
 
 	// World Unit
     public float WorldUnit = 1.000f;
@@ -50,8 +46,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-		keyText.text = "Key: " + keyCounter; // updates the displayed key count? where is text?
-		if (!menuPanel.activeSelf) // If the menu is not active
+		keyText.text = "Key: " + keyCounter;
+		if (!menuPanel.activeSelf)
         {
             if (!isRotating)
             {
@@ -97,7 +93,6 @@ public class PlayerMovement : MonoBehaviour
                 //if (Input.GetKeyDown(pickUpKeyCode))
                 //{
                     pickUpKey();
-                TouchEnemy();
                 //}
                 if (Input.GetKeyDown(openDoorCode) && keyCounter > 0)
                 {
@@ -177,60 +172,19 @@ public class PlayerMovement : MonoBehaviour
             } 
         }
     }
-    
-    private void HandlePlayerDeath()
-    {
-        characterController.enabled = false; // stop current movement.
-        transform.position = playerReturn.checkPoint;
-        directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
-        characterController.enabled = true;
-    }
-    
-    private void TouchEnemy()
-    {
-        foreach (Transform enemyNum in enemies)
-        {
-            Transform enemy = enemyNum.Find("EnemyModel");
-            Vector3 enemyPosition = enemy.position;
-            
-            if (facingDirection == FacingDirection.Front)
-            {
-                if (Mathf.Abs(enemyPosition.y - transform.position.y) < WorldUnit &&
-                    Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
-                {
-                    Debug.Log("Player touched the enemy and died!");
-                    HandlePlayerDeath();
-                    break;
-                }
-            }
-            else if (facingDirection == FacingDirection.Up)
-            {
-
-                if (Mathf.Abs(enemyPosition.z - transform.position.z) < WorldUnit &&
-                    Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
-                {
-                    Debug.Log("Player touched the enemy and died!");
-                    HandlePlayerDeath();
-                    break;
-                }
-            }
-
-        }
-    }
 
     private void openDoor()
     {
 
         if (facingDirection == FacingDirection.Front)
         {
-            foreach (Transform block in blocks)
+            foreach (Transform buildingBlock in buildings)
             {
-                if (Mathf.Abs(block.position.y - transform.position.y) < WorldUnit + 0.5f &&
-                    Mathf.Abs(block.position.x - transform.position.x) < WorldUnit + 0.5f)
+                if (Mathf.Abs(buildingBlock.position.y - transform.position.y) < WorldUnit + 0.5f &&
+                    Mathf.Abs(buildingBlock.position.x - transform.position.x) < WorldUnit + 0.5f)
                 {
                     //Debug.Log("true dude!");
-					directionManager.GetComponent<DirectionManager>().DeleteBlockCubes(block);
-                    Destroy(block.gameObject);
+                    Destroy(buildingBlock.gameObject);
                     keyCounter--;
                     Debug.Log("Keys:" + keyCounter);
                     break;
@@ -239,13 +193,13 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (facingDirection == FacingDirection.Up)
         {
-            foreach (Transform block in blocks)
+            foreach (Transform buildingBlock in buildings)
             {
-                if (Mathf.Abs(block.position.z - transform.position.z) < WorldUnit + 0.5f &&
-                    Mathf.Abs(block.position.x - transform.position.x) < WorldUnit + 0.5f)
+                if (Mathf.Abs(buildingBlock.position.z - transform.position.z) < WorldUnit + 0.5f &&
+                    Mathf.Abs(buildingBlock.position.x - transform.position.x) < WorldUnit + 0.5f)
                 {
-                    directionManager.GetComponent<DirectionManager>().DeleteBlockCubes(block);
-                    Destroy(block.gameObject);
+                    directionManager.GetComponent<DirectionManager>().DeleteBlockCubes(buildingBlock);
+                    Destroy(buildingBlock.gameObject);
                     keyCounter--;
                     Debug.Log("Keys:" + keyCounter);
                     break;
