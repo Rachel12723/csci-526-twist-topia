@@ -35,7 +35,7 @@ public class StepOnPortal : MonoBehaviour
     void Update()
     {   
         // get the direction first
-        facingDirection = playerMovement.returnFacingDirection();
+        facingDirection = playerMovement.GetFacingDirection();
         portalAction();
         /*
         if (!canStep1 && checkStepAwayPortal(portal1))

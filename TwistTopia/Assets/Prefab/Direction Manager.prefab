@@ -48,12 +48,13 @@ MonoBehaviour:
   pickUpKeyCode: 0
   openDoorCode: 102
   player: {fileID: 0}
+  Goal: {fileID: 0}
   playerReturn: {fileID: 0}
   platformCubes: {fileID: 0}
   blockCubes: {fileID: 0}
   blockList: []
   invisibleCube: {fileID: 7107542243581654823, guid: 988bc367a953248ada623e8ef449a279, type: 3}
   invisibleCubes: {fileID: 0}
-  invisibleCubesOffsetY: 20
+  invisibleCubesOffsetY: 50
   WorldUnit: 1
   menuPanel: {fileID: 0}
