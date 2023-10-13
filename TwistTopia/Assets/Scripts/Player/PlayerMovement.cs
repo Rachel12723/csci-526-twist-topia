@@ -48,6 +48,9 @@ public class PlayerMovement : MonoBehaviour
     //Direction manager
     public GameObject directionManager;
 
+    // Drop form up view
+    public bool dropUp = false;
+
     void Start()
     {
 
@@ -60,32 +63,40 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!isRotating)
             {
-                // Left/Right Key
-                if (Input.GetAxis("Horizontal") < 0)
-                {
-                    Horizontal = -1;
-                }
-                else if (Input.GetAxis("Horizontal") > 0)
-                {
-                    Horizontal = 1;
-                }
-                else
+                if (dropUp)
                 {
                     Horizontal = 0;
-                }
-
-                // Down/Up Key
-                if (Input.GetAxis("Vertical") < 0)
-                {
-                    Vertical = -1;
-                }
-                else if (Input.GetAxis("Vertical") > 0)
-                {
-                    Vertical = 1;
+                    Vertical = 0;
                 }
                 else
                 {
-                    Vertical = 0;
+                    // Left/Right Key
+                    if (Input.GetAxis("Horizontal") < 0)
+                    {
+                        Horizontal = -1;
+                    }
+                    else if (Input.GetAxis("Horizontal") > 0)
+                    {
+                        Horizontal = 1;
+                    }
+                    else
+                    {
+                        Horizontal = 0;
+                    }
+
+                    // Down/Up Key
+                    if (Input.GetAxis("Vertical") < 0)
+                    {
+                        Vertical = -1;
+                    }
+                    else if (Input.GetAxis("Vertical") > 0)
+                    {
+                        Vertical = 1;
+                    }
+                    else
+                    {
+                        Vertical = 0;
+                    }
                 }
 
                 // Movement
@@ -139,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
             degree = 90f;
         }
     }
-	public FacingDirection returnFacingDirection(){
+	public FacingDirection GetFacingDirection(){
 		return facingDirection;
 	}
 
