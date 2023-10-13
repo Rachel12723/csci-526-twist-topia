@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
-  gravity: 50
+  gravity: 10
   characterController: {fileID: 1609012023730264217}
   pickUpKeyCode: 113
   openDoorCode: 102
@@ -58,6 +58,9 @@ MonoBehaviour:
   keys: {fileID: 0}
   keyText: {fileID: 0}
   goal: {fileID: 0}
+  sceneName: 
+  enemies: {fileID: 0}
+  playerReturn: {fileID: 0}
   WorldUnit: 1
   menuPanel: {fileID: 0}
   directionManager: {fileID: 0}
