@@ -429,6 +429,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8f321fc497dc416eae767289df5e6c3, type: 3}
+--- !u!4 &46950114 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2166511239815829867, guid: 8679e7fd6d86ab3428ec1e4cf9165c2a, type: 3}
+  m_PrefabInstance: {fileID: 2166511238923264914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &66563852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6716,6 +6721,7 @@ MonoBehaviour:
   pickUpKeyCode: 0
   openDoorCode: 102
   player: {fileID: 2011617863}
+  Goal: {fileID: 0}
   playerReturn: {fileID: 106263880}
   platformCubes: {fileID: 514260046}
   blockCubes: {fileID: 325492705}
@@ -7595,6 +7601,8 @@ MonoBehaviour:
   blocks: {fileID: 325492705}
   keys: {fileID: 1603065676}
   keyText: {fileID: 2125272593}
+  goal: {fileID: 46950114}
+  sceneName: 
   enemies: {fileID: 1982940083}
   playerReturn: {fileID: 106263881}
   WorldUnit: 1

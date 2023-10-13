@@ -34,6 +34,10 @@ public class PlayerMovement : MonoBehaviour
 	
 	public Transform goal;
 	public string sceneName;
+    
+    // Contact with Enemy
+    public Transform enemies;
+    public PlayerReturn playerReturn;
 
 	// World Unit
     public float WorldUnit = 1.000f;
@@ -97,7 +101,8 @@ public class PlayerMovement : MonoBehaviour
                 characterController.Move(trans);
                 //if (Input.GetKeyDown(pickUpKeyCode))
                 //{
-                    pickUpKey();
+                pickUpKey();
+                TouchEnemy();
                 //}
                 if (Input.GetKeyDown(openDoorCode) && keyCounter > 0)
                 {
@@ -181,7 +186,45 @@ public class PlayerMovement : MonoBehaviour
             } 
         }
     }
+    private void HandlePlayerDeath()
+    {
+        characterController.enabled = false; // stop current movement.
+        transform.position = playerReturn.checkPoint;
+        directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
+        characterController.enabled = true;
+    }
+    
+    private void TouchEnemy()
+    {
+        foreach (Transform enemyNum in enemies)
+        {
+            Transform enemy = enemyNum.Find("EnemyModel");
+            Vector3 enemyPosition = enemy.position;
+            
+            if (facingDirection == FacingDirection.Front)
+            {
+                if (Mathf.Abs(enemyPosition.y - transform.position.y) < WorldUnit &&
+                    Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
+                {
+                    Debug.Log("Player touched the enemy and died!");
+                    HandlePlayerDeath();
+                    break;
+                }
+            }
+            else if (facingDirection == FacingDirection.Up)
+            {
 
+                if (Mathf.Abs(enemyPosition.z - transform.position.z) < WorldUnit &&
+                    Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
+                {
+                    Debug.Log("Player touched the enemy and died!");
+                    HandlePlayerDeath();
+                    break;
+                }
+            }
+
+        }
+    }
     private void openDoor()
     {
 
