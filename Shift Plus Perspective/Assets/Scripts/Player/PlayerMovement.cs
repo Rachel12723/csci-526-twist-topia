@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -24,12 +25,15 @@ public class PlayerMovement : MonoBehaviour
 	// player action keyCode
 	public KeyCode pickUpKeyCode;
     public KeyCode openDoorCode;
+
 	// pick up key and open blocks
 	public Transform blocks;
     public Transform keys;
     private int keyCounter = 0;
 	public UnityEngine.UI.Text keyText;
-	private List<Transform> blockList = new List<Transform>();
+	
+	public Transform goal;
+	public string sceneName;
 
 	// World Unit
     public float WorldUnit = 1.000f;
@@ -99,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     openDoor();
                 }
+				reachGoal();
             }
 
             // Camera and Light Rotation
@@ -129,6 +134,9 @@ public class PlayerMovement : MonoBehaviour
             degree = 90f;
         }
     }
+	public FacingDirection returnFacingDirection(){
+		return facingDirection;
+	}
 
     // Set isRotating
     public void SetIsRotating(bool isRotating)
@@ -209,10 +217,33 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
 	public void keyDrop(){
 		if(keyCounter > 0){
 			keyCounter--;
 			Debug.Log("Oops! Be careful! " + keyCounter);
+		}
+	}
+
+	private void reachGoal(){
+		if (facingDirection == FacingDirection.Front)
+        {
+			if (Mathf.Abs(goal.position.y - transform.position.y) < WorldUnit&&
+                    Mathf.Abs(goal.position.x - transform.position.x) < WorldUnit)
+			{
+				Debug.Log("Goal!!!");
+				LoadScene(sceneName);
+			}
+		}
+		else if (facingDirection == FacingDirection.Up)
+        {
+			if (Mathf.Abs(goal.position.z - transform.position.z) < WorldUnit&&
+                    Mathf.Abs(goal.position.x - transform.position.x) < WorldUnit)
+            {
+				Debug.Log("Goal!!!");
+				//现在是马上加载 感觉需要中间加入时间动画或者菜单
+				LoadScene(sceneName);
+			}
 		}
 	}
 	/*
@@ -221,4 +252,8 @@ public class PlayerMovement : MonoBehaviour
 		Debug.Log("Aughhhhh! "  + health);
 	}
 	*/
+	public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 }
