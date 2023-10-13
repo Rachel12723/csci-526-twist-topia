@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 public class MenuController : MonoBehaviour
 {
     public GameObject menuPanel;
-    private bool allowInput = true;
+    //private bool allowInput = true;
     void Start()
     {
         
