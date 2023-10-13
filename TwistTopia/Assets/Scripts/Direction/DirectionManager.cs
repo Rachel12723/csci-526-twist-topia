@@ -12,6 +12,7 @@ public class DirectionManager : MonoBehaviour
 
     // Player
     public GameObject player;
+    public GameObject Goal;
     private PlayerMovement playerMovement;
     public GameObject playerReturn;
 
