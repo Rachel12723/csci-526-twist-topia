@@ -178,39 +178,43 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     
+    private void HandlePlayerDeath()
+    {
+        characterController.enabled = false; // stop current movement.
+        transform.position = playerReturn.checkPoint;
+        directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
+        characterController.enabled = true;
+    }
+    
     private void TouchEnemy()
     {
-        if (facingDirection == FacingDirection.Front)
+        foreach (Transform enemyNum in enemies)
         {
-            foreach (Transform enemy in enemies)
+            Transform enemy = enemyNum.Find("EnemyModel");
+            Vector3 enemyPosition = enemy.position;
+            
+            if (facingDirection == FacingDirection.Front)
             {
-                if (Mathf.Abs(enemy.position.y - transform.position.y) < WorldUnit &&
-                    Mathf.Abs(enemy.position.x - transform.position.x) < WorldUnit)
+                if (Mathf.Abs(enemyPosition.y - transform.position.y) < WorldUnit &&
+                    Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
                 {
                     Debug.Log("Player touched the enemy and died!");
-                    characterController.enabled = false; // stop current movement.
-                    transform.position = playerReturn.checkPoint;
-                    directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
-                    characterController.enabled = true;
+                    HandlePlayerDeath();
                     break;
                 }
             }
-        }
-        else if (facingDirection == FacingDirection.Up)
-        {
-            foreach (Transform enemy in enemies)
+            else if (facingDirection == FacingDirection.Up)
             {
-                if (Mathf.Abs(enemy.position.z - transform.position.z) < WorldUnit &&
-                    Mathf.Abs(enemy.position.x - transform.position.x) < WorldUnit)
+
+                if (Mathf.Abs(enemyPosition.z - transform.position.z) < WorldUnit &&
+                    Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
                 {
                     Debug.Log("Player touched the enemy and died!");
-                    characterController.enabled = false; // stop current movement.
-                    transform.position = playerReturn.checkPoint;
-                    directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
-                    characterController.enabled = true;
+                    HandlePlayerDeath();
                     break;
                 }
-            } 
+            }
+
         }
     }
 
