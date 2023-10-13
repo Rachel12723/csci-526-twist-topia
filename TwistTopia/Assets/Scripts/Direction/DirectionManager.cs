@@ -319,4 +319,8 @@ public class DirectionManager : MonoBehaviour
         }
         return false;
     }
+	
+	public float returnInvisibleCubesOffsetY(){
+		return invisibleCubesOffsetY;
+	}
 }

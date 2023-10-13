@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,14 +22,18 @@ public class PlayerMovement : MonoBehaviour
     private float lastRotationX = 0f;
     private float currentRotationX = 0f;
 	
+	// player action keyCode
 	public KeyCode pickUpKeyCode;
     public KeyCode openDoorCode;
-	// pick up key and open building
-	public Transform buildings;
+
+	// pick up key and open blocks
+	public Transform blocks;
     public Transform keys;
     private int keyCounter = 0;
 	public UnityEngine.UI.Text keyText;
-	private List<Transform> buildingBlockList = new List<Transform>();
+	
+	public Transform goal;
+	public string sceneName;
 
 	// World Unit
     public float WorldUnit = 1.000f;
@@ -98,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     openDoor();
                 }
+				reachGoal();
             }
 
             // Camera and Light Rotation
@@ -128,6 +134,9 @@ public class PlayerMovement : MonoBehaviour
             degree = 90f;
         }
     }
+	public FacingDirection returnFacingDirection(){
+		return facingDirection;
+	}
 
     // Set isRotating
     public void SetIsRotating(bool isRotating)
@@ -178,13 +187,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (facingDirection == FacingDirection.Front)
         {
-            foreach (Transform buildingBlock in buildings)
+            foreach (Transform block in blocks)
             {
-                if (Mathf.Abs(buildingBlock.position.y - transform.position.y) < WorldUnit + 0.5f &&
-                    Mathf.Abs(buildingBlock.position.x - transform.position.x) < WorldUnit + 0.5f)
+                if (Mathf.Abs(block.position.y - transform.position.y) < WorldUnit + 0.5f &&
+                    Mathf.Abs(block.position.x - transform.position.x) < WorldUnit + 0.5f)
                 {
                     //Debug.Log("true dude!");
-                    Destroy(buildingBlock.gameObject);
+					directionManager.GetComponent<DirectionManager>().DeleteBlockCubes(block);
+                    Destroy(block.gameObject);
                     keyCounter--;
                     Debug.Log("Keys:" + keyCounter);
                     break;
@@ -193,13 +203,13 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (facingDirection == FacingDirection.Up)
         {
-            foreach (Transform buildingBlock in buildings)
+            foreach (Transform block in blocks)
             {
-                if (Mathf.Abs(buildingBlock.position.z - transform.position.z) < WorldUnit + 0.5f &&
-                    Mathf.Abs(buildingBlock.position.x - transform.position.x) < WorldUnit + 0.5f)
+                if (Mathf.Abs(block.position.z - transform.position.z) < WorldUnit + 0.5f &&
+                    Mathf.Abs(block.position.x - transform.position.x) < WorldUnit + 0.5f)
                 {
-                    directionManager.GetComponent<DirectionManager>().DeleteBlockCubes(buildingBlock);
-                    Destroy(buildingBlock.gameObject);
+                    directionManager.GetComponent<DirectionManager>().DeleteBlockCubes(block);
+                    Destroy(block.gameObject);
                     keyCounter--;
                     Debug.Log("Keys:" + keyCounter);
                     break;
@@ -207,10 +217,33 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
 	public void keyDrop(){
 		if(keyCounter > 0){
 			keyCounter--;
 			Debug.Log("Oops! Be careful! " + keyCounter);
+		}
+	}
+
+	private void reachGoal(){
+		if (facingDirection == FacingDirection.Front)
+        {
+			if (Mathf.Abs(goal.position.y - transform.position.y) < WorldUnit&&
+                    Mathf.Abs(goal.position.x - transform.position.x) < WorldUnit)
+			{
+				Debug.Log("Goal!!!");
+				LoadScene(sceneName);
+			}
+		}
+		else if (facingDirection == FacingDirection.Up)
+        {
+			if (Mathf.Abs(goal.position.z - transform.position.z) < WorldUnit&&
+                    Mathf.Abs(goal.position.x - transform.position.x) < WorldUnit)
+            {
+				Debug.Log("Goal!!!");
+				//现在是马上加载 感觉需要中间加入时间动画或者菜单
+				LoadScene(sceneName);
+			}
 		}
 	}
 	/*
@@ -219,4 +252,8 @@ public class PlayerMovement : MonoBehaviour
 		Debug.Log("Aughhhhh! "  + health);
 	}
 	*/
+	public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 }
