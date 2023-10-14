@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyandDoor : MonoBehaviour
+public class KeyAndDoor : MonoBehaviour
 {
     // player action keyCode
     public KeyCode pickUpKeyCode;
@@ -26,13 +26,13 @@ public class KeyandDoor : MonoBehaviour
     void Update()
     {
         keyText.text = "Key: " + keyCounter;
-        pickUpKey();
+        PickUpKey();
         if (Input.GetKeyDown(openDoorCode) && keyCounter > 0)
         {
-            openDoor();
+            OpenDoor();
         }
     }
-    private void pickUpKey()
+    private void PickUpKey()
     {
         if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
@@ -63,7 +63,7 @@ public class KeyandDoor : MonoBehaviour
             } 
         }
     }
-    private void openDoor()
+    private void OpenDoor()
     {
 
         if (cameraState.GetFacingDirection() == FacingDirection.Front)
@@ -108,7 +108,7 @@ public class KeyandDoor : MonoBehaviour
         }
     }
 
-    public void keyDrop(){
+    public void KeyDrop(){
         if(keyCounter > 0){
             keyCounter--;
             Debug.Log("Oops! Be careful! " + keyCounter);

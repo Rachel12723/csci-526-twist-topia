@@ -33,7 +33,7 @@ public class StepOnPortal : MonoBehaviour
     {   
         // get the direction first
         facingDirection = cameraState.GetFacingDirection();
-        portalAction();
+        PortalAction();
         /*
         if (!canStep1 && checkStepAwayPortal(portal1))
             canStep1 = true;
@@ -43,7 +43,7 @@ public class StepOnPortal : MonoBehaviour
     }
     
     // according to the direction and closet distance decide how to portal the player
-    private void portalAction()
+    private void PortalAction()
     {
         if (facingDirection == FacingDirection.Front)
         {
@@ -57,18 +57,18 @@ public class StepOnPortal : MonoBehaviour
             
             if (distance1 < distance2)
             {
-                if (checkStepOnPortal(portal1) && Input.GetKeyDown(usePortalCode))
+                if (CheckStepOnPortal(portal1) && Input.GetKeyDown(usePortalCode))
                 //if (checkStepOnPortal(portal1) && canStep1 == true && Input.GetKeyDown(usePortalCode))
                 {
-                    portalPlayer(portal2);
+                    PortalPlayer(portal2);
                 }
             }
             else if (distance2 < distance1)
             {
-                if (checkStepOnPortal(portal2) && Input.GetKeyDown(usePortalCode))
+                if (CheckStepOnPortal(portal2) && Input.GetKeyDown(usePortalCode))
                 //if (checkStepOnPortal(portal2) && canStep2 == true && Input.GetKeyDown(usePortalCode))
                 {
-                    portalPlayer(portal1);
+                    PortalPlayer(portal1);
                 }
             }
         }
@@ -85,18 +85,18 @@ public class StepOnPortal : MonoBehaviour
             
             if (distance1 < distance2)
             {
-                if (checkStepOnPortal(portal1) && Input.GetKeyDown(usePortalCode))
+                if (CheckStepOnPortal(portal1) && Input.GetKeyDown(usePortalCode))
                 //if (checkStepOnPortal(portal1) && canStep1 == true && Input.GetKeyDown(usePortalCode))
                 {
-                    portalPlayer(portal2);
+                    PortalPlayer(portal2);
                 }
             }
             else if (distance2 < distance1)
             {
-                if (checkStepOnPortal(portal2) && Input.GetKeyDown(usePortalCode))
+                if (CheckStepOnPortal(portal2) && Input.GetKeyDown(usePortalCode))
                 //if (checkStepOnPortal(portal2) && canStep2 == true && Input.GetKeyDown(usePortalCode))
                 {
-                    portalPlayer(portal1);
+                    PortalPlayer(portal1);
                 }
             }
         }
@@ -105,7 +105,7 @@ public class StepOnPortal : MonoBehaviour
     }
     
     // check player is stepping on the portal
-    private bool checkStepOnPortal(Transform portal)
+    private bool CheckStepOnPortal(Transform portal)
     {
         if (facingDirection == FacingDirection.Front)
         {
@@ -155,7 +155,7 @@ public class StepOnPortal : MonoBehaviour
     }
     */
     // according different direction to portal the player
-    private void portalPlayer(Transform portal)
+    private void PortalPlayer(Transform portal)
     {
         if (facingDirection == FacingDirection.Front)
         {
