@@ -6,7 +6,7 @@ public class EnemyMovement : MonoBehaviour
 {
     public Transform pointA;
     public Transform pointB;
-    public float speed = 3f;
+    public float speed = 2f;
 
     private Vector3 targetPoint;
     void Start()
