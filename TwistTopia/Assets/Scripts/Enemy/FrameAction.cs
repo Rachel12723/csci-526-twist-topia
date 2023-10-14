@@ -7,7 +7,7 @@ public class FrameAction : MonoBehaviour
 {
     public GameObject player; // Drag your player object here
     public GameObject enemyModel;  // Drag your enemy object here
-    public GameObject directionManager;  
+    public CameraState cameraState;  
     public KeyCode catchEnemy;
     public float xTolerance = 0.5f; // A small value to account for minor discrepancies in z-position
     public float yTolerance = 0.5f;
@@ -26,7 +26,7 @@ public class FrameAction : MonoBehaviour
     
     void Update() {
         if (Input.GetKeyDown(catchEnemy)) {
-            if (directionManager.GetComponent<DirectionManager>().facingDirection == FacingDirection.Front) {
+            if (cameraState.facingDirection == FacingDirection.Front) {
                 Debug.Log("return key pressed and the direction is front");
                 float playerXDistanceToFrame = Math.Abs(player.transform.position.x - transform.position.x);
                 float playerYDistanceToFrame = Math.Abs(player.transform.position.y - transform.position.y);

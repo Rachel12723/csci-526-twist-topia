@@ -16,6 +16,7 @@ public class PlayerReturn : MonoBehaviour
     {
         playerState = GetComponent<PlayerState>();
         playerMovement = GetComponent<PlayerMovement>();
+        SetCheckPoint(transform.position);
     }
 
     void Update()
