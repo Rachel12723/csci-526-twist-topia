@@ -14,17 +14,6 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed = 5f;
     public float gravity = 10f;
     private CharacterController characterController;
-	
-	// player action keyCode
-	public KeyCode pickUpKeyCode;
-    public KeyCode openDoorCode;
-
-	// pick up key and open blocks
-	public Transform blocks;
-    public Transform keys;
-    private int keyCounter = 0;
-	public UnityEngine.UI.Text keyText;
-	
 	public Transform goal;
 	public string sceneName;
     
@@ -55,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-		keyText.text = "Key: " + keyCounter;
 		if (!menuPanel.activeSelf)
         {
             if (!cameraState.GetIsRotating())
@@ -107,49 +95,9 @@ public class PlayerMovement : MonoBehaviour
                     trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, Vertical * movementSpeed * Time.deltaTime);
                 }
                 characterController.Move(trans);
-                //if (Input.GetKeyDown(pickUpKeyCode))
-                //{
-                pickUpKey();
                 TouchEnemy();
-                //}
-                if (Input.GetKeyDown(openDoorCode) && keyCounter > 0)
-                {
-                    openDoor();
-                }
 				reachGoal();
             }
-        }
-    }
-
-    private void pickUpKey()
-    {
-        if (cameraState.GetFacingDirection() == FacingDirection.Front)
-        {
-            foreach (Transform key in keys)
-            {
-                if (Mathf.Abs(key.position.y - transform.position.y) < WorldUnit &&
-                    Mathf.Abs(key.position.x - transform.position.x) < WorldUnit)
-                {
-                    Destroy(key.gameObject);
-                    keyCounter++;
-                    Debug.Log("Keys:" + keyCounter);
-                    break;
-                }
-            }
-        }
-        else if (cameraState.GetFacingDirection() == FacingDirection.Up)
-        {
-            foreach (Transform key in keys)
-            {
-                if (Mathf.Abs(key.position.z - transform.position.z) < WorldUnit &&
-                    Mathf.Abs(key.position.x - transform.position.x) < WorldUnit)
-                {
-                    Destroy(key.gameObject);
-                    keyCounter++;
-                    Debug.Log("Keys:" + keyCounter);
-                    break;
-                }
-            } 
         }
     }
     private void HandlePlayerDeath()
@@ -159,7 +107,6 @@ public class PlayerMovement : MonoBehaviour
         directionManager.UpdateInvisibleCubes();
         characterController.enabled = true;
     }
-    
     private void TouchEnemy()
     {
         foreach (Transform enemyNum in enemies)
@@ -193,58 +140,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    private void openDoor()
-    {
-
-        if (cameraState.GetFacingDirection() == FacingDirection.Front)
-        {
-            foreach (Transform block in blocks)
-            {
-                if (Mathf.Abs(block.position.y - transform.position.y) < WorldUnit + 0.5f &&
-                    Mathf.Abs(block.position.x - transform.position.x) < WorldUnit + 0.5f)
-                {
-                    //Debug.Log("true dude!");
-					directionManager.DeleteBlockCubes(block);
-                    Destroy(block.gameObject);
-                    keyCounter--;
-                    Debug.Log("Keys:" + keyCounter);
-                    break;
-                }
-            }
-        }
-        else if (cameraState.GetFacingDirection() == FacingDirection.Up)
-        {
-            bool canOpen = false;
-            foreach (Transform block in blocks)
-            {
-                foreach (Transform blockCube in block)
-                {
-                    if (Mathf.Abs(blockCube.position.z - transform.position.z) < WorldUnit + 0.5f &&
-                        Mathf.Abs(blockCube.position.x - transform.position.x) < WorldUnit + 0.5f)
-                    {
-                        canOpen = true;
-                        break;
-                    }
-                }
-                if(canOpen)
-                {
-                    directionManager.DeleteBlockCubes(block);
-                    Destroy(block.gameObject);
-                    keyCounter--;
-                    Debug.Log("Keys:" + keyCounter);
-                    break;
-                }
-            }
-        }
-    }
-
-	public void keyDrop(){
-		if(keyCounter > 0){
-			keyCounter--;
-			Debug.Log("Oops! Be careful! " + keyCounter);
-		}
-	}
-
 	private void reachGoal(){
 		if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
@@ -261,17 +156,10 @@ public class PlayerMovement : MonoBehaviour
                     Mathf.Abs(goal.position.x - transform.position.x) < WorldUnit)
             {
 				Debug.Log("Goal!!!");
-				//现在是马上加载 感觉需要中间加入时间动画或者菜单
 				LoadScene(sceneName);
 			}
 		}
 	}
-	/*
-	public void healthIncrease(){
-		health++;
-		Debug.Log("Aughhhhh! "  + health);
-	}
-	*/
 	public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

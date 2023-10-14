@@ -10232,6 +10232,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1153387902316709242, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: keys
+      value: 
+      objectReference: {fileID: 2007493347}
+    - target: {fileID: 1153387902316709242, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: blocks
+      value: 
+      objectReference: {fileID: 910307896}
+    - target: {fileID: 1153387902316709242, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: keyText
+      value: 
+      objectReference: {fileID: 2015394162}
+    - target: {fileID: 1153387902316709242, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: cameraState
+      value: 
+      objectReference: {fileID: 1972112748}
+    - target: {fileID: 1153387902316709242, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: directionManager
+      value: 
+      objectReference: {fileID: 884579793}
+    - target: {fileID: 1886843159436924416, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: goal
+      value: 
+      objectReference: {fileID: 2125410694}
     - target: {fileID: 1886843159436924416, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
       propertyPath: goal
       value: 
@@ -10325,6 +10349,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1972112748}
     - target: {fileID: 1886843159436924447, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: directionManager
+      value: 
+      objectReference: {fileID: 884579793}
+    - target: {fileID: 4582331275723202792, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: goal
+      value: 
+      objectReference: {fileID: 2125410694}
+    - target: {fileID: 4582331275723202792, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: enemies
+      value: 
+      objectReference: {fileID: 588072938}
+    - target: {fileID: 4582331275723202792, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: menuPanel
+      value: 
+      objectReference: {fileID: 1751294582}
+    - target: {fileID: 4582331275723202792, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: cameraState
+      value: 
+      objectReference: {fileID: 1972112748}
+    - target: {fileID: 4582331275723202792, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: playerReturn
+      value: 
+      objectReference: {fileID: 1392004750}
+    - target: {fileID: 4582331275723202792, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
       propertyPath: directionManager
       value: 
       objectReference: {fileID: 884579793}
