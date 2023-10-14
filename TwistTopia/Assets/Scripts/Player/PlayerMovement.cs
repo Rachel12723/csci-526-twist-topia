@@ -214,10 +214,19 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (cameraState.GetFacingDirection() == FacingDirection.Up)
         {
+            bool canOpen = false;
             foreach (Transform block in blocks)
             {
-                if (Mathf.Abs(block.position.z - transform.position.z) < WorldUnit + 0.5f &&
-                    Mathf.Abs(block.position.x - transform.position.x) < WorldUnit + 0.5f)
+                foreach (Transform blockCube in block)
+                {
+                    if (Mathf.Abs(blockCube.position.z - transform.position.z) < WorldUnit + 0.5f &&
+                        Mathf.Abs(blockCube.position.x - transform.position.x) < WorldUnit + 0.5f)
+                    {
+                        canOpen = true;
+                        break;
+                    }
+                }
+                if(canOpen)
                 {
                     directionManager.DeleteBlockCubes(block);
                     Destroy(block.gameObject);
