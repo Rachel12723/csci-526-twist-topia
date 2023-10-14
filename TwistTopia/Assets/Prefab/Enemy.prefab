@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5901971841989821593}
   - component: {fileID: 884746394194156366}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3616067615722399292}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 3}
+  m_LocalPosition: {x: 0, y: 5.3125, z: 3}
   m_LocalScale: {x: 1, y: 1.3125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -101,8 +101,9 @@ MonoBehaviour:
   enemyModel: {fileID: 3666682872214192792}
   directionManager: {fileID: 0}
   catchEnemy: 13
-  xTolerance: 0.1
-  proximityThreshold: 3
+  xTolerance: 0.5
+  yTolerance: 0.5
+  proximityThreshold: 5
   frameWithEnemy: {fileID: 746983765, guid: 80e837f32eb284102b9c94d8fd76e0c7, type: 3}
   frameWithoutEnemy: {fileID: -745625594, guid: 80e837f32eb284102b9c94d8fd76e0c7, type: 3}
 --- !u!1 &3666682872214192792
