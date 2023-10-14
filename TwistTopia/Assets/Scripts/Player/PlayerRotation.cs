@@ -1,0 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerRotation : MonoBehaviour
+{
+    private PlayerState playerState;
+
+    // Camera and Light Rotation
+    private float degree = 0;
+    private float lastRotationX = 0f;
+    private float currentRotationX = 0f;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        playerState = GetComponent<PlayerState>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        RotateTo(playerState.GetFacingDirection());
+        // Camera and Light Rotation
+        Quaternion rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(degree, 0, 0), 12 * Time.deltaTime);
+        transform.rotation = rotation;
+        float angle = rotation.eulerAngles.x;
+        if (Mathf.Abs(degree - angle)< 0.01)
+        {
+            playerState.SetIsRotating(false);
+        }
+    }
+
+    // Update the Facing Firection
+    public void RotateTo(FacingDirection facingDirection)
+    {
+        if (facingDirection == FacingDirection.Front)
+        {
+            degree = 0f;
+        }
+        else if (facingDirection == FacingDirection.Up)
+        {
+            degree = 90f;
+        }
+    }
+}

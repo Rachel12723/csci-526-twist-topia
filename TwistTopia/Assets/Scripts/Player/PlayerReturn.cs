@@ -3,11 +3,9 @@ using System.Collections;
 
 public class PlayerReturn : MonoBehaviour
 {
-
-    public GameObject player;
+    private PlayerState playerState;
     private PlayerMovement playerMovement;
     public Vector3 checkPoint = Vector3.zero;
-    public FacingDirection facingDirection;
     public float frontMinY;
     public float upMinY;
     public float dropY = 20f;
@@ -15,35 +13,38 @@ public class PlayerReturn : MonoBehaviour
 
 	void Start()
     {
-        playerMovement = player.GetComponent<PlayerMovement>();
-        facingDirection = playerMovement.GetFacingDirection();
+        playerState = GetComponent<PlayerState>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     void LateUpdate()
     {
-        if (facingDirection == FacingDirection.Front)
+        if (directionManager.GetComponent<DirectionManager>().positionUpdated)
         {
-            if (player.transform.position.y < frontMinY || player.transform.position.y >= upMinY)
+            if (playerState.GetFacingDirection() == FacingDirection.Front || playerState.GetIsRotating())
             {
-                player.GetComponent<CharacterController>().enabled = false;
-                playerMovement.keyDrop();
-                player.transform.position = checkPoint;
-                directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
-                playerMovement.dropUp = false;
-                player.GetComponent<CharacterController>().enabled = true;
+                if (transform.position.y < frontMinY || transform.position.y >= upMinY)
+                {
+                    GetComponent<CharacterController>().enabled = false;
+                    playerMovement.keyDrop();
+                    transform.position = checkPoint;
+                    directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
+                    playerState.SetUpIsDropping(false);
+                    GetComponent<CharacterController>().enabled = true;
+                }
             }
-        }
-        else if(facingDirection == FacingDirection.Up)
-        {
-            if (player.transform.position.y < upMinY)
+            else if(playerState.GetFacingDirection() == FacingDirection.Up && !playerState.GetIsRotating())
             {
-                player.GetComponent<CharacterController>().enabled = false;
-                playerMovement.keyDrop();
-                player.transform.position = checkPoint;
-                directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
-                directionManager.GetComponent<DirectionManager>().MovePlayerToClosestInvisibleCube();
-                playerMovement.dropUp = false;
-                player.GetComponent<CharacterController>().enabled = true;
+                if (transform.position.y < upMinY)
+                {
+                    GetComponent<CharacterController>().enabled = false;
+                    playerMovement.keyDrop();
+                    transform.position = checkPoint;
+                    directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
+                    directionManager.GetComponent<DirectionManager>().MovePlayerToClosestInvisibleCube();
+                    playerState.SetUpIsDropping(false);
+                    GetComponent<CharacterController>().enabled = true;
+                }
             }
         }
     }
@@ -61,10 +62,5 @@ public class PlayerReturn : MonoBehaviour
     public void SetFrontMinY(float minY)
     {
         frontMinY = minY - dropY;
-    }
-
-    public void SetFacingDirection(FacingDirection facingDirection)
-    {
-        this.facingDirection = facingDirection;
     }
 }
