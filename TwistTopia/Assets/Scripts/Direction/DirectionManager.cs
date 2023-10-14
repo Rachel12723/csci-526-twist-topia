@@ -5,29 +5,29 @@ using UnityEngine;
 public class DirectionManager : MonoBehaviour
 {
     // Rotate
+    public CameraState cameraState;
     public KeyCode rotateKeyCode;
     public KeyCode pickUpKeyCode;
     public KeyCode openDoorCode;
-    private FacingDirection facingDirection = FacingDirection.Front;
 
     // Player
     public GameObject player;
     public GameObject Goal;
     private PlayerState playerState;
-    private PlayerMovement playerMovement;
-    public bool positionUpdated = true;
+    private PlayerReturn playerReturn;
 
+
+    // Map
+    public Transform map;
     // Platform Cubes
-    public Transform platformCubes;
-
+    private Transform platformCubes;
     // Block Cubes
-    public Transform blockCubes;
-    public List<Transform> blockList = new List<Transform>();
-
+    private Transform blockCubes;
+    private List<Transform> blockList = new List<Transform>();
     // Invisible Cubes
     public GameObject invisibleCube;
-    public Transform invisibleCubes;
-    public float invisibleCubesOffsetY = 50f;
+    private Transform invisibleCubes;
+    private float invisibleCubesOffsetY;
     private List<Transform> invisibleList = new List<Transform>();
 
 
@@ -39,16 +39,22 @@ public class DirectionManager : MonoBehaviour
 
     void Start()
     {
-        playerState = player.GetComponent<PlayerState>();
-        playerMovement = player.GetComponent<PlayerMovement>();
-        UpdateInvisibleCubes();
-        player.GetComponent<PlayerReturn>().SetCheckPoint(player.transform.position);
-        player.GetComponent<PlayerReturn>().SetFrontMinY(GetMinCubeYOfPlatformAndBlockCubes());
-        player.GetComponent<PlayerReturn>().SetUpMinY(GetMaxCubeYOfPlatformAndBlockCubes() + invisibleCubesOffsetY);
+        platformCubes= map.Find("Platform Cubes");
+        blockCubes = map.Find("Block Cubes");
+        invisibleCubes = map.Find("Invisible Cubes");
         for (int i = 0; i < blockCubes.childCount; i++)
         {
             blockList.Add(blockCubes.GetChild(i));
         }
+
+        playerState = player.GetComponent<PlayerState>();
+        playerReturn = player.GetComponent<PlayerReturn>();
+        playerReturn.SetCheckPoint(player.transform.position);
+        playerReturn.SetFrontMinY(GetMinCubeYOfPlatformAndBlockCubes());
+        playerReturn.SetUpMinY(GetMaxCubeYOfPlatformAndBlockCubes());
+        invisibleCubesOffsetY = playerReturn.GetDropY()+2f;
+
+        UpdateInvisibleCubes();
     }
 
     void Update()
@@ -57,26 +63,24 @@ public class DirectionManager : MonoBehaviour
         {
             if (Input.GetKeyDown(rotateKeyCode))
             {
-                if (facingDirection == FacingDirection.Front)
+                if (cameraState.GetFacingDirection() == FacingDirection.Front)
                 {
-                    positionUpdated = false;
-                    facingDirection = FacingDirection.Up;
-                    playerState.SetFacingDirection(facingDirection);
-                    playerState.SetIsRotating(true);
+                    playerState.SetPositionUpdating(true);
+                    cameraState.SetFacingDirection(FacingDirection.Up);
+                    cameraState.SetIsRotating(true);
                 }
-                else if (facingDirection == FacingDirection.Up)
+                else if (cameraState.GetFacingDirection() == FacingDirection.Up)
                 {
-                    positionUpdated = false;
+                    playerState.SetPositionUpdating(true);
                     MovePlayerToClosestPlatformCube();
-                    positionUpdated = true;
-                    facingDirection = FacingDirection.Front;
-                    playerState.SetFacingDirection(facingDirection);
-                    playerState.SetIsRotating(true);
+                    playerState.SetPositionUpdating(false);
+                    cameraState.SetFacingDirection(FacingDirection.Front);
+                    cameraState.SetIsRotating(true);
                 }
-                playerState.SetIsRotating(true);
+                cameraState.SetIsRotating(true);
                 UpdateInvisibleCubes();
             }
-            if (facingDirection == FacingDirection.Front)
+            if (cameraState.GetFacingDirection() == FacingDirection.Front)
             {
                 if (OnInvisibleCube())
                 {
@@ -84,12 +88,12 @@ public class DirectionManager : MonoBehaviour
                     UpdateInvisibleCubes();
                 }
             }
-            if (facingDirection == FacingDirection.Up && !playerState.GetIsRotating())
+            if (cameraState.GetFacingDirection() == FacingDirection.Up && !cameraState.GetIsRotating())
             {
-                if (!positionUpdated)
+                if (playerState.GetPositionUpdating())
                 {
                     MovePlayerToClosestInvisibleCube();
-                    positionUpdated = true;
+                    playerState.SetPositionUpdating(false);
                 }
                 if (!OnInvisibleCube())
                 {
@@ -98,29 +102,29 @@ public class DirectionManager : MonoBehaviour
             }
 
             //Scale
-            if (facingDirection == FacingDirection.Front)
+            if (cameraState.GetFacingDirection() == FacingDirection.Front)
             {
                 
-                if (player.transform.Find("Sphere").localScale != Vector3.one)
+                if (player.transform.localScale != Vector3.one)
                 {
                     //player.GetComponent<CharacterController>().enabled = false;
-                    player.transform.Find("Sphere").localScale = Vector3.one;
+                    player.transform.localScale = Vector3.one;
                     //player.GetComponent<CharacterController>().enabled = true;
                 }
             }
-            else if (facingDirection == FacingDirection.Up && !playerState.GetIsRotating())
+            else if (cameraState.GetFacingDirection() == FacingDirection.Up && !cameraState.GetIsRotating())
             {
                 if (player.transform.position.y < GetMaxCubeYOfPlatformAndBlockCubes() + invisibleCubesOffsetY)
                 {
                     float scale = 10f / (GetMaxCubeYOfPlatformAndBlockCubes() + invisibleCubesOffsetY - player.transform.position.y + 10);
                     //player.GetComponent<CharacterController>().enabled = false;
-                    player.transform.Find("Sphere").localScale = new Vector3(scale, scale, scale);
+                    player.transform.localScale = new Vector3(scale, scale, scale);
                     //player.GetComponent<CharacterController>().enabled = true;
                 }
-                else if(player.transform.Find("Sphere").localScale != Vector3.one)
+                else if(player.transform.localScale != Vector3.one)
                 {
                     //player.GetComponent<CharacterController>().enabled = false;
-                    player.transform.Find("Sphere").localScale = Vector3.one;
+                    player.transform.localScale = Vector3.one;
                     //player.GetComponent<CharacterController>().enabled = true;
                 }
             }
@@ -132,7 +136,7 @@ public class DirectionManager : MonoBehaviour
     {
         foreach (Transform cube in invisibleList)
         {
-            if (facingDirection == FacingDirection.Front)
+            if (cameraState.GetFacingDirection() == FacingDirection.Front)
             {
                 if (Mathf.Abs(cube.position.x - player.transform.position.x) < WorldUnit / 2
                 && Mathf.Abs(cube.position.z - player.transform.position.z) < WorldUnit / 2
@@ -142,7 +146,7 @@ public class DirectionManager : MonoBehaviour
                     return true;
                 }
             }
-            else if (facingDirection == FacingDirection.Up)
+            else if (cameraState.GetFacingDirection() == FacingDirection.Up)
             {
                 if (Mathf.Abs(cube.position.x - player.transform.position.x) < WorldUnit
                 && Mathf.Abs(cube.position.z - player.transform.position.z) < WorldUnit
@@ -167,7 +171,7 @@ public class DirectionManager : MonoBehaviour
         {
             for (int i = 0; i < platform.childCount; i++)
             {
-                if (facingDirection == FacingDirection.Front)
+                if (cameraState.GetFacingDirection() == FacingDirection.Front)
                 {
                     if (Mathf.Abs(platform.GetChild(i).position.x - player.transform.position.x) < WorldUnit / 2
                     && player.transform.position.y - platform.GetChild(i).position.y <= WorldUnit + 0.2f
@@ -176,7 +180,7 @@ public class DirectionManager : MonoBehaviour
                         frontZ = Mathf.Min(frontZ, platform.GetChild(i).transform.position.z);
                     }
                 }
-                else if (facingDirection == FacingDirection.Up)
+                else if (cameraState.GetFacingDirection() == FacingDirection.Up)
                 {
                     if (Mathf.Abs(platform.GetChild(i).position.x - player.transform.position.x) < WorldUnit
                     && Mathf.Abs(platform.GetChild(i).position.z - player.transform.position.z) < WorldUnit
@@ -190,13 +194,13 @@ public class DirectionManager : MonoBehaviour
         }
 
         // Change the Position
-        if (facingDirection == FacingDirection.Front && frontZ != float.MaxValue)
+        if (cameraState.GetFacingDirection() == FacingDirection.Front && frontZ != float.MaxValue)
         {
             player.GetComponent<CharacterController>().enabled = false;
             player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, frontZ);
             player.GetComponent<CharacterController>().enabled = true;
         }
-        else if (facingDirection == FacingDirection.Up && upY != float.MinValue)
+        else if (cameraState.GetFacingDirection() == FacingDirection.Up && upY != float.MinValue)
         {
             player.GetComponent<CharacterController>().enabled = false;
             player.transform.position = new Vector3(player.transform.position.x, upY, player.transform.position.z);
@@ -212,7 +216,7 @@ public class DirectionManager : MonoBehaviour
         float upY = float.MaxValue;
         foreach (Transform cube in invisibleCubes)
         {
-            if (facingDirection == FacingDirection.Front)
+            if (cameraState.GetFacingDirection() == FacingDirection.Front)
             {
                 if (Mathf.Abs(cube.position.x - player.transform.position.x) < WorldUnit / 2
                 && player.transform.position.y - cube.position.y <= WorldUnit + 0.2f
@@ -221,7 +225,7 @@ public class DirectionManager : MonoBehaviour
                     frontZ = Mathf.Min(frontZ, cube.position.z);
                 }
             }
-            else if (facingDirection == FacingDirection.Up)
+            else if (cameraState.GetFacingDirection() == FacingDirection.Up)
             {
                 if (Mathf.Abs(cube.position.x - player.transform.position.x) < WorldUnit
                 && Mathf.Abs(cube.position.z - player.transform.position.z) < WorldUnit)
@@ -232,13 +236,13 @@ public class DirectionManager : MonoBehaviour
         }
 
         // Change the Position
-        if (facingDirection == FacingDirection.Front && frontZ != float.MaxValue)
+        if (cameraState.GetFacingDirection() == FacingDirection.Front && frontZ != float.MaxValue)
         {
             player.GetComponent<CharacterController>().enabled = false;
             player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, frontZ);
             player.GetComponent<CharacterController>().enabled = true;
         }
-        else if (facingDirection == FacingDirection.Up && upY != float.MaxValue)
+        else if (cameraState.GetFacingDirection() == FacingDirection.Up && upY != float.MaxValue)
         {
             player.GetComponent<CharacterController>().enabled = false;
             player.transform.position = new Vector3(player.transform.position.x, upY, player.transform.position.z);
@@ -271,7 +275,7 @@ public class DirectionManager : MonoBehaviour
         {
             for (int i = 0; i < platform.childCount; i++)
             {
-                if (facingDirection == FacingDirection.Front)
+                if (cameraState.GetFacingDirection() == FacingDirection.Front)
                 {
                     newCubePosition = new Vector3(platform.GetChild(i).position.x, platform.GetChild(i).position.y, newCubeZ);
                     if (!ExistCube(invisibleList, newCubePosition) && !ExistCube(platformCubes, newCubePosition) && !ExistCube(blockCubes, newCubePosition))
@@ -282,7 +286,7 @@ public class DirectionManager : MonoBehaviour
                         newCube.transform.SetParent(invisibleCubes);
                     }
                 }
-                else if (facingDirection == FacingDirection.Up)
+                else if (cameraState.GetFacingDirection() == FacingDirection.Up)
                 {
                     newCubePosition = new Vector3(platform.GetChild(i).position.x, newCubeY, platform.GetChild(i).position.z);
                     GameObject newCube = Instantiate(invisibleCube) as GameObject;
@@ -296,7 +300,7 @@ public class DirectionManager : MonoBehaviour
         {
             for (int i = 0; i < block.childCount; i++)
             {
-                if (facingDirection == FacingDirection.Front)
+                if (cameraState.GetFacingDirection() == FacingDirection.Front)
                 {
                     newCubePosition = new Vector3(block.GetChild(i).position.x, block.GetChild(i).position.y, newCubeZ);
                     if (!ExistCube(invisibleList, newCubePosition) && !ExistCube(platformCubes, newCubePosition) && !ExistCube(blockCubes, newCubePosition))
@@ -307,7 +311,7 @@ public class DirectionManager : MonoBehaviour
                         newCube.transform.SetParent(invisibleCubes);
                     }
                 }
-                else if (facingDirection == FacingDirection.Up)
+                else if (cameraState.GetFacingDirection() == FacingDirection.Up)
                 {
                     newCubePosition = new Vector3(block.GetChild(i).position.x, newCubeY + 1, block.GetChild(i).position.z);
                     GameObject newCube = Instantiate(invisibleCube) as GameObject;
@@ -400,10 +404,5 @@ public class DirectionManager : MonoBehaviour
             }
         }
         return false;
-    }
-
-    public float returnInvisibleCubesOffsetY()
-    {
-        return invisibleCubesOffsetY;
     }
 }

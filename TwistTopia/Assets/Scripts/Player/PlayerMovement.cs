@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private PlayerState playerState;
 
     // Left: -1  Right: 1
     private int Horizontal = 0;
@@ -41,7 +40,13 @@ public class PlayerMovement : MonoBehaviour
     public GameObject menuPanel;
 
     //Direction manager
-    public GameObject directionManager;
+    public DirectionManager directionManager;
+
+    // Camera State
+    public CameraState cameraState;
+
+    // Player State
+    private PlayerState playerState;
 
     void Start()
     {
@@ -54,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
 		keyText.text = "Key: " + keyCounter;
 		if (!menuPanel.activeSelf)
         {
-            if (!playerState.GetIsRotating())
+            if (!cameraState.GetIsRotating())
             {
                 if (playerState.GetUpIsDropping())
                 {
@@ -94,11 +99,11 @@ public class PlayerMovement : MonoBehaviour
 
                 // Movement
                 Vector3 trans = Vector3.zero;
-                if (playerState.GetFacingDirection() == FacingDirection.Front)
+                if (cameraState.GetFacingDirection() == FacingDirection.Front)
                 {
                     trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, 0f);
                 }
-                else if (playerState.GetFacingDirection() == FacingDirection.Up)
+                else if (cameraState.GetFacingDirection() == FacingDirection.Up)
                 {
                     trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, Vertical * movementSpeed * Time.deltaTime);
                 }
@@ -114,13 +119,12 @@ public class PlayerMovement : MonoBehaviour
                 }
 				reachGoal();
             }
-
         }
     }
 
     private void pickUpKey()
     {
-        if (playerState.GetFacingDirection() == FacingDirection.Front)
+        if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
             foreach (Transform key in keys)
             {
@@ -134,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        else if (playerState.GetFacingDirection() == FacingDirection.Up)
+        else if (cameraState.GetFacingDirection() == FacingDirection.Up)
         {
             foreach (Transform key in keys)
             {
@@ -153,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
     {
         characterController.enabled = false; // stop current movement.
         transform.position = playerReturn.checkPoint;
-        directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
+        directionManager.UpdateInvisibleCubes();
         characterController.enabled = true;
     }
     
@@ -164,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
             Transform enemy = enemyNum.Find("EnemyModel");
             Vector3 enemyPosition = enemy.position;
             
-            if (playerState.GetFacingDirection() == FacingDirection.Front)
+            if (cameraState.GetFacingDirection() == FacingDirection.Front)
             {
                 if (Mathf.Abs(enemyPosition.y - transform.position.y) < WorldUnit &&
                     Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
@@ -174,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
                     break;
                 }
             }
-            else if (playerState.GetFacingDirection() == FacingDirection.Up)
+            else if (cameraState.GetFacingDirection() == FacingDirection.Up)
             {
 
                 if (Mathf.Abs(enemyPosition.z - transform.position.z) < WorldUnit &&
@@ -191,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
     private void openDoor()
     {
 
-        if (playerState.GetFacingDirection() == FacingDirection.Front)
+        if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
             foreach (Transform block in blocks)
             {
@@ -199,7 +203,7 @@ public class PlayerMovement : MonoBehaviour
                     Mathf.Abs(block.position.x - transform.position.x) < WorldUnit + 0.5f)
                 {
                     //Debug.Log("true dude!");
-					directionManager.GetComponent<DirectionManager>().DeleteBlockCubes(block);
+					directionManager.DeleteBlockCubes(block);
                     Destroy(block.gameObject);
                     keyCounter--;
                     Debug.Log("Keys:" + keyCounter);
@@ -207,14 +211,14 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        else if (playerState.GetFacingDirection() == FacingDirection.Up)
+        else if (cameraState.GetFacingDirection() == FacingDirection.Up)
         {
             foreach (Transform block in blocks)
             {
                 if (Mathf.Abs(block.position.z - transform.position.z) < WorldUnit + 0.5f &&
                     Mathf.Abs(block.position.x - transform.position.x) < WorldUnit + 0.5f)
                 {
-                    directionManager.GetComponent<DirectionManager>().DeleteBlockCubes(block);
+                    directionManager.DeleteBlockCubes(block);
                     Destroy(block.gameObject);
                     keyCounter--;
                     Debug.Log("Keys:" + keyCounter);
@@ -232,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
 	}
 
 	private void reachGoal(){
-		if (playerState.GetFacingDirection() == FacingDirection.Front)
+		if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
 			if (Mathf.Abs(goal.position.y - transform.position.y) < WorldUnit&&
                     Mathf.Abs(goal.position.x - transform.position.x) < WorldUnit)
@@ -241,7 +245,7 @@ public class PlayerMovement : MonoBehaviour
 				LoadScene(sceneName);
 			}
 		}
-		else if (playerState.GetFacingDirection() == FacingDirection.Up)
+		else if (cameraState.GetFacingDirection() == FacingDirection.Up)
         {
 			if (Mathf.Abs(goal.position.z - transform.position.z) < WorldUnit&&
                     Mathf.Abs(goal.position.x - transform.position.x) < WorldUnit)

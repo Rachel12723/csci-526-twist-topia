@@ -2,32 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRotation : MonoBehaviour
+public class CameraRotation : MonoBehaviour
 {
-    private PlayerState playerState;
-
     // Camera and Light Rotation
+    private CameraState cameraState;
     private float degree = 0;
-    private float lastRotationX = 0f;
-    private float currentRotationX = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerState = GetComponent<PlayerState>();
+        cameraState = GetComponent<CameraState>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        RotateTo(playerState.GetFacingDirection());
+        RotateTo(cameraState.GetFacingDirection());
         // Camera and Light Rotation
         Quaternion rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(degree, 0, 0), 12 * Time.deltaTime);
         transform.rotation = rotation;
         float angle = rotation.eulerAngles.x;
         if (Mathf.Abs(degree - angle)< 0.01)
         {
-            playerState.SetIsRotating(false);
+            cameraState.SetIsRotating(false);
         }
     }
 
