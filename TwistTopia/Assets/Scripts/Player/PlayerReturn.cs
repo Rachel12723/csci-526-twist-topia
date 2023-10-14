@@ -13,7 +13,7 @@ public class PlayerReturn : MonoBehaviour
     public DirectionManager directionManager;
     private KeyAndDoor keyAndDoor;
 
-	void Start()
+    void Start()
     {
         playerState = GetComponent<PlayerState>();
         playerMovement = GetComponent<PlayerMovement>();
