@@ -23248,26 +23248,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: keys
-      value: 
-      objectReference: {fileID: 1303571636}
-    - target: {fileID: 0}
-      propertyPath: blocks
-      value: 
-      objectReference: {fileID: 42329246}
-    - target: {fileID: 0}
-      propertyPath: keyText
-      value: 
-      objectReference: {fileID: 1496393111}
-    - target: {fileID: 0}
-      propertyPath: cameraState
-      value: 
-      objectReference: {fileID: 641109843}
-    - target: {fileID: 0}
-      propertyPath: directionManager
-      value: 
-      objectReference: {fileID: 586158933}
     - target: {fileID: 1886843159436924416, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
       propertyPath: goal
       value: 
@@ -23408,7 +23388,8 @@ PrefabInstance:
       propertyPath: directionManager
       value: 
       objectReference: {fileID: 586158933}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3440317128510461622, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
 --- !u!114 &1886843160104961904 stripped
 MonoBehaviour:

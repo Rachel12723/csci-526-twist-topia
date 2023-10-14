@@ -11,13 +11,13 @@ public class PlayerReturn : MonoBehaviour
     public float upMinY;
     public float dropY = 20f;
     public DirectionManager directionManager;
-    private KeyAndDoor keyAndDoor;
+    //private KeyAndDoor keyAndDoor;
 
 	void Start()
     {
         playerState = GetComponent<PlayerState>();
         playerMovement = GetComponent<PlayerMovement>();
-        keyAndDoor = GetComponent<KeyAndDoor>();
+        //keyAndDoor = GetComponent<KeyAndDoor>();
         SetCheckPoint(transform.position);
     }
 
@@ -30,7 +30,7 @@ public class PlayerReturn : MonoBehaviour
                 if (transform.position.y < frontMinY || transform.position.y >= upMinY)
                 {
                     GetComponent<CharacterController>().enabled = false;
-                    keyAndDoor.KeyDrop();
+                    //keyAndDoor.KeyDrop();
                     transform.position = checkPoint;
                     directionManager.UpdateInvisibleCubes();
                     playerState.SetUpIsDropping(false);
@@ -43,7 +43,7 @@ public class PlayerReturn : MonoBehaviour
                 {
                     Debug.Log(transform.position);
                     GetComponent<CharacterController>().enabled = false;
-                    keyAndDoor.KeyDrop();
+                    //keyAndDoor.KeyDrop();
                     transform.position = checkPoint;
                     directionManager.UpdateInvisibleCubes();
                     directionManager.MovePlayerToClosestInvisibleCube();

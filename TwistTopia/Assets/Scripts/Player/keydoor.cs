@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyAndDoor : MonoBehaviour
+public class keydoor : MonoBehaviour
 {
     // player action keyCode
     public KeyCode pickUpKeyCode;
