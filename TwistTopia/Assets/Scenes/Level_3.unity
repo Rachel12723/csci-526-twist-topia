@@ -10352,6 +10352,30 @@ PrefabInstance:
       propertyPath: directionManager
       value: 
       objectReference: {fileID: 884579793}
+    - target: {fileID: 3440317128510461622, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: keys
+      value: 
+      objectReference: {fileID: 2007493347}
+    - target: {fileID: 3440317128510461622, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: blocks
+      value: 
+      objectReference: {fileID: 910307896}
+    - target: {fileID: 3440317128510461622, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: keyText
+      value: 
+      objectReference: {fileID: 2015394162}
+    - target: {fileID: 3440317128510461622, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: cameraState
+      value: 
+      objectReference: {fileID: 1972112748}
+    - target: {fileID: 3440317128510461622, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: openDoorCode
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 3440317128510461622, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: directionManager
+      value: 
+      objectReference: {fileID: 884579793}
     - target: {fileID: 4582331275723202792, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
       propertyPath: goal
       value: 

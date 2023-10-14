@@ -23248,23 +23248,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1153387902316709242, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+    - target: {fileID: 0}
       propertyPath: keys
       value: 
       objectReference: {fileID: 1303571636}
-    - target: {fileID: 1153387902316709242, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+    - target: {fileID: 0}
       propertyPath: blocks
       value: 
       objectReference: {fileID: 42329246}
-    - target: {fileID: 1153387902316709242, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+    - target: {fileID: 0}
       propertyPath: keyText
       value: 
       objectReference: {fileID: 1496393111}
-    - target: {fileID: 1153387902316709242, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+    - target: {fileID: 0}
       propertyPath: cameraState
       value: 
       objectReference: {fileID: 641109843}
-    - target: {fileID: 1153387902316709242, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+    - target: {fileID: 0}
       propertyPath: directionManager
       value: 
       objectReference: {fileID: 586158933}
@@ -23357,6 +23357,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 641109843}
     - target: {fileID: 1886843159436924447, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: directionManager
+      value: 
+      objectReference: {fileID: 586158933}
+    - target: {fileID: 3440317128510461622, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: keys
+      value: 
+      objectReference: {fileID: 1303571636}
+    - target: {fileID: 3440317128510461622, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: blocks
+      value: 
+      objectReference: {fileID: 42329246}
+    - target: {fileID: 3440317128510461622, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: keyText
+      value: 
+      objectReference: {fileID: 1496393111}
+    - target: {fileID: 3440317128510461622, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: cameraState
+      value: 
+      objectReference: {fileID: 641109843}
+    - target: {fileID: 3440317128510461622, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: openDoorCode
+      value: 102
+      objectReference: {fileID: 0}
+    - target: {fileID: 3440317128510461622, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
       propertyPath: directionManager
       value: 
       objectReference: {fileID: 586158933}
