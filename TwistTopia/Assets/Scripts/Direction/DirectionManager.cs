@@ -9,13 +9,13 @@ public class DirectionManager : MonoBehaviour
     public KeyCode pickUpKeyCode;
     public KeyCode openDoorCode;
     private FacingDirection facingDirection = FacingDirection.Front;
-    public bool upUpdated = true;
 
     // Player
     public GameObject player;
     public GameObject Goal;
+    private PlayerState playerState;
     private PlayerMovement playerMovement;
-    public GameObject playerReturn;
+    public bool positionUpdated = true;
 
     // Platform Cubes
     public Transform platformCubes;
@@ -39,11 +39,12 @@ public class DirectionManager : MonoBehaviour
 
     void Start()
     {
+        playerState = player.GetComponent<PlayerState>();
         playerMovement = player.GetComponent<PlayerMovement>();
         UpdateInvisibleCubes();
-        playerReturn.GetComponent<PlayerReturn>().SetCheckPoint(player.transform.position);
-        playerReturn.GetComponent<PlayerReturn>().SetFrontMinY(GetMinCubeYOfPlatformAndBlockCubes());
-        playerReturn.GetComponent<PlayerReturn>().SetUpMinY(GetMaxCubeYOfPlatformAndBlockCubes() + invisibleCubesOffsetY);
+        player.GetComponent<PlayerReturn>().SetCheckPoint(player.transform.position);
+        player.GetComponent<PlayerReturn>().SetFrontMinY(GetMinCubeYOfPlatformAndBlockCubes());
+        player.GetComponent<PlayerReturn>().SetUpMinY(GetMaxCubeYOfPlatformAndBlockCubes() + invisibleCubesOffsetY);
         for (int i = 0; i < blockCubes.childCount; i++)
         {
             blockList.Add(blockCubes.GetChild(i));
@@ -58,18 +59,21 @@ public class DirectionManager : MonoBehaviour
             {
                 if (facingDirection == FacingDirection.Front)
                 {
-                    upUpdated = false;
+                    positionUpdated = false;
                     facingDirection = FacingDirection.Up;
-                    playerMovement.UpdateFacingDirection(facingDirection);
+                    playerState.SetFacingDirection(facingDirection);
+                    playerState.SetIsRotating(true);
                 }
                 else if (facingDirection == FacingDirection.Up)
                 {
+                    positionUpdated = false;
                     MovePlayerToClosestPlatformCube();
+                    positionUpdated = true;
                     facingDirection = FacingDirection.Front;
-                    playerMovement.UpdateFacingDirection(facingDirection);
-                    playerReturn.GetComponent<PlayerReturn>().SetFacingDirection(facingDirection);
+                    playerState.SetFacingDirection(facingDirection);
+                    playerState.SetIsRotating(true);
                 }
-                playerMovement.SetIsRotating(true);
+                playerState.SetIsRotating(true);
                 UpdateInvisibleCubes();
             }
             if (facingDirection == FacingDirection.Front)
@@ -80,17 +84,16 @@ public class DirectionManager : MonoBehaviour
                     UpdateInvisibleCubes();
                 }
             }
-            if (facingDirection == FacingDirection.Up && !playerMovement.GetIsRotating())
+            if (facingDirection == FacingDirection.Up && !playerState.GetIsRotating())
             {
-                if (!upUpdated)
+                if (!positionUpdated)
                 {
                     MovePlayerToClosestInvisibleCube();
-                    playerReturn.GetComponent<PlayerReturn>().SetFacingDirection(facingDirection);
-                    upUpdated = true;
+                    positionUpdated = true;
                 }
                 if (!OnInvisibleCube())
                 {
-                    playerMovement.dropUp = true;
+                    playerState.SetUpIsDropping(true);
                 }
             }
 
@@ -105,7 +108,7 @@ public class DirectionManager : MonoBehaviour
                     //player.GetComponent<CharacterController>().enabled = true;
                 }
             }
-            else if (facingDirection == FacingDirection.Up && !playerMovement.GetIsRotating())
+            else if (facingDirection == FacingDirection.Up && !playerState.GetIsRotating())
             {
                 if (player.transform.position.y < GetMaxCubeYOfPlatformAndBlockCubes() + invisibleCubesOffsetY)
                 {
