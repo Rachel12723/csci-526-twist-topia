@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     // Left: -1  Right: 1
     private int Horizontal = 0;
     // Down: -1  Up: 1
