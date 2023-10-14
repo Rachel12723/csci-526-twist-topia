@@ -22,10 +22,6 @@ public class StepOnPortal : MonoBehaviour
     // World Unit
     private float WorldUnit = 1.000f;
     
-    // check if player can use the portal
-    private bool canStep1 = true;
-    private bool canStep2 = true;
-
     // Start is called before the first frame update
     void Start()
     {
