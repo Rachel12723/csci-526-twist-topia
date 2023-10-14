@@ -49,7 +49,7 @@ public class DirectionManager : MonoBehaviour
 
         playerState = player.GetComponent<PlayerState>();
         playerReturn = player.GetComponent<PlayerReturn>();
-        playerReturn.SetCheckPoint(player.transform.position);
+        
         playerReturn.SetFrontMinY(GetMinCubeYOfPlatformAndBlockCubes());
         playerReturn.SetUpMinY(GetMaxCubeYOfPlatformAndBlockCubes());
         invisibleCubesOffsetY = playerReturn.GetDropY()+2f;

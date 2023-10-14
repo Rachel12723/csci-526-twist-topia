@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     // Left: -1  Right: 1
     private int Horizontal = 0;
     // Down: -1  Up: 1
@@ -166,30 +165,32 @@ public class PlayerMovement : MonoBehaviour
         foreach (Transform enemyNum in enemies)
         {
             Transform enemy = enemyNum.Find("EnemyModel");
-            Vector3 enemyPosition = enemy.position;
-            
-            if (cameraState.GetFacingDirection() == FacingDirection.Front)
+            if (enemy.gameObject.activeSelf)
             {
-                if (Mathf.Abs(enemyPosition.y - transform.position.y) < WorldUnit &&
-                    Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
+                Vector3 enemyPosition = enemy.position;
+
+                if (cameraState.GetFacingDirection() == FacingDirection.Front)
                 {
-                    Debug.Log("Player touched the enemy and died!");
-                    HandlePlayerDeath();
-                    break;
+                    if (Mathf.Abs(enemyPosition.y - transform.position.y) < WorldUnit &&
+                        Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
+                    {
+                        Debug.Log("Player touched the enemy and died!");
+                        HandlePlayerDeath();
+                        break;
+                    }
+                }
+                else if (cameraState.GetFacingDirection() == FacingDirection.Up)
+                {
+
+                    if (Mathf.Abs(enemyPosition.z - transform.position.z) < WorldUnit &&
+                        Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
+                    {
+                        Debug.Log("Player touched the enemy and died!");
+                        HandlePlayerDeath();
+                        break;
+                    }
                 }
             }
-            else if (cameraState.GetFacingDirection() == FacingDirection.Up)
-            {
-
-                if (Mathf.Abs(enemyPosition.z - transform.position.z) < WorldUnit &&
-                    Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
-                {
-                    Debug.Log("Player touched the enemy and died!");
-                    HandlePlayerDeath();
-                    break;
-                }
-            }
-
         }
     }
     private void openDoor()
