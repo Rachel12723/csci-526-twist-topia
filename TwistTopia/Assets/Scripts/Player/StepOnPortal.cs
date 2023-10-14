@@ -6,13 +6,13 @@ public class StepOnPortal : MonoBehaviour
 {   
     // playerMovement Script
     public GameObject player;
-    private PlayerState playerState;
     private PlayerMovement playerMovement;
     
     // portal interaction keyCode
     public KeyCode usePortalCode;
-    
+
     // facing direction
+    public CameraState cameraState;
     private FacingDirection facingDirection;
     
     // portal transform
@@ -29,7 +29,6 @@ public class StepOnPortal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerState= player.GetComponent<PlayerState>();
         playerMovement = player.GetComponent<PlayerMovement>();
     }
 
@@ -37,7 +36,7 @@ public class StepOnPortal : MonoBehaviour
     void Update()
     {   
         // get the direction first
-        facingDirection = playerState.GetFacingDirection();
+        facingDirection = cameraState.GetFacingDirection();
         portalAction();
         /*
         if (!canStep1 && checkStepAwayPortal(portal1))

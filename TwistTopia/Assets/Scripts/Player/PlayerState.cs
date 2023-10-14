@@ -4,37 +4,26 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-    public FacingDirection facingDirection = FacingDirection.Front;
-    public bool isRotating = false;
     public bool upIsDropping = false;
-
-    public void SetFacingDirection(FacingDirection facingDirection)
-    {
-        this.facingDirection = facingDirection;
-    }
-
-    public void SetIsRotating(bool isRotating)
-    {
-        this.isRotating = isRotating;
-    }
+    public bool positionUpdating = false;
 
     public void SetUpIsDropping(bool upIsDropping)
     {
         this.upIsDropping = upIsDropping;
     }
 
-    public FacingDirection GetFacingDirection()
+    public void SetPositionUpdating(bool positionUpdating)
     {
-        return facingDirection;
-    }
-
-    public bool GetIsRotating()
-    {
-        return isRotating;
+        this.positionUpdating = positionUpdating;
     }
 
     public bool GetUpIsDropping()
     {
         return upIsDropping;
+    }
+
+    public bool GetPositionUpdating()
+    {
+        return positionUpdating;
     }
 }
