@@ -199,29 +199,33 @@ public class PlayerMovement : MonoBehaviour
         foreach (Transform enemyNum in enemies)
         {
             Transform enemy = enemyNum.Find("EnemyModel");
-            Vector3 enemyPosition = enemy.position;
+            if (enemy.gameObject.activeSelf)
+            {
+                Vector3 enemyPosition = enemy.position;
             
-            if (facingDirection == FacingDirection.Front)
-            {
-                if (Mathf.Abs(enemyPosition.y - transform.position.y) < WorldUnit &&
-                    Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
+                if (facingDirection == FacingDirection.Front)
                 {
-                    Debug.Log("Player touched the enemy and died!");
-                    HandlePlayerDeath();
-                    break;
+                    if (Mathf.Abs(enemyPosition.y - transform.position.y) < WorldUnit &&
+                        Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
+                    {
+                        Debug.Log("Player touched the enemy and died!");
+                        HandlePlayerDeath();
+                        break;
+                    }
                 }
-            }
-            else if (facingDirection == FacingDirection.Up)
-            {
+                else if (facingDirection == FacingDirection.Up)
+                {
 
-                if (Mathf.Abs(enemyPosition.z - transform.position.z) < WorldUnit &&
-                    Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
-                {
-                    Debug.Log("Player touched the enemy and died!");
-                    HandlePlayerDeath();
-                    break;
+                    if (Mathf.Abs(enemyPosition.z - transform.position.z) < WorldUnit &&
+                        Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
+                    {
+                        Debug.Log("Player touched the enemy and died!");
+                        HandlePlayerDeath();
+                        break;
+                    }
                 }
             }
+
 
         }
     }

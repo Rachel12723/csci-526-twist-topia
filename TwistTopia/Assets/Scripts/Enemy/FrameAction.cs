@@ -9,8 +9,9 @@ public class FrameAction : MonoBehaviour
     public GameObject enemyModel;  // Drag your enemy object here
     public GameObject directionManager;  
     public KeyCode catchEnemy;
-    public float xTolerance = 0.1f; // A small value to account for minor discrepancies in z-position
-    public float proximityThreshold = 3.0f; // Distance within which frame is considered "close" to player
+    public float xTolerance = 0.5f; // A small value to account for minor discrepancies in z-position
+    public float yTolerance = 0.5f;
+    public float proximityThreshold = 5.0f; // Distance within which frame is considered "close" to player
     
     private SpriteRenderer spriteRenderer;
     public Sprite frameWithEnemy;
@@ -32,7 +33,8 @@ public class FrameAction : MonoBehaviour
                 float enemyXDistanceToFrame = Math.Abs(enemyModel.transform.position.x - transform.position.x);
 
                 Debug.Log("player" + player.transform.position + "frame location" + transform.position + "enemy" + enemyModel.transform.position);
-                if (playerXDistanceToFrame <= proximityThreshold && playerYDistanceToFrame == 0 &&
+                Debug.Log("playerXDistanceToFrame" + playerXDistanceToFrame + "playerYDistanceToFrame" + playerYDistanceToFrame + "enemyXDistanceToFrame" + enemyXDistanceToFrame);
+                if (playerXDistanceToFrame <= proximityThreshold && playerYDistanceToFrame <= yTolerance &&
                     enemyXDistanceToFrame <= xTolerance) {
                     CaptureEnemy();
                 }
@@ -43,6 +45,7 @@ public class FrameAction : MonoBehaviour
     void CaptureEnemy() {
         // Deactivate the enemy
         enemyModel.SetActive(false);
+        // Destroy(enemyModel);
         spriteRenderer.sprite = frameWithEnemy;
     
         // Optionally, change the frame's appearance to indicate the enemy is captured
