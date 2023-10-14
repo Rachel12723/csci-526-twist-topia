@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4582331275723202792}
   - component: {fileID: 1886843159436924418}
   - component: {fileID: 1886843159436924447}
-  - component: {fileID: 1153387902316709242}
+  - component: {fileID: 3440317128510461622}
   - component: {fileID: 1886843159436924419}
   - component: {fileID: 1886843159436924420}
   - component: {fileID: 1886843159436924421}
@@ -93,7 +93,7 @@ MonoBehaviour:
   upMinY: 0
   dropY: 20
   directionManager: {fileID: 0}
---- !u!114 &1153387902316709242
+--- !u!114 &3440317128510461622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpKeyCode: 0
-  openDoorCode: 102
+  openDoorCode: 0
   blocks: {fileID: 0}
   keys: {fileID: 0}
   keyText: {fileID: 0}
