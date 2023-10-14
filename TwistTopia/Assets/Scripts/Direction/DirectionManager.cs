@@ -8,7 +8,7 @@ public class DirectionManager : MonoBehaviour
     public KeyCode rotateKeyCode;
     public KeyCode pickUpKeyCode;
     public KeyCode openDoorCode;
-    private FacingDirection facingDirection = FacingDirection.Front;
+    public FacingDirection facingDirection = FacingDirection.Front;
 
     // Player
     public GameObject player;
