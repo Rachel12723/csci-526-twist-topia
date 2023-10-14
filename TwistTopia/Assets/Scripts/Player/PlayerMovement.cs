@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     // Left: -1  Right: 1
     private int Horizontal = 0;
     // Down: -1  Up: 1
@@ -12,15 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
     // Physical Parameter
     public float movementSpeed = 5f;
-    public float gravity = 8f;
-    public CharacterController characterController;
-
-    // Camera and Light Rotation
-    private bool isRotating = false;
-    private FacingDirection facingDirection;
-    private float degree = 0;
-    private float lastRotationX = 0f;
-    private float currentRotationX = 0f;
+    public float gravity = 10f;
+    private CharacterController characterController;
 	
 	// player action keyCode
 	public KeyCode pickUpKeyCode;
@@ -46,11 +40,18 @@ public class PlayerMovement : MonoBehaviour
     public GameObject menuPanel;
 
     //Direction manager
-    public GameObject directionManager;
+    public DirectionManager directionManager;
+
+    // Camera State
+    public CameraState cameraState;
+
+    // Player State
+    private PlayerState playerState;
 
     void Start()
     {
-
+        playerState = GetComponent<PlayerState>();
+        characterController = GetComponent<CharacterController>();
     }
 
     void Update()
@@ -58,43 +59,51 @@ public class PlayerMovement : MonoBehaviour
 		keyText.text = "Key: " + keyCounter;
 		if (!menuPanel.activeSelf)
         {
-            if (!isRotating)
+            if (!cameraState.GetIsRotating())
             {
-                // Left/Right Key
-                if (Input.GetAxis("Horizontal") < 0)
-                {
-                    Horizontal = -1;
-                }
-                else if (Input.GetAxis("Horizontal") > 0)
-                {
-                    Horizontal = 1;
-                }
-                else
+                if (playerState.GetUpIsDropping())
                 {
                     Horizontal = 0;
-                }
-
-                // Down/Up Key
-                if (Input.GetAxis("Vertical") < 0)
-                {
-                    Vertical = -1;
-                }
-                else if (Input.GetAxis("Vertical") > 0)
-                {
-                    Vertical = 1;
+                    Vertical = 0;
                 }
                 else
                 {
-                    Vertical = 0;
+                    // Left/Right Key
+                    if (Input.GetAxis("Horizontal") < 0)
+                    {
+                        Horizontal = -1;
+                    }
+                    else if (Input.GetAxis("Horizontal") > 0)
+                    {
+                        Horizontal = 1;
+                    }
+                    else
+                    {
+                        Horizontal = 0;
+                    }
+
+                    // Down/Up Key
+                    if (Input.GetAxis("Vertical") < 0)
+                    {
+                        Vertical = -1;
+                    }
+                    else if (Input.GetAxis("Vertical") > 0)
+                    {
+                        Vertical = 1;
+                    }
+                    else
+                    {
+                        Vertical = 0;
+                    }
                 }
 
                 // Movement
                 Vector3 trans = Vector3.zero;
-                if (facingDirection == FacingDirection.Front)
+                if (cameraState.GetFacingDirection() == FacingDirection.Front)
                 {
                     trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, 0f);
                 }
-                else if (facingDirection == FacingDirection.Up)
+                else if (cameraState.GetFacingDirection() == FacingDirection.Up)
                 {
                     trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, Vertical * movementSpeed * Time.deltaTime);
                 }
@@ -110,54 +119,12 @@ public class PlayerMovement : MonoBehaviour
                 }
 				reachGoal();
             }
-
-            // Camera and Light Rotation
-            Quaternion rotate = Quaternion.Slerp(transform.rotation, Quaternion.Euler(degree, 0, 0), 8 * Time.deltaTime);
-            transform.rotation = rotate;
-            lastRotationX = currentRotationX;
-            currentRotationX = rotate.x;
-            if (Mathf.Abs(currentRotationX - lastRotationX) < 0.00001)
-            {
-                isRotating = false;
-            }else
-            {
-                isRotating = true;
-            }
         }
-    }
-
-    // Update the Facing Firection
-    public void UpdateFacingDirection(FacingDirection newDirection)
-    {
-        facingDirection = newDirection;
-        if (facingDirection == FacingDirection.Front)
-        {
-            degree = 0f;
-        }
-        else if (facingDirection == FacingDirection.Up)
-        {
-            degree = 90f;
-        }
-    }
-	public FacingDirection returnFacingDirection(){
-		return facingDirection;
-	}
-
-    // Set isRotating
-    public void SetIsRotating(bool isRotating)
-    {
-        this.isRotating = isRotating;
-    }
-
-    // Get isRotating
-    public bool GetIsRotating()
-    {
-        return isRotating;
     }
 
     private void pickUpKey()
     {
-        if (facingDirection == FacingDirection.Front)
+        if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
             foreach (Transform key in keys)
             {
@@ -171,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        else if (facingDirection == FacingDirection.Up)
+        else if (cameraState.GetFacingDirection() == FacingDirection.Up)
         {
             foreach (Transform key in keys)
             {
@@ -190,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
     {
         characterController.enabled = false; // stop current movement.
         transform.position = playerReturn.checkPoint;
-        directionManager.GetComponent<DirectionManager>().UpdateInvisibleCubes();
+        directionManager.UpdateInvisibleCubes();
         characterController.enabled = true;
     }
     
@@ -201,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
             Transform enemy = enemyNum.Find("EnemyModel");
             Vector3 enemyPosition = enemy.position;
             
-            if (facingDirection == FacingDirection.Front)
+            if (cameraState.GetFacingDirection() == FacingDirection.Front)
             {
                 if (Mathf.Abs(enemyPosition.y - transform.position.y) < WorldUnit &&
                     Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
@@ -211,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
                     break;
                 }
             }
-            else if (facingDirection == FacingDirection.Up)
+            else if (cameraState.GetFacingDirection() == FacingDirection.Up)
             {
 
                 if (Mathf.Abs(enemyPosition.z - transform.position.z) < WorldUnit &&
@@ -228,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
     private void openDoor()
     {
 
-        if (facingDirection == FacingDirection.Front)
+        if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
             foreach (Transform block in blocks)
             {
@@ -236,7 +203,7 @@ public class PlayerMovement : MonoBehaviour
                     Mathf.Abs(block.position.x - transform.position.x) < WorldUnit + 0.5f)
                 {
                     //Debug.Log("true dude!");
-					directionManager.GetComponent<DirectionManager>().DeleteBlockCubes(block);
+					directionManager.DeleteBlockCubes(block);
                     Destroy(block.gameObject);
                     keyCounter--;
                     Debug.Log("Keys:" + keyCounter);
@@ -244,14 +211,14 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        else if (facingDirection == FacingDirection.Up)
+        else if (cameraState.GetFacingDirection() == FacingDirection.Up)
         {
             foreach (Transform block in blocks)
             {
                 if (Mathf.Abs(block.position.z - transform.position.z) < WorldUnit + 0.5f &&
                     Mathf.Abs(block.position.x - transform.position.x) < WorldUnit + 0.5f)
                 {
-                    directionManager.GetComponent<DirectionManager>().DeleteBlockCubes(block);
+                    directionManager.DeleteBlockCubes(block);
                     Destroy(block.gameObject);
                     keyCounter--;
                     Debug.Log("Keys:" + keyCounter);
@@ -269,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
 	}
 
 	private void reachGoal(){
-		if (facingDirection == FacingDirection.Front)
+		if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
 			if (Mathf.Abs(goal.position.y - transform.position.y) < WorldUnit&&
                     Mathf.Abs(goal.position.x - transform.position.x) < WorldUnit)
@@ -278,7 +245,7 @@ public class PlayerMovement : MonoBehaviour
 				LoadScene(sceneName);
 			}
 		}
-		else if (facingDirection == FacingDirection.Up)
+		else if (cameraState.GetFacingDirection() == FacingDirection.Up)
         {
 			if (Mathf.Abs(goal.position.z - transform.position.z) < WorldUnit&&
                     Mathf.Abs(goal.position.x - transform.position.x) < WorldUnit)
