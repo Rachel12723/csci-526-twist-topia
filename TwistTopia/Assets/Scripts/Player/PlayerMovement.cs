@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 characterController.Move(trans);
                 TouchEnemy();
-				reachGoal();
+				ReachGoal();
             }
         }
     }
@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-	private void reachGoal(){
+	private void ReachGoal(){
 		if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
 			if (Mathf.Abs(goal.position.y - transform.position.y) < WorldUnit&&
