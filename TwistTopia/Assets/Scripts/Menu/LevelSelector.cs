@@ -4,12 +4,11 @@ using UnityEngine.UI;
 
 public class LevelSelector : MonoBehaviour
 {
-    public Button[] levelButtons; 
+    public Button[] levelButtons;
+    public string sceneName;
 
     void Start()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-
         for (int i = 0; i < levelButtons.Length; i++)
         {
             int levelIndex = i;
@@ -20,12 +19,45 @@ public class LevelSelector : MonoBehaviour
 
     void LoadLevel(int levelIndex)
     {
-       
-        if (levelIndex == 1)
+        if (sceneName == "Level_3")
         {
-            SceneManager.LoadScene("SampleScene");
-            Time.timeScale = 1f;
+            if (levelIndex == 0)
+            {
+                SceneManager.LoadScene("Level_1");
+                Time.timeScale = 1f;
+            }
+            else if (levelIndex == 1)
+            {
+                SceneManager.LoadScene("Level_2");
+                Time.timeScale = 1f;
+            }
+            else if (levelIndex == 2)
+            {
+                SceneManager.LoadScene("Level_3");
+                Time.timeScale = 1f;
+            }
         }
-        
+        else if (sceneName == "Level_2")
+        {
+            if (levelIndex == 0)
+            {
+                SceneManager.LoadScene("Level_1");
+                Time.timeScale = 1f;
+            }
+            else if (levelIndex == 1)
+            {
+                SceneManager.LoadScene("Level_2");
+                Time.timeScale = 1f;
+            }
+        }
+        else
+        {
+            if (levelIndex == 0)
+            {
+                SceneManager.LoadScene("Level_1");
+                Time.timeScale = 1f;
+            }
+        }
+
     }
 }
