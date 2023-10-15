@@ -70,16 +70,34 @@ public class KeyAndDoor : MonoBehaviour
         {
             foreach (Transform block in blocks)
             {
-                if (Mathf.Abs(block.position.y - transform.position.y) < WorldUnit + 0.5f &&
-                    Mathf.Abs(block.position.x - transform.position.x) < WorldUnit + 0.5f)
+                bool canOpen = false;
+                foreach (Transform blockCube in block)
                 {
-                    //Debug.Log("true dude!");
+                    if (Mathf.Abs(blockCube.position.y - transform.position.y) < WorldUnit + 0.5f &&
+                        Mathf.Abs(blockCube.position.x - transform.position.x) < WorldUnit + 0.5f)
+                    {
+                        canOpen = true;
+                        break;
+                    }
+                }
+                if (canOpen)
+                {
                     directionManager.DeleteBlockCubes(block);
                     Destroy(block.gameObject);
                     keyCounter--;
                     Debug.Log("Keys:" + keyCounter);
                     break;
                 }
+                //if (Mathf.Abs(block.position.y - transform.position.y) < WorldUnit + 0.5f &&
+                //    Mathf.Abs(block.position.x - transform.position.x) < WorldUnit + 0.5f)
+                //{
+                //    //Debug.Log("true dude!");
+                //    directionManager.DeleteBlockCubes(block);
+                //    Destroy(block.gameObject);
+                //    keyCounter--;
+                //    Debug.Log("Keys:" + keyCounter);
+                //    break;
+                //}
             }
         }
         else if (cameraState.GetFacingDirection() == FacingDirection.Up)
@@ -113,5 +131,10 @@ public class KeyAndDoor : MonoBehaviour
             keyCounter--;
             Debug.Log("Oops! Be careful! " + keyCounter);
         }
+    }
+
+    public int GetKeyCounter()
+    {
+        return keyCounter;
     }
 }

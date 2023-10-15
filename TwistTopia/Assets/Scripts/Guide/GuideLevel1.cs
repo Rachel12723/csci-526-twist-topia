@@ -123,7 +123,7 @@ public class GuideLevel1 : MonoBehaviour
             {
                 if (Mathf.Abs(platform.GetChild(i).position.x - player.position.x) < WorldUnit
                 && Mathf.Abs(platform.GetChild(i).position.z - player.position.z) < WorldUnit
-                && player.position.y - platform.GetChild(i).position.y < WorldUnit + 0.2f
+                && player.position.y - platform.GetChild(i).position.y < WorldUnit + 0.1f
                 && player.position.y - platform.GetChild(i).position.y > 0)
                 {
                     return true;
