@@ -27,7 +27,7 @@ public class DirectionManager : MonoBehaviour
     // Invisible Cubes
     public GameObject invisibleCube;
     private Transform invisibleCubes;
-    private float invisibleCubesOffsetY;
+    private float invisibleCubesY;
     private List<Transform> invisibleList = new List<Transform>();
 
 
@@ -51,8 +51,9 @@ public class DirectionManager : MonoBehaviour
         playerReturn = player.GetComponent<PlayerReturn>();
         
         playerReturn.SetFrontMinY(GetMinCubeYOfPlatformAndBlockCubes());
-        playerReturn.SetUpMinY(GetMaxCubeYOfPlatformAndBlockCubes());
-        invisibleCubesOffsetY = playerReturn.GetDropY()+2f;
+        float upMinY=Mathf.Max(GetMaxCubeYOfPlatformAndBlockCubes() + 2f, player.transform.position.y + 1f);
+        playerReturn.SetUpMinY(upMinY);
+        invisibleCubesY = playerReturn.GetDropY()+upMinY;
 
         UpdateInvisibleCubes();
     }
@@ -114,9 +115,9 @@ public class DirectionManager : MonoBehaviour
             }
             else if (cameraState.GetFacingDirection() == FacingDirection.Up && !cameraState.GetIsRotating())
             {
-                if (player.transform.position.y < GetMaxCubeYOfPlatformAndBlockCubes() + invisibleCubesOffsetY)
+                if (player.transform.position.y < invisibleCubesY)
                 {
-                    float scale = 10f / (GetMaxCubeYOfPlatformAndBlockCubes() + invisibleCubesOffsetY - player.transform.position.y + 10);
+                    float scale = 10f / (invisibleCubesY - player.transform.position.y + 10);
                     //player.GetComponent<CharacterController>().enabled = false;
                     player.transform.localScale = new Vector3(scale, scale, scale);
                     //player.GetComponent<CharacterController>().enabled = true;
@@ -270,7 +271,7 @@ public class DirectionManager : MonoBehaviour
         // Create new invisible cubes
         Vector3 newCubePosition = Vector3.zero;
         float newCubeZ = GetCubeZByPlayer();
-        float newCubeY = GetCubeYByPlatformAndBlockCubes();
+        float newCubeY = invisibleCubesY;
         foreach (Transform platform in platformCubes)
         {
             for (int i = 0; i < platform.childCount; i++)
@@ -327,12 +328,6 @@ public class DirectionManager : MonoBehaviour
     private float GetCubeZByPlayer()
     {
         return Mathf.Round(player.transform.position.z);
-    }
-
-    // Get y axis of cube by platform and block cubes
-    private float GetCubeYByPlatformAndBlockCubes()
-    {
-        return GetMaxCubeYOfPlatformAndBlockCubes() + invisibleCubesOffsetY;
     }
 
     // Get the max Y of platform and block cubes

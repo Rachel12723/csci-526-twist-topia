@@ -104,6 +104,13 @@ public class PlayerMovement : MonoBehaviour
     {
         characterController.enabled = false; // stop current movement.
         transform.position = playerReturn.checkPoint;
+        if (cameraState.GetFacingDirection() == FacingDirection.Front)
+        {
+            directionManager.UpdateInvisibleCubes();
+        }else if(cameraState.GetFacingDirection() == FacingDirection.Up)
+        {
+            directionManager.MovePlayerToClosestInvisibleCube();
+        }
         directionManager.UpdateInvisibleCubes();
         characterController.enabled = true;
     }
