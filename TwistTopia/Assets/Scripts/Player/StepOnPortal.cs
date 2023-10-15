@@ -21,6 +21,9 @@ public class StepOnPortal : MonoBehaviour
     
     // World Unit
     private float WorldUnit = 1.000f;
+
+    // Direction Manager
+    public DirectionManager directionManager;
     
     // Start is called before the first frame update
     void Start()
@@ -168,6 +171,7 @@ public class StepOnPortal : MonoBehaviour
             player.GetComponent<CharacterController>().enabled = false;
             player.transform.position = new Vector3(portal.transform.position.x, portal.transform.position.y + 1, portal.transform.position.z);
             player.GetComponent<CharacterController>().enabled = true;
+            directionManager.UpdateInvisibleCubes();
         }
 
         if (facingDirection == FacingDirection.Up)

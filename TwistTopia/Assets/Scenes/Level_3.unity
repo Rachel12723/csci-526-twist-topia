@@ -2513,6 +2513,10 @@ PrefabInstance:
       propertyPath: usePortalCode
       value: 102
       objectReference: {fileID: 0}
+    - target: {fileID: 6097650169771975895, guid: ba04d8541794525489681a9a097708a4, type: 3}
+      propertyPath: directionManager
+      value: 
+      objectReference: {fileID: 884579793}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba04d8541794525489681a9a097708a4, type: 3}
 --- !u!4 &233641037 stripped
@@ -10543,6 +10547,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1030488139}
     - target: {fileID: 4582331275723202792, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: sceneName
+      value: Level_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582331275723202792, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
       propertyPath: guidePanel
       value: 
       objectReference: {fileID: 995911133}
@@ -13180,6 +13188,10 @@ PrefabInstance:
       propertyPath: usePortalCode
       value: 102
       objectReference: {fileID: 0}
+    - target: {fileID: 6097650169771975895, guid: ba04d8541794525489681a9a097708a4, type: 3}
+      propertyPath: directionManager
+      value: 
+      objectReference: {fileID: 884579793}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba04d8541794525489681a9a097708a4, type: 3}
 --- !u!4 &1118375350 stripped
@@ -25918,15 +25930,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2166511239815829867, guid: 8679e7fd6d86ab3428ec1e4cf9165c2a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8
+      value: 84
       objectReference: {fileID: 0}
     - target: {fileID: 2166511239815829867, guid: 8679e7fd6d86ab3428ec1e4cf9165c2a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: -5.6
       objectReference: {fileID: 0}
     - target: {fileID: 2166511239815829867, guid: 8679e7fd6d86ab3428ec1e4cf9165c2a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2166511239815829867, guid: 8679e7fd6d86ab3428ec1e4cf9165c2a, type: 3}
       propertyPath: m_LocalRotation.w
