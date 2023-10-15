@@ -99,8 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   enemyModel: {fileID: 3666682872214192792}
-  directionManager: {fileID: 0}
-  catchEnemy: 13
+  cameraState: {fileID: 0}
+  catchEnemy: 102
   xTolerance: 0.5
   yTolerance: 0.5
   proximityThreshold: 5
