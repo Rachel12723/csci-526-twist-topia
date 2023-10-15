@@ -51,6 +51,7 @@ MonoBehaviour:
   - {fileID: 6260249184849733427}
   - {fileID: 6260249184612467061}
   - {fileID: 6260249185455890653}
+  sceneName: 
 --- !u!1 &1472842015946229026
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,7 +699,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 960, y: 540}
   m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
