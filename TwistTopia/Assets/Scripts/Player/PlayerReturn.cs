@@ -12,6 +12,7 @@ public class PlayerReturn : MonoBehaviour
     public float dropY = 20f;
     public DirectionManager directionManager;
     private KeyAndDoor keyAndDoor;
+    public int dropCount;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class PlayerReturn : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         keyAndDoor = GetComponent<KeyAndDoor>();
         SetCheckPoint(transform.position);
+        dropCount = 0;
     }
 
     void Update()
@@ -35,6 +37,7 @@ public class PlayerReturn : MonoBehaviour
                     directionManager.UpdateInvisibleCubes();
                     playerState.SetUpIsDropping(false);
                     GetComponent<CharacterController>().enabled = true;
+                    dropCount++;
                 }
             }
             else if(cameraState.GetFacingDirection() == FacingDirection.Up && !cameraState.GetIsRotating())
@@ -49,6 +52,7 @@ public class PlayerReturn : MonoBehaviour
                     directionManager.MovePlayerToClosestInvisibleCube();
                     playerState.SetUpIsDropping(false);
                     GetComponent<CharacterController>().enabled = true;
+                    dropCount++;
                 }
             }
         }
@@ -61,7 +65,7 @@ public class PlayerReturn : MonoBehaviour
 
     public void SetUpMinY(float minY)
     {
-        upMinY = minY+2f;
+        upMinY = minY;
     }
 
     public void SetFrontMinY(float minY)

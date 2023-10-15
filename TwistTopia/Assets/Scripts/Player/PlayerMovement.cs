@@ -27,6 +27,9 @@ public class PlayerMovement : MonoBehaviour
     //Menu
     public GameObject menuPanel;
 
+    // Guide Panel
+    public GameObject guidePanel;
+
     //Direction manager
     public DirectionManager directionManager;
 
@@ -46,57 +49,60 @@ public class PlayerMovement : MonoBehaviour
     {
 		if (!menuPanel.activeSelf)
         {
-            if (!cameraState.GetIsRotating())
+            if(guidePanel==null || !guidePanel.activeSelf)
             {
-                if (playerState.GetUpIsDropping())
+                if (!cameraState.GetIsRotating())
                 {
-                    Horizontal = 0;
-                    Vertical = 0;
-                }
-                else
-                {
-                    // Left/Right Key
-                    if (Input.GetAxis("Horizontal") < 0)
-                    {
-                        Horizontal = -1;
-                    }
-                    else if (Input.GetAxis("Horizontal") > 0)
-                    {
-                        Horizontal = 1;
-                    }
-                    else
+                    if (playerState.GetUpIsDropping())
                     {
                         Horizontal = 0;
-                    }
-
-                    // Down/Up Key
-                    if (Input.GetAxis("Vertical") < 0)
-                    {
-                        Vertical = -1;
-                    }
-                    else if (Input.GetAxis("Vertical") > 0)
-                    {
-                        Vertical = 1;
+                        Vertical = 0;
                     }
                     else
                     {
-                        Vertical = 0;
-                    }
-                }
+                        // Left/Right Key
+                        if (Input.GetAxis("Horizontal") < 0)
+                        {
+                            Horizontal = -1;
+                        }
+                        else if (Input.GetAxis("Horizontal") > 0)
+                        {
+                            Horizontal = 1;
+                        }
+                        else
+                        {
+                            Horizontal = 0;
+                        }
 
-                // Movement
-                Vector3 trans = Vector3.zero;
-                if (cameraState.GetFacingDirection() == FacingDirection.Front)
-                {
-                    trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, 0f);
+                        // Down/Up Key
+                        if (Input.GetAxis("Vertical") < 0)
+                        {
+                            Vertical = -1;
+                        }
+                        else if (Input.GetAxis("Vertical") > 0)
+                        {
+                            Vertical = 1;
+                        }
+                        else
+                        {
+                            Vertical = 0;
+                        }
+                    }
+
+                    // Movement
+                    Vector3 trans = Vector3.zero;
+                    if (cameraState.GetFacingDirection() == FacingDirection.Front)
+                    {
+                        trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, 0f);
+                    }
+                    else if (cameraState.GetFacingDirection() == FacingDirection.Up)
+                    {
+                        trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, Vertical * movementSpeed * Time.deltaTime);
+                    }
+                    characterController.Move(trans);
+                    TouchEnemy();
+				    ReachGoal();
                 }
-                else if (cameraState.GetFacingDirection() == FacingDirection.Up)
-                {
-                    trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, Vertical * movementSpeed * Time.deltaTime);
-                }
-                characterController.Move(trans);
-                TouchEnemy();
-				ReachGoal();
             }
         }
     }
@@ -104,6 +110,13 @@ public class PlayerMovement : MonoBehaviour
     {
         characterController.enabled = false; // stop current movement.
         transform.position = playerReturn.checkPoint;
+        if (cameraState.GetFacingDirection() == FacingDirection.Front)
+        {
+            directionManager.UpdateInvisibleCubes();
+        }else if(cameraState.GetFacingDirection() == FacingDirection.Up)
+        {
+            directionManager.MovePlayerToClosestInvisibleCube();
+        }
         directionManager.UpdateInvisibleCubes();
         characterController.enabled = true;
     }
