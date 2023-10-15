@@ -17,10 +17,17 @@ public class FrameAction : MonoBehaviour
     public Sprite frameWithEnemy;
     public Sprite frameWithoutEnemy;
 
+    //Data
+    public delegate void EnemyEventHandler(string road);
+    public static event EnemyEventHandler OnEnemyCatched;
+
+    public delegate void EnterEventHandler(Vector3 player, Vector3 frame, Vector3 enemy);
+    public static event EnterEventHandler OnEnemyNotCatched;
+
 
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>(); 
         spriteRenderer.sprite = frameWithoutEnemy;
     }
     
@@ -37,6 +44,11 @@ public class FrameAction : MonoBehaviour
                 if (playerXDistanceToFrame <= proximityThreshold && playerYDistanceToFrame <= yTolerance &&
                     enemyXDistanceToFrame <= xTolerance) {
                     CaptureEnemy();
+                    OnEnemyCatched?.Invoke(enemyModel.tag);
+                }
+                else
+                {
+                    OnEnemyNotCatched?.Invoke(player.transform.position, transform.position, enemyModel.transform.position);
                 }
             }
         }

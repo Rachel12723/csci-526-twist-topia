@@ -19,45 +19,60 @@ public class LevelSelector : MonoBehaviour
 
     void LoadLevel(int levelIndex)
     {
-        if (sceneName == "Level_3")
+        if (levelIndex == 0)
         {
-            if (levelIndex == 0)
-            {
-                SceneManager.LoadScene("Level_1");
-                Time.timeScale = 1f;
-            }
-            else if (levelIndex == 1)
-            {
-                SceneManager.LoadScene("Level_2");
-                Time.timeScale = 1f;
-            }
-            else if (levelIndex == 2)
-            {
-                SceneManager.LoadScene("Level_3");
-                Time.timeScale = 1f;
-            }
+            SceneManager.LoadScene("Level_1");
+            Time.timeScale = 1f;
         }
-        else if (sceneName == "Level_2")
+        else if (levelIndex == 1)
         {
-            if (levelIndex == 0)
-            {
-                SceneManager.LoadScene("Level_1");
-                Time.timeScale = 1f;
-            }
-            else if (levelIndex == 1)
-            {
-                SceneManager.LoadScene("Level_2");
-                Time.timeScale = 1f;
-            }
+            SceneManager.LoadScene("Level_2");
+            Time.timeScale = 1f;
         }
-        else
+        else if (levelIndex == 2)
         {
-            if (levelIndex == 0)
-            {
-                SceneManager.LoadScene("Level_1");
-                Time.timeScale = 1f;
-            }
+            SceneManager.LoadScene("Level_3");
+            Time.timeScale = 1f;
         }
+        /* if (sceneName == "Level_3")
+         {
+             if (levelIndex == 0)
+             {
+                 SceneManager.LoadScene("Level_1");
+                 Time.timeScale = 1f;
+             }
+             else if (levelIndex == 1)
+             {
+                 SceneManager.LoadScene("Level_2");
+                 Time.timeScale = 1f;
+             }
+             else if (levelIndex == 2)
+             {
+                 SceneManager.LoadScene("Level_3");
+                 Time.timeScale = 1f;
+             }
+         }
+         else if (sceneName == "Level_2")
+         {
+             if (levelIndex == 0)
+             {
+                 SceneManager.LoadScene("Level_1");
+                 Time.timeScale = 1f;
+             }
+             else if (levelIndex == 1)
+             {
+                 SceneManager.LoadScene("Level_2");
+                 Time.timeScale = 1f;
+             }
+         }
+         else
+         {
+             if (levelIndex == 0)
+             {
+                 SceneManager.LoadScene("Level_1");
+                 Time.timeScale = 1f;
+             }
+         }*/
 
     }
 }
