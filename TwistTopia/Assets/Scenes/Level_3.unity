@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.1341472, b: 0.121078566, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10396,6 +10396,26 @@ PrefabInstance:
       propertyPath: directionManager
       value: 
       objectReference: {fileID: 884579793}
+    - target: {fileID: 5374383691766773540, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: keys
+      value: 
+      objectReference: {fileID: 2007493347}
+    - target: {fileID: 5374383691766773540, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: blocks
+      value: 
+      objectReference: {fileID: 910307896}
+    - target: {fileID: 5374383691766773540, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: keyText
+      value: 
+      objectReference: {fileID: 1244377763}
+    - target: {fileID: 5374383691766773540, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: cameraState
+      value: 
+      objectReference: {fileID: 1972112748}
+    - target: {fileID: 5374383691766773540, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: directionManager
+      value: 
+      objectReference: {fileID: 884579793}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
 --- !u!1001 &899860396
@@ -14032,6 +14052,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77eaaf06b804ed643b83dbc247b5def2, type: 3}
+--- !u!114 &1244377763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1472842016138250845, guid: 77eaaf06b804ed643b83dbc247b5def2, type: 3}
+  m_PrefabInstance: {fileID: 1244377762}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1247739262
 PrefabInstance:
   m_ObjectHideFlags: 0
