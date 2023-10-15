@@ -11,7 +11,7 @@ public class GuideManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        panel = transform.Find("Panel").gameObject;
+        panel = transform.Find("Guide Panel").gameObject;
         panel.SetActive(false);
         for(int i = 0; i < panel.transform.childCount; i++)
         {
@@ -34,6 +34,7 @@ public class GuideManager : MonoBehaviour
                 }
             }
             panel.SetActive(false);
+            Time.timeScale = 1f;
         }
     }
 }

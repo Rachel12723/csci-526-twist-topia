@@ -37,6 +37,9 @@ public class DirectionManager : MonoBehaviour
     //Menu
     public GameObject menuPanel;
 
+    // Guide Panel
+    public GameObject guidePanel;
+
     void Start()
     {
         platformCubes= map.Find("Platform Cubes");
@@ -62,71 +65,74 @@ public class DirectionManager : MonoBehaviour
     {
         if (!menuPanel.activeSelf)
         {
-            if (Input.GetKeyDown(rotateKeyCode))
+            if (guidePanel == null || !guidePanel.activeSelf)
             {
-                if (cameraState.GetFacingDirection() == FacingDirection.Front)
+                if (Input.GetKeyDown(rotateKeyCode))
                 {
-                    playerState.SetPositionUpdating(true);
-                    cameraState.SetFacingDirection(FacingDirection.Up);
+                    if (cameraState.GetFacingDirection() == FacingDirection.Front)
+                    {
+                        playerState.SetPositionUpdating(true);
+                        cameraState.SetFacingDirection(FacingDirection.Up);
+                        cameraState.SetIsRotating(true);
+                    }
+                    else if (cameraState.GetFacingDirection() == FacingDirection.Up)
+                    {
+                        playerState.SetPositionUpdating(true);
+                        MovePlayerToClosestPlatformCube();
+                        playerState.SetPositionUpdating(false);
+                        cameraState.SetFacingDirection(FacingDirection.Front);
+                        cameraState.SetIsRotating(true);
+                    }
                     cameraState.SetIsRotating(true);
-                }
-                else if (cameraState.GetFacingDirection() == FacingDirection.Up)
-                {
-                    playerState.SetPositionUpdating(true);
-                    MovePlayerToClosestPlatformCube();
-                    playerState.SetPositionUpdating(false);
-                    cameraState.SetFacingDirection(FacingDirection.Front);
-                    cameraState.SetIsRotating(true);
-                }
-                cameraState.SetIsRotating(true);
-                UpdateInvisibleCubes();
-            }
-            if (cameraState.GetFacingDirection() == FacingDirection.Front)
-            {
-                if (OnInvisibleCube())
-                {
-                    MovePlayerToClosestPlatformCube();
                     UpdateInvisibleCubes();
                 }
-            }
-            if (cameraState.GetFacingDirection() == FacingDirection.Up && !cameraState.GetIsRotating())
-            {
-                if (playerState.GetPositionUpdating())
+                if (cameraState.GetFacingDirection() == FacingDirection.Front)
                 {
-                    MovePlayerToClosestInvisibleCube();
-                    playerState.SetPositionUpdating(false);
+                    if (OnInvisibleCube())
+                    {
+                        MovePlayerToClosestPlatformCube();
+                        UpdateInvisibleCubes();
+                    }
                 }
-                if (!OnInvisibleCube())
+                if (cameraState.GetFacingDirection() == FacingDirection.Up && !cameraState.GetIsRotating())
                 {
-                    playerState.SetUpIsDropping(true);
+                    if (playerState.GetPositionUpdating())
+                    {
+                        MovePlayerToClosestInvisibleCube();
+                        playerState.SetPositionUpdating(false);
+                    }
+                    if (!OnInvisibleCube())
+                    {
+                        playerState.SetUpIsDropping(true);
+                    }
                 }
-            }
 
-            //Scale
-            if (cameraState.GetFacingDirection() == FacingDirection.Front)
-            {
-                
-                if (player.transform.localScale != Vector3.one)
+                //Scale
+                if (cameraState.GetFacingDirection() == FacingDirection.Front)
                 {
-                    //player.GetComponent<CharacterController>().enabled = false;
-                    player.transform.localScale = Vector3.one;
-                    //player.GetComponent<CharacterController>().enabled = true;
+
+                    if (player.transform.localScale != Vector3.one)
+                    {
+                        //player.GetComponent<CharacterController>().enabled = false;
+                        player.transform.localScale = Vector3.one;
+                        //player.GetComponent<CharacterController>().enabled = true;
+                    }
                 }
-            }
-            else if (cameraState.GetFacingDirection() == FacingDirection.Up && !cameraState.GetIsRotating())
-            {
-                if (player.transform.position.y < invisibleCubesY)
+                else if (cameraState.GetFacingDirection() == FacingDirection.Up && !cameraState.GetIsRotating())
                 {
-                    float scale = 10f / (invisibleCubesY - player.transform.position.y + 10);
-                    //player.GetComponent<CharacterController>().enabled = false;
-                    player.transform.localScale = new Vector3(scale, scale, scale);
-                    //player.GetComponent<CharacterController>().enabled = true;
-                }
-                else if(player.transform.localScale != Vector3.one)
-                {
-                    //player.GetComponent<CharacterController>().enabled = false;
-                    player.transform.localScale = Vector3.one;
-                    //player.GetComponent<CharacterController>().enabled = true;
+                    if (player.transform.position.y < invisibleCubesY)
+                    {
+                        float scale = 10f / (invisibleCubesY - player.transform.position.y + 10);
+                        //player.GetComponent<CharacterController>().enabled = false;
+                        player.transform.localScale = new Vector3(scale, scale, scale);
+                        //player.GetComponent<CharacterController>().enabled = true;
+                    }
+                    else if (player.transform.localScale != Vector3.one)
+                    {
+                        //player.GetComponent<CharacterController>().enabled = false;
+                        player.transform.localScale = Vector3.one;
+                        //player.GetComponent<CharacterController>().enabled = true;
+                    }
                 }
             }
         }

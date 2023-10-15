@@ -37,7 +37,7 @@ public class GuideLevel1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        panel = transform.Find("Panel").gameObject;
+        panel = transform.Find("Guide Panel").gameObject;
     }
 
     // Update is called once per frame
@@ -52,6 +52,7 @@ public class GuideLevel1 : MonoBehaviour
                     welcome.SetActive(true);
                     panel.SetActive(true);
                     welcomeIsShowed = true;
+                    Time.timeScale = 0f;
                 }
             }
         }
@@ -66,6 +67,7 @@ public class GuideLevel1 : MonoBehaviour
                         mainViewMove.SetActive(true);
                         panel.SetActive(true);
                         mainViewMoveIsShowed = true;
+                        Time.timeScale = 0f;
                     }
                 }
             }
@@ -78,6 +80,7 @@ public class GuideLevel1 : MonoBehaviour
                         viewChange.SetActive(true);
                         panel.SetActive(true);
                         viewChangeIsShowed = true;
+                        Time.timeScale = 0f;
                     }
                 }
             }
@@ -90,6 +93,7 @@ public class GuideLevel1 : MonoBehaviour
                         topDownViewMove.SetActive(true);
                         panel.SetActive(true);
                         topDownViewMoveIsShowed = true;
+                        Time.timeScale = 0f;
                     }
                 }
             }
@@ -103,6 +107,7 @@ public class GuideLevel1 : MonoBehaviour
                         drop.SetActive(true);
                         panel.SetActive(true);
                         dropIsShowed = true;
+                        Time.timeScale = 0f;
                     }
                 }
             }
