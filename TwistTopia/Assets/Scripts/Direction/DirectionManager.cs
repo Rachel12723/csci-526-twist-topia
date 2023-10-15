@@ -40,6 +40,10 @@ public class DirectionManager : MonoBehaviour
     // Guide Panel
     public GameObject guidePanel;
 
+    //Data
+    public delegate void RotateEventHandler(Vector3 playerPosition);
+    public static event RotateEventHandler OnRotateKeyPressed;
+
     void Start()
     {
         platformCubes= map.Find("Platform Cubes");
@@ -83,6 +87,7 @@ public class DirectionManager : MonoBehaviour
                         cameraState.SetFacingDirection(FacingDirection.Front);
                         cameraState.SetIsRotating(true);
                     }
+                    OnRotateKeyPressed?.Invoke(player.transform.position);
                     cameraState.SetIsRotating(true);
                     UpdateInvisibleCubes();
                 }

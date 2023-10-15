@@ -6,6 +6,27 @@ TagManager:
   tags:
   - Ground
   - Goal
+  - Platform1
+  - Platform2
+  - Platform3
+  - Platform4
+  - Platform5
+  - Platform6
+  - Platform7
+  - Platform8
+  - Platform9
+  - Platform10
+  - Platform11
+  - Platform12
+  - Platform13
+  - Platform14
+  - Platform15
+  - Platform16
+  - Platform17
+  - Platform18
+  - Platform19
+  - Road1
+  - Road2
   layers:
   - Default
   - TransparentFX
