@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.1341472, b: 0.121078566, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10448,6 +10448,10 @@ PrefabInstance:
       propertyPath: cameraState
       value: 
       objectReference: {fileID: 1972112748}
+    - target: {fileID: 1996919928115873772, guid: 26b1ca6cd391af64d93213455aa7950a, type: 3}
+      propertyPath: cooldownDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1996919928115873773, guid: 26b1ca6cd391af64d93213455aa7950a, type: 3}
       propertyPath: m_Name
       value: Direction Manager
@@ -16444,6 +16448,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1886843159436924417, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
   m_PrefabInstance: {fileID: 894289455}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1392004764 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1886843159436924418, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+  m_PrefabInstance: {fileID: 894289455}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392004745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a121ce7bfab3e9e40bf2184672bf7858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1393721598 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2768781667106891590, guid: b8f321fc497dc416eae767289df5e6c3, type: 3}
@@ -19959,6 +19974,14 @@ PrefabInstance:
       propertyPath: speed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 818593604598685285, guid: c151433a8f8fc4e98a53b3f68011ea96, type: 3}
+      propertyPath: cameraState
+      value: 
+      objectReference: {fileID: 1972112748}
+    - target: {fileID: 818593604598685285, guid: c151433a8f8fc4e98a53b3f68011ea96, type: 3}
+      propertyPath: playerState
+      value: 
+      objectReference: {fileID: 1392004764}
     - target: {fileID: 884746394194156366, guid: c151433a8f8fc4e98a53b3f68011ea96, type: 3}
       propertyPath: player
       value: 
@@ -24165,6 +24188,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 588072938}
     m_Modifications:
+    - target: {fileID: 818593604598685285, guid: c151433a8f8fc4e98a53b3f68011ea96, type: 3}
+      propertyPath: cameraState
+      value: 
+      objectReference: {fileID: 1972112748}
+    - target: {fileID: 818593604598685285, guid: c151433a8f8fc4e98a53b3f68011ea96, type: 3}
+      propertyPath: playerState
+      value: 
+      objectReference: {fileID: 1392004764}
     - target: {fileID: 884746394194156366, guid: c151433a8f8fc4e98a53b3f68011ea96, type: 3}
       propertyPath: player
       value: 
@@ -24173,6 +24204,10 @@ PrefabInstance:
       propertyPath: cameraState
       value: 
       objectReference: {fileID: 1972112748}
+    - target: {fileID: 884746394194156366, guid: c151433a8f8fc4e98a53b3f68011ea96, type: 3}
+      propertyPath: proximityThreshold
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6574025963947982984, guid: c151433a8f8fc4e98a53b3f68011ea96, type: 3}
       propertyPath: m_LocalPosition.y
       value: 5
@@ -25917,6 +25952,14 @@ PrefabInstance:
       propertyPath: speed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 818593604598685285, guid: c151433a8f8fc4e98a53b3f68011ea96, type: 3}
+      propertyPath: cameraState
+      value: 
+      objectReference: {fileID: 1972112748}
+    - target: {fileID: 818593604598685285, guid: c151433a8f8fc4e98a53b3f68011ea96, type: 3}
+      propertyPath: playerState
+      value: 
+      objectReference: {fileID: 1392004764}
     - target: {fileID: 884746394194156366, guid: c151433a8f8fc4e98a53b3f68011ea96, type: 3}
       propertyPath: player
       value: 

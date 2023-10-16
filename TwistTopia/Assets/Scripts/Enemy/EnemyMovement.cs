@@ -7,6 +7,8 @@ public class EnemyMovement : MonoBehaviour
     public Transform pointA;
     public Transform pointB;
     public float speed = 2f;
+    public CameraState cameraState;
+    public PlayerState playerState;
 
     private Vector3 targetPoint;
     void Start()
@@ -22,15 +24,18 @@ public class EnemyMovement : MonoBehaviour
     
     void MoveEnemy()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPoint, speed * Time.deltaTime);
-
-        // When the enemy reaches one of the points, it switches its target point to the other point.
-        if (Vector3.Distance(transform.position, targetPoint) < 0.1f)
+        if (!cameraState.isRotating && !playerState.positionUpdating)
         {
-            if (targetPoint == pointA.position)
-                targetPoint = pointB.position;
-            else
-                targetPoint = pointA.position;
+            transform.position = Vector3.MoveTowards(transform.position, targetPoint, speed * Time.deltaTime);
+
+            // When the enemy reaches one of the points, it switches its target point to the other point.
+            if (Vector3.Distance(transform.position, targetPoint) < 0.1f)
+            {
+                if (targetPoint == pointA.position)
+                    targetPoint = pointB.position;
+                else
+                    targetPoint = pointA.position;
+            }
         }
     }
 

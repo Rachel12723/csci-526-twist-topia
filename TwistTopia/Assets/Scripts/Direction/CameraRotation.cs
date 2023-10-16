@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraRotation : MonoBehaviour
 {
     // Camera and Light Rotation
+    public float rotationSpeed = 8;
     private CameraState cameraState;
     private float degree = 0;
 
@@ -19,7 +20,7 @@ public class CameraRotation : MonoBehaviour
     {
         RotateTo(cameraState.GetFacingDirection());
         // Camera and Light Rotation
-        Quaternion rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(degree, 0, 0), 12 * Time.deltaTime);
+        Quaternion rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(degree, 0, 0), rotationSpeed * Time.deltaTime);
         transform.rotation = rotation;
         float angle = rotation.eulerAngles.x;
         if (Mathf.Abs(degree - angle)< 0.01)
