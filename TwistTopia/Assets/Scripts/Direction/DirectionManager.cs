@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class DirectionManager : MonoBehaviour
 {
+    // public float cooldownDuration = 0.5f; // Cooldown duration in seconds
+    // private float lastShiftTime = -1.0f; // Time when the perspective was last shifted
+    
     // Rotate
     public CameraState cameraState;
     public KeyCode rotateKeyCode;
@@ -71,7 +74,7 @@ public class DirectionManager : MonoBehaviour
         {
             if (guidePanel == null || !guidePanel.activeSelf)
             {
-                if (Input.GetKeyDown(rotateKeyCode))
+                if (Input.GetKeyDown(rotateKeyCode)) //&& Time.time - lastShiftTime > cooldownDuration
                 {
                     if (cameraState.GetFacingDirection() == FacingDirection.Front)
                     {

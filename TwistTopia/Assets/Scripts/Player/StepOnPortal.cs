@@ -21,6 +21,9 @@ public class StepOnPortal : MonoBehaviour
     
     // World Unit
     private float WorldUnit = 1.000f;
+    public float xTolerance = 0.5f;
+    public float yTolerance = 0.2f;
+    public float zTolerance = 0.5f;
 
     // Direction Manager
     public DirectionManager directionManager;
@@ -112,8 +115,8 @@ public class StepOnPortal : MonoBehaviour
     {
         if (facingDirection == FacingDirection.Front)
         {
-            if (Mathf.Abs(player.transform.position.x - portal.transform.position.x) < 0.2f &&
-                Mathf.Abs(player.transform.position.y - portal.transform.position.y) < WorldUnit + 0.2f)
+            if (Mathf.Abs(player.transform.position.x - portal.transform.position.x) < xTolerance &&
+                Mathf.Abs(player.transform.position.y - portal.transform.position.y) < WorldUnit + yTolerance)
             {   
                 //Debug.Log("StepOn!");
                 return true;
@@ -121,8 +124,8 @@ public class StepOnPortal : MonoBehaviour
         }
         else if(facingDirection == FacingDirection.Up)
         {
-            if (Mathf.Abs(player.transform.position.x - portal.transform.position.x) < 0.2f &&
-                Mathf.Abs(player.transform.position.z - portal.transform.position.z) < 0.2f)
+            if (Mathf.Abs(player.transform.position.x - portal.transform.position.x) < xTolerance &&
+                Mathf.Abs(player.transform.position.z - portal.transform.position.z) < zTolerance)
             {
                 //Debug.Log("StepOn!");
                 return true;
