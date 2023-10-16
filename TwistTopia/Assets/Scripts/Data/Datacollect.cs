@@ -44,7 +44,7 @@ public class Datacollect : MonoBehaviour
                         {
                             /*Debug.Log("在坐标 (" + x + ", " + y + ", " + z + ") 处存在" + hit.collider.gameObject.tag);*/
                             
-                            string jsonData = "{\"Scene\": \"" + scene + "\", \"Platform\":\"" + hit.collider.gameObject.tag + "\"}";
+                            string jsonData = "{\"Scene\": \"" + SceneManager.GetActiveScene().name + "\", \"Platform\":\"" + hit.collider.gameObject.tag + "\"}";
 
                             RestClient.Post(DATABASE_URL, jsonData).Then(response =>
                             {
