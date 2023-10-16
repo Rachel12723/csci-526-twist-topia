@@ -175,6 +175,14 @@ public class PlayerMovement : MonoBehaviour
 	}
 	public void LoadScene(string sceneName)
     {
+        int level = PlayerPrefs.GetInt("Level");
+        char lastChar = sceneName[sceneName.Length - 1];
+        int lastDigit = int.Parse(lastChar.ToString());
+        if (lastDigit - 1 > level)
+        {
+            PlayerPrefs.SetInt("Level", lastDigit - 1);
+        }
+
         SceneManager.LoadScene(sceneName);
     }
 }
