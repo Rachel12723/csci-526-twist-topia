@@ -14,9 +14,9 @@ public class GuideLevel1 : MonoBehaviour
     public Transform platformCubes;
     public float WorldUnit = 1.000f;
 
-    // Main View Move
-    public GameObject mainViewMove;
-    public bool mainViewMoveIsShowed = false;
+    // Front View Move
+    public GameObject frontViewMove;
+    public bool frontViewMoveIsShowed = false;
     public CameraState cameraState;
 
     // View Change
@@ -58,15 +58,15 @@ public class GuideLevel1 : MonoBehaviour
         }
         else
         {
-            if (!mainViewMoveIsShowed)
+            if (!frontViewMoveIsShowed)
             {
                 if (panel.activeSelf == false)
                 {
                     if (cameraState.GetFacingDirection() == FacingDirection.Front && OnPlatformCube())
                     {
-                        mainViewMove.SetActive(true);
+                        frontViewMove.SetActive(true);
                         panel.SetActive(true);
-                        mainViewMoveIsShowed = true;
+                        frontViewMoveIsShowed = true;
                         Time.timeScale = 0f;
                     }
                 }

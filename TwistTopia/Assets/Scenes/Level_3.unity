@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.1341472, b: 0.121078566, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21851,7 +21851,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'There''s An Enemy! Don''t Touch It!
 
-        Shift To Main View!
+        Shift To Front View!
 
         Press 
         F  To Lock It Into The Frame!'
@@ -26619,7 +26619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4466384917503117693, guid: c3cd4d8b6ad6a4a46a6b7d2951b08348, type: 3}
       propertyPath: m_Name
-      value: Main View
+      value: Front View
       objectReference: {fileID: 0}
     - target: {fileID: 4466384917503117693, guid: c3cd4d8b6ad6a4a46a6b7d2951b08348, type: 3}
       propertyPath: m_IsActive
@@ -26627,7 +26627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4466384917503117695, guid: c3cd4d8b6ad6a4a46a6b7d2951b08348, type: 3}
       propertyPath: m_text
-      value: Main View
+      value: Front View
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3cd4d8b6ad6a4a46a6b7d2951b08348, type: 3}
