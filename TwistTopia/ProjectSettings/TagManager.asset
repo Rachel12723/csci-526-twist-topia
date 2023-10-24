@@ -27,6 +27,7 @@ TagManager:
   - Platform19
   - Road1
   - Road2
+  - Land Mine
   layers:
   - Default
   - TransparentFX
