@@ -34,6 +34,11 @@ public class GuideLevel1 : MonoBehaviour
     public float dropMinX = 27f;
     public PlayerReturn playerReturn;
 
+    // Zoom
+    public GameObject zoom;
+    public bool zoomIsShowed = false;
+    public float zoomMinX = 20f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -100,8 +105,7 @@ public class GuideLevel1 : MonoBehaviour
             if (!dropIsShowed)
             {
                 if (panel.activeSelf == false)
-                {
-                    if (player.position.x > dropMinX || playerReturn.dropCount > 0)
+                {                   
                     if (player.position.x > dropMinX || playerReturn.dropCount > 0)
                     {
                         drop.SetActive(true);
@@ -111,6 +115,20 @@ public class GuideLevel1 : MonoBehaviour
                     }
                 }
             }
+            if (!zoomIsShowed)
+            {
+                if (panel.activeSelf == false)
+                {
+                    if (player.position.x > zoomMinX)                     
+                    {
+                        zoom.SetActive(true);
+                        panel.SetActive(true);
+                        zoomIsShowed = true;
+                        Time.timeScale = 0f;
+                    }
+                }
+            }
+
         }
 
     }
