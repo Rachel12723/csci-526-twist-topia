@@ -7,6 +7,7 @@ public class GuardManager : MonoBehaviour
     public float speed;
 
     public GameObject player;
+    private PlayerReturn playerReturn;
 
     public CameraState cameraState;
 
@@ -20,6 +21,7 @@ public class GuardManager : MonoBehaviour
 
     void Start()
     {
+        playerReturn = player.GetComponent<PlayerReturn>();
         Transform platformCubes = map.Find("Platform Cubes");
         foreach(Transform platform in platformCubes)
         {
@@ -30,7 +32,21 @@ public class GuardManager : MonoBehaviour
                     landMines.Add(cube);
                 }
             }
+        }
+    }
 
+    void Update()
+    {
+        foreach(Transform landMine in landMines)
+        {
+            if (cameraState.GetFacingDirection() == FacingDirection.Up)
+            {
+                if (Mathf.Abs(landMine.position.x - player.transform.position.x) <= 0.5f &&
+                    Mathf.Abs(landMine.position.z - player.transform.position.z) <= 0.5f)
+                {
+                    playerReturn.ResetPlayer(FacingDirection.Up);
+                }
+            }
         }
     }
 }

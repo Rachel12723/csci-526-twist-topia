@@ -114,8 +114,8 @@ public class GuardMovement : MonoBehaviour
                     Transform platformCubes = map.Find("Platform Cubes");
                     foreach(Transform landMine in guardManager.landMines)
                     {
-                        if (Mathf.Abs(transform.position.x - landMine.position.x) <= 0.2f &&
-                            Mathf.Abs(transform.position.z - landMine.position.z) <= 0.2f)
+                        if (Mathf.Abs(transform.position.x - landMine.position.x) <= 0.5f &&
+                            Mathf.Abs(transform.position.z - landMine.position.z) <= 0.5f)
                         {
                             GameObject newKey = Instantiate(key) as GameObject;
                             newKey.transform.position = transform.position;
