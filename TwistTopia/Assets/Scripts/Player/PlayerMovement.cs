@@ -8,13 +8,10 @@ public class PlayerMovement : MonoBehaviour
     // Left: -1  Right: 1
     private int Horizontal = 0;
     private float HorizontalFloat = 0;
-    private KeyCode leftKeyCode = KeyCode.A;
-    private KeyCode rightKeyCode = KeyCode.D;
+
     // Down: -1  Up: 1
     private int Vertical = 0;
     private float VerticalFloat = 0;
-    private KeyCode upKeyCode = KeyCode.W;
-    private KeyCode downKeyCode = KeyCode.S;
 
     // Physical Parameter
     public float movementSpeed = 5f;
@@ -67,33 +64,34 @@ public class PlayerMovement : MonoBehaviour
                     else
                     {
                         // Left/Right Key
-                        if ((Input.GetKey(leftKeyCode) && Input.GetKey(rightKeyCode)) || (!Input.GetKey(leftKeyCode) && !Input.GetKey(rightKeyCode)))
+                        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) ||
+                            (!(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))))
                         {
                             Horizontal = 0;
                         }
-                        else if (Input.GetKey(leftKeyCode) && !Input.GetKey(rightKeyCode))
+                        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
                         {
                             Horizontal = -1;
                         }
-                        else if (!Input.GetKey(leftKeyCode) && Input.GetKey(rightKeyCode))
+                        else if (!(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
                         {
                             Horizontal = 1;
                         }
 
                         // Down/Up Key
-                        if ((Input.GetKey(upKeyCode) && Input.GetKey(downKeyCode)) || (!Input.GetKey(upKeyCode) && !Input.GetKey(downKeyCode)))
+                        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) ||
+                            (!(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && !(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))))
                         {
                             Vertical = 0;
                         }
-                        else if (Input.GetKey(upKeyCode) && !Input.GetKey(downKeyCode))
+                        else if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && !(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
                         {
                             Vertical = 1;
                         }
-                        else if (!Input.GetKey(upKeyCode) && Input.GetKey(downKeyCode))
+                        else if (!(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
                         {
                             Vertical = -1;
                         }
-
                     }
 
                     // Movement
