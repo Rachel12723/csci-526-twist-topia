@@ -31,30 +31,41 @@ public class PlayerReturn : MonoBehaviour
             {
                 if (transform.position.y < frontMinY || transform.position.y >= upMinY)
                 {
-                    GetComponent<CharacterController>().enabled = false;
-                    keyAndDoor.KeyDrop();
-                    transform.position = checkPoint;
-                    directionManager.UpdateInvisibleCubes();
-                    playerState.SetUpIsDropping(false);
-                    GetComponent<CharacterController>().enabled = true;
-                    dropCount++;
+                    ResetPlayer(FacingDirection.Front);
                 }
             }
             else if(cameraState.GetFacingDirection() == FacingDirection.Up && !cameraState.GetIsRotating())
             {
                 if (transform.position.y < upMinY)
                 {
-                    Debug.Log(transform.position);
-                    GetComponent<CharacterController>().enabled = false;
-                    keyAndDoor.KeyDrop();
-                    transform.position = checkPoint;
-                    directionManager.UpdateInvisibleCubes();
-                    directionManager.MovePlayerToClosestInvisibleCube();
-                    playerState.SetUpIsDropping(false);
-                    GetComponent<CharacterController>().enabled = true;
-                    dropCount++;
+                    ResetPlayer(FacingDirection.Up);
                 }
             }
+        }
+    }
+
+    public void ResetPlayer(FacingDirection facingDirection)
+    {
+        if (facingDirection == FacingDirection.Front)
+        {
+            GetComponent<CharacterController>().enabled = false;
+            keyAndDoor.KeyDrop();
+            transform.position = checkPoint;
+            directionManager.UpdateInvisibleCubes();
+            playerState.SetUpIsDropping(false);
+            GetComponent<CharacterController>().enabled = true;
+            dropCount++;
+        }
+        else if(facingDirection == FacingDirection.Up)
+        {
+            GetComponent<CharacterController>().enabled = false;
+            keyAndDoor.KeyDrop();
+            transform.position = checkPoint;
+            directionManager.UpdateInvisibleCubes();
+            directionManager.MovePlayerToClosestInvisibleCube();
+            playerState.SetUpIsDropping(false);
+            GetComponent<CharacterController>().enabled = true;
+            dropCount++;
         }
     }
 
