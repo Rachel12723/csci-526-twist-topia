@@ -21,15 +21,15 @@ public class Firebase : MonoBehaviour
     private double [] platform_time1 = new double[NUM1]{0,0,0,0,0,0,0,0,0};
     //x1,x2,z1,z2,y
     private double [,] platform_pos1 = new double [NUM1,5] {
-        {3, 7, 7, 8, 10} ,    //1
-        {7, 16, 3, 4, 5} ,   //2
-        {16, 25, 5, 10, 6},   //3
-        {26, 30, 4, 5, 6},   //4
-        {28, 33, 6, 7, 9},   //5
-        {34, 47, 2, 3, 6},   //6
-        {44, 47, 0, 1, 7},   //7
-        {40, 43, -4, -3, 6},   //8
-        {34, 40, -4, -3, 4}    //9
+        {8, 11, 7, 8, 9} ,  
+        {11, 16, 3, 4, 5} ,   
+        {16, 25, 5, 10, 7}, 
+        {26, 30, 4, 5, 7}, 
+        {28, 33, 6, 7, 14},   
+        {34, 47, 2, 3, 14},  
+        {44, 47, 0, 1, 8}, 
+        {40, 43, -4, -3, 6},   
+        {34, 40, -4, -3, 4}   
     };
 
     //level 2
@@ -37,15 +37,15 @@ public class Firebase : MonoBehaviour
     private double [] platform_time2 = new double[NUM2]{0,0,0,0,0,0,0,0,0};
     //x1,x2,z1,z2,y
     private double [,] platform_pos2 = new double [NUM2,5] {
-        {0, 39, 0, 3, 0} , //1
-        {-5, 4, 9, 11, -3} , //2
-        {-10, -1, 6, 8, 3} , //3
-        {28, 29, 4, 5, -3} , //4
-        {24, 29, 6, 7, 3} , //5
-        {20, 23, -4, -3, 3} , //6
-        {24, 31, -4, -3, -3} , //7
-        {32, 35, 10, 11, -3} , //8
-        {28, 31, 10, 11, 6}  //9
+        {0, 39, 0, 3, 1} ,
+        {-5, 4, 9, 11, -2} ,
+        {-10, -1, 6, 8, 2} ,
+        {28, 29, 4, 5, -2} ,
+        {24, 29, 6, 7, 4} ,
+        {20, 23, -4, -3, 5} ,
+        {24, 31, -4, -3, -2} ,
+        {32, 35, 10, 11, -2} ,
+        {28, 31, 10, 11, -5} 
     };
 
     //level 3
@@ -53,25 +53,25 @@ public class Firebase : MonoBehaviour
     
     private double [] platform_time3 = new double[NUM3]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     private double [,] platform_pos3 = new double [NUM3,5] {
-        {-1,7,0,2,0} , //1
-        {-4,0,3,5,3} , //2
-        {-8,-4,-3,-3,0} ,//3
-        {8,12,-3,-3,5} ,//4
-        {11,22,3,5,2} ,//5
-        {21,28,6,7,5} ,//6
-        {27,42,8,8,8},//7
-        {21,28,6,7,5},//8
-        {22,24,1,2,-1} ,//9
-        {25,27,1,2,-4} ,//10
-        {28,30,1,2,-7} ,//11
-        {30,45,0,0,-4} ,//12
-        {24,28,1,2,-7} ,//13
-        {47,87,-1,8,2} ,//14
-        {62,71,13,15,-7} ,//15
-        {69,73,-2,0,5} ,//16
-        {63,71,-2,0,-10} ,//17
-        {64,73,8,10,-13} ,//18
-        {58,58,-2,-2,-13}     //19
+        {0,8,0,2,1} , //1
+        {-3,1,3,5,4} , //2
+        {-7,-3,-4,-2,1} ,//3
+        {8,12,-4,-2,6} ,//4
+        {11,22,3,5,3} ,//5
+        {21,28,6,7,6} ,//6
+        {27,42,7,9,9},//7
+        {40,49,6,7,12},//8
+        {22,24,1,2,0} ,//9
+        {25,27,1,2,-3} ,//10
+        {28,30,1,2,-6} ,//11
+        {27,42,-1,1,-3} ,//12
+        {44,48,1,2,-6} ,//13
+        {47,87,-1,8,3} ,//14
+        {82,91,13,15,0} ,//15
+        {89,93,-2,0,0} ,//16
+        {83,91,-2,0,-9} ,//17
+        {84,93,8,10,-6} ,//18
+        {77,79,-2,-1,-6}     //19
     };
 
     private int NUM;
@@ -109,13 +109,13 @@ public class Firebase : MonoBehaviour
         //判断当前是level几
 
         bool is_falling = true;
-
+        
         for(int i =0; i<NUM ;i++){
             if(player.transform.position.x>=platform_pos[i,0] && 
                 player.transform.position.x<=platform_pos[i,1] &&
                 player.transform.position.z>=platform_pos[i,2] &&
                 player.transform.position.z<=platform_pos[i,3] &&
-                (IsEqual(player.transform.position.y,platform_pos[i,4]) || IsEqual(player.transform.position.y,38) || IsEqual(player.transform.position.y,34) ||IsEqual(player.transform.position.y,31))){
+                (IsEqual(player.transform.position.y,platform_pos[i,4]) || IsEqual(player.transform.position.y,36) || IsEqual(player.transform.position.y,31) || IsEqual(player.transform.position.y,34))){
                     platform_num = i+1;
                     is_falling = false;
             }
@@ -130,6 +130,7 @@ public class Firebase : MonoBehaviour
         }
   
         */
+        //Debug.Log(">>>>>>>>>>>>>>>>"+player.transform.position.x+" "+player.transform.position.y+" "+player.transform.position.z+" "+platform_num+" "+priv_is_falling+" "+is_falling);
 
         if(priv_platform_num != platform_num || priv_is_falling != is_falling){
 
@@ -180,10 +181,10 @@ public class Firebase : MonoBehaviour
 
         RestClient.Post(DATABASE_URL, jsonData).Then(response =>
         {
-            Debug.Log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Data sent successfully!");
+            Debug.Log("Data sent successfully!");
         }).Catch(error =>
         {
-            Debug.LogError(">>>>>>>>>>>>>>>>>>>>>>>>>>>Error sending data: " + error.Message);
+            Debug.LogError("Error sending data: " + error.Message);
         });
         
     }
@@ -209,12 +210,12 @@ public class Firebase : MonoBehaviour
     }
 
     bool IsFalling(double y){
-        if(y<1){
+        if(y<-10){
             return true;
         }
-        if(y<36 && y>30){
-            return true;
-        }
+        //if(y<36 && y>29){
+            //return true;
+        //}
         return false;
     }
 
@@ -317,10 +318,10 @@ public class Firebase : MonoBehaviour
 
         RestClient.Post(DATABASE_URL, jsonData).Then(response =>
         {
-            Debug.Log(">>>>>>>>>>>>>>>>>Data sent successfully!");
+            Debug.Log("Data sent successfully!");
         }).Catch(error =>
         {
-            Debug.LogError(">>>>>>>>>>>>>>>Error sending data: " + error.Message);
+            Debug.LogError("Error sending data: " + error.Message);
         });
         
         /*
@@ -329,7 +330,7 @@ public class Firebase : MonoBehaviour
         }
         */
 
-        Debug.Log(">>>>>>>>>>>>>>>>>>over!");
+        Debug.Log("over!");
         yield break;
 
     }
