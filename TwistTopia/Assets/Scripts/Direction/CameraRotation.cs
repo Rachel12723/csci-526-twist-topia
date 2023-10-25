@@ -18,14 +18,17 @@ public class CameraRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotateTo(cameraState.GetFacingDirection());
-        // Camera and Light Rotation
-        Quaternion rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(degree, 0, 0), rotationSpeed * Time.deltaTime);
-        transform.rotation = rotation;
-        float angle = rotation.eulerAngles.x;
-        if (Mathf.Abs(degree - angle)< 0.01)
+        if (!cameraState.GetIsUsing3DView())
         {
-            cameraState.SetIsRotating(false);
+            RotateTo(cameraState.GetFacingDirection());
+            // Camera and Light Rotation
+            Quaternion rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(degree, 0, 0), rotationSpeed * Time.deltaTime);
+            transform.rotation = rotation;
+            float angle = rotation.eulerAngles.x;
+            if (Mathf.Abs(degree - angle)< 0.01)
+            {
+                cameraState.SetIsRotating(false);
+            }
         }
     }
 

@@ -25,7 +25,7 @@ public class PlayerReturn : MonoBehaviour
 
     void Update()
     {
-        if (!playerState.GetPositionUpdating())
+        if (!playerState.GetPositionUpdating() && !cameraState.GetIsUsing3DView())
         {
             if (cameraState.GetFacingDirection() == FacingDirection.Front || cameraState.GetIsRotating())
             {

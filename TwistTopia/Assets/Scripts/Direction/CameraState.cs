@@ -6,6 +6,17 @@ public class CameraState : MonoBehaviour
 {
     public FacingDirection facingDirection = FacingDirection.Front;
     public bool isRotating = false;
+    public bool isUsing3DView = false;
+
+    public void SetFacingDirection(FacingDirection facingDirection)
+    {
+        this.facingDirection = facingDirection;
+    }
+
+    public FacingDirection GetFacingDirection()
+    {
+        return facingDirection;
+    }
 
     public void SetIsRotating(bool isRotating)
     {
@@ -17,13 +28,13 @@ public class CameraState : MonoBehaviour
         return isRotating;
     }
 
-    public void SetFacingDirection(FacingDirection facingDirection)
+    public void SetIsUsing3DView(bool isUsing3DView)
     {
-        this.facingDirection = facingDirection;
+        this.isUsing3DView = isUsing3DView;
     }
 
-    public FacingDirection GetFacingDirection()
+    public bool GetIsUsing3DView()
     {
-        return facingDirection;
+        return isUsing3DView;
     }
 }
