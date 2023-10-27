@@ -2035,6 +2035,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 223356886}
+  - component: {fileID: 223356888}
+  - component: {fileID: 223356887}
   m_Layer: 0
   m_Name: InstructionButton
   m_TagString: Untagged
@@ -2059,9 +2061,48 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -23.3, y: 0}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &223356887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223356885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 5584858017899766922, guid: ffa8f09c12a29224bb37f3a528a9d475,
+    type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &223356888
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223356885}
+  m_CullTransparentMesh: 1
 --- !u!1001 &246530983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7935,8 +7976,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1082688300}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 10.83}
   m_LocalScale: {x: 0.03, y: 0.03, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7944,11 +7985,11 @@ RectTransform:
   - {fileID: 223356886}
   m_Father: {fileID: 92427749}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 21.1, y: 6}
-  m_SizeDelta: {x: 150, y: 65}
+  m_AnchoredPosition: {x: 19.53, y: 8.4}
+  m_SizeDelta: {x: 87.7, y: 33.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1082688302
 MonoBehaviour:
@@ -8286,8 +8327,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 22.01918, y: -0.05000305}
-  m_SizeDelta: {x: -53.958363, y: -20.500008}
+  m_AnchoredPosition: {x: 22.025, y: -1.53}
+  m_SizeDelta: {x: -43.750004, y: -13.459999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1157639677
 MonoBehaviour:
@@ -8322,7 +8363,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: "USE SPACE TO \nSHIFT PERSPECTIVE"
+  m_Text: ZOOM
 --- !u!222 &1157639678
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12628,7 +12669,7 @@ Transform:
   m_Children:
   - {fileID: 92427749}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1738657331
 PrefabInstance:

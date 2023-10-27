@@ -35,7 +35,6 @@ public class InstructionManager : MonoBehaviour
             else
             {
                 panel.SetActive(false);
-                // panel.SetActive(true);
             }
         }
     }
