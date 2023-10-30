@@ -1,18 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public class LevelSelector : MonoBehaviour
 {
     public Button[] levelButtons;
     public string sceneName;
     private int level;
+    //public GameObject panel;
 
     void Start()
     {
 
         //int level;
-
+       // StartCoroutine(ShowPanelAndLoadLevel);
         if (PlayerPrefs.HasKey("Level"))
         {
             level = PlayerPrefs.GetInt("Level");
@@ -72,4 +74,14 @@ public class LevelSelector : MonoBehaviour
 
 
     }
+
+   /* IEnumerator ShowPanelAndLoadLevel()
+    {
+        //panel.SetActive(true); 
+        yield return new WaitForSeconds(3f); 
+
+        panel.SetActive(false); 
+        *//*SceneManager.LoadScene(sceneName); 
+        Time.timeScale = 1f;*//* 
+    }*/
 }
