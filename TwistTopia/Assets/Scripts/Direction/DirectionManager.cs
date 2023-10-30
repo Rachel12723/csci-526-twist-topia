@@ -82,7 +82,6 @@ public class DirectionManager : MonoBehaviour
                         {
                             playerState.SetPositionUpdating(true);
                             cameraState.SetFacingDirection(FacingDirection.Up);
-                            cameraState.SetIsRotating(true);
                         }
                         else if (cameraState.GetFacingDirection() == FacingDirection.Up)
                         {
@@ -90,10 +89,8 @@ public class DirectionManager : MonoBehaviour
                             MovePlayerToClosestPlatformCube();
                             playerState.SetPositionUpdating(false);
                             cameraState.SetFacingDirection(FacingDirection.Front);
-                            cameraState.SetIsRotating(true);
                         }
                         OnRotateKeyPressed?.Invoke(player.transform.position);
-                        cameraState.SetIsRotating(true);
                         UpdateInvisibleCubes();
                     }
                     if (cameraState.GetFacingDirection() == FacingDirection.Front)

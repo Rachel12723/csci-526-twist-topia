@@ -48,6 +48,7 @@ public class PlayerReturn : MonoBehaviour
     {
         if (facingDirection == FacingDirection.Front)
         {
+            //cameraState.SetIsRebinding(true);
             GetComponent<CharacterController>().enabled = false;
             keyAndDoor.KeyDrop();
             transform.position = checkPoint;
@@ -58,6 +59,8 @@ public class PlayerReturn : MonoBehaviour
         }
         else if(facingDirection == FacingDirection.Up)
         {
+            //cameraState.SetFacingDirection(FacingDirection.Front);
+            //cameraState.SetIsRebinding(true);
             GetComponent<CharacterController>().enabled = false;
             keyAndDoor.KeyDrop();
             transform.position = checkPoint;
