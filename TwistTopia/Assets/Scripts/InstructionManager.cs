@@ -23,9 +23,12 @@ public class InstructionManager : MonoBehaviour
     {
         foreach (GameObject panel in instructionPanels)
         {
-            float distance = Vector3.Distance(panel.transform.position, playerTransform.position);
+            // float distance = Vector3.Distance(panel.transform.position, playerTransform.position);
+            Vector3 difference = panel.transform.position - playerTransform.position;
+            Debug.Log("instruction text: x " + difference.x + "y "+ difference.y + "z " + difference.z);
             
-            if (distance <= displayDistance)
+            // if (distance <= displayDistance)
+            if (Mathf.Abs(difference.x) <= displayDistance && Mathf.Abs(difference.z) <= displayDistance)
             {
                 panel.SetActive(true);
             }
