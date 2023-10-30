@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  rebindingTime: 1
 --- !u!114 &4323709130184260892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +258,7 @@ MonoBehaviour:
   facingDirection: 0
   isRotating: 0
   isUsing3DView: 0
+  isRebinding: 0
 --- !u!114 &4323709130184260891
 MonoBehaviour:
   m_ObjectHideFlags: 0
