@@ -13,6 +13,7 @@ public class PlayerReturn : MonoBehaviour
     public DirectionManager directionManager;
     private KeyAndDoor keyAndDoor;
     public int dropCount;
+    public FadingInfo deathInfo;
 
     void Start()
     {
@@ -48,7 +49,7 @@ public class PlayerReturn : MonoBehaviour
     {
         if (facingDirection == FacingDirection.Front)
         {
-            //cameraState.SetIsRebinding(true);
+            cameraState.SetIsRebinding(true);
             GetComponent<CharacterController>().enabled = false;
             keyAndDoor.KeyDrop();
             transform.position = checkPoint;
@@ -59,17 +60,18 @@ public class PlayerReturn : MonoBehaviour
         }
         else if(facingDirection == FacingDirection.Up)
         {
-            //cameraState.SetFacingDirection(FacingDirection.Front);
-            //cameraState.SetIsRebinding(true);
+            cameraState.SetFacingDirection(FacingDirection.Front);
+            cameraState.SetIsRebinding(true);
             GetComponent<CharacterController>().enabled = false;
             keyAndDoor.KeyDrop();
             transform.position = checkPoint;
             directionManager.UpdateInvisibleCubes();
-            directionManager.MovePlayerToClosestInvisibleCube();
+            //directionManager.MovePlayerToClosestInvisibleCube();
             playerState.SetUpIsDropping(false);
             GetComponent<CharacterController>().enabled = true;
             dropCount++;
         }
+        deathInfo.SetIsShowed(true);
     }
 
     public void SetCheckPoint(Vector3 checkPoint)
