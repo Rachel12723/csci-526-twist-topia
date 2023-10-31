@@ -25,7 +25,7 @@ public class InstructionManager : MonoBehaviour
         {
             // float distance = Vector3.Distance(panel.transform.position, playerTransform.position);
             Vector3 difference = panel.transform.position - playerTransform.position;
-            Debug.Log("instruction text: x " + difference.x + "y "+ difference.y + "z " + difference.z);
+            // Debug.Log("instruction text: x " + difference.x + "y "+ difference.y + "z " + difference.z);
             
             // if (distance <= displayDistance)
             if (Mathf.Abs(difference.x) <= displayDistance && Mathf.Abs(difference.z) <= displayDistance)
