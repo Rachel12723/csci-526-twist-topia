@@ -15,6 +15,7 @@ public class KeyAndDoor : MonoBehaviour
 	public Transform keypons;
 	public GameObject keyponInHand;
 	public GameObject player;
+	private GameObject inHandKeypon;
     private int keyCounter = 0;
     public UnityEngine.UI.Text keyText;
     public CameraState cameraState;
@@ -22,16 +23,13 @@ public class KeyAndDoor : MonoBehaviour
     public float WorldUnit = 1.000f;
 	private float xOffset = 1.2f;
     private float zOffset = -0.56f;
-	private bool firstRotate = false;
-	private bool secondRotate = false;
-	private bool thirdRotate = false;
-	private float currentRotation = 0f;
-    private float targetRotation = 20f;
-    private float rotationSpeed = 30f; // Adjust the rotation speed as needed
+    private float rotationSpeed = 1800f;
+	private bool hasCompletedFullRotation = false;
+	private float rotationProgress = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
-        //UpViewSlash();
+		
     }
 
     // Update is called once per frame
@@ -46,38 +44,53 @@ public class KeyAndDoor : MonoBehaviour
 			SlashAndOpen();
         }
 		
-		if (firstRotate)
-        {
-            // Rotate the object around its Y-axis by 20 degrees
-            transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime * 3);
+		
+		if(hasCompletedFullRotation)
+		{
+			// Calculate the rotation angle for this frame
+   			 float rotationAngle = rotationSpeed * Time.deltaTime;
 
-            // Check if the first rotation is complete (20 degrees)
-            if (transform.rotation.eulerAngles.y >= 20.0f)
-            {
-                firstRotate = false;
-                secondRotate = true;
-            }
-        }
-        else if (secondRotate)
-        {
-            transform.Rotate(Vector3.up * -rotationSpeed * Time.deltaTime * 6);
-            if (transform.rotation.eulerAngles.y <= 300.0f && transform.rotation.eulerAngles.y > 25.0f)
-            {
-                secondRotate = false;
-                thirdRotate = true;
-            }
-        }
-        else if (thirdRotate)
-        {
-			Vector3 targetRotation = new Vector3(0f, 0f, 0f);
-			transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(targetRotation), rotationSpeed * Time.deltaTime * 4);
-			if (transform.rotation.eulerAngles.y == 0)
-            {	
-				
-                thirdRotate = false;
-            }
-        }
+   			// Increment the rotation progress
+    		rotationProgress += rotationAngle;
+
+    		// Rotate the object around the y-axis
+    		transform.Rotate(Vector3.up, rotationAngle);
+			float leftX = player.transform.position.x - 1.7f;
+			float rightX = player.transform.position.x + 1.7f;
+			float topZ = player.transform.position.z + 1.7f;
+			float downZ = player.transform.position.z - 1.7f;
+			float radius = 1.7f; 
+			Vector3 playerPosition = player.transform.position;
+			foreach(Transform enemy in player.GetComponent<PlayerMovement>().enemies){
+				Transform enemyModel = enemy.Find("EnemyModel");
+				Vector3 enemyPosition = enemyModel.position;
+    			float distanceX = enemyPosition.x - playerPosition.x;
+    			float distanceZ = enemyPosition.z - playerPosition.z;
+    			float distance = Mathf.Sqrt(distanceX * distanceX + distanceZ * distanceZ);
+    			if (distance <= radius)
+    			{
+        			Destroy(enemy.gameObject);
+    			}
+				//Debug.Log(enemyModel.position.x);
+				//Debug.Log(enemyModel.position.z);
+				//if(enemyModel.position.x <= rightX && enemyModel.position.x >= leftX && enemyModel.position.z <= topZ && enemyModel.position.z >= downZ)
+					//Destroy(enemy.gameObject);
+			}
+    		// Check if the rotation has completed (2 full rotations, 720 degrees)
+    		if (rotationProgress >= 1080.0f)
+    		{
+				Vector3 targetRotation = new Vector3(0f, 0f, 0f);
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(targetRotation), rotationSpeed * Time.deltaTime * 4);
+				hasCompletedFullRotation = false;
+        		// Reset the progress if you want the rotation to continue indefinitely
+        		rotationProgress = 0.0f;
+
+        		// Alternatively, you can stop the rotation by disabling the script
+        		//enabled = false;
+    		}
+		}
     }
+	
 	private void PickUpKeypon()
     {
         if (cameraState.GetFacingDirection() == FacingDirection.Front)
@@ -89,9 +102,9 @@ public class KeyAndDoor : MonoBehaviour
                 {
 					
                     Destroy(keypon.gameObject);
-					GameObject inHandKeypon = Instantiate(keyponInHand, player.transform);
+					inHandKeypon = Instantiate(keyponInHand, player.transform);
         			inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
-                    keyCounter++;
+                    keyCounter+=2;
                     Debug.Log("Keys:" + keyCounter);
                     break;
                 }
@@ -105,9 +118,9 @@ public class KeyAndDoor : MonoBehaviour
                     Mathf.Abs(keypon.position.x - transform.position.x) < WorldUnit)
                 {
                     Destroy(keypon.gameObject);
-					GameObject inHandKeypon = Instantiate(keyponInHand, player.transform);
+					inHandKeypon = Instantiate(keyponInHand, player.transform);
         			inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
-                    keyCounter++;
+                    keyCounter+=2;
                     Debug.Log("Keys:" + keyCounter);
                     break;
                 }
@@ -124,8 +137,10 @@ public class KeyAndDoor : MonoBehaviour
         else if (cameraState.GetFacingDirection() == FacingDirection.Up)
         {
 			//UpViewSlash();
-			if(!firstRotate&&!secondRotate&&!thirdRotate)
-			firstRotate = true;
+			if (!hasCompletedFullRotation)
+        	{
+				hasCompletedFullRotation = true;
+			}
 			/*
             bool canOpen = false;
             foreach (Transform block in blocks)
@@ -169,15 +184,18 @@ public class KeyAndDoor : MonoBehaviour
                 directionManager.DeleteBlockCubes(block);
                 Destroy(block.gameObject);
                 keyCounter--;
+				KeyponDestroyed();
                 Debug.Log("Keys:" + keyCounter);
                 break;
             }
         }
 	}
-	private void UpViewSlash(){
-		
-		//rotateStarted = false;
-		
+	private void KeyponDestroyed()
+	{
+		if(keyCounter == 0)
+		{
+			Destroy(inHandKeypon);
+		}
 	}
     private void PickUpKey()
     {

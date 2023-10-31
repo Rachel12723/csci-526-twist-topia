@@ -28,6 +28,7 @@ TagManager:
   - Road1
   - Road2
   - Land Mine
+  - Enemy
   layers:
   - Default
   - TransparentFX
