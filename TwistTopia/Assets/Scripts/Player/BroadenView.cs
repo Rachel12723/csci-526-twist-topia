@@ -7,8 +7,8 @@ public class BroadenView : MonoBehaviour
     public KeyCode broadenViewCode;
     private Camera mainCamera;
     private float zoomSpeed = 10f;
-    private float maxZoomSize = 10.0f;
-    private float minZoomSize = 5.0f;
+    private float maxZoomSize = 15.0f;
+    private float minZoomSize = 7.0f;
     // Start is called before the first frame update
     void Start()
     {
