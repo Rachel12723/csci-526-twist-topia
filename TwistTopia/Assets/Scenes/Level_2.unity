@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.1341472, b: 0.121078566, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17543,6 +17543,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 320166649889856592, guid: a5d8315a5a8be2245b7fc2693f2dfb50, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 584594900}
     - target: {fileID: 1039708612349473671, guid: a5d8315a5a8be2245b7fc2693f2dfb50, type: 3}
       propertyPath: m_text
       value: 'Welcome to TwistTopia
