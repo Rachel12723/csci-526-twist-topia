@@ -43,22 +43,14 @@ public class KeyAndDoor : MonoBehaviour
             //OpenDoor();
 			SlashAndOpen();
         }
-		
-		
 		if(hasCompletedFullRotation)
 		{
 			// Calculate the rotation angle for this frame
    			 float rotationAngle = rotationSpeed * Time.deltaTime;
-
    			// Increment the rotation progress
     		rotationProgress += rotationAngle;
-
     		// Rotate the object around the y-axis
     		transform.Rotate(Vector3.up, rotationAngle);
-			float leftX = player.transform.position.x - 1.7f;
-			float rightX = player.transform.position.x + 1.7f;
-			float topZ = player.transform.position.z + 1.7f;
-			float downZ = player.transform.position.z - 1.7f;
 			float radius = 1.7f; 
 			Vector3 playerPosition = player.transform.position;
 			foreach(Transform enemy in player.GetComponent<PlayerMovement>().enemies){
@@ -70,23 +62,17 @@ public class KeyAndDoor : MonoBehaviour
     			if (distance <= radius)
     			{
         			Destroy(enemy.gameObject);
+					keyCounter--;
+					KeyponDestroyed();
     			}
-				//Debug.Log(enemyModel.position.x);
-				//Debug.Log(enemyModel.position.z);
-				//if(enemyModel.position.x <= rightX && enemyModel.position.x >= leftX && enemyModel.position.z <= topZ && enemyModel.position.z >= downZ)
-					//Destroy(enemy.gameObject);
 			}
-    		// Check if the rotation has completed (2 full rotations, 720 degrees)
+    		// Check if the rotation has completed (3 full rotations, 1080 degrees)
     		if (rotationProgress >= 1080.0f)
     		{
 				Vector3 targetRotation = new Vector3(0f, 0f, 0f);
 				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(targetRotation), rotationSpeed * Time.deltaTime * 4);
 				hasCompletedFullRotation = false;
-        		// Reset the progress if you want the rotation to continue indefinitely
         		rotationProgress = 0.0f;
-
-        		// Alternatively, you can stop the rotation by disabling the script
-        		//enabled = false;
     		}
 		}
     }
@@ -136,34 +122,10 @@ public class KeyAndDoor : MonoBehaviour
         }
         else if (cameraState.GetFacingDirection() == FacingDirection.Up)
         {
-			//UpViewSlash();
 			if (!hasCompletedFullRotation)
         	{
 				hasCompletedFullRotation = true;
 			}
-			/*
-            bool canOpen = false;
-            foreach (Transform block in blocks)
-            {
-                foreach (Transform blockCube in block)
-                {
-                    if (Mathf.Abs(blockCube.position.z - transform.position.z) < WorldUnit + 0.5f &&
-                        Mathf.Abs(blockCube.position.x - transform.position.x) < WorldUnit + 0.5f)
-                    {
-                        canOpen = true;
-                        break;
-                    }
-                }
-                if(canOpen)
-                {
-                    directionManager.DeleteBlockCubes(block);
-                    Destroy(block.gameObject);
-                    keyCounter--;
-                    Debug.Log("Keys:" + keyCounter);
-                    break;
-                }
-            }
-			*/
         }
     }
 	private void FrontViewOpenDoor(){
