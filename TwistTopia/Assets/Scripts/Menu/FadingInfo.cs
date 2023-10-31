@@ -5,7 +5,9 @@ using TMPro;
 
 public class FadingInfo : MonoBehaviour
 {
-    public float fadingTime = 3f;
+    public float showTime = 2f;
+    private float showLeft = 0f;
+    public float fadingTime = 1f;
     private bool isShowed;
     private TextMeshProUGUI textMeshPro;
     private float r;
@@ -28,9 +30,14 @@ public class FadingInfo : MonoBehaviour
         if (isShowed)
         {
             textMeshPro.color = new Color(r, g, b, 1f);
+            showLeft = showTime;
             isShowed = false;
         }
-        if (textMeshPro.color.a > 0)
+        if (showLeft > 0f)
+        {
+            showLeft -= Time.deltaTime;
+        }
+        else if (textMeshPro.color.a > 0)
         {
             textMeshPro.color = new Color(r, g, b, textMeshPro.color.a - 1 / fadingTime * Time.deltaTime);
         }
