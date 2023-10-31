@@ -92,7 +92,7 @@ MonoBehaviour:
   checkPoint: {x: 0, y: 0, z: 0}
   frontMinY: 0
   upMinY: 0
-  dropY: 20
+  dropY: 10
   directionManager: {fileID: 0}
   dropCount: 0
 --- !u!114 &5374383691766773540
