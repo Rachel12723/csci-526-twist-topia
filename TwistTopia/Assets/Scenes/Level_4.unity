@@ -3125,6 +3125,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guide
       objectReference: {fileID: 0}
+    - target: {fileID: 8337585548413013661, guid: 921ec10875b06814f8ca9010505b2541, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 921ec10875b06814f8ca9010505b2541, type: 3}
 --- !u!1001 &277334263
@@ -12899,7 +12903,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Welcome to TwistTopia
 
-        Level 3'
+        Level 4'
       objectReference: {fileID: 0}
     - target: {fileID: 1295137211152710749, guid: a5d8315a5a8be2245b7fc2693f2dfb50, type: 3}
       propertyPath: m_Name
@@ -12951,7 +12955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1892819814931497346, guid: a5d8315a5a8be2245b7fc2693f2dfb50, type: 3}
       propertyPath: m_text
-      value: Level 3
+      value: Level 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5d8315a5a8be2245b7fc2693f2dfb50, type: 3}
@@ -22967,7 +22971,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'TwistTopia
 
-        Level 3'
+        Level 4'
       objectReference: {fileID: 0}
     - target: {fileID: 1472842017243216305, guid: 8c782845463ea014392d6c2bda20041e, type: 3}
       propertyPath: m_Pivot.x
