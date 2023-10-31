@@ -82,7 +82,6 @@ public class DirectionManager : MonoBehaviour
                         {
                             playerState.SetPositionUpdating(true);
                             cameraState.SetFacingDirection(FacingDirection.Up);
-                            cameraState.SetIsRotating(true);
                         }
                         else if (cameraState.GetFacingDirection() == FacingDirection.Up)
                         {
@@ -90,10 +89,8 @@ public class DirectionManager : MonoBehaviour
                             MovePlayerToClosestPlatformCube();
                             playerState.SetPositionUpdating(false);
                             cameraState.SetFacingDirection(FacingDirection.Front);
-                            cameraState.SetIsRotating(true);
                         }
                         OnRotateKeyPressed?.Invoke(player.transform.position);
-                        cameraState.SetIsRotating(true);
                         UpdateInvisibleCubes();
                     }
                     if (cameraState.GetFacingDirection() == FacingDirection.Front)
@@ -123,25 +120,25 @@ public class DirectionManager : MonoBehaviour
 
                         if (player.transform.localScale != Vector3.one)
                         {
-                            //player.GetComponent<CharacterController>().enabled = false;
+                            player.GetComponent<CharacterController>().enabled = false;
                             player.transform.localScale = Vector3.one;
-                            //player.GetComponent<CharacterController>().enabled = true;
+                            player.GetComponent<CharacterController>().enabled = true;
                         }
                     }
                     else if (cameraState.GetFacingDirection() == FacingDirection.Up && !cameraState.GetIsRotating() && !cameraState.GetIsUsing3DView())
                     {
                         if (player.transform.position.y < invisibleCubesY)
                         {
-                            float scale = 10f / (invisibleCubesY - player.transform.position.y + 10);
-                            //player.GetComponent<CharacterController>().enabled = false;
+                            float scale = playerReturn.dropY / (invisibleCubesY - player.transform.position.y + playerReturn.dropY);
+                            player.GetComponent<CharacterController>().enabled = false;
                             player.transform.localScale = new Vector3(scale, scale, scale);
-                            //player.GetComponent<CharacterController>().enabled = true;
+                            player.GetComponent<CharacterController>().enabled = true;
                         }
                         else if (player.transform.localScale != Vector3.one)
                         {
-                            //player.GetComponent<CharacterController>().enabled = false;
+                            player.GetComponent<CharacterController>().enabled = false;
                             player.transform.localScale = Vector3.one;
-                            //player.GetComponent<CharacterController>().enabled = true;
+                            player.GetComponent<CharacterController>().enabled = true;
                         }
                     }
                 }

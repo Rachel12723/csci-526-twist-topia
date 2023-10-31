@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if(guidePanel==null || !guidePanel.activeSelf)
             {
-                if (!cameraState.GetIsRotating())
+                if (!cameraState.GetIsRotating() && !cameraState.GetIsRebinding())
                 {
                     if (playerState.GetUpIsDropping())
                     {
