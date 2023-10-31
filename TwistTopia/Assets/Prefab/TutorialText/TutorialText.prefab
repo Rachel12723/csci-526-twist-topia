@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb564aa9eee9f4b6d9b993048510a898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1886843159436924417, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+  playerTransform: {fileID: 0}
   displayDistance: 5
 --- !u!1 &5939179655509092232
 GameObject:
