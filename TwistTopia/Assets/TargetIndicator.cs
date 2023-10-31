@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class TargetIndicator : MonoBehaviour
 {
     public Transform target;  // The target to point to
-    public Transform player;  // The player's transform
-    public float offScreenOffset = 10f;  // Distance from player to consider target as off-screen
+    // public Transform player;  // The player's transform
+    // public float offScreenOffset = 10f;  // Distance from player to consider target as off-screen
     public Camera playerCamera;
     public RectTransform arrowRectTransform;  // The RectTransform component of the arrow
     
