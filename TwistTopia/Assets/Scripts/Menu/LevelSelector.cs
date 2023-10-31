@@ -58,17 +58,27 @@ public class LevelSelector : MonoBehaviour
 
         if (levelIndex == 0)
         {
-            SceneManager.LoadScene("Level_1");
+            SceneManager.LoadScene("Tutorial_1");
             Time.timeScale = 1f;
         }
         else if (levelIndex == 1)
         {
-            SceneManager.LoadScene("Level_2");
+            SceneManager.LoadScene("Level_1");
             Time.timeScale = 1f;
         }
         else if (levelIndex == 2)
         {
+            SceneManager.LoadScene("Level_2");
+            Time.timeScale = 1f;
+        }
+        else if (levelIndex == 3)
+        {
             SceneManager.LoadScene("Level_3");
+            Time.timeScale = 1f;
+        }
+        else if (levelIndex == 4)
+        {
+            SceneManager.LoadScene("Level_4");
             Time.timeScale = 1f;
         }
 

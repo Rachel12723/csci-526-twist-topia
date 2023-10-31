@@ -789,7 +789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d6a8b84db71db34cb483a18ff9a710d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadingTime: 3
+  showTime: 2
+  fadingTime: 1
 --- !u!222 &2223364896270235511
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -896,7 +897,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3803944682900805532, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
       propertyPath: m_text
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4487937635048568209, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
       propertyPath: m_Name
@@ -1013,7 +1014,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3803944682900805532, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
       propertyPath: m_text
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4487937635048568209, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
       propertyPath: m_Name
@@ -1103,6 +1104,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8714283039779139158, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
+      propertyPath: m_Color.a
+      value: 0.7411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714283039779139158, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
+      propertyPath: m_Color.b
+      value: 0.07167438
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714283039779139158, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
+      propertyPath: m_Color.g
+      value: 0.07394599
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714283039779139158, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
+      propertyPath: m_Color.r
+      value: 0.0754717
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
 --- !u!224 &3037536031509189597 stripped
@@ -1130,7 +1147,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3803944682900805532, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
       propertyPath: m_text
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4487937635048568209, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
       propertyPath: m_Name
@@ -1247,7 +1264,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3803944682900805532, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
       propertyPath: m_text
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4487937635048568209, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
       propertyPath: m_Name
@@ -1364,7 +1381,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3803944682900805532, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
       propertyPath: m_text
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4487937635048568209, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
       propertyPath: m_Name
@@ -1490,6 +1507,10 @@ PrefabInstance:
     - target: {fileID: 3434536536622683409, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
       propertyPath: m_CullTransparentMesh
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3803944682900805532, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
+      propertyPath: m_text
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4487937635048568209, guid: efc2b4f559bc627459dd1280f522aa93, type: 3}
       propertyPath: m_Name
