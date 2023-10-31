@@ -40,7 +40,6 @@ public class Firebase : MonoBehaviour
     private string [] platform_cube3 = new string[NUM3]{"","","","","","","","",""};
     private string [] platform_cube_all3 = new string[NUM3]{"","","","","","","","",""};
 
-    ''''
 /*
     private const int NUM4 = 19;
     private double [] platform_time4 = new double[NUM4]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
