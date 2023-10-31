@@ -13314,14 +13314,6 @@ PrefabInstance:
       propertyPath: directionManager
       value: 
       objectReference: {fileID: 586158933}
-    - target: {fileID: 4323709129260341834, guid: 44ec08f8c54080845b7ca74737ee9cf9, type: 3}
-      propertyPath: orthographic size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4323709129260341836, guid: 44ec08f8c54080845b7ca74737ee9cf9, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4323709129260341837, guid: 44ec08f8c54080845b7ca74737ee9cf9, type: 3}
       propertyPath: m_TagString
       value: MainCamera
