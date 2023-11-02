@@ -14,7 +14,6 @@ public class KeyAndDoor : MonoBehaviour
     //public Transform keys;
 	public Transform keypons;
 	public GameObject keyponInHand;
-	public GameObject player;
 	private GameObject inHandKeypon;
     private int keyCounter = 0;
     public UnityEngine.UI.Text keyText;
@@ -53,27 +52,29 @@ public class KeyAndDoor : MonoBehaviour
     		// Rotate the object around the y-axis
     		transform.Rotate(Vector3.up, rotationAngle);
 			float radius = 1.7f; 
-			Vector3 playerPosition = player.transform.position;
+			Vector3 playerPosition = transform.position;
 			//foreach(Transform enemy in player.GetComponent<PlayerMovement>().enemies){
-			foreach(Transform enemy in enemies)
-			{ 
-				//Transform enemyModel = enemy.Find("EnemyModel");
-				foreach(Transform enemyInstance in enemy)
-				{
-					//Vector3 enemyPosition = enemyModel.position;
-					Vector3 enemyPosition = enemyInstance.position;
-    				float distanceX = enemyPosition.x - playerPosition.x;
-    				float distanceZ = enemyPosition.z - playerPosition.z;
-    				float distance = Mathf.Sqrt(distanceX * distanceX + distanceZ * distanceZ);
-    				if (distance <= radius)
-    				{
-						Destroy(enemyInstance.gameObject);
-						/*
-        				Destroy(enemy.gameObject);
-						keyCounter--;
-						KeyponDestroyed();
-						*/
-    				}
+			if(enemies != null){
+				foreach(Transform enemy in enemies)
+				{ 
+					//Transform enemyModel = enemy.Find("EnemyModel");
+					foreach(Transform enemyInstance in enemy)
+					{
+						//Vector3 enemyPosition = enemyModel.position;
+						Vector3 enemyPosition = enemyInstance.position;
+    					float distanceX = enemyPosition.x - playerPosition.x;
+    					float distanceZ = enemyPosition.z - playerPosition.z;
+    					float distance = Mathf.Sqrt(distanceX * distanceX + distanceZ * distanceZ);
+    					if (distance <= radius)
+    					{
+							Destroy(enemyInstance.gameObject);
+							/*
+        					Destroy(enemy.gameObject);
+							keyCounter--;
+							KeyponDestroyed();
+							*/
+    					}
+					}
 				}
 			}
     		// Check if the rotation has completed (3 full rotations, 1080 degrees)
@@ -101,7 +102,7 @@ public class KeyAndDoor : MonoBehaviour
                     {
 					
                         Destroy(keypon.gameObject);
-					    inHandKeypon = Instantiate(keyponInHand, player.transform);
+					    inHandKeypon = Instantiate(keyponInHand, transform);
         			    inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
                         keyCounter++;
                         Debug.Log("Keys:" + keyCounter);
@@ -117,7 +118,7 @@ public class KeyAndDoor : MonoBehaviour
                         Mathf.Abs(keypon.position.x - transform.position.x) < WorldUnit + 0.25f)
                     {
                         Destroy(keypon.gameObject);
-					    inHandKeypon = Instantiate(keyponInHand, player.transform);
+					    inHandKeypon = Instantiate(keyponInHand, transform);
         			    inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
                         keyCounter++;
                         Debug.Log("Keys:" + keyCounter);
