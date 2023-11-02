@@ -111,20 +111,20 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    private void HandlePlayerDeath()
-    {
-        characterController.enabled = false; // stop current movement.
-        transform.position = playerReturn.checkPoint;
-        if (cameraState.GetFacingDirection() == FacingDirection.Front)
-        {
-            directionManager.UpdateInvisibleCubes();
-        }else if(cameraState.GetFacingDirection() == FacingDirection.Up)
-        {
-            directionManager.MovePlayerToClosestInvisibleCube();
-        }
-        directionManager.UpdateInvisibleCubes();
-        characterController.enabled = true;
-    }
+    // private void HandlePlayerDeath()
+    // {
+    //     characterController.enabled = false; // stop current movement.
+    //     transform.position = playerReturn.checkPoint;
+    //     if (cameraState.GetFacingDirection() == FacingDirection.Front)
+    //     {
+    //         directionManager.UpdateInvisibleCubes();
+    //     }else if(cameraState.GetFacingDirection() == FacingDirection.Up)
+    //     {
+    //         directionManager.MovePlayerToClosestInvisibleCube();
+    //     }
+    //     directionManager.UpdateInvisibleCubes();
+    //     characterController.enabled = true;
+    // }
     private void TouchEnemy()
     {
         foreach (Transform enemyNum in enemies)
@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
                         Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
                     {
                         Debug.Log("Player touched the enemy and died!");
-                        HandlePlayerDeath();
+                        playerReturn.ResetPlayer();
                         break;
                     }
                 }
@@ -151,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
                         Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
                     {
                         Debug.Log("Player touched the enemy and died!");
-                        HandlePlayerDeath();
+                        playerReturn.ResetPlayer();
                         break;
                     }
                 }
