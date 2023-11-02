@@ -117,7 +117,7 @@ public class DirectionManager : MonoBehaviour
                     //Scale
                     if (cameraState.GetFacingDirection() == FacingDirection.Front)
                     {
-
+                        Debug.Log(111);
                         if (player.transform.localScale != Vector3.one)
                         {
                             player.GetComponent<CharacterController>().enabled = false;
@@ -130,6 +130,7 @@ public class DirectionManager : MonoBehaviour
                         if (player.transform.position.y < invisibleCubesY)
                         {
                             float scale = playerReturn.dropY / (invisibleCubesY - player.transform.position.y + playerReturn.dropY);
+                            scale = Mathf.Max(0.5f, scale);
                             player.GetComponent<CharacterController>().enabled = false;
                             player.transform.localScale = new Vector3(scale, scale, scale);
                             player.GetComponent<CharacterController>().enabled = true;
@@ -229,9 +230,9 @@ public class DirectionManager : MonoBehaviour
         // Get the Vector
         float frontZ = float.MaxValue;
         float upY = float.MaxValue;
-        foreach (Transform cube in invisibleCubes)
+        if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
-            if (cameraState.GetFacingDirection() == FacingDirection.Front)
+            foreach (Transform cube in invisibleCubes)
             {
                 if (Mathf.Abs(cube.position.x - player.transform.position.x) < WorldUnit / 2
                 && player.transform.position.y - cube.position.y <= WorldUnit + 0.2f
@@ -240,15 +241,31 @@ public class DirectionManager : MonoBehaviour
                     frontZ = Mathf.Min(frontZ, cube.position.z);
                 }
             }
-            else if (cameraState.GetFacingDirection() == FacingDirection.Up)
+        }
+        else if (cameraState.GetFacingDirection() == FacingDirection.Up)
+        {
+            foreach(Transform platform in platformCubes)
             {
-                if (Mathf.Abs(cube.position.x - player.transform.position.x) < WorldUnit
-                && Mathf.Abs(cube.position.z - player.transform.position.z) < WorldUnit)
+                foreach(Transform platformCube in platform)
                 {
-                    upY = Mathf.Min(upY, cube.position.y + 1);
+                    if (Mathf.Abs(platformCube.position.x - player.transform.position.x) < WorldUnit
+                    && Mathf.Abs(platformCube.position.z - player.transform.position.z) < WorldUnit
+                    && player.transform.position.y - platformCube.position.y > 0)
+                    {
+                        foreach (Transform cube in invisibleCubes)
+                        {
+                            if (Mathf.Abs(cube.position.x - player.transform.position.x) < WorldUnit
+                            && Mathf.Abs(cube.position.z - player.transform.position.z) < WorldUnit)
+                            {
+                                upY = Mathf.Min(upY, cube.position.y + 1);
+                            }
+                        }
+
+                    }
                 }
             }
         }
+        Debug.Log(upY);
 
         // Change the Position
         if (cameraState.GetFacingDirection() == FacingDirection.Front && frontZ != float.MaxValue)

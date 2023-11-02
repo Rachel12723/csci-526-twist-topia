@@ -219,6 +219,8 @@ MonoBehaviour:
   pointA: {fileID: 9223028899653722865}
   pointB: {fileID: 9223028899953324712}
   speed: 2
+  cameraState: {fileID: 0}
+  playerState: {fileID: 0}
 --- !u!1 &9223028899526853128
 GameObject:
   m_ObjectHideFlags: 0
