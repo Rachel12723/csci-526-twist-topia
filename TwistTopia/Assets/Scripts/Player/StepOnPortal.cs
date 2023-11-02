@@ -172,6 +172,7 @@ public class StepOnPortal : MonoBehaviour
                 canStep2 = false;
                 */
             player.GetComponent<CharacterController>().enabled = false;
+            cameraState.SetIsRebinding(true);
             player.transform.position = new Vector3(portal.transform.position.x, portal.transform.position.y + 1, portal.transform.position.z);
             player.GetComponent<CharacterController>().enabled = true;
             directionManager.UpdateInvisibleCubes();
@@ -186,6 +187,7 @@ public class StepOnPortal : MonoBehaviour
                 canStep2 = false;
                 */
             player.GetComponent<CharacterController>().enabled = false;
+            cameraState.SetIsRebinding(true);
             float newY = player.transform.position.y;
             player.transform.position = new Vector3(portal.transform.position.x, player.transform.position.y, portal.transform.position.z);
             player.GetComponent<CharacterController>().enabled = true;
