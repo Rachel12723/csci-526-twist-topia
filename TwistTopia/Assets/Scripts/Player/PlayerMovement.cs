@@ -118,36 +118,36 @@ public class PlayerMovement : MonoBehaviour
     // }
     private void TouchEnemy()
     {
-        foreach (Transform enemyNum in enemies)
-        {
-            Transform enemy = enemyNum.Find("EnemyModel");
-            if (enemy.gameObject.activeSelf)
-            {
-                Vector3 enemyPosition = enemy.position;
+        //foreach (Transform enemyNum in enemies)
+        //{
+        //    Transform enemy = enemyNum.Find("EnemyModel");
+        //    if (enemy.gameObject.activeSelf)
+        //    {
+        //        Vector3 enemyPosition = enemy.position;
 
-                if (cameraState.GetFacingDirection() == FacingDirection.Front)
-                {
-                    if (Mathf.Abs(enemyPosition.y - transform.position.y) < WorldUnit &&
-                        Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
-                    {
-                        Debug.Log("Player touched the enemy and died!");
-                        playerReturn.ResetPlayer();
-                        break;
-                    }
-                }
-                else if (cameraState.GetFacingDirection() == FacingDirection.Up)
-                {
+        //        if (cameraState.GetFacingDirection() == FacingDirection.Front)
+        //        {
+        //            if (Mathf.Abs(enemyPosition.y - transform.position.y) < WorldUnit &&
+        //                Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
+        //            {
+        //                Debug.Log("Player touched the enemy and died!");
+        //                playerReturn.ResetPlayer();
+        //                break;
+        //            }
+        //        }
+        //        else if (cameraState.GetFacingDirection() == FacingDirection.Up)
+        //        {
 
-                    if (Mathf.Abs(enemyPosition.z - transform.position.z) < WorldUnit &&
-                        Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
-                    {
-                        Debug.Log("Player touched the enemy and died!");
-                        playerReturn.ResetPlayer();
-                        break;
-                    }
-                }
-            }
-        }
+        //            if (Mathf.Abs(enemyPosition.z - transform.position.z) < WorldUnit &&
+        //                Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
+        //            {
+        //                Debug.Log("Player touched the enemy and died!");
+        //                playerReturn.ResetPlayer();
+        //                break;
+        //            }
+        //        }
+        //    }
+        //}
     }
 	private void ReachGoal(){
 		if (cameraState.GetFacingDirection() == FacingDirection.Front)
