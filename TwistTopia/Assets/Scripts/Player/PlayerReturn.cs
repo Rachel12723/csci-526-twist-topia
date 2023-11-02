@@ -32,22 +32,22 @@ public class PlayerReturn : MonoBehaviour
             {
                 if (transform.position.y < frontMinY || transform.position.y >= upMinY)
                 {
-                    ResetPlayer(FacingDirection.Front);
+                    ResetPlayer();
                 }
             }
             else if(cameraState.GetFacingDirection() == FacingDirection.Up && !cameraState.GetIsRotating())
             {
                 if (transform.position.y < upMinY)
                 {
-                    ResetPlayer(FacingDirection.Up);
+                    ResetPlayer();
                 }
             }
         }
     }
 
-    public void ResetPlayer(FacingDirection facingDirection)
+    public void ResetPlayer()
     {
-        if (facingDirection == FacingDirection.Front)
+        if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
             cameraState.SetIsRebinding(true);
             GetComponent<CharacterController>().enabled = false;
@@ -58,7 +58,7 @@ public class PlayerReturn : MonoBehaviour
             GetComponent<CharacterController>().enabled = true;
             dropCount++;
         }
-        else if(facingDirection == FacingDirection.Up)
+        else if(cameraState.GetFacingDirection() == FacingDirection.Up)
         {
             cameraState.SetFacingDirection(FacingDirection.Front);
             cameraState.SetIsRebinding(true);

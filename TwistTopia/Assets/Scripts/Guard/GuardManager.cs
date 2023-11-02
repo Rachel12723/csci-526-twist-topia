@@ -44,7 +44,7 @@ public class GuardManager : MonoBehaviour
                 if (Mathf.Abs(landMine.position.x - player.transform.position.x) <= 0.5f &&
                     Mathf.Abs(landMine.position.z - player.transform.position.z) <= 0.5f)
                 {
-                    playerReturn.ResetPlayer(FacingDirection.Up);
+                    playerReturn.ResetPlayer();
                 }
             }
         }
