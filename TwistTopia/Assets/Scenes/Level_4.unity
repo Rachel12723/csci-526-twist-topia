@@ -2632,6 +2632,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1972112748}
     - target: {fileID: 6097650169771975895, guid: ba04d8541794525489681a9a097708a4, type: 3}
+      propertyPath: inputManager
+      value: 
+      objectReference: {fileID: 1832472124}
+    - target: {fileID: 6097650169771975895, guid: ba04d8541794525489681a9a097708a4, type: 3}
       propertyPath: usePortalCode
       value: 102
       objectReference: {fileID: 0}
@@ -10451,6 +10455,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1972112748}
     - target: {fileID: 1996919928115873772, guid: 26b1ca6cd391af64d93213455aa7950a, type: 3}
+      propertyPath: inputManager
+      value: 
+      objectReference: {fileID: 1832472124}
+    - target: {fileID: 1996919928115873772, guid: 26b1ca6cd391af64d93213455aa7950a, type: 3}
       propertyPath: cooldownDuration
       value: 1
       objectReference: {fileID: 0}
@@ -10947,6 +10955,10 @@ PrefabInstance:
       propertyPath: cameraState
       value: 
       objectReference: {fileID: 1972112748}
+    - target: {fileID: 4582331275723202792, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: inputManager
+      value: 
+      objectReference: {fileID: 1832472124}
     - target: {fileID: 4582331275723202792, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
       propertyPath: playerReturn
       value: 
@@ -13714,6 +13726,10 @@ PrefabInstance:
       propertyPath: cameraState
       value: 
       objectReference: {fileID: 1972112748}
+    - target: {fileID: 6097650169771975895, guid: ba04d8541794525489681a9a097708a4, type: 3}
+      propertyPath: inputManager
+      value: 
+      objectReference: {fileID: 1832472124}
     - target: {fileID: 6097650169771975895, guid: ba04d8541794525489681a9a097708a4, type: 3}
       propertyPath: usePortalCode
       value: 102
@@ -28052,5 +28068,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 25965987153395677, guid: 490fc6855e0c72f4489ce1ebcc6d8858, type: 3}
+      propertyPath: menuPanel
+      value: 
+      objectReference: {fileID: 538229254}
+    - target: {fileID: 25965987153395677, guid: 490fc6855e0c72f4489ce1ebcc6d8858, type: 3}
+      propertyPath: cameraState
+      value: 
+      objectReference: {fileID: 1972112748}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 490fc6855e0c72f4489ce1ebcc6d8858, type: 3}
