@@ -90,38 +90,42 @@ public class KeyAndDoor : MonoBehaviour
 	
 	private void PickUpKeypon()
     {
-        if (cameraState.GetFacingDirection() == FacingDirection.Front)
+        if (keypons != null)
         {
-            foreach (Transform keypon in keypons)
+            if (cameraState.GetFacingDirection() == FacingDirection.Front)
             {
-                if (Mathf.Abs(keypon.position.y - transform.position.y) < WorldUnit + 0.25f &&
-                    Mathf.Abs(keypon.position.x - transform.position.x) < WorldUnit + 0.25f)
+                foreach (Transform keypon in keypons)
                 {
+                    if (Mathf.Abs(keypon.position.y - transform.position.y) < WorldUnit + 0.25f &&
+                        Mathf.Abs(keypon.position.x - transform.position.x) < WorldUnit + 0.25f)
+                    {
 					
-                    Destroy(keypon.gameObject);
-					inHandKeypon = Instantiate(keyponInHand, player.transform);
-        			inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
-                    keyCounter++;
-                    Debug.Log("Keys:" + keyCounter);
-                    break;
+                        Destroy(keypon.gameObject);
+					    inHandKeypon = Instantiate(keyponInHand, player.transform);
+        			    inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
+                        keyCounter++;
+                        Debug.Log("Keys:" + keyCounter);
+                        break;
+                    }
                 }
             }
-        }
-        else if (cameraState.GetFacingDirection() == FacingDirection.Up)
-        {
-            foreach (Transform keypon in keypons)
+            else if (cameraState.GetFacingDirection() == FacingDirection.Up)
             {
-                if (Mathf.Abs(keypon.position.z - transform.position.z) < WorldUnit + 0.25f &&
-                    Mathf.Abs(keypon.position.x - transform.position.x) < WorldUnit + 0.25f)
+                foreach (Transform keypon in keypons)
                 {
-                    Destroy(keypon.gameObject);
-					inHandKeypon = Instantiate(keyponInHand, player.transform);
-        			inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
-                    keyCounter++;
-                    Debug.Log("Keys:" + keyCounter);
-                    break;
-                }
-            } 
+                    if (Mathf.Abs(keypon.position.z - transform.position.z) < WorldUnit + 0.25f &&
+                        Mathf.Abs(keypon.position.x - transform.position.x) < WorldUnit + 0.25f)
+                    {
+                        Destroy(keypon.gameObject);
+					    inHandKeypon = Instantiate(keyponInHand, player.transform);
+        			    inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
+                        keyCounter++;
+                        Debug.Log("Keys:" + keyCounter);
+                        break;
+                    }
+                } 
+            }
+
         }
     }
 	private void SlashAndOpen()
