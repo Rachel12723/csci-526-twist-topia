@@ -117,7 +117,6 @@ public class DirectionManager : MonoBehaviour
                     //Scale
                     if (cameraState.GetFacingDirection() == FacingDirection.Front)
                     {
-                        Debug.Log(111);
                         if (player.transform.localScale != Vector3.one)
                         {
                             player.GetComponent<CharacterController>().enabled = false;
