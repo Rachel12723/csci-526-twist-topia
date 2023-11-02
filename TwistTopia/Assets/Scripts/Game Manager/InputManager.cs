@@ -4,27 +4,57 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public InputState inputState;
+    public bool allowMove = false;
+    public bool allowShiftPerspective = false;
+    public bool allowInteraction = false;
+
+    public GameObject menuPanel;
+    public CameraState cameraState;
     // Start is called before the first frame update
     void Start()
     {
-        inputState = InputState.NoInput;
+        allowMove = true;
+        allowShiftPerspective = true;
+        allowInteraction = true;
     }
 
     void LateUpdate()
     {
-        
+        if (menuPanel.activeSelf || cameraState.GetIsRebinding())
+        {
+            allowMove = false;
+            allowShiftPerspective = false;
+            allowInteraction = false;
+        }
+        else
+        {
+            if (cameraState.GetIsRotating())
+            {
+                allowMove = false;
+                allowShiftPerspective = true;
+                allowInteraction = false;
+            }
+            else
+            {
+                allowMove = true;
+                allowShiftPerspective = true;
+                allowInteraction = true;
+            }
+        }
     }
 
-    public InputState GetInputState()
+    public bool GetAllowMove()
     {
-        Debug.Log("Get: "+inputState);
-        return inputState;
+        return allowMove;
     }
 
-    private void SetInputState(InputState inputState)
+    public bool GetAllowShiftPerspective()
     {
-        Debug.Log("Set: " + inputState);
-        this.inputState = inputState;
+        return allowShiftPerspective;
+    }
+
+    public bool GetAllowInteraction()
+    {
+        return allowInteraction;
     }
 }

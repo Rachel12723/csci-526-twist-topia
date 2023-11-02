@@ -27,12 +27,6 @@ public class PlayerMovement : MonoBehaviour
 	// World Unit
     public float WorldUnit = 1.000f;
 
-    //Menu
-    public GameObject menuPanel;
-
-    // Guide Panel
-    public GameObject guidePanel;
-
     //Direction manager
     public DirectionManager directionManager;
 
@@ -42,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
     // Player State
     private PlayerState playerState;
 
+    // Input Manager
+    public InputManager inputManager;
+
     void Start()
     {
         playerState = GetComponent<PlayerState>();
@@ -50,65 +47,59 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-		if (!menuPanel.activeSelf)
+        if (inputManager.GetAllowMove())
         {
-            if(guidePanel==null || !guidePanel.activeSelf)
+            if (playerState.GetUpIsDropping())
             {
-                if (!cameraState.GetIsRotating() && !cameraState.GetIsRebinding())
+                Horizontal = 0;
+                Vertical = 0;
+            }
+            else
+            {
+                // Left/Right Key
+                if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) ||
+                    (!(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))))
                 {
-                    if (playerState.GetUpIsDropping())
-                    {
-                        Horizontal = 0;
-                        Vertical = 0;
-                    }
-                    else
-                    {
-                        // Left/Right Key
-                        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) ||
-                            (!(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))))
-                        {
-                            Horizontal = 0;
-                        }
-                        else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
-                        {
-                            Horizontal = -1;
-                        }
-                        else if (!(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
-                        {
-                            Horizontal = 1;
-                        }
+                    Horizontal = 0;
+                }
+                else if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
+                {
+                    Horizontal = -1;
+                }
+                else if (!(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
+                {
+                    Horizontal = 1;
+                }
 
-                        // Down/Up Key
-                        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) ||
-                            (!(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && !(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))))
-                        {
-                            Vertical = 0;
-                        }
-                        else if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && !(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
-                        {
-                            Vertical = 1;
-                        }
-                        else if (!(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
-                        {
-                            Vertical = -1;
-                        }
-                    }
-
-                    // Movement
-                    Vector3 trans = Vector3.zero;
-                    if (cameraState.GetFacingDirection() == FacingDirection.Front)
-                    {
-                        trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, 0f);
-                    }
-                    else if (cameraState.GetFacingDirection() == FacingDirection.Up)
-                    {
-                        trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, Vertical * movementSpeed * Time.deltaTime);
-                    }
-                    characterController.Move(trans);
-                    TouchEnemy();
-				    ReachGoal();
+                // Down/Up Key
+                if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) ||
+                    (!(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && !(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))))
+                {
+                    Vertical = 0;
+                }
+                else if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && !(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
+                {
+                    Vertical = 1;
+                }
+                else if (!(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)))
+                {
+                    Vertical = -1;
                 }
             }
+
+            // Movement
+            Vector3 trans = Vector3.zero;
+            if (cameraState.GetFacingDirection() == FacingDirection.Front)
+            {
+                trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, 0f);
+            }
+            else if (cameraState.GetFacingDirection() == FacingDirection.Up)
+            {
+                trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, Vertical * movementSpeed * Time.deltaTime);
+            }
+            characterController.Move(trans);
+            TouchEnemy();
+            ReachGoal();
         }
     }
     // private void HandlePlayerDeath()

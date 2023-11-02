@@ -27,7 +27,10 @@ public class StepOnPortal : MonoBehaviour
 
     // Direction Manager
     public DirectionManager directionManager;
-    
+
+    // Input Manager
+    public InputManager inputManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,58 +54,61 @@ public class StepOnPortal : MonoBehaviour
     // according to the direction and closet distance decide how to portal the player
     private void PortalAction()
     {
-        if (facingDirection == FacingDirection.Front)
+        if (inputManager.GetAllowInteraction())
         {
-            float distanceX1 = player.transform.position.x - portal1.transform.position.x;
-            float distanceY1 = player.transform.position.y - portal1.transform.position.y;
-            float distance1 = Mathf.Sqrt(distanceX1 * distanceX1 + distanceY1 * distanceY1);
-            
-            float distanceX2 = player.transform.position.x - portal2.transform.position.x;
-            float distanceY2 = player.transform.position.y - portal2.transform.position.y;
-            float distance2 = Mathf.Sqrt(distanceX2 * distanceX2 + distanceY2 * distanceY2);
-            
-            if (distance1 < distance2)
+            if (facingDirection == FacingDirection.Front)
             {
-                if (CheckStepOnPortal(portal1) && Input.GetKeyDown(usePortalCode))
-                //if (checkStepOnPortal(portal1) && canStep1 == true && Input.GetKeyDown(usePortalCode))
+                float distanceX1 = player.transform.position.x - portal1.transform.position.x;
+                float distanceY1 = player.transform.position.y - portal1.transform.position.y;
+                float distance1 = Mathf.Sqrt(distanceX1 * distanceX1 + distanceY1 * distanceY1);
+
+                float distanceX2 = player.transform.position.x - portal2.transform.position.x;
+                float distanceY2 = player.transform.position.y - portal2.transform.position.y;
+                float distance2 = Mathf.Sqrt(distanceX2 * distanceX2 + distanceY2 * distanceY2);
+
+                if (distance1 < distance2)
                 {
-                    PortalPlayer(portal2);
+                    if (CheckStepOnPortal(portal1) && Input.GetKeyDown(usePortalCode))
+                    //if (checkStepOnPortal(portal1) && canStep1 == true && Input.GetKeyDown(usePortalCode))
+                    {
+                        PortalPlayer(portal2);
+                    }
+                }
+                else if (distance2 < distance1)
+                {
+                    if (CheckStepOnPortal(portal2) && Input.GetKeyDown(usePortalCode))
+                    //if (checkStepOnPortal(portal2) && canStep2 == true && Input.GetKeyDown(usePortalCode))
+                    {
+                        PortalPlayer(portal1);
+                    }
                 }
             }
-            else if (distance2 < distance1)
+
+            else if (facingDirection == FacingDirection.Up)
             {
-                if (CheckStepOnPortal(portal2) && Input.GetKeyDown(usePortalCode))
-                //if (checkStepOnPortal(portal2) && canStep2 == true && Input.GetKeyDown(usePortalCode))
+                float distanceX1 = player.transform.position.x - portal1.transform.position.x;
+                float distanceY1 = player.transform.position.z - portal1.transform.position.z;
+                float distance1 = Mathf.Sqrt(distanceX1 * distanceX1 + distanceY1 * distanceY1);
+
+                float distanceX2 = player.transform.position.x - portal2.transform.position.x;
+                float distanceY2 = player.transform.position.z - portal2.transform.position.z;
+                float distance2 = Mathf.Sqrt(distanceX2 * distanceX2 + distanceY2 * distanceY2);
+
+                if (distance1 < distance2)
                 {
-                    PortalPlayer(portal1);
+                    if (CheckStepOnPortal(portal1) && Input.GetKeyDown(usePortalCode))
+                    //if (checkStepOnPortal(portal1) && canStep1 == true && Input.GetKeyDown(usePortalCode))
+                    {
+                        PortalPlayer(portal2);
+                    }
                 }
-            }
-        }
-        
-        else if (facingDirection == FacingDirection.Up)
-        {
-            float distanceX1 = player.transform.position.x - portal1.transform.position.x;
-            float distanceY1 = player.transform.position.z - portal1.transform.position.z;
-            float distance1 = Mathf.Sqrt(distanceX1 * distanceX1 + distanceY1 * distanceY1);
-            
-            float distanceX2 = player.transform.position.x - portal2.transform.position.x;
-            float distanceY2 = player.transform.position.z - portal2.transform.position.z;
-            float distance2 = Mathf.Sqrt(distanceX2 * distanceX2 + distanceY2 * distanceY2);
-            
-            if (distance1 < distance2)
-            {
-                if (CheckStepOnPortal(portal1) && Input.GetKeyDown(usePortalCode))
-                //if (checkStepOnPortal(portal1) && canStep1 == true && Input.GetKeyDown(usePortalCode))
+                else if (distance2 < distance1)
                 {
-                    PortalPlayer(portal2);
-                }
-            }
-            else if (distance2 < distance1)
-            {
-                if (CheckStepOnPortal(portal2) && Input.GetKeyDown(usePortalCode))
-                //if (checkStepOnPortal(portal2) && canStep2 == true && Input.GetKeyDown(usePortalCode))
-                {
-                    PortalPlayer(portal1);
+                    if (CheckStepOnPortal(portal2) && Input.GetKeyDown(usePortalCode))
+                    //if (checkStepOnPortal(portal2) && canStep2 == true && Input.GetKeyDown(usePortalCode))
+                    {
+                        PortalPlayer(portal1);
+                    }
                 }
             }
         }
