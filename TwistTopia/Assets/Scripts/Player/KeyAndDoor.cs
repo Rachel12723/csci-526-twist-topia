@@ -11,7 +11,7 @@ public class KeyAndDoor : MonoBehaviour
 
     // pick up key and open blocks
     public Transform blocks;
-    public Transform keys;
+    //public Transform keys;
 	public Transform keypons;
 	public GameObject keyponInHand;
 	public GameObject player;
@@ -21,6 +21,7 @@ public class KeyAndDoor : MonoBehaviour
     public CameraState cameraState;
     public DirectionManager directionManager;
     public float WorldUnit = 1.000f;
+	public Transform enemies;
 	private float xOffset = 1.2f;
     private float zOffset = -0.56f;
     private float rotationSpeed = 1800f;
@@ -36,7 +37,7 @@ public class KeyAndDoor : MonoBehaviour
     void Update()
     {
         keyText.text = "Key: " + keyCounter;
-        PickUpKey();
+        //PickUpKey();
 		PickUpKeypon();
         if (Input.GetKeyDown(openDoorCode) && keyCounter > 0)
         {
@@ -53,18 +54,27 @@ public class KeyAndDoor : MonoBehaviour
     		transform.Rotate(Vector3.up, rotationAngle);
 			float radius = 1.7f; 
 			Vector3 playerPosition = player.transform.position;
-			foreach(Transform enemy in player.GetComponent<PlayerMovement>().enemies){
-				Transform enemyModel = enemy.Find("EnemyModel");
-				Vector3 enemyPosition = enemyModel.position;
-    			float distanceX = enemyPosition.x - playerPosition.x;
-    			float distanceZ = enemyPosition.z - playerPosition.z;
-    			float distance = Mathf.Sqrt(distanceX * distanceX + distanceZ * distanceZ);
-    			if (distance <= radius)
-    			{
-        			Destroy(enemy.gameObject);
-					keyCounter--;
-					KeyponDestroyed();
-    			}
+			//foreach(Transform enemy in player.GetComponent<PlayerMovement>().enemies){
+			foreach(Transform enemy in enemies)
+			{ 
+				//Transform enemyModel = enemy.Find("EnemyModel");
+				foreach(Transform enemyInstance in enemy)
+				{
+					//Vector3 enemyPosition = enemyModel.position;
+					Vector3 enemyPosition = enemyInstance.position;
+    				float distanceX = enemyPosition.x - playerPosition.x;
+    				float distanceZ = enemyPosition.z - playerPosition.z;
+    				float distance = Mathf.Sqrt(distanceX * distanceX + distanceZ * distanceZ);
+    				if (distance <= radius)
+    				{
+						Destroy(enemyInstance.gameObject);
+						/*
+        				Destroy(enemy.gameObject);
+						keyCounter--;
+						KeyponDestroyed();
+						*/
+    				}
+				}
 			}
     		// Check if the rotation has completed (3 full rotations, 1080 degrees)
     		if (rotationProgress >= 1080.0f)
@@ -75,6 +85,7 @@ public class KeyAndDoor : MonoBehaviour
         		rotationProgress = 0.0f;
     		}
 		}
+		KeyponDestroyed();
     }
 	
 	private void PickUpKeypon()
@@ -90,7 +101,7 @@ public class KeyAndDoor : MonoBehaviour
                     Destroy(keypon.gameObject);
 					inHandKeypon = Instantiate(keyponInHand, player.transform);
         			inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
-                    keyCounter+=2;
+                    keyCounter++;
                     Debug.Log("Keys:" + keyCounter);
                     break;
                 }
@@ -106,7 +117,7 @@ public class KeyAndDoor : MonoBehaviour
                     Destroy(keypon.gameObject);
 					inHandKeypon = Instantiate(keyponInHand, player.transform);
         			inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
-                    keyCounter+=2;
+                    keyCounter++;
                     Debug.Log("Keys:" + keyCounter);
                     break;
                 }
@@ -154,11 +165,12 @@ public class KeyAndDoor : MonoBehaviour
 	}
 	private void KeyponDestroyed()
 	{
-		if(keyCounter == 0)
+		if(keyCounter == 0 && inHandKeypon!=null)
 		{
 			Destroy(inHandKeypon);
 		}
 	}
+	/*
     private void PickUpKey()
     {
         if (cameraState.GetFacingDirection() == FacingDirection.Front)
@@ -252,7 +264,7 @@ public class KeyAndDoor : MonoBehaviour
             }
         }
     }
-
+	*/
     public void KeyDrop(){
         if(keyCounter > 0){
             keyCounter--;
