@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CircuitManager : MonoBehaviour
 {
-    public CircuitType type;
+    public Transform player;
 
     // Start is called before the first frame update
     void Start()
