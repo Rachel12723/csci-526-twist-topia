@@ -96,7 +96,7 @@ public class GuardMovement : MonoBehaviour
                 {
                     if(Mathf.Abs(transform.position.x-player.transform.position.x)<= 1f)
                     {
-                        playerReturn.ResetPlayer(FacingDirection.Front);
+                        playerReturn.ResetPlayer();
                     }
                 }
                 else if (cameraState.GetFacingDirection() == FacingDirection.Up)
@@ -104,7 +104,7 @@ public class GuardMovement : MonoBehaviour
                     if (Mathf.Abs(transform.position.x - player.transform.position.x) <= 1f &&
                         Mathf.Abs(transform.position.z - player.transform.position.z) <= 1f)
                     {
-                        playerReturn.ResetPlayer(FacingDirection.Up);
+                        playerReturn.ResetPlayer();
                     }
                 }
 
