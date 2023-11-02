@@ -47,30 +47,20 @@ public class PlayerReturn : MonoBehaviour
 
     public void ResetPlayer()
     {
-        if (cameraState.GetFacingDirection() == FacingDirection.Front)
-        {
-            cameraState.SetIsRebinding(true);
-            GetComponent<CharacterController>().enabled = false;
-            keyAndDoor.KeyDrop();
-            transform.position = checkPoint;
-            directionManager.UpdateInvisibleCubes();
-            playerState.SetUpIsDropping(false);
-            GetComponent<CharacterController>().enabled = true;
-            dropCount++;
-        }
-        else if(cameraState.GetFacingDirection() == FacingDirection.Up)
+        
+        if(cameraState.GetFacingDirection() == FacingDirection.Up)
         {
             cameraState.SetFacingDirection(FacingDirection.Front);
-            cameraState.SetIsRebinding(true);
-            GetComponent<CharacterController>().enabled = false;
-            keyAndDoor.KeyDrop();
-            transform.position = checkPoint;
-            directionManager.UpdateInvisibleCubes();
-            //directionManager.MovePlayerToClosestInvisibleCube();
-            playerState.SetUpIsDropping(false);
-            GetComponent<CharacterController>().enabled = true;
-            dropCount++;
         }
+		cameraState.SetIsRebinding(true);
+        GetComponent<CharacterController>().enabled = false;
+        //keyAndDoor.KeyDrop();
+        transform.position = checkPoint;
+        directionManager.UpdateInvisibleCubes();
+        //directionManager.MovePlayerToClosestInvisibleCube();
+        playerState.SetUpIsDropping(false);
+        GetComponent<CharacterController>().enabled = true;
+        dropCount++;
         deathInfo.SetIsShowed(true);
     }
 
