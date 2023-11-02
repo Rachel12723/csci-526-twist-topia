@@ -1919,6 +1919,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1120971588}
     - target: {fileID: 4582331275723202792, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
+      propertyPath: movementSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4582331275723202792, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
       propertyPath: directionManager
       value: 
       objectReference: {fileID: 1647817758}

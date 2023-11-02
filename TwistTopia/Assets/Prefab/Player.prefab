@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ddd2fef426edd4f9d0cc411d3eb4cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4
+  movementSpeed: 6
   gravity: 10
   goal: {fileID: 0}
   sceneName: 
@@ -95,6 +95,7 @@ MonoBehaviour:
   dropY: 10
   directionManager: {fileID: 0}
   dropCount: 0
+  deathInfo: {fileID: 0}
 --- !u!114 &5374383691766773540
 MonoBehaviour:
   m_ObjectHideFlags: 0
