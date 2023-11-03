@@ -6,6 +6,7 @@ public class CircuitManager : MonoBehaviour
 {
     public Transform player;
     public CameraState cameraState;
+    public DirectionManager directionManager;
 
     // Start is called before the first frame update
     void Start()

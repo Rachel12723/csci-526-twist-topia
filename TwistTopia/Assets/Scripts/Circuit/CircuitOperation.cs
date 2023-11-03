@@ -18,6 +18,8 @@ public class CircuitOperation : MonoBehaviour
     private float rotateDegrees = 90.0f;
     // record if circuit is completed
     private bool circuitCompleted = false;
+
+    private DirectionManager directionManager;
     
     
     // Start is called before the first frame update
@@ -26,6 +28,7 @@ public class CircuitOperation : MonoBehaviour
         circuitManager = transform.parent.gameObject.GetComponent<CircuitManager>();
         player = circuitManager.player;
         cameraState = circuitManager.cameraState;
+        directionManager = circuitManager.directionManager;
     }
 
     // Update is called once per frame
@@ -91,7 +94,7 @@ public class CircuitOperation : MonoBehaviour
                     }
                 }
 
-                if (judgeZero && !circuitCompleted)
+                if (judgeZero && !circuitCompleted && !cameraState.GetIsRotating())
                 {
                     circuitCompleted = true;
                     Debug.Log("Circuit Completed!!");
@@ -114,7 +117,7 @@ public class CircuitOperation : MonoBehaviour
                         break;
                     }
                 }
-                if (judgeZero && !circuitCompleted)
+                if (judgeZero && !circuitCompleted && !cameraState.GetIsRotating())
                 {
                     circuitCompleted = true;
                     Debug.Log("Circuit Completed!!");
@@ -129,6 +132,7 @@ public class CircuitOperation : MonoBehaviour
         if (circuitCompleted)
         {
             platform.gameObject.SetActive(true);
+            directionManager.UpdateInvisibleCubes();
         }
             
     }
