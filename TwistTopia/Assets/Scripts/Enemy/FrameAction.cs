@@ -63,6 +63,12 @@ public class FrameAction : MonoBehaviour
         // Optionally, change the frame's appearance to indicate the enemy is captured
     }
     
+    public void ReleaseEnemy() {
+        // Reactivate the enemy
+        enemyModel.SetActive(true);
+        spriteRenderer.sprite = frameWithoutEnemy;
+    }
+    
     // float DistanceXY(Vector3 pointA, Vector3 pointB) {
     //     return Mathf.Sqrt(Mathf.Pow(pointB.x - pointA.x, 2) + Mathf.Pow(pointB.y - pointA.y, 2));
     // }
