@@ -16445,13 +16445,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateCircuitCode: 114
-  type: 1
+  type: 0
   rotatableCircuits:
   - {fileID: 1284789335}
   - {fileID: 1825504243}
   - {fileID: 1916964181}
   - {fileID: 704788652}
-  platform: {fileID: 1940664796}
+  platform: {fileID: 1462965682}
 --- !u!1001 &2004260884
 PrefabInstance:
   m_ObjectHideFlags: 0
