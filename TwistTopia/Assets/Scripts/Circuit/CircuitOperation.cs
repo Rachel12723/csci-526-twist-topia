@@ -103,7 +103,7 @@ public class CircuitOperation : MonoBehaviour
                 bool judgeZero = true;
                 foreach (Transform rotatableCircuit in rotatableCircuits)
                 {
-                    Vector eulerAngles = rotatableCircuit.rotation.eulerAngles;
+                    Vector3 eulerAngles = rotatableCircuit.rotation.eulerAngles;
                     float zRotation = eulerAngles.z;
                     if (zRotation != 0.0f)
                     {
