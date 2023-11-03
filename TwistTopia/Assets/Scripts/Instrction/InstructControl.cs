@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class InstructControl : MonoBehaviour
 {
@@ -9,14 +10,24 @@ public class InstructControl : MonoBehaviour
     public GameObject wasd;
     public GameObject ad;
     public CameraState cameraState;
+    public GameObject f1;
+    public GameObject f2;
+    public GameObject shift1;
+    public GameObject shift2;
+
     private bool show = false;
+    private string sceneName;
     //private FacingDirection direction;
     // Start is called before the first frame update
     void Start()
     {
         wasd.SetActive(false);
         ad.SetActive(false);
+
+
         StartCoroutine(HidePanelAfterSeconds(1.5f));
+
+
     }
 
     // Update is called once per frame
