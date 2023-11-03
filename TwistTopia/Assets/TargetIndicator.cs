@@ -8,7 +8,7 @@ public class TargetIndicator : MonoBehaviour
     // public float offScreenOffset = 10f;  // Distance from player to consider target as off-screen
     public Camera playerCamera;
     public RectTransform arrowRectTransform;  // The RectTransform component of the arrow
-    
+    public bool tutorialOne = false;
 
     // private void Update()
     // {
@@ -51,7 +51,7 @@ public class TargetIndicator : MonoBehaviour
         bool isOnScreen = (targetScreenPos.x >= 0 && targetScreenPos.x <= Screen.width) && 
                           (targetScreenPos.y >= 0 && targetScreenPos.y <= Screen.height);
 
-        if (isOnScreen)
+        if (isOnScreen && tutorialOne == false)
         {
             arrowRectTransform.gameObject.SetActive(false);
         }
