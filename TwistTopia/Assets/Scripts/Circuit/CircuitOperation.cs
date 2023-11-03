@@ -12,6 +12,8 @@ public class CircuitOperation : MonoBehaviour
     public CircuitType type;
     // list for rotatable circuits
     public List<Transform> rotatableCircuits;
+
+    public Transform platform;
     // degrees when circuit rotates
     private float rotateDegrees = 90.0f;
     // record if circuit is completed
@@ -93,6 +95,7 @@ public class CircuitOperation : MonoBehaviour
                 {
                     circuitCompleted = true;
                     Debug.Log("Circuit Completed!!");
+                    showPlatform();
                 }
             }
         }
@@ -115,8 +118,18 @@ public class CircuitOperation : MonoBehaviour
                 {
                     circuitCompleted = true;
                     Debug.Log("Circuit Completed!!");
+                    showPlatform();
                 }
             }
         }
+    }
+
+    private void showPlatform()
+    {
+        if (circuitCompleted)
+        {
+            platform.gameObject.SetActive(true);
+        }
+            
     }
 }

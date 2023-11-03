@@ -7259,6 +7259,7 @@ MonoBehaviour:
   rotatableCircuits:
   - {fileID: 397390955}
   - {fileID: 889204053}
+  platform: {fileID: 1940664796}
 --- !u!1001 &1771399653
 PrefabInstance:
   m_ObjectHideFlags: 0
