@@ -1322,6 +1322,10 @@ MonoBehaviour:
   wasd: {fileID: 1802727548264662258}
   ad: {fileID: 8466549824490741709}
   cameraState: {fileID: 0}
+  f1: {fileID: 6463505276691464658}
+  f2: {fileID: 5227063202788280844}
+  shift1: {fileID: 1744354633203072448}
+  shift2: {fileID: 4845947744298557982}
 --- !u!1 &3893235306994978093
 GameObject:
   m_ObjectHideFlags: 0
