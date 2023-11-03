@@ -5,6 +5,7 @@ using UnityEngine;
 public class CircuitManager : MonoBehaviour
 {
     public Transform player;
+    public CameraState cameraState;
 
     // Start is called before the first frame update
     void Start()

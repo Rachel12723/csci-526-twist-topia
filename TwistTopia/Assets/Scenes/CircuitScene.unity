@@ -7254,7 +7254,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db51ee2d47115a4997c38b3e7cf5189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotateCircuitCode: 114
   type: 1
+  rotatableCircuits:
+  - {fileID: 397390955}
+  - {fileID: 889204053}
 --- !u!1001 &1771399653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8689,5 +8693,9 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1120971591}
+    - target: {fileID: 5434183177082952091, guid: 9b24a0e9c45ab444d833822c1a7da2c1, type: 3}
+      propertyPath: cameraState
+      value: 
+      objectReference: {fileID: 618224156}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b24a0e9c45ab444d833822c1a7da2c1, type: 3}
