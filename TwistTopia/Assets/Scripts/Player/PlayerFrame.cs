@@ -1,0 +1,79 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerFrame : MonoBehaviour
+{
+    // player action keyCode
+    public KeyCode pickUpFrameCode;
+    public KeyCode dropOffFrameCode;
+    private int frameCounter = 0;
+    public Transform frame;
+    public UnityEngine.UI.Text frameText;
+    public CameraState cameraState;
+    public float WorldUnit = 1.000f;
+    public int maxZ;
+    private float yOffset = 1.15625f;
+    public FrameAction frameAction;
+    private Vector3 originalPos;
+
+    void Start()
+    {
+        // Debug.Log(" x"+frame.position.x+" y"+frame.position.y+" z"+frame.position.z);
+        originalPos = frame.position;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        frameText.text = "Frame: " + frameCounter;
+
+        if (Input.GetKeyDown(pickUpFrameCode))
+        {
+            if (frameCounter == 0)
+            {
+                PickUpFrame();
+            } else if (frameCounter > 0)
+            {
+                DropOffFrame();
+            }
+        }
+    }
+
+	private void PickUpFrame()
+    {
+        if (frame)
+        {
+            if (cameraState.GetFacingDirection() == FacingDirection.Front)
+            {
+                if (frame.gameObject.activeSelf && Mathf.Abs(frame.position.x - transform.position.x) < WorldUnit + 0.5f)
+                {
+                    frame.gameObject.SetActive(false);
+                    frameCounter++;
+                    // break;
+                }
+            }
+        }
+    }
+
+	private void DropOffFrame(){
+        if (cameraState.GetFacingDirection() == FacingDirection.Front)
+        {
+            // Transform frame = frames.GetChild(0);
+            Vector3 playerCurrPos = transform.position;
+            frame.position = new Vector3(playerCurrPos.x, playerCurrPos.y + yOffset - 1, maxZ);
+            frame.gameObject.SetActive(true);
+            frameCounter--;
+            
+            frameAction.ReleaseEnemy(true);
+        }
+	}
+
+    public void ResetFrame()
+    {
+        // frameAction.ReleaseEnemy(true);
+        frame.position = originalPos;
+        frame.gameObject.SetActive(true);
+        frameCounter = 0;
+    }
+}

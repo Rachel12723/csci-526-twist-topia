@@ -6,8 +6,9 @@ using UnityEngine;
 public class FrameAction : MonoBehaviour
 {
     public GameObject player; // Drag your player object here
-    public GameObject enemyModel;  // Drag your enemy object here
-    public CameraState cameraState;  
+    public Transform patrols;  // Drag your enemy object here
+    public CameraState cameraState; 
+    public Camera camera;
     public KeyCode catchEnemy;
     public float xTolerance = 0.5f; // A small value to account for minor discrepancies in z-position
     public float yTolerance = 0.5f;
@@ -35,44 +36,58 @@ public class FrameAction : MonoBehaviour
         if (Input.GetKeyDown(catchEnemy)) {
             if (cameraState.facingDirection == FacingDirection.Front) {
                 Debug.Log("return key pressed and the direction is front");
-                float playerXDistanceToFrame = Math.Abs(player.transform.position.x - transform.position.x);
-                float playerYDistanceToFrame = Math.Abs(player.transform.position.y - transform.position.y);
-                float enemyXDistanceToFrame = Math.Abs(enemyModel.transform.position.x - transform.position.x);
+                // Vector3 playerLoc = player.transform.position;
+                Vector3 frameLoc = transform.position;
+                Vector3 frameScreenPos = camera.WorldToScreenPoint(frameLoc);
+                Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
 
-                Debug.Log("player" + player.transform.position + "frame location" + transform.position + "enemy" + enemyModel.transform.position);
-                Debug.Log("playerXDistanceToFrame" + playerXDistanceToFrame + "playerYDistanceToFrame" + playerYDistanceToFrame + "enemyXDistanceToFrame" + enemyXDistanceToFrame);
-                if (playerXDistanceToFrame <= proximityThreshold && playerYDistanceToFrame <= yTolerance &&
-                    enemyXDistanceToFrame <= xTolerance) {
-                    CaptureEnemy();
-                    OnEnemyCatched?.Invoke(enemyModel.tag);
-                }
-                else
+                bool isFrameOnScreen = (frameScreenPos.x >= 0 && frameScreenPos.x <= Screen.width) && 
+                                  (frameScreenPos.y >= 0 && frameScreenPos.y <= Screen.height);
+                // float playerXDistanceToFrame = Math.Abs(playerLoc.x - frameLoc.x);
+                // float playerYDistanceToFrame = Math.Abs(playerLoc.y - frameLoc.y);
+                foreach (Transform patrol in patrols)
                 {
-                    OnEnemyNotCatched?.Invoke(player.transform.position, transform.position, enemyModel.transform.position);
+                    float enemyXDistanceToFrame = Math.Abs(patrol.position.x - frameLoc.x);
+                
+                    // Debug.Log("player" + playerLoc + "frame location" + frameLoc + "enemy" + enemyModel.transform.position);
+                    // Debug.Log("playerXDistanceToFrame" + playerXDistanceToFrame + "playerYDistanceToFrame" + playerYDistanceToFrame + "enemyXDistanceToFrame" + enemyXDistanceToFrame);
+                    // if (playerXDistanceToFrame <= proximityThreshold && playerYDistanceToFrame <= yTolerance &&
+                    //     enemyXDistanceToFrame <= xTolerance) {
+                    if (isFrameOnScreen && enemyXDistanceToFrame <= xTolerance) {
+                        CaptureEnemy(patrol);
+                        OnEnemyCatched?.Invoke(patrol.tag);
+                    }
+                    else
+                    {
+                        OnEnemyNotCatched?.Invoke(player.transform.position, transform.position, patrol.transform.position);
+                    }
                 }
+
             }
         }
     }
 
-    void CaptureEnemy() {
+    void CaptureEnemy(Transform patrol) {
         // Deactivate the enemy
-        enemyModel.SetActive(false);
+        patrol.gameObject.SetActive(false);
         // Destroy(enemyModel);
-        spriteRenderer.sprite = frameWithEnemy;
-    
-        // Optionally, change the frame's appearance to indicate the enemy is captured
+        spriteRenderer.sprite = frameWithEnemy; // change the frame's appearance to indicate the enemy is captured
     }
     
-    public void ReleaseEnemy() {
+    public void ReleaseEnemy(bool user) {
         // Reactivate the enemy
-        enemyModel.SetActive(true);
+        foreach (Transform patrol in patrols)
+        {
+            if (!patrol.gameObject.activeSelf)
+            {   // if not user initiated(means user died), original position
+                if (user)
+                {
+                    patrol.position = player.transform.position;
+                    patrol.gameObject.GetComponent<EnemyMovement>().UpdatePosition();
+                }
+                patrol.gameObject.SetActive(true);
+            }
+        }
         spriteRenderer.sprite = frameWithoutEnemy;
     }
-    
-    // float DistanceXY(Vector3 pointA, Vector3 pointB) {
-    //     return Mathf.Sqrt(Mathf.Pow(pointB.x - pointA.x, 2) + Mathf.Pow(pointB.y - pointA.y, 2));
-    // }
-
-
-
 }

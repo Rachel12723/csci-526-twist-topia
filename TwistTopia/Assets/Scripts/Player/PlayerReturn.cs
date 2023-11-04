@@ -15,6 +15,7 @@ public class PlayerReturn : MonoBehaviour
     public int dropCount;
     public FadingInfo deathInfo;
     public FrameAction frameAction;
+    public PlayerFrame playerFrame;
 
     void Start()
     {
@@ -63,7 +64,8 @@ public class PlayerReturn : MonoBehaviour
         GetComponent<CharacterController>().enabled = true;
         dropCount++;
         deathInfo.SetIsShowed(true);
-        frameAction.ReleaseEnemy();
+        frameAction.ReleaseEnemy(false);
+        playerFrame.ResetFrame();
 
     }
 
