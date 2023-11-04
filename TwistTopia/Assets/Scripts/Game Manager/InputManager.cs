@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
     public bool allowMove = false;
     public bool allowShiftPerspective = false;
     public bool allowInteraction = false;
+    public TargetAnimation targetAnimation;
 
     public GameObject menuPanel;
     public CameraState cameraState;
@@ -20,7 +21,7 @@ public class InputManager : MonoBehaviour
 
     void LateUpdate()
     {
-        if (menuPanel.activeSelf || cameraState.GetIsRebinding())
+        if (menuPanel.activeSelf || cameraState.GetIsRebinding() || (targetAnimation && !targetAnimation.finished))
         {
             allowMove = false;
             allowShiftPerspective = false;

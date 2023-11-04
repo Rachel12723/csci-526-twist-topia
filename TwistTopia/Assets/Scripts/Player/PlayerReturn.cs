@@ -14,6 +14,7 @@ public class PlayerReturn : MonoBehaviour
     private KeyAndDoor keyAndDoor;
     public int dropCount;
     public FadingInfo deathInfo;
+    public FrameAction frameAction;
 
     void Start()
     {
@@ -62,6 +63,8 @@ public class PlayerReturn : MonoBehaviour
         GetComponent<CharacterController>().enabled = true;
         dropCount++;
         deathInfo.SetIsShowed(true);
+        frameAction.ReleaseEnemy();
+
     }
 
     public void SetCheckPoint(Vector3 checkPoint)
