@@ -83,6 +83,7 @@ public class FrameAction : MonoBehaviour
                 if (user)
                 {
                     patrol.position = player.transform.position;
+                    patrol.gameObject.GetComponent<EnemyMovement>().UpdatePosition();
                 }
                 patrol.gameObject.SetActive(true);
             }

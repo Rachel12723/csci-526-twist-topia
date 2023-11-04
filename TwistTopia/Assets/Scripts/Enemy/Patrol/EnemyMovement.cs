@@ -26,7 +26,14 @@ public class EnemyMovement : MonoBehaviour
         MoveEnemy();
 
     }
-    
+
+    public void UpdatePosition()
+    {
+        pointA = new Vector3(transform.position.x - offset, transform.position.y, transform.position.z);
+        pointB = new Vector3(transform.position.x + offset, transform.position.y, transform.position.z);
+        targetPoint = pointA;
+    }
+
     void MoveEnemy()
     {
         if (!cameraState.isRotating && !playerState.positionUpdating)
