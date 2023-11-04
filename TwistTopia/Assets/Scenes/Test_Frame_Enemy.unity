@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.1341472, b: 0.121078566, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -259,7 +259,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5397831445656285960, guid: cfdb7d8e5a06a49d7aedb916a392045d, type: 3}
       propertyPath: m_Name
-      value: Patrol
+      value: Patrol 2
       objectReference: {fileID: 0}
     - target: {fileID: 8310941450264276981, guid: cfdb7d8e5a06a49d7aedb916a392045d, type: 3}
       propertyPath: patrols
@@ -3298,10 +3298,6 @@ PrefabInstance:
       propertyPath: cameraState
       value: 
       objectReference: {fileID: 1972112748}
-    - target: {fileID: 1462132889219879803, guid: a9dd8356d4d371243b786fc800fea03f, type: 3}
-      propertyPath: enemyList.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3684350820785020489, guid: a9dd8356d4d371243b786fc800fea03f, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -3502,6 +3498,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 53701994174204493, guid: 4196a3057d03b43f2afb4b368a1f2f7c, type: 3}
+      propertyPath: frame
+      value: 
+      objectReference: {fileID: 1215491495}
+    - target: {fileID: 53701994174204493, guid: 4196a3057d03b43f2afb4b368a1f2f7c, type: 3}
       propertyPath: camera
       value: 
       objectReference: {fileID: 288904186}
@@ -3547,15 +3547,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6323661138586980747, guid: 4196a3057d03b43f2afb4b368a1f2f7c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6323661138586980747, guid: 4196a3057d03b43f2afb4b368a1f2f7c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6323661138586980747, guid: 4196a3057d03b43f2afb4b368a1f2f7c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6323661138586980747, guid: 4196a3057d03b43f2afb4b368a1f2f7c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3581,7 +3581,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 53701994174204493, guid: 4196a3057d03b43f2afb4b368a1f2f7c, type: 3}
   m_PrefabInstance: {fileID: 296514051}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1215491495}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b89b6d2108c0e4fc3a4ef863d14eb866, type: 3}
@@ -4739,6 +4739,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 278387705}
     m_Modifications:
+    - target: {fileID: 4796784737666303176, guid: b540ec84b9e507f4c98a5fd7018789fb, type: 3}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 1292932278}
+    - target: {fileID: 4796784737666303176, guid: b540ec84b9e507f4c98a5fd7018789fb, type: 3}
+      propertyPath: offset
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8420287737406204848, guid: b540ec84b9e507f4c98a5fd7018789fb, type: 3}
       propertyPath: m_Name
       value: Patrols
@@ -5219,7 +5227,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5397831445656285960, guid: cfdb7d8e5a06a49d7aedb916a392045d, type: 3}
       propertyPath: m_Name
-      value: Patrol (1)
+      value: Patrol 1
       objectReference: {fileID: 0}
     - target: {fileID: 8310941450264276981, guid: cfdb7d8e5a06a49d7aedb916a392045d, type: 3}
       propertyPath: patrols
@@ -14989,6 +14997,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2768781667106891590, guid: b8f321fc497dc416eae767289df5e6c3, type: 3}
   m_PrefabInstance: {fileID: 434059468}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1215491495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4528180119383488319, guid: 4196a3057d03b43f2afb4b368a1f2f7c, type: 3}
+  m_PrefabInstance: {fileID: 296514051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1215498679 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2768781667106891590, guid: b8f321fc497dc416eae767289df5e6c3, type: 3}
@@ -16983,8 +16996,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a543771c5a86a4551af3914bf099bfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpFrameCode: 112
-  dropOffFrameCode: 112
+  pickUpFrameCode: 101
+  dropOffFrameCode: 101
   frame: {fileID: 296514052}
   frameText: {fileID: 1804109098}
   cameraState: {fileID: 1972112748}

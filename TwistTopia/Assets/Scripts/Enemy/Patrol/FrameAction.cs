@@ -7,6 +7,7 @@ public class FrameAction : MonoBehaviour
 {
     public GameObject player; // Drag your player object here
     public Transform patrols;  // Drag your enemy object here
+    private Transform patrol;
     public CameraState cameraState; 
     public Camera camera;
     public KeyCode catchEnemy;
@@ -17,6 +18,11 @@ public class FrameAction : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public Sprite frameWithEnemy;
     public Sprite frameWithoutEnemy;
+
+    private bool needRelease = false;
+    public float releaseTime = 3f;
+    private float releaseLeft = 0f;
+    private float shakeAngle;
 
     //Data
     public delegate void EnemyEventHandler(string road);
@@ -30,6 +36,7 @@ public class FrameAction : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>(); 
         spriteRenderer.sprite = frameWithoutEnemy;
+        shakeAngle = 20f * Time.deltaTime;
     }
     
     void Update() {
@@ -65,29 +72,66 @@ public class FrameAction : MonoBehaviour
 
             }
         }
+
+        DelayReleaseEnemy();
     }
 
     void CaptureEnemy(Transform patrol) {
         // Deactivate the enemy
         patrol.gameObject.SetActive(false);
+        this.patrol = patrol;
         // Destroy(enemyModel);
         spriteRenderer.sprite = frameWithEnemy; // change the frame's appearance to indicate the enemy is captured
     }
     
-    public void ReleaseEnemy(bool user) {
+    public void ReleaseEnemy(bool userRelease) {
         // Reactivate the enemy
-        foreach (Transform patrol in patrols)
+        //foreach (Transform patrol in patrols)
+        //{
+        //    if (!patrol.gameObject.activeSelf)
+        //    {   // if not user initiated(means user died), original position
+        if (patrol)
         {
-            if (!patrol.gameObject.activeSelf)
-            {   // if not user initiated(means user died), original position
-                if (user)
-                {
-                    patrol.position = player.transform.position;
-                    patrol.gameObject.GetComponent<EnemyMovement>().UpdatePosition();
-                }
+            if (userRelease)
+            {
+                needRelease = true;
+                releaseLeft = releaseTime;
+                patrol.position = player.transform.position;
+                patrol.gameObject.GetComponent<PatrolMovement>().UpdatePosition();
+            }
+            else
+            {
                 patrol.gameObject.SetActive(true);
+                patrol = null;
+                spriteRenderer.sprite = frameWithoutEnemy;
             }
         }
-        spriteRenderer.sprite = frameWithoutEnemy;
+        //    }
+        //}
+    }
+
+    private void DelayReleaseEnemy()
+    {
+        if(gameObject.activeSelf && patrol && needRelease && cameraState.GetFacingDirection() == FacingDirection.Front && !cameraState.GetIsRotating())
+        {
+            if (releaseLeft > 0f)
+            {
+                if (transform.rotation.eulerAngles.z >= 10 && transform.rotation.eulerAngles.z <= 350)
+                {
+                    shakeAngle = -shakeAngle;
+                }
+                Debug.Log(transform.rotation.eulerAngles.z);
+                transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + shakeAngle);
+                releaseLeft -= Time.deltaTime;
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                patrol.gameObject.SetActive(true);
+                patrol = null;
+                needRelease = false;
+                spriteRenderer.sprite = frameWithoutEnemy;
+            }
+        }
     }
 }

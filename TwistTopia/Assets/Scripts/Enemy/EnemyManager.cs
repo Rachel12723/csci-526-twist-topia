@@ -17,17 +17,17 @@ public class EnemyManager : MonoBehaviour
         playerReturn = player.GetComponent<PlayerReturn>();
         Transform guards = transform.Find("Guards");
         Transform patrols = transform.Find("Patrols");
-        if(guards != null)
+        if (guards != null)
         {
-            foreach(Transform guard in guards)
+            foreach (Transform guard in guards)
             {
                 enemyList.Add(guard);
                 guardList.Add(guard);
             }
         }
-        if(patrols != null)
+        if (patrols != null)
         {
-            foreach(Transform patrol in patrols)
+            foreach (Transform patrol in patrols)
             {
                 enemyList.Add(patrol);
                 patrolList.Add(patrol);
@@ -39,18 +39,19 @@ public class EnemyManager : MonoBehaviour
     void Update()
     {
         TouchPlayer();
+        TouchEnemy();
     }
-    
+
     private void TouchPlayer()
     {
-        foreach(Transform enemy in enemyList)
+        foreach (Transform enemy in enemyList)
         {
             if (enemy.gameObject.activeSelf)
             {
                 // Reset player
                 if (cameraState.GetFacingDirection() == FacingDirection.Front)
                 {
-                    if (Mathf.Abs(enemy.transform.position.x - player.transform.position.x) <= 1f && 
+                    if (Mathf.Abs(enemy.transform.position.x - player.transform.position.x) <= 1f &&
                         Mathf.Abs(enemy.transform.position.y - player.transform.position.y) <= 1f)
                     {
                         playerReturn.ResetPlayer();
@@ -65,11 +66,53 @@ public class EnemyManager : MonoBehaviour
                     }
                 }
             }
-    
+
         }
     }
 
-    public void DestoryEnemy(Transform enemy)
+    private void TouchEnemy()
+    {
+        Transform enemy1;
+        Transform enemy2;
+        for (int i = 0; i < enemyList.Count; i++)
+        {
+            if (enemyList[i].gameObject.activeSelf)
+            {
+                for (int j = i + 1; j < enemyList.Count; j++)
+                {
+                    if (enemyList[j].gameObject.activeSelf)
+                    {
+                        if (cameraState.GetFacingDirection() == FacingDirection.Front)
+                        {
+                            if (Mathf.Abs(enemyList[i].position.x - enemyList[j].position.x) <= 1f &&
+                               Mathf.Abs(enemyList[i].position.y - enemyList[j].position.y) <= 1f)
+                            {
+                                enemy1 = enemyList[i];
+                                enemy2 = enemyList[j];
+                                DestroyEnemy(enemy1);
+                                DestroyEnemy(enemy2);
+                                return;
+                            }
+                        }
+                        else if (cameraState.GetFacingDirection() == FacingDirection.Up)
+                        {
+                            if (Mathf.Abs(enemyList[i].position.x - enemyList[j].position.x) <= 1f &&
+                               Mathf.Abs(enemyList[i].position.z - enemyList[j].position.z) <= 1f)
+                            {
+                                enemy1 = enemyList[i];
+                                enemy2 = enemyList[j];
+                                DestroyEnemy(enemy1);
+                                DestroyEnemy(enemy2);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void DestroyEnemy(Transform enemy)
     {
         if (enemyList.Contains(enemy))
         {
@@ -83,6 +126,7 @@ public class EnemyManager : MonoBehaviour
         if (patrolList.Contains(enemy))
         {
             patrolList.Remove(enemy);
+            Destroy(enemy.gameObject);
         }
     }
 

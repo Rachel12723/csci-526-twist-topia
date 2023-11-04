@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class PatrolMovement : MonoBehaviour
 {
+    private PatrolManager patrolManager;
+    private float offset;
+    private float speed;
+    private CameraState cameraState;
+    private PlayerState playerState;
     public Vector3 pointA;
     public Vector3 pointB;
-    public float offset = 2f;
-    public float speed = 2f;
-    public CameraState cameraState;
-    public PlayerState playerState;
-    public Transform patrols;
-    private bool isChasing = false;
     private Vector3 targetPoint;
     void Start()
-    {   
+    {
+        patrolManager = GetComponentInParent<PatrolManager>();
+        offset = patrolManager.offset;
+        speed = patrolManager.speed;
+        cameraState = patrolManager.cameraState;
+        playerState = patrolManager.playerState;
         pointA = new Vector3(transform.position.x - offset, transform.position.y, transform.position.z);
         pointB = new Vector3(transform.position.x + offset, transform.position.y, transform.position.z);
         targetPoint = pointA;
@@ -49,9 +53,5 @@ public class EnemyMovement : MonoBehaviour
                     targetPoint = pointA;
             }
         }
-    }
-
-    void AttackOtherEnemy()
-    {
     }
 }

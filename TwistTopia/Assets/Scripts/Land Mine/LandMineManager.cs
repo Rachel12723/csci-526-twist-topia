@@ -72,7 +72,7 @@ public class LandMineManager : MonoBehaviour
 
                         landMineList.Remove(landMine);
                         Destroy(gameObject);
-                        enemyManager.DestoryEnemy(enemy);
+                        enemyManager.DestroyEnemy(enemy);
                         return;
                     }
                 }

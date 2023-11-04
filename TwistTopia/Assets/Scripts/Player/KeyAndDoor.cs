@@ -76,7 +76,7 @@ public class KeyAndDoor : MonoBehaviour
     					if (distance <= radius)
     					{
                             //Destroy(enemyInstance.gameObject);
-                            enemyManager.DestoryEnemy(enemyInstance);
+                            enemyManager.DestroyEnemy(enemyInstance);
 							/*
         					Destroy(enemy.gameObject);
 							keyCounter--;
