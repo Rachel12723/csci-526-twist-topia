@@ -24,6 +24,8 @@ public class FrameAction : MonoBehaviour
     private float releaseLeft = 0f;
     private float shakeAngle;
 
+    public InputManager inputManager;
+
     //Data
     public delegate void EnemyEventHandler(string road);
     public static event EnemyEventHandler OnEnemyCatched;
@@ -40,37 +42,49 @@ public class FrameAction : MonoBehaviour
     }
     
     void Update() {
-        if (Input.GetKeyDown(catchEnemy)) {
-            if (cameraState.facingDirection == FacingDirection.Front) {
-                Debug.Log("return key pressed and the direction is front");
-                // Vector3 playerLoc = player.transform.position;
-                Vector3 frameLoc = transform.position;
-                Vector3 frameScreenPos = camera.WorldToScreenPoint(frameLoc);
-                Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-
-                bool isFrameOnScreen = (frameScreenPos.x >= 0 && frameScreenPos.x <= Screen.width) && 
-                                  (frameScreenPos.y >= 0 && frameScreenPos.y <= Screen.height);
-                // float playerXDistanceToFrame = Math.Abs(playerLoc.x - frameLoc.x);
-                // float playerYDistanceToFrame = Math.Abs(playerLoc.y - frameLoc.y);
-                foreach (Transform patrol in patrols)
+        if (patrol == null)
+        {
+            if (inputManager.GetAllowInteraction())
+            {
+                if (Input.GetKeyDown(catchEnemy))
                 {
-                    float enemyXDistanceToFrame = Math.Abs(patrol.position.x - frameLoc.x);
-                
-                    // Debug.Log("player" + playerLoc + "frame location" + frameLoc + "enemy" + enemyModel.transform.position);
-                    // Debug.Log("playerXDistanceToFrame" + playerXDistanceToFrame + "playerYDistanceToFrame" + playerYDistanceToFrame + "enemyXDistanceToFrame" + enemyXDistanceToFrame);
-                    // if (playerXDistanceToFrame <= proximityThreshold && playerYDistanceToFrame <= yTolerance &&
-                    //     enemyXDistanceToFrame <= xTolerance) {
-                    if (isFrameOnScreen && enemyXDistanceToFrame <= xTolerance) {
-                        CaptureEnemy(patrol);
-                        OnEnemyCatched?.Invoke(patrol.tag);
-                    }
-                    else
+                    if (cameraState.facingDirection == FacingDirection.Front)
                     {
-                        OnEnemyNotCatched?.Invoke(player.transform.position, transform.position, patrol.transform.position);
+                        Debug.Log("return key pressed and the direction is front");
+                        // Vector3 playerLoc = player.transform.position;
+                        Vector3 frameLoc = transform.position;
+                        Vector3 frameScreenPos = camera.WorldToScreenPoint(frameLoc);
+                        Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+
+                        bool isFrameOnScreen = (frameScreenPos.x >= 0 && frameScreenPos.x <= Screen.width) &&
+                                          (frameScreenPos.y >= 0 && frameScreenPos.y <= Screen.height);
+                        // float playerXDistanceToFrame = Math.Abs(playerLoc.x - frameLoc.x);
+                        // float playerYDistanceToFrame = Math.Abs(playerLoc.y - frameLoc.y);
+                        foreach (Transform patrol in patrols)
+                        {
+                            float enemyXDistanceToFrame = Math.Abs(patrol.position.x - frameLoc.x);
+                            float enemyYDistanceToFrame = Math.Abs(patrol.position.y - frameLoc.y);
+
+                            // Debug.Log("player" + playerLoc + "frame location" + frameLoc + "enemy" + enemyModel.transform.position);
+                            // Debug.Log("playerXDistanceToFrame" + playerXDistanceToFrame + "playerYDistanceToFrame" + playerYDistanceToFrame + "enemyXDistanceToFrame" + enemyXDistanceToFrame);
+                            // if (playerXDistanceToFrame <= proximityThreshold && playerYDistanceToFrame <= yTolerance &&
+                            //     enemyXDistanceToFrame <= xTolerance) {
+                            if (isFrameOnScreen && enemyXDistanceToFrame <= xTolerance && enemyYDistanceToFrame <= yTolerance)
+                            {
+                                CaptureEnemy(patrol);
+                                OnEnemyCatched?.Invoke(patrol.tag);
+                                break;
+                            }
+                            else
+                            {
+                                OnEnemyNotCatched?.Invoke(player.transform.position, transform.position, patrol.transform.position);
+                            }
+                        }
+
                     }
                 }
-
             }
+
         }
 
         DelayReleaseEnemy();

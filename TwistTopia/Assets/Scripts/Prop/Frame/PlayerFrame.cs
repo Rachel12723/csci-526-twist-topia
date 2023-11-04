@@ -7,20 +7,26 @@ public class PlayerFrame : MonoBehaviour
     // player action keyCode
     public KeyCode pickUpFrameCode;
     public KeyCode dropOffFrameCode;
-    private int frameCounter = 0;
+    public int frameCounter = 0;
     public Transform frame;
     public UnityEngine.UI.Text frameText;
     public CameraState cameraState;
     public float WorldUnit = 1.000f;
     public int maxZ;
     private float yOffset = 1.15625f;
-    public FrameAction frameAction;
+    private FrameAction frameAction;
     private Vector3 originalPos;
+    public GameObject player;
+    private PlayerState playerState;
+
+    public InputManager inputManager;
 
     void Start()
     {
         // Debug.Log(" x"+frame.position.x+" y"+frame.position.y+" z"+frame.position.z);
         originalPos = frame.position;
+        playerState = player.GetComponent<PlayerState>();
+        frameAction = frame.gameObject.GetComponent<FrameAction>();
     }
 
     // Update is called once per frame
@@ -28,14 +34,22 @@ public class PlayerFrame : MonoBehaviour
     {
         frameText.text = "Frame: " + frameCounter;
 
-        if (Input.GetKeyDown(pickUpFrameCode))
+        if (inputManager.GetAllowInteraction())
         {
-            if (frameCounter == 0)
+            if (!playerState.GetFrontIsDropping())
             {
-                PickUpFrame();
-            } else if (frameCounter > 0)
-            {
-                DropOffFrame();
+                if (Input.GetKeyDown(pickUpFrameCode))
+                {
+                    Debug.Log(111);
+                    if (frameCounter == 0)
+                    {
+                        PickUpFrame();
+                    }
+                    else if (frameCounter > 0)
+                    {
+                        DropOffFrame();
+                    }
+                }
             }
         }
     }
@@ -46,7 +60,7 @@ public class PlayerFrame : MonoBehaviour
         {
             if (cameraState.GetFacingDirection() == FacingDirection.Front)
             {
-                if (frame.gameObject.activeSelf && Mathf.Abs(frame.position.x - transform.position.x) < WorldUnit + 0.5f)
+                if (frame.gameObject.activeSelf && Mathf.Abs(frame.position.x - player.transform.position.x) < WorldUnit + 0.5f)
                 {
                     frame.gameObject.SetActive(false);
                     frameCounter++;
@@ -60,7 +74,7 @@ public class PlayerFrame : MonoBehaviour
         if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
             // Transform frame = frames.GetChild(0);
-            Vector3 playerCurrPos = transform.position;
+            Vector3 playerCurrPos = player.transform.position;
             frame.position = new Vector3(playerCurrPos.x, playerCurrPos.y + yOffset - 1, maxZ);
             frame.gameObject.SetActive(true);
             frameCounter--;
