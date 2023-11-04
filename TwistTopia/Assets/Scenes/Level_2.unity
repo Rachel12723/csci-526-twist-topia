@@ -8631,7 +8631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162577922019, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 8.45
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162577922019, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9314,7 +9314,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162577922019, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 8.45
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162577922019, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9350,7 +9350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917743, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_Text
-      value: Unlock
+      value: Slash
       objectReference: {fileID: 0}
     - target: {fileID: 7155473163912437324, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_LocalScale.x
@@ -10962,6 +10962,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5939179653843267696, guid: 874789a6b6c034a30a41c2b65a00029e, type: 3}
+      propertyPath: displayDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939179653843267696, guid: 874789a6b6c034a30a41c2b65a00029e, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1886843160104961912}
@@ -12329,7 +12333,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1676528450453923066, guid: f13f80a1c8ef5184580ae3f09bdaec00, type: 3}
       propertyPath: hasKey
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1676528450453923066, guid: f13f80a1c8ef5184580ae3f09bdaec00, type: 3}
       propertyPath: maxRange.x
