@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3391751794806928053
+--- !u!1 &5699784491080862023
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8064543017282342420}
-  - component: {fileID: 5369575919596159204}
+  - component: {fileID: 3684350820785020489}
+  - component: {fileID: 1462132889219879803}
   m_Layer: 0
-  m_Name: Gurads
+  m_Name: Enemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8064543017282342420
+--- !u!4 &3684350820785020489
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3391751794806928053}
+  m_GameObject: {fileID: 5699784491080862023}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,22 +32,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5369575919596159204
+--- !u!114 &1462132889219879803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3391751794806928053}
+  m_GameObject: {fileID: 5699784491080862023}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 129346c7b02bc2f42b7801dfcca41186, type: 3}
+  m_Script: {fileID: 11500000, guid: a5be964aa70043a44b9ca5f71486db97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  player: {fileID: 0}
-  cameraState: {fileID: 0}
-  map: {fileID: 0}
-  keys: {fileID: 0}
-  key: {fileID: 3467460436112334257, guid: 9f62e8e84fbd84a4186411def0db8750, type: 3}
-  platformCube: {fileID: 2768781668376798685, guid: b8f321fc497dc416eae767289df5e6c3, type: 3}
+  enemyList: []
+  guardList: []
+  patrolList: []

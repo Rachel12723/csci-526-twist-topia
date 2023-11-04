@@ -25,6 +25,7 @@ public class GuardMovement : MonoBehaviour
 
     private Transform map;
 
+    public bool hasKey = false;
     private Transform keys;
     private GameObject key;
 
@@ -52,8 +53,11 @@ public class GuardMovement : MonoBehaviour
 
         map = guardManager.map;
 
-        keys = guardManager.keys;
-        key = guardManager.key;
+        if (hasKey)
+        {
+            keys = guardManager.keys;
+            key = guardManager.key;
+        }
 
         platformCube = guardManager.platformCube;
     }
@@ -68,8 +72,15 @@ public class GuardMovement : MonoBehaviour
             {
                 if (player.transform.position.x >= minRange.x - 1f && player.transform.position.x <= maxRange.x + 1f  && player.transform.position.z >= minRange.z - 1f && player.transform.position.z <= maxRange.z + 1f)
                 {
+                    if (cameraState.GetFacingDirection() == FacingDirection.Front)
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y, player.transform.position.z);
+                    }
                     targetPosition.x = player.transform.position.x;
                     targetPosition.z = player.transform.position.z;
+                    outsideMinPosition.z = transform.position.z;
+                    outsideMaxPosition.z = transform.position.z;
+                    outsideTargetPosition.z = transform.position.z;
                 }
                 else
                 {
@@ -117,9 +128,12 @@ public class GuardMovement : MonoBehaviour
                         if (Mathf.Abs(transform.position.x - landMine.position.x) <= 0.5f &&
                             Mathf.Abs(transform.position.z - landMine.position.z) <= 0.5f)
                         {
-                            GameObject newKey = Instantiate(key) as GameObject;
-                            newKey.transform.position = transform.position;
-                            newKey.transform.SetParent(keys);
+                            if (hasKey)
+                            {
+                                GameObject newKey = Instantiate(key) as GameObject;
+                                newKey.transform.position = transform.position;
+                                newKey.transform.SetParent(keys);
+                            }
 
                             GameObject newPlatformCube = Instantiate(platformCube) as GameObject;
                             newPlatformCube.transform.position = landMine.position;
@@ -138,5 +152,17 @@ public class GuardMovement : MonoBehaviour
         {
 
         }
+    }
+
+    public void DestroyGuard()
+    {
+        if (hasKey)
+        {
+            GameObject newKey = Instantiate(key) as GameObject;
+            newKey.transform.position = transform.position;
+            newKey.transform.SetParent(keys);
+        }
+
+        Destroy(gameObject);
     }
 }

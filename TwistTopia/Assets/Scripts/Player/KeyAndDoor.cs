@@ -21,6 +21,7 @@ public class KeyAndDoor : MonoBehaviour
     public DirectionManager directionManager;
     public float WorldUnit = 1.000f;
 	public Transform enemies;
+    private EnemyManager enemyManager;
 	private float xOffset = 1.2f;
     private float zOffset = -0.56f;
     private float rotationSpeed = 1800f;
@@ -29,7 +30,14 @@ public class KeyAndDoor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		
+        if (enemies != null)
+        {
+            enemyManager = enemies.GetComponent<EnemyManager>();
+        }
+        else
+        {
+            Debug.Log("KeyAndDoor.cs: No enemies!");
+        }
     }
 
     // Update is called once per frame
@@ -67,7 +75,8 @@ public class KeyAndDoor : MonoBehaviour
     					float distance = Mathf.Sqrt(distanceX * distanceX + distanceZ * distanceZ);
     					if (distance <= radius)
     					{
-							Destroy(enemyInstance.gameObject);
+                            //Destroy(enemyInstance.gameObject);
+                            enemyManager.DestoryEnemy(enemyInstance);
 							/*
         					Destroy(enemy.gameObject);
 							keyCounter--;
@@ -97,8 +106,8 @@ public class KeyAndDoor : MonoBehaviour
             {
                 foreach (Transform keypon in keypons)
                 {
-                    if (Mathf.Abs(keypon.position.y - transform.position.y) < WorldUnit + 0.25f &&
-                        Mathf.Abs(keypon.position.x - transform.position.x) < WorldUnit + 0.25f)
+                    if (Mathf.Abs(keypon.position.y - transform.position.y) < WorldUnit + 0.5f &&
+                        Mathf.Abs(keypon.position.x - transform.position.x) < WorldUnit + 0.5f)
                     {
 					
                         Destroy(keypon.gameObject);
