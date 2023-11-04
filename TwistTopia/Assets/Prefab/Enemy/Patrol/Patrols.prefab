@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1a7a1561f94a7459c77185b9422bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraState: {fileID: 0}
-  playerState: {fileID: 0}
+  offset: 4
+  speed: 2

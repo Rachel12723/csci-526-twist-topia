@@ -13,20 +13,16 @@ public class GuardMovement : MonoBehaviour
     private Vector3 outsideTargetPosition;
     private Vector3 targetPosition;
 
-    private GuardManager guardManager;
-
-    private float speed;
-
+    private EnemyManager enemyManager;
     private GameObject player;
     private PlayerState playerState;
-
     private CameraState cameraState;
 
-
+    private GuardManager guardManager;
+    private float speed;
     public bool hasKey = false;
     private Transform keys;
     private GameObject key;
-
 
     // Start is called before the first frame update
     void Start()
@@ -38,20 +34,20 @@ public class GuardMovement : MonoBehaviour
         outsideTargetPosition = outsideMinPosition;
         targetPosition = outsideTargetPosition;
 
-        guardManager = GetComponentInParent<GuardManager>();
-
-        speed = guardManager.speed;
-
-        player = guardManager.player;
+        enemyManager = transform.parent.parent.gameObject.GetComponent<EnemyManager>();
+        player = enemyManager.player;
         playerState = player.GetComponent<PlayerState>();
+        cameraState = enemyManager.cameraState;
 
-        cameraState = guardManager.cameraState;
-
+        guardManager = GetComponentInParent<GuardManager>();
+        speed = guardManager.speed;
         if (hasKey)
         {
             keys = guardManager.keys;
             key = guardManager.key;
         }
+
+
 
     }
 

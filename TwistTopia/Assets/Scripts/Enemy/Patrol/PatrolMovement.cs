@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class PatrolMovement : MonoBehaviour
 {
+    private EnemyManager enemyManager;
+    private CameraState cameraState;
+    private PlayerState playerState;
+
     private PatrolManager patrolManager;
     private float offset;
     private float speed;
-    private CameraState cameraState;
-    private PlayerState playerState;
+
     public Vector3 pointA;
     public Vector3 pointB;
     private Vector3 targetPoint;
     void Start()
     {
+        enemyManager = transform.parent.parent.gameObject.GetComponent<EnemyManager>();
+        playerState = enemyManager.player.GetComponent<PlayerState>();
+        cameraState = enemyManager.cameraState;
+
         patrolManager = GetComponentInParent<PatrolManager>();
         offset = patrolManager.offset;
         speed = patrolManager.speed;
-        cameraState = patrolManager.cameraState;
-        playerState = patrolManager.playerState;
         pointA = new Vector3(transform.position.x - offset, transform.position.y, transform.position.z);
         pointB = new Vector3(transform.position.x + offset, transform.position.y, transform.position.z);
         targetPoint = pointA;

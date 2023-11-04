@@ -14,13 +14,16 @@ public class PlayerFrame : MonoBehaviour
     public float WorldUnit = 1.000f;
     public int maxZ;
     private float yOffset = 1.15625f;
-    public FrameAction frameAction;
+    private FrameAction frameAction;
     private Vector3 originalPos;
+    private PlayerState playerState;
 
     void Start()
     {
         // Debug.Log(" x"+frame.position.x+" y"+frame.position.y+" z"+frame.position.z);
         originalPos = frame.position;
+        playerState = GetComponent<PlayerState>();
+        frameAction = frame.gameObject.GetComponent<FrameAction>();
     }
 
     // Update is called once per frame
@@ -28,14 +31,17 @@ public class PlayerFrame : MonoBehaviour
     {
         frameText.text = "Frame: " + frameCounter;
 
-        if (Input.GetKeyDown(pickUpFrameCode))
+        if (!playerState.GetFrontIsDropping())
         {
-            if (frameCounter == 0)
+            if (Input.GetKeyDown(pickUpFrameCode))
             {
-                PickUpFrame();
-            } else if (frameCounter > 0)
-            {
-                DropOffFrame();
+                if (frameCounter == 0)
+                {
+                    PickUpFrame();
+                } else if (frameCounter > 0)
+                {
+                    DropOffFrame();
+                }
             }
         }
     }
