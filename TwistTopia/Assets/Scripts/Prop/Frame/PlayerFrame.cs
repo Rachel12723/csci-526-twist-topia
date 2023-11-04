@@ -19,6 +19,8 @@ public class PlayerFrame : MonoBehaviour
     public GameObject player;
     private PlayerState playerState;
 
+    public InputManager inputManager;
+
     void Start()
     {
         // Debug.Log(" x"+frame.position.x+" y"+frame.position.y+" z"+frame.position.z);
@@ -32,17 +34,21 @@ public class PlayerFrame : MonoBehaviour
     {
         frameText.text = "Frame: " + frameCounter;
 
-        if (!playerState.GetFrontIsDropping())
+        if (inputManager.GetAllowInteraction())
         {
-            if (Input.GetKeyDown(pickUpFrameCode))
+            if (!playerState.GetFrontIsDropping())
             {
-                Debug.Log(111);
-                if (frameCounter == 0)
+                if (Input.GetKeyDown(pickUpFrameCode))
                 {
-                    PickUpFrame();
-                } else if (frameCounter > 0)
-                {
-                    DropOffFrame();
+                    Debug.Log(111);
+                    if (frameCounter == 0)
+                    {
+                        PickUpFrame();
+                    }
+                    else if (frameCounter > 0)
+                    {
+                        DropOffFrame();
+                    }
                 }
             }
         }

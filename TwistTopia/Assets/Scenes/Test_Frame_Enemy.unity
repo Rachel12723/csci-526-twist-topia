@@ -3513,6 +3513,10 @@ PrefabInstance:
       propertyPath: cameraState
       value: 
       objectReference: {fileID: 1972112748}
+    - target: {fileID: 53701994174204493, guid: 4196a3057d03b43f2afb4b368a1f2f7c, type: 3}
+      propertyPath: inputManager
+      value: 
+      objectReference: {fileID: 1832472124}
     - target: {fileID: 4528180119383488319, guid: 4196a3057d03b43f2afb4b368a1f2f7c, type: 3}
       propertyPath: m_Name
       value: Frame
@@ -28152,6 +28156,10 @@ PrefabInstance:
       propertyPath: cameraState
       value: 
       objectReference: {fileID: 1972112748}
+    - target: {fileID: 6521434881454757677, guid: c113988f8b34af744a4b2fcdb876e09d, type: 3}
+      propertyPath: inputManager
+      value: 
+      objectReference: {fileID: 1832472124}
     - target: {fileID: 8214964131922734340, guid: c113988f8b34af744a4b2fcdb876e09d, type: 3}
       propertyPath: m_RootOrder
       value: 13
