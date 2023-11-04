@@ -6,7 +6,7 @@ using UnityEngine;
 public class FrameAction : MonoBehaviour
 {
     public GameObject player; // Drag your player object here
-    public GameObject enemyModel;  // Drag your enemy object here
+    public Transform patrols;  // Drag your enemy object here
     public CameraState cameraState; 
     public Camera camera;
     public KeyCode catchEnemy;
@@ -45,34 +45,48 @@ public class FrameAction : MonoBehaviour
                                   (frameScreenPos.y >= 0 && frameScreenPos.y <= Screen.height);
                 // float playerXDistanceToFrame = Math.Abs(playerLoc.x - frameLoc.x);
                 // float playerYDistanceToFrame = Math.Abs(playerLoc.y - frameLoc.y);
-                float enemyXDistanceToFrame = Math.Abs(enemyModel.transform.position.x - frameLoc.x);
-                
-                // Debug.Log("player" + playerLoc + "frame location" + frameLoc + "enemy" + enemyModel.transform.position);
-                // Debug.Log("playerXDistanceToFrame" + playerXDistanceToFrame + "playerYDistanceToFrame" + playerYDistanceToFrame + "enemyXDistanceToFrame" + enemyXDistanceToFrame);
-                // if (playerXDistanceToFrame <= proximityThreshold && playerYDistanceToFrame <= yTolerance &&
-                //     enemyXDistanceToFrame <= xTolerance) {
-                if (isFrameOnScreen && enemyXDistanceToFrame <= xTolerance) {
-                    CaptureEnemy();
-                    OnEnemyCatched?.Invoke(enemyModel.tag);
-                }
-                else
+                foreach (Transform patrol in patrols)
                 {
-                    OnEnemyNotCatched?.Invoke(player.transform.position, transform.position, enemyModel.transform.position);
+                    float enemyXDistanceToFrame = Math.Abs(patrol.position.x - frameLoc.x);
+                
+                    // Debug.Log("player" + playerLoc + "frame location" + frameLoc + "enemy" + enemyModel.transform.position);
+                    // Debug.Log("playerXDistanceToFrame" + playerXDistanceToFrame + "playerYDistanceToFrame" + playerYDistanceToFrame + "enemyXDistanceToFrame" + enemyXDistanceToFrame);
+                    // if (playerXDistanceToFrame <= proximityThreshold && playerYDistanceToFrame <= yTolerance &&
+                    //     enemyXDistanceToFrame <= xTolerance) {
+                    if (isFrameOnScreen && enemyXDistanceToFrame <= xTolerance) {
+                        CaptureEnemy(patrol);
+                        OnEnemyCatched?.Invoke(patrol.tag);
+                    }
+                    else
+                    {
+                        OnEnemyNotCatched?.Invoke(player.transform.position, transform.position, patrol.transform.position);
+                    }
                 }
+
             }
         }
     }
 
-    void CaptureEnemy() {
+    void CaptureEnemy(Transform patrol) {
         // Deactivate the enemy
-        enemyModel.SetActive(false);
+        patrol.gameObject.SetActive(false);
         // Destroy(enemyModel);
         spriteRenderer.sprite = frameWithEnemy; // change the frame's appearance to indicate the enemy is captured
     }
     
-    public void ReleaseEnemy() {
+    public void ReleaseEnemy(bool user) {
         // Reactivate the enemy
-        enemyModel.SetActive(true);
+        foreach (Transform patrol in patrols)
+        {
+            if (!patrol.gameObject.activeSelf)
+            {   // if not user initiated(means user died), original position
+                if (user)
+                {
+                    patrol.position = player.transform.position;
+                }
+                patrol.gameObject.SetActive(true);
+            }
+        }
         spriteRenderer.sprite = frameWithoutEnemy;
     }
 }

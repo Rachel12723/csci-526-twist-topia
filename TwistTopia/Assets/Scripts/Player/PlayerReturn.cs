@@ -64,7 +64,7 @@ public class PlayerReturn : MonoBehaviour
         GetComponent<CharacterController>().enabled = true;
         dropCount++;
         deathInfo.SetIsShowed(true);
-        frameAction.ReleaseEnemy();
+        frameAction.ReleaseEnemy(false);
         playerFrame.ResetFrame();
 
     }

@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform pointA;
-    public Transform pointB;
+    private Vector3 pointA;
+    private Vector3 pointB;
+    public float offset = 2f;
     public float speed = 2f;
     public CameraState cameraState;
     public PlayerState playerState;
-
+    public Transform patrols;
+    private bool isChasing = false;
     private Vector3 targetPoint;
     void Start()
-    {
-        targetPoint = pointA.position;
+    {   
+        pointA = new Vector3(transform.position.x - offset, transform.position.y, transform.position.z);
+        pointB = new Vector3(transform.position.x + offset, transform.position.y, transform.position.z);
+        targetPoint = pointA;
     }
 
     // Update is called once per frame
     void Update()
     {
         MoveEnemy();
+
     }
     
     void MoveEnemy()
@@ -31,20 +36,15 @@ public class EnemyMovement : MonoBehaviour
             // When the enemy reaches one of the points, it switches its target point to the other point.
             if (Vector3.Distance(transform.position, targetPoint) < 0.1f)
             {
-                if (targetPoint == pointA.position)
-                    targetPoint = pointB.position;
+                if (targetPoint == pointA)
+                    targetPoint = pointB;
                 else
-                    targetPoint = pointA.position;
+                    targetPoint = pointA;
             }
         }
     }
 
-    // void OnCollisionEnter(Collision collision)
-    // {
-    //     if (collision.gameObject.CompareTag("Player"))
-    //     {
-    //         // Logic to handle player death goes here
-    //         Debug.Log("Player touched the enemy and died!");
-    //     }
-    // }
+    void AttackOtherEnemy()
+    {
+    }
 }
