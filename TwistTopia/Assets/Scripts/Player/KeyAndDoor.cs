@@ -106,8 +106,8 @@ public class KeyAndDoor : MonoBehaviour
             {
                 foreach (Transform keypon in keypons)
                 {
-                    if (Mathf.Abs(keypon.position.y - transform.position.y) < WorldUnit + 0.25f &&
-                        Mathf.Abs(keypon.position.x - transform.position.x) < WorldUnit + 0.25f)
+                    if (Mathf.Abs(keypon.position.y - transform.position.y) < WorldUnit + 0.5f &&
+                        Mathf.Abs(keypon.position.x - transform.position.x) < WorldUnit + 0.5f)
                     {
 					
                         Destroy(keypon.gameObject);
