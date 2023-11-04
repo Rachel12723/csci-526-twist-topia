@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8214964131922734340}
   - component: {fileID: 6521434881454757677}
+  - component: {fileID: 3063042670810198590}
   m_Layer: 0
   m_Name: Props
   m_TagString: Untagged
@@ -52,4 +53,27 @@ MonoBehaviour:
   cameraState: {fileID: 0}
   WorldUnit: 1
   maxZ: 16
-  playerState: {fileID: 0}
+  player: {fileID: 0}
+  inputManager: {fileID: 0}
+--- !u!114 &3063042670810198590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5226394394778598049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a69d31f2d315ca4e949306b5e0677ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unlockSlashCode: 102
+  player: {fileID: 0}
+  blocks: {fileID: 0}
+  keypons: {fileID: 0}
+  keyponInHand: {fileID: 5620782111523224109, guid: d6e1f5a7899424257a6d17fd0fae0ace, type: 3}
+  keyText: {fileID: 0}
+  cameraState: {fileID: 0}
+  directionManager: {fileID: 0}
+  WorldUnit: 1
+  enemies: {fileID: 0}
