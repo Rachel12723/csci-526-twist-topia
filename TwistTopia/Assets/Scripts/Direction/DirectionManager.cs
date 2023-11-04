@@ -10,8 +10,6 @@ public class DirectionManager : MonoBehaviour
     // Rotate
     public CameraState cameraState;
     public KeyCode rotateKeyCode;
-    public KeyCode pickUpKeyCode;
-    public KeyCode openDoorCode;
 
     // Player
     public GameObject player;

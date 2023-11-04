@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4582331275723202792}
   - component: {fileID: 1886843159436924418}
   - component: {fileID: 1886843159436924447}
-  - component: {fileID: 5374383691766773540}
   - component: {fileID: 1886843159436924419}
   - component: {fileID: 1886843159436924420}
   - component: {fileID: 1886843159436924421}
@@ -98,29 +97,6 @@ MonoBehaviour:
   deathInfo: {fileID: 0}
   frameAction: {fileID: 0}
   playerFrame: {fileID: 0}
---- !u!114 &5374383691766773540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1886843159436924423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a69d31f2d315ca4e949306b5e0677ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickUpKeyCode: 0
-  openDoorCode: 102
-  SlashCode: 0
-  blocks: {fileID: 0}
-  keypons: {fileID: 0}
-  keyponInHand: {fileID: 0}
-  keyText: {fileID: 0}
-  cameraState: {fileID: 0}
-  directionManager: {fileID: 0}
-  WorldUnit: 1
-  enemies: {fileID: 0}
 --- !u!143 &1886843159436924419
 CharacterController:
   m_ObjectHideFlags: 0
