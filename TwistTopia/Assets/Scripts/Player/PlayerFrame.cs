@@ -136,21 +136,7 @@
 //
 //         }
 //     }
-// 	private void SlashAndOpen()
-//     {
 //
-//         if (cameraState.GetFacingDirection() == FacingDirection.Front)
-//         {
-//             FrontViewOpenDoor();
-//         }
-//         else if (cameraState.GetFacingDirection() == FacingDirection.Up)
-//         {
-// 			if (!hasCompletedFullRotation)
-//         	{
-// 				hasCompletedFullRotation = true;
-// 			}
-//         }
-//     }
 // 	private void FrontViewOpenDoor(){
 // 		foreach (Transform block in blocks)
 //         {
@@ -182,101 +168,7 @@
 // 			Destroy(inHandKeypon);
 // 		}
 // 	}
-// 	/*
-//     private void PickUpKey()
-//     {
-//         if (cameraState.GetFacingDirection() == FacingDirection.Front)
-//         {
-//             foreach (Transform key in keys)
-//             {
-//                 if (Mathf.Abs(key.position.y - transform.position.y) < WorldUnit &&
-//                     Mathf.Abs(key.position.x - transform.position.x) < WorldUnit)
-//                 {
-//                     Destroy(key.gameObject);
-//                     keyCounter++;
-//                     Debug.Log("Keys:" + keyCounter);
-//                     break;
-//                 }
-//             }
-//         }
-//         else if (cameraState.GetFacingDirection() == FacingDirection.Up)
-//         {
-//             foreach (Transform key in keys)
-//             {
-//                 if (Mathf.Abs(key.position.z - transform.position.z) < WorldUnit &&
-//                     Mathf.Abs(key.position.x - transform.position.x) < WorldUnit)
-//                 {
-//                     Destroy(key.gameObject);
-//                     keyCounter++;
-//                     Debug.Log("Keys:" + keyCounter);
-//                     break;
-//                 }
-//             } 
-//         }
-//     }
-//     private void OpenDoor()
-//     {
 //
-//         if (cameraState.GetFacingDirection() == FacingDirection.Front)
-//         {
-//             foreach (Transform block in blocks)
-//             {
-//                 bool canOpen = false;
-//                 foreach (Transform blockCube in block)
-//                 {
-//                     if (Mathf.Abs(blockCube.position.y - transform.position.y) < WorldUnit + 0.5f &&
-//                         Mathf.Abs(blockCube.position.x - transform.position.x) < WorldUnit + 0.5f)
-//                     {
-//                         canOpen = true;
-//                         break;
-//                     }
-//                 }
-//                 if (canOpen)
-//                 {
-//                     directionManager.DeleteBlockCubes(block);
-//                     Destroy(block.gameObject);
-//                     keyCounter--;
-//                     Debug.Log("Keys:" + keyCounter);
-//                     break;
-//                 }
-//                 //if (Mathf.Abs(block.position.y - transform.position.y) < WorldUnit + 0.5f &&
-//                 //    Mathf.Abs(block.position.x - transform.position.x) < WorldUnit + 0.5f)
-//                 //{
-//                 //    //Debug.Log("true dude!");
-//                 //    directionManager.DeleteBlockCubes(block);
-//                 //    Destroy(block.gameObject);
-//                 //    keyCounter--;
-//                 //    Debug.Log("Keys:" + keyCounter);
-//                 //    break;
-//                 //}
-//             }
-//         }
-//         else if (cameraState.GetFacingDirection() == FacingDirection.Up)
-//         {
-//             bool canOpen = false;
-//             foreach (Transform block in blocks)
-//             {
-//                 foreach (Transform blockCube in block)
-//                 {
-//                     if (Mathf.Abs(blockCube.position.z - transform.position.z) < WorldUnit + 0.5f &&
-//                         Mathf.Abs(blockCube.position.x - transform.position.x) < WorldUnit + 0.5f)
-//                     {
-//                         canOpen = true;
-//                         break;
-//                     }
-//                 }
-//                 if(canOpen)
-//                 {
-//                     directionManager.DeleteBlockCubes(block);
-//                     Destroy(block.gameObject);
-//                     keyCounter--;
-//                     Debug.Log("Keys:" + keyCounter);
-//                     break;
-//                 }
-//             }
-//         }
-//     }
-// 	*/
 //     public void KeyDrop(){
 //         if(keyCounter > 0){
 //             keyCounter--;

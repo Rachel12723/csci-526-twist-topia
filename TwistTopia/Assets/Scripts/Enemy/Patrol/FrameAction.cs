@@ -67,9 +67,7 @@ public class FrameAction : MonoBehaviour
         // Deactivate the enemy
         enemyModel.SetActive(false);
         // Destroy(enemyModel);
-        spriteRenderer.sprite = frameWithEnemy;
-    
-        // Optionally, change the frame's appearance to indicate the enemy is captured
+        spriteRenderer.sprite = frameWithEnemy; // change the frame's appearance to indicate the enemy is captured
     }
     
     public void ReleaseEnemy() {
