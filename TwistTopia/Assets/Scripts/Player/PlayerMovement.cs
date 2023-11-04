@@ -102,20 +102,6 @@ public class PlayerMovement : MonoBehaviour
             ReachGoal();
         }
     }
-    // private void HandlePlayerDeath()
-    // {
-    //     characterController.enabled = false; // stop current movement.
-    //     transform.position = playerReturn.checkPoint;
-    //     if (cameraState.GetFacingDirection() == FacingDirection.Front)
-    //     {
-    //         directionManager.UpdateInvisibleCubes();
-    //     }else if(cameraState.GetFacingDirection() == FacingDirection.Up)
-    //     {
-    //         directionManager.MovePlayerToClosestInvisibleCube();
-    //     }
-    //     directionManager.UpdateInvisibleCubes();
-    //     characterController.enabled = true;
-    // }
     private void TouchEnemy()
     {
         foreach (Transform enemyNum in enemies)

@@ -7,7 +7,8 @@ public class FrameAction : MonoBehaviour
 {
     public GameObject player; // Drag your player object here
     public GameObject enemyModel;  // Drag your enemy object here
-    public CameraState cameraState;  
+    public CameraState cameraState; 
+    public Camera camera;
     public KeyCode catchEnemy;
     public float xTolerance = 0.5f; // A small value to account for minor discrepancies in z-position
     public float yTolerance = 0.5f;
@@ -35,14 +36,22 @@ public class FrameAction : MonoBehaviour
         if (Input.GetKeyDown(catchEnemy)) {
             if (cameraState.facingDirection == FacingDirection.Front) {
                 Debug.Log("return key pressed and the direction is front");
-                float playerXDistanceToFrame = Math.Abs(player.transform.position.x - transform.position.x);
-                float playerYDistanceToFrame = Math.Abs(player.transform.position.y - transform.position.y);
-                float enemyXDistanceToFrame = Math.Abs(enemyModel.transform.position.x - transform.position.x);
+                // Vector3 playerLoc = player.transform.position;
+                Vector3 frameLoc = transform.position;
+                Vector3 frameScreenPos = camera.WorldToScreenPoint(frameLoc);
+                Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
 
-                Debug.Log("player" + player.transform.position + "frame location" + transform.position + "enemy" + enemyModel.transform.position);
-                Debug.Log("playerXDistanceToFrame" + playerXDistanceToFrame + "playerYDistanceToFrame" + playerYDistanceToFrame + "enemyXDistanceToFrame" + enemyXDistanceToFrame);
-                if (playerXDistanceToFrame <= proximityThreshold && playerYDistanceToFrame <= yTolerance &&
-                    enemyXDistanceToFrame <= xTolerance) {
+                bool isFrameOnScreen = (frameScreenPos.x >= 0 && frameScreenPos.x <= Screen.width) && 
+                                  (frameScreenPos.y >= 0 && frameScreenPos.y <= Screen.height);
+                // float playerXDistanceToFrame = Math.Abs(playerLoc.x - frameLoc.x);
+                // float playerYDistanceToFrame = Math.Abs(playerLoc.y - frameLoc.y);
+                float enemyXDistanceToFrame = Math.Abs(enemyModel.transform.position.x - frameLoc.x);
+                
+                // Debug.Log("player" + playerLoc + "frame location" + frameLoc + "enemy" + enemyModel.transform.position);
+                // Debug.Log("playerXDistanceToFrame" + playerXDistanceToFrame + "playerYDistanceToFrame" + playerYDistanceToFrame + "enemyXDistanceToFrame" + enemyXDistanceToFrame);
+                // if (playerXDistanceToFrame <= proximityThreshold && playerYDistanceToFrame <= yTolerance &&
+                //     enemyXDistanceToFrame <= xTolerance) {
+                if (isFrameOnScreen && enemyXDistanceToFrame <= xTolerance) {
                     CaptureEnemy();
                     OnEnemyCatched?.Invoke(enemyModel.tag);
                 }
@@ -68,11 +77,4 @@ public class FrameAction : MonoBehaviour
         enemyModel.SetActive(true);
         spriteRenderer.sprite = frameWithoutEnemy;
     }
-    
-    // float DistanceXY(Vector3 pointA, Vector3 pointB) {
-    //     return Mathf.Sqrt(Mathf.Pow(pointB.x - pointA.x, 2) + Mathf.Pow(pointB.y - pointA.y, 2));
-    // }
-
-
-
 }
