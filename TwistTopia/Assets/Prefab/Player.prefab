@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1886843159436924418}
   - component: {fileID: 1886843159436924447}
   - component: {fileID: 5374383691766773540}
-  - component: {fileID: 2051702750082659722}
   - component: {fileID: 1886843159436924419}
   - component: {fileID: 1886843159436924420}
   - component: {fileID: 1886843159436924421}
@@ -122,25 +121,6 @@ MonoBehaviour:
   directionManager: {fileID: 0}
   WorldUnit: 1
   enemies: {fileID: 0}
---- !u!114 &2051702750082659722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1886843159436924423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a543771c5a86a4551af3914bf099bfdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickUpFrameCode: 101
-  dropOffFrameCode: 101
-  frame: {fileID: 0}
-  frameText: {fileID: 0}
-  cameraState: {fileID: 0}
-  WorldUnit: 1
-  maxZ: 0
 --- !u!143 &1886843159436924419
 CharacterController:
   m_ObjectHideFlags: 0
