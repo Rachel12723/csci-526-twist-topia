@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    public CameraState cameraState;
+    public GameObject player;
+    private PlayerReturn playerReturn;
     public List<Transform> enemyList;
     public List<Transform> guardList;
     public List<Transform> patrolList;
@@ -11,6 +14,7 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerReturn = player.GetComponent<PlayerReturn>();
         Transform guards = transform.Find("Guards");
         Transform patrols = transform.Find("Patrols");
         if(guards != null)
@@ -34,7 +38,30 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        TouchPlayer();
+    }
+
+    private void TouchPlayer()
+    {
+        foreach(Transform enemy in enemyList)
+        {
+            // Reset player
+            if (cameraState.GetFacingDirection() == FacingDirection.Front)
+            {
+                if (Mathf.Abs(enemy.transform.position.x - player.transform.position.x) <= 1f)
+                {
+                    playerReturn.ResetPlayer();
+                }
+            }
+            else if (cameraState.GetFacingDirection() == FacingDirection.Up)
+            {
+                if (Mathf.Abs(enemy.transform.position.x - player.transform.position.x) <= 1f &&
+                    Mathf.Abs(enemy.transform.position.z - player.transform.position.z) <= 1f)
+                {
+                    playerReturn.ResetPlayer();
+                }
+            }
+        }
     }
 
     public void DestoryEnemy(Transform enemy)
