@@ -19,7 +19,6 @@ public class GuardMovement : MonoBehaviour
 
     private GameObject player;
     private PlayerState playerState;
-    private PlayerReturn playerReturn;
 
     private CameraState cameraState;
 
@@ -47,11 +46,8 @@ public class GuardMovement : MonoBehaviour
 
         player = guardManager.player;
         playerState = player.GetComponent<PlayerState>();
-        playerReturn = player.GetComponent<PlayerReturn>();
 
         cameraState = guardManager.cameraState;
-
-        map = guardManager.map;
 
         if (hasKey)
         {
@@ -59,7 +55,6 @@ public class GuardMovement : MonoBehaviour
             key = guardManager.key;
         }
 
-        platformCube = guardManager.platformCube;
     }
 
     // Update is called once per frame
@@ -102,50 +97,7 @@ public class GuardMovement : MonoBehaviour
                 }
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
-                // Reset player
-                if (cameraState.GetFacingDirection() == FacingDirection.Front)
-                {
-                    if(Mathf.Abs(transform.position.x-player.transform.position.x)<= 1f)
-                    {
-                        playerReturn.ResetPlayer();
-                    }
-                }
-                else if (cameraState.GetFacingDirection() == FacingDirection.Up)
-                {
-                    if (Mathf.Abs(transform.position.x - player.transform.position.x) <= 1f &&
-                        Mathf.Abs(transform.position.z - player.transform.position.z) <= 1f)
-                    {
-                        playerReturn.ResetPlayer();
-                    }
-                }
 
-                // Stand on land mine
-                if (cameraState.GetFacingDirection() == FacingDirection.Up)
-                {
-                    Transform platformCubes = map.Find("Platform Cubes");
-                    foreach(Transform landMine in guardManager.landMines)
-                    {
-                        if (Mathf.Abs(transform.position.x - landMine.position.x) <= 0.5f &&
-                            Mathf.Abs(transform.position.z - landMine.position.z) <= 0.5f)
-                        {
-                            if (hasKey)
-                            {
-                                GameObject newKey = Instantiate(key) as GameObject;
-                                newKey.transform.position = transform.position;
-                                newKey.transform.SetParent(keys);
-                            }
-
-                            GameObject newPlatformCube = Instantiate(platformCube) as GameObject;
-                            newPlatformCube.transform.position = landMine.position;
-                            newPlatformCube.transform.SetParent(landMine.parent);
-
-                            Destroy(gameObject);
-                            guardManager.landMines.Remove(landMine);
-                            Destroy(landMine.gameObject);
-                            return;
-                        }
-                    }
-                }
             }
         }
         else
