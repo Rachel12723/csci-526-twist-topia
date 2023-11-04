@@ -6,9 +6,10 @@ public class TargetAnimation : MonoBehaviour
 {
     public Transform flagWorld; // Reference to the world space flag (the actual flag GameObject)
     public Image flagUI; // Reference to the UI Image that represents the flag
-    public float transitionDuration = 2f;
+    public float transitionDuration = 1f;
     public Transform topBarTarget;
     public Camera camera;
+    public bool finished = false;
     
     void Start()
     {
@@ -65,6 +66,7 @@ public class TargetAnimation : MonoBehaviour
 
         rectTransform.position = end;
         flagUI.gameObject.SetActive(false);
+        finished = true;
     }
   
     
