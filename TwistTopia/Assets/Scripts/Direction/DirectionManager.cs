@@ -86,25 +86,28 @@ public class DirectionManager : MonoBehaviour
                 OnRotateKeyPressed?.Invoke(player.transform.position);
                 UpdateInvisibleCubes();
             }
-            if (cameraState.GetFacingDirection() == FacingDirection.Front)
+        }
+        if (cameraState.GetFacingDirection() == FacingDirection.Front)
+        {
+            playerState.SetUpIsDropping(false);
+            if (OnInvisibleCube())
             {
-                if (OnInvisibleCube())
-                {
-                    MovePlayerToClosestPlatformCube();
-                    UpdateInvisibleCubes();
-                }
+                MovePlayerToClosestPlatformCube();
+                UpdateInvisibleCubes();
             }
-            if (cameraState.GetFacingDirection() == FacingDirection.Up && !cameraState.GetIsRotating() && !cameraState.GetIsUsing3DView())
+            playerState.SetFrontIsDropping(!OnPlatformCube());
+        }
+        if (cameraState.GetFacingDirection() == FacingDirection.Up && !cameraState.GetIsRotating() && !cameraState.GetIsUsing3DView())
+        {
+            playerState.SetFrontIsDropping(false);
+            if (playerState.GetPositionUpdating())
             {
-                if (playerState.GetPositionUpdating())
-                {
-                    MovePlayerToClosestInvisibleCube();
-                    playerState.SetPositionUpdating(false);
-                }
-                if (!OnInvisibleCube())
-                {
-                    playerState.SetUpIsDropping(true);
-                }
+                MovePlayerToClosestInvisibleCube();
+                playerState.SetPositionUpdating(false);
+            }
+            if (!OnInvisibleCube())
+            {
+                playerState.SetUpIsDropping(true);
             }
         }
 
@@ -135,6 +138,31 @@ public class DirectionManager : MonoBehaviour
                 player.GetComponent<CharacterController>().enabled = true;
             }
         }
+    }
+
+    // Determines if the player is on a platform cube
+    private bool OnPlatformCube()
+    {
+        if (cameraState.GetFacingDirection() == FacingDirection.Front)
+        {
+            foreach(Transform platform in platformCubes)
+            {
+                if (platform.gameObject.activeSelf)
+                {
+                    foreach (Transform cube in platform)
+                    {
+                        if (Mathf.Abs(cube.position.x - player.transform.position.x) < WorldUnit - 0.1f
+                        && Mathf.Abs(cube.position.z - player.transform.position.z) < WorldUnit - 0.1f
+                        && player.transform.position.y - cube.position.y <= WorldUnit + 0.1f
+                        && player.transform.position.y - cube.position.y > 0)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     // Determines if the player is on an invisible cube

@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
+    public bool frontIsDropping = false;
     public bool upIsDropping = false;
     public bool positionUpdating = false;
+
+    public void SetFrontIsDropping(bool frontIsDropping)
+    {
+        this.frontIsDropping = frontIsDropping;
+    }
 
     public void SetUpIsDropping(bool upIsDropping)
     {
@@ -15,6 +21,11 @@ public class PlayerState : MonoBehaviour
     public void SetPositionUpdating(bool positionUpdating)
     {
         this.positionUpdating = positionUpdating;
+    }
+
+    public bool GetFrontIsDropping()
+    {
+        return frontIsDropping;
     }
 
     public bool GetUpIsDropping()
