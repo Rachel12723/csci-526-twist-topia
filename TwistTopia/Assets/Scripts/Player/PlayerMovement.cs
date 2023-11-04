@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 	public string sceneName;
     
     // Contact with Enemy
-    public Transform enemies;
+    public Transform patrols;
     public PlayerReturn playerReturn;
 
 	// World Unit
@@ -98,19 +98,19 @@ public class PlayerMovement : MonoBehaviour
                 trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, Vertical * movementSpeed * Time.deltaTime);
             }
             characterController.Move(trans);
-            TouchEnemy();
+            // TouchEnemy();
             ReachGoal();
         }
     }
     private void TouchEnemy()
     {
-        foreach (Transform enemyNum in enemies)
+        foreach (Transform patrol in patrols)
         {
-            Transform enemy = enemyNum.Find("EnemyModel");
-            if (enemy.gameObject.activeSelf)
+            // Transform enemy = enemyNum.Find("EnemyModel");
+            if (patrol.gameObject.activeSelf)
             {
-                Vector3 enemyPosition = enemy.position;
-
+                Vector3 enemyPosition = patrol.position;
+    
                 if (cameraState.GetFacingDirection() == FacingDirection.Front)
                 {
                     if (Mathf.Abs(enemyPosition.y - transform.position.y) < WorldUnit &&
@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else if (cameraState.GetFacingDirection() == FacingDirection.Up)
                 {
-
+    
                     if (Mathf.Abs(enemyPosition.z - transform.position.z) < WorldUnit &&
                         Mathf.Abs(enemyPosition.x - transform.position.x) < WorldUnit)
                     {

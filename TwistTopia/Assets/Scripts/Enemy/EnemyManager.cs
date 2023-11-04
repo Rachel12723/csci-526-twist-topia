@@ -40,27 +40,32 @@ public class EnemyManager : MonoBehaviour
     {
         TouchPlayer();
     }
-
+    
     private void TouchPlayer()
     {
         foreach(Transform enemy in enemyList)
         {
-            // Reset player
-            if (cameraState.GetFacingDirection() == FacingDirection.Front)
+            if (enemy.gameObject.activeSelf)
             {
-                if (Mathf.Abs(enemy.transform.position.x - player.transform.position.x) <= 1f)
+                // Reset player
+                if (cameraState.GetFacingDirection() == FacingDirection.Front)
                 {
-                    playerReturn.ResetPlayer();
+                    if (Mathf.Abs(enemy.transform.position.x - player.transform.position.x) <= 1f && 
+                        Mathf.Abs(enemy.transform.position.y - player.transform.position.y) <= 1f)
+                    {
+                        playerReturn.ResetPlayer();
+                    }
+                }
+                else if (cameraState.GetFacingDirection() == FacingDirection.Up)
+                {
+                    if (Mathf.Abs(enemy.transform.position.x - player.transform.position.x) <= 1f &&
+                        Mathf.Abs(enemy.transform.position.z - player.transform.position.z) <= 1f)
+                    {
+                        playerReturn.ResetPlayer();
+                    }
                 }
             }
-            else if (cameraState.GetFacingDirection() == FacingDirection.Up)
-            {
-                if (Mathf.Abs(enemy.transform.position.x - player.transform.position.x) <= 1f &&
-                    Mathf.Abs(enemy.transform.position.z - player.transform.position.z) <= 1f)
-                {
-                    playerReturn.ResetPlayer();
-                }
-            }
+    
         }
     }
 

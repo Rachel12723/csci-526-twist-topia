@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private Vector3 pointA;
-    private Vector3 pointB;
+    public Vector3 pointA;
+    public Vector3 pointB;
     public float offset = 2f;
     public float speed = 2f;
     public CameraState cameraState;
