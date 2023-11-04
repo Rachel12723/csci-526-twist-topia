@@ -22,13 +22,11 @@ public class GuardMovement : MonoBehaviour
 
     private CameraState cameraState;
 
-    private Transform map;
 
     public bool hasKey = false;
     private Transform keys;
     private GameObject key;
 
-    private GameObject platformCube;
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +61,7 @@ public class GuardMovement : MonoBehaviour
         if (isAlive)
         {
             //Movement
-            if (!cameraState.isRotating && !playerState.positionUpdating)
+            if (!cameraState.GetIsRotating() && !playerState.positionUpdating)
             {
                 if (player.transform.position.x >= minRange.x - 1f && player.transform.position.x <= maxRange.x + 1f  && player.transform.position.z >= minRange.z - 1f && player.transform.position.z <= maxRange.z + 1f)
                 {

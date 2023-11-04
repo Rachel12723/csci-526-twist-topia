@@ -55,13 +55,12 @@ MonoBehaviour:
   gravity: 10
   goal: {fileID: 0}
   sceneName: 
-  enemies: {fileID: 0}
+  patrols: {fileID: 0}
   playerReturn: {fileID: 0}
   WorldUnit: 1
-  menuPanel: {fileID: 0}
-  guidePanel: {fileID: 0}
   directionManager: {fileID: 0}
   cameraState: {fileID: 0}
+  inputManager: {fileID: 0}
 --- !u!114 &1886843159436924418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,6 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a121ce7bfab3e9e40bf2184672bf7858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frontIsDropping: 0
   upIsDropping: 0
   positionUpdating: 0
 --- !u!114 &1886843159436924447
@@ -96,6 +96,8 @@ MonoBehaviour:
   directionManager: {fileID: 0}
   dropCount: 0
   deathInfo: {fileID: 0}
+  frameAction: {fileID: 0}
+  playerFrame: {fileID: 0}
 --- !u!114 &5374383691766773540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,12 +112,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpKeyCode: 0
   openDoorCode: 102
+  SlashCode: 0
   blocks: {fileID: 0}
-  keys: {fileID: 0}
+  keypons: {fileID: 0}
+  keyponInHand: {fileID: 0}
   keyText: {fileID: 0}
   cameraState: {fileID: 0}
   directionManager: {fileID: 0}
   WorldUnit: 1
+  enemies: {fileID: 0}
 --- !u!143 &1886843159436924419
 CharacterController:
   m_ObjectHideFlags: 0
