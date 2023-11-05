@@ -15,14 +15,14 @@ public class InstructControl : MonoBehaviour
     public GameObject shift1;
     public GameObject shift2;
 
-    private bool show = false;
+    private bool show = true;
     private string sceneName;
     //private FacingDirection direction;
     // Start is called before the first frame update
     void Start()
     {
-        wasd.SetActive(false);
-        ad.SetActive(false);
+        /*wasd.SetActive(false);
+        ad.SetActive(true);*/
 
 
         StartCoroutine(HidePanelAfterSeconds(1.5f));
