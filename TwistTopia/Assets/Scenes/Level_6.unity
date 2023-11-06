@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1378,11 +1378,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917742, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -23.41
+      value: -19.62
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917742, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -16.33
+      value: -20.55
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917742, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1390,15 +1390,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917742, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -1.9000015
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917742, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1
+      value: -0.44000053
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917743, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_Text
-      value: " Rotate circuit \nunder side view"
+      value: " Rotate Circuit \nunder Front View"
       objectReference: {fileID: 0}
     - target: {fileID: 7155473163912437324, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_LocalScale.x
@@ -1695,9 +1695,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917743, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_Text
-      value: 'Stick to the circuit
+      value: 'Stick to the Circuit
 
-        and press        to rotate'
+        and Press        to Rotate'
       objectReference: {fileID: 0}
     - target: {fileID: 7155473163912437324, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_SizeDelta.x
@@ -6752,7 +6752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917742, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -23.41
+      value: -19.35
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917742, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_SizeDelta.y
@@ -6764,7 +6764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917742, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 2.0299
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917742, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -6772,7 +6772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917743, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_Text
-      value: "Connect circuit \nunder side view"
+      value: "Connect Circuit \nunder Front View"
       objectReference: {fileID: 0}
     - target: {fileID: 7155473163912437324, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_LocalScale.x
@@ -11687,7 +11687,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Welcome to TwistTopia
 
-        Tutorial 1'
+        Level 6'
       objectReference: {fileID: 0}
     - target: {fileID: 1118259029628993996, guid: a5d8315a5a8be2245b7fc2693f2dfb50, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -11707,7 +11707,7 @@ PrefabInstance:
       objectReference: {fileID: 958245349}
     - target: {fileID: 1892819814931497346, guid: a5d8315a5a8be2245b7fc2693f2dfb50, type: 3}
       propertyPath: m_text
-      value: Tutorial 1
+      value: Level 6
       objectReference: {fileID: 0}
     - target: {fileID: 3604949766776459057, guid: a5d8315a5a8be2245b7fc2693f2dfb50, type: 3}
       propertyPath: m_Name
@@ -17592,7 +17592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917743, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_Text
-      value: "Rotate circuit \nunder topview"
+      value: "Rotate Circuit \nunder Top View"
       objectReference: {fileID: 0}
     - target: {fileID: 7155473163912437324, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_SizeDelta.x
@@ -17741,7 +17741,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917743, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_Text
-      value: "Rotate\ncircuit\nunder\nside \nview"
+      value: 'Rotate
+
+        Circuit
+
+        under
+
+        Front
+
+        View'
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917743, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_FontData.m_Alignment
@@ -18855,7 +18863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917743, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_Text
-      value: "Connect right circuit \nunder top view"
+      value: "Connect Circuit \nunder Top View"
       objectReference: {fileID: 0}
     - target: {fileID: 7155473163912437324, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_LocalScale.x
