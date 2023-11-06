@@ -19,6 +19,7 @@ public class Firebase : MonoBehaviour
     private bool priv_is_falling = false;
     private PlayerReturn playerReturn;
     private int dropCount = -1;
+    private int drop_platform = -1;
     
     private long start_time;
     private long end_time;
@@ -143,6 +144,9 @@ public class Firebase : MonoBehaviour
             priv_time = current_time;
         }
         priv_platform_num = platform_num;
+        if(is_falling){
+        	drop_platform = priv_platform_num;
+        }
         priv_is_falling = is_falling;
     }
 
@@ -273,9 +277,9 @@ public class Firebase : MonoBehaviour
             yield break;
         }
 
-        if(IsFalling(priv_y)){
-            yield break;
-        }
+        //if(IsFalling(priv_y)){
+         //   yield break;
+        //}
 
         ini_x = player.transform.position.x;
         priv_y = player.transform.position.y;
@@ -288,7 +292,7 @@ public class Firebase : MonoBehaviour
         jsonData += "\"current level\": "+scene_num+",";
         jsonData += "\"Drop_point_x\": "+ini_x+",";
         jsonData += "\"Drop_point_y\": "+player.transform.position.y+",";
-        jsonData += "\"platform\": "+priv_platform_num+",";
+        jsonData += "\"platform\": "+drop_platform+",";
         for(int i = 0; i < NUM ; i++){
             if(i==NUM-1){
                 jsonData += "\"platform"+(i+1)+" time\": "+platform_time[i]/10000000+",";
