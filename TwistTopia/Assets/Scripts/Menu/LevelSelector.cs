@@ -81,6 +81,16 @@ public class LevelSelector : MonoBehaviour
             SceneManager.LoadScene("Level_4");
             Time.timeScale = 1f;
         }
+        else if (levelIndex == 5)
+        {
+            SceneManager.LoadScene("Level_5");
+            Time.timeScale = 1f;
+        }
+        else if (levelIndex == 6)
+        {
+            SceneManager.LoadScene("Level_6");
+            Time.timeScale = 1f;
+        }
 
 
     }
