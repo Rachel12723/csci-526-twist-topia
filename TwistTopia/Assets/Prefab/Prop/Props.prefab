@@ -71,6 +71,7 @@ MonoBehaviour:
   player: {fileID: 0}
   blocks: {fileID: 0}
   keypons: {fileID: 0}
+  inputManager: {fileID: 0}
   keyponInHand: {fileID: 5620782111523224109, guid: d6e1f5a7899424257a6d17fd0fae0ace, type: 3}
   keyText: {fileID: 0}
   cameraState: {fileID: 0}

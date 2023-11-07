@@ -49,14 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minRange: {x: 0, y: 0, z: 0}
   maxRange: {x: 0, y: 0, z: 0}
-  speed: 2
-  player: {fileID: 0}
-  cameraState: {fileID: 0}
-  landMines:
-  - {fileID: 0}
-  keys: {fileID: 0}
-  key: {fileID: 3467460436112334257, guid: 9f62e8e84fbd84a4186411def0db8750, type: 3}
-  platformCube: {fileID: 2768781668376798685, guid: b8f321fc497dc416eae767289df5e6c3, type: 3}
+  hasKey: 0
 --- !u!33 &1676528450453923065
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -85,7 +78,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e3fccd99b6d2fb04694f65bed56838a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
