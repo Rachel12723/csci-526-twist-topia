@@ -133,7 +133,7 @@ public class FrameAction : MonoBehaviour
         {
             if (releaseLeft > 0f)
             {
-                if (transform.rotation.eulerAngles.z >= 10 && transform.rotation.eulerAngles.z <= 350)
+                if(transform.rotation.eulerAngles.z + shakeAngle * Time.deltaTime > 20 && transform.rotation.eulerAngles.z + shakeAngle * Time.deltaTime < 340)
                 {
                     shakeAngle = -shakeAngle;
                 }
