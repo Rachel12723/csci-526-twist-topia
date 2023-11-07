@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.1341472, b: 0.121078566, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27062,8 +27062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917743, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_Text
-      value: Carefully Placef the Frame; Unleash the Inside Enemy to attack that
-        in front
+      value: "Place with caution\uFF01\nrelease the trapped enemy\nfor an attack!"
       objectReference: {fileID: 0}
     - target: {fileID: 7155473163912437324, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_LocalScale.x
@@ -34223,8 +34222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155473162890917743, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_Text
-      value: Carefully Placef the Frame; Unleash the Inside Enemy to attack that
-        in front
+      value: "Place with caution\uFF01\nrelease the trapped enemy\nfor an attack!"
       objectReference: {fileID: 0}
     - target: {fileID: 7155473163912437324, guid: bf707916d61f44828824234d76e47073, type: 3}
       propertyPath: m_LocalScale.x
