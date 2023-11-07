@@ -38,7 +38,7 @@ public class FrameAction : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>(); 
         spriteRenderer.sprite = frameWithoutEnemy;
-        shakeAngle = 20f * Time.deltaTime;
+        shakeAngle = 200f;
     }
     
     void Update() {
@@ -115,8 +115,11 @@ public class FrameAction : MonoBehaviour
             }
             else
             {
+                patrol.gameObject.GetComponent<PatrolMovement>().ResetPatrol();
                 patrol.gameObject.SetActive(true);
                 patrol = null;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                needRelease = false;
                 spriteRenderer.sprite = frameWithoutEnemy;
             }
         }
@@ -134,15 +137,14 @@ public class FrameAction : MonoBehaviour
                 {
                     shakeAngle = -shakeAngle;
                 }
-                Debug.Log(transform.rotation.eulerAngles.z);
-                transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + shakeAngle);
+                transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + shakeAngle * Time.deltaTime);
                 releaseLeft -= Time.deltaTime;
             }
             else
             {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
                 patrol.gameObject.SetActive(true);
                 patrol = null;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
                 needRelease = false;
                 spriteRenderer.sprite = frameWithoutEnemy;
             }
