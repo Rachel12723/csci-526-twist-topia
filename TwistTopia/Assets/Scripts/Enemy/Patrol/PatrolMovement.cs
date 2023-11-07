@@ -12,6 +12,7 @@ public class PatrolMovement : MonoBehaviour
     private float offset;
     private float speed;
 
+    private Vector3 originalPosition;
     public Vector3 pointA;
     public Vector3 pointB;
     private Vector3 targetPoint;
@@ -24,6 +25,7 @@ public class PatrolMovement : MonoBehaviour
         patrolManager = GetComponentInParent<PatrolManager>();
         offset = patrolManager.offset;
         speed = patrolManager.speed;
+        originalPosition = transform.position;
         pointA = new Vector3(transform.position.x - offset, transform.position.y, transform.position.z);
         pointB = new Vector3(transform.position.x + offset, transform.position.y, transform.position.z);
         targetPoint = pointA;
@@ -34,6 +36,12 @@ public class PatrolMovement : MonoBehaviour
     {
         MoveEnemy();
 
+    }
+
+    public void ResetPatrol()
+    {
+        transform.position = originalPosition;
+        UpdatePosition();
     }
 
     public void UpdatePosition()

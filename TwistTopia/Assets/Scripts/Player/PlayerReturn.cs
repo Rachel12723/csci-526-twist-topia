@@ -66,8 +66,8 @@ public class PlayerReturn : MonoBehaviour
         deathInfo.SetIsShowed(true);
         if (frameAction != null && playerFrame!=null)
         {
-            frameAction.ReleaseEnemy(false);
             playerFrame.ResetFrame();
+            frameAction.ReleaseEnemy(false);
         }
 
     }
