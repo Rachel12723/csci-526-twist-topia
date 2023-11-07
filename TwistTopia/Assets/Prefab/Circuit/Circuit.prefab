@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db51ee2d47115a4997c38b3e7cf5189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateCircuitCode: 114
+  rotateCircuitCode: 102
   type: 0
   rotatableCircuits: []
   platform: {fileID: 0}
