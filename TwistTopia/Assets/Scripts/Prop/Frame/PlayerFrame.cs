@@ -38,7 +38,8 @@ public class PlayerFrame : MonoBehaviour
         {
             if (!playerState.GetFrontIsDropping())
             {
-                if (Input.GetKeyDown(pickUpFrameCode))
+                int state = PlayerPrefs.GetInt("state");
+                if (state == 2 && Input.GetKeyDown(pickUpFrameCode))
                 {
                     Debug.Log(111);
                     if (frameCounter == 0)
@@ -64,6 +65,10 @@ public class PlayerFrame : MonoBehaviour
                 {
                     frame.gameObject.SetActive(false);
                     frameCounter++;
+                    //                   
+                    int framenum = PlayerPrefs.GetInt("Frame");
+                    PlayerPrefs.SetInt("Frame", framenum + 1);
+                    //
                     // break;
                 }
             }
@@ -78,7 +83,10 @@ public class PlayerFrame : MonoBehaviour
             frame.position = new Vector3(playerCurrPos.x, playerCurrPos.y + yOffset - 1, maxZ);
             frame.gameObject.SetActive(true);
             frameCounter--;
-            
+            //                   
+            int framenum = PlayerPrefs.GetInt("Frame");
+            PlayerPrefs.SetInt("Frame", framenum - 1);
+            //
             frameAction.ReleaseEnemy(true);
         }
 	}
@@ -89,5 +97,8 @@ public class PlayerFrame : MonoBehaviour
         frame.position = originalPos;
         frame.gameObject.SetActive(true);
         frameCounter = 0;
+        //                   
+        PlayerPrefs.SetInt("Frame", 0);
+        //
     }
 }

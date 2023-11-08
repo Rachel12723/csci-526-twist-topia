@@ -40,7 +40,8 @@ public class CircuitOperation : MonoBehaviour
     // rotate the rotatable circuits if player stands nearby and pushes button
     private void RotateCircuit()
     {
-        if (Input.GetKeyDown(rotateCircuitCode))
+        int state = PlayerPrefs.GetInt("state");
+        if (state == 0 && Input.GetKeyDown(rotateCircuitCode))
         {
             if (type == CircuitType.Up)
             {

@@ -43,7 +43,9 @@ public class KeyAndDoor : MonoBehaviour
 		PickUpKeypon();
 		if (inputManager.GetAllowInteraction())
 		{
-			if (Input.GetKeyDown(unlockSlashCode) && keyCounter > 0)
+            int state = PlayerPrefs.GetInt("state");
+
+            if (state == 1 && Input.GetKeyDown(unlockSlashCode) && keyCounter > 0)
 			{
 				SlashAndOpen();
 			}
@@ -103,6 +105,10 @@ public class KeyAndDoor : MonoBehaviour
 					    inHandKeypon = Instantiate(keyponInHand, player.transform);
         			    inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
                         keyCounter++;
+                        //
+                        int keyponnum = PlayerPrefs.GetInt("Keypon");
+                        PlayerPrefs.SetInt("Keypon", keyponnum + 1);
+                        //
                         Debug.Log("Keys:" + keyCounter);
                         break;
                     }
@@ -119,6 +125,10 @@ public class KeyAndDoor : MonoBehaviour
 					    inHandKeypon = Instantiate(keyponInHand, player.transform);
         			    inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
                         keyCounter++;
+                        //
+                        int keyponnum = PlayerPrefs.GetInt("Keypon");
+                        PlayerPrefs.SetInt("Keypon", keyponnum + 1);
+                        //
                         Debug.Log("Keys:" + keyCounter);
                         break;
                     }
@@ -160,7 +170,11 @@ public class KeyAndDoor : MonoBehaviour
                 directionManager.DeleteBlockCubes(block);
                 Destroy(block.gameObject);
                 keyCounter--;
-				KeyponDestroyed();
+                //
+                int keyponnum = PlayerPrefs.GetInt("Keypon");
+                PlayerPrefs.SetInt("Keypon", keyponnum - 1);
+                //
+                KeyponDestroyed();
                 Debug.Log("Keys:" + keyCounter);
                 break;
             }
@@ -176,6 +190,10 @@ public class KeyAndDoor : MonoBehaviour
     public void KeyDrop(){
         if(keyCounter > 0){
             keyCounter--;
+            //
+            int keyponnum = PlayerPrefs.GetInt("Keypon");
+            PlayerPrefs.SetInt("Keypon", keyponnum - 1);
+            //
             Debug.Log("Oops! Be careful! " + keyCounter);
         }
     }
