@@ -11,7 +11,7 @@ public class PropManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetInt("state", 0);//���棿
+        PlayerPrefs.SetInt("state", 0);//ｻｺｴ譽ｿ
         //0:circuit; 1:keypon; 2:frame
         PlayerPrefs.SetInt("Circuit", 1);
         PlayerPrefs.SetInt("Keypon", 0);
