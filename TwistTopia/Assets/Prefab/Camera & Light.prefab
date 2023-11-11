@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels: []
+  speedMultipliers: []
+  currentPerspective: {fileID: 0}
   choke: 0.25
-  scrollSpeed: 0
 --- !u!1 &4323709129920037111
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class BackgroundLoop : MonoBehaviour{
     public GameObject[] levels; // Array of background layers
     public float[] speedMultipliers; // Speed multipliers for each background layer
     private Camera mainCamera;
+    public CameraState CameraState;
     private Vector2 screenBounds;
     public float choke;
 
@@ -54,7 +55,13 @@ public class BackgroundLoop : MonoBehaviour{
     //     transform.position = smoothPosition;
     // }
     void LateUpdate(){
+        if (CameraState.isRotating) {
+            // If the camera is rotating, do not move the background
+            return;
+        }
+        
         Vector3 cameraMovement = mainCamera.transform.position - lastCameraPosition;
+        cameraMovement = new Vector3(cameraMovement.x, 0, 0);
 
         for(int i = 0; i < levels.Length; i++) {
             GameObject obj = levels[i];

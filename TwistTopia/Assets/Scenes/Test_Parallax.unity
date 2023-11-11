@@ -324,7 +324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 20566708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.78, y: -0.7, z: 20}
+  m_LocalPosition: {x: 0.78, y: -0.7, z: 9.9}
   m_LocalScale: {x: 13, y: 13, z: 13}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2356,7 +2356,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 268745127}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.78, y: -0.7, z: 40}
+  m_LocalPosition: {x: 0.78, y: -0.7, z: 10.5}
   m_LocalScale: {x: 13, y: 13, z: 13}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -7308,7 +7308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217899898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.78, y: -0.7, z: 60}
+  m_LocalPosition: {x: 0.78, y: -0.7, z: 12.4}
   m_LocalScale: {x: 13, y: 13, z: 13}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -8656,6 +8656,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1647817758}
     - target: {fileID: 587185402983516332, guid: 44ec08f8c54080845b7ca74737ee9cf9, type: 3}
+      propertyPath: CameraState
+      value: 
+      objectReference: {fileID: 618224156}
+    - target: {fileID: 587185402983516332, guid: 44ec08f8c54080845b7ca74737ee9cf9, type: 3}
       propertyPath: scrollSpeed
       value: 10
       objectReference: {fileID: 0}
@@ -8663,6 +8667,10 @@ PrefabInstance:
       propertyPath: levels.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 587185402983516332, guid: 44ec08f8c54080845b7ca74737ee9cf9, type: 3}
+      propertyPath: currentPerspective
+      value: 
+      objectReference: {fileID: 618224156}
     - target: {fileID: 587185402983516332, guid: 44ec08f8c54080845b7ca74737ee9cf9, type: 3}
       propertyPath: levels.Array.data[0]
       value: 
