@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7091052142942185397}
   - component: {fileID: 5614338194784483730}
   m_Layer: 0
-  m_Name: Land Mine
+  m_Name: Land Mine Cube
   m_TagString: Land Mine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
