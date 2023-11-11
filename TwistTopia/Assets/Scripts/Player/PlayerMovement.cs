@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Input Manager
     public InputManager inputManager;
+    private int lastHorizontalFlag = 1;
 
     void Start()
     {
@@ -98,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
                 trans = new Vector3(Horizontal * movementSpeed * Time.deltaTime, -gravity * Time.deltaTime, Vertical * movementSpeed * Time.deltaTime);
             }
             characterController.Move(trans);
+            TurnRound();
             // TouchEnemy();
             ReachGoal();
         }
@@ -166,5 +168,43 @@ public class PlayerMovement : MonoBehaviour
         }
 
         SceneManager.LoadScene(sceneName);
+    }
+
+    private void TurnRound()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+        // right is 1/left is -1/stationary is 0
+        int horizontalFlag = 0;
+        if (horizontalInput > 0)
+        {
+            horizontalFlag = 1;
+        }
+        else if(horizontalInput < 0)
+        {
+            horizontalFlag = -1;
+        }
+        else
+        {
+            horizontalFlag = 0;
+        }
+        //Debug.Log(horizontalFlag-lastHorizontalInput);
+        if (Mathf.Abs(horizontalFlag-lastHorizontalFlag)==2)
+        {
+            //Debug.Log(horizontalInput);
+            Debug.Log("Horizontal direction changed");
+            Vector3 currentRotation = transform.rotation.eulerAngles;
+            currentRotation.y += 180f;
+            transform.rotation = Quaternion.Euler(currentRotation);
+        }
+        if (horizontalFlag != 0)
+        {
+            lastHorizontalFlag = horizontalFlag;
+        }
+    }
+
+    public int getLastHorizontalFlag()
+    {
+        return lastHorizontalFlag;
     }
 }

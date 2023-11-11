@@ -23,9 +23,15 @@ public class KeyAndDoor : MonoBehaviour
     private float rotationSpeed = 1800f;
 	private bool hasCompletedFullRotation = false;
 	private float rotationProgress = 0.0f;
+	private PlayerMovement playerMovement;
+	private int lastHorizontalFlag;
     // Start is called before the first frame update
     void Start()
     {
+        if (player !=null)
+		{
+			playerMovement = player.GetComponent<PlayerMovement>();
+		}
         if (enemies != null)
         {
             enemyManager = enemies.GetComponent<EnemyManager>();
@@ -39,6 +45,7 @@ public class KeyAndDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		lastHorizontalFlag = playerMovement.getLastHorizontalFlag();
         keyText.text = "Key: " + keyCounter;
 		PickUpKeypon();
 		if (inputManager.GetAllowInteraction())
@@ -53,7 +60,7 @@ public class KeyAndDoor : MonoBehaviour
 		if(hasCompletedFullRotation)
 		{
 			// Calculate the rotation angle for this frame
-   			 float rotationAngle = rotationSpeed * Time.deltaTime;
+   			float rotationAngle = rotationSpeed * Time.deltaTime;
    			// Increment the rotation progress
     		rotationProgress += rotationAngle;
     		// Rotate the object around the y-axis
@@ -79,9 +86,18 @@ public class KeyAndDoor : MonoBehaviour
     		// Check if the rotation has completed (3 full rotations, 1080 degrees)
     		if (rotationProgress >= 1080.0f)
     		{
-				Vector3 targetRotation = new Vector3(0f, 0f, 0f);
-				player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, 
-					Quaternion.Euler(targetRotation), rotationSpeed * Time.deltaTime * 4);
+				if(lastHorizontalFlag > 0)
+				{
+					Vector3 targetRotation = new Vector3(0f, 0f, 0f);
+					player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, 
+						Quaternion.Euler(targetRotation), rotationSpeed * Time.deltaTime * 4);
+				}
+				else if(lastHorizontalFlag < 0)
+				{
+					Vector3 targetRotation = new Vector3(0f, -180.0f, 0f);
+					player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, 
+						Quaternion.Euler(targetRotation), rotationSpeed * Time.deltaTime * 4);
+				}
 				hasCompletedFullRotation = false;
         		rotationProgress = 0.0f;
     		}
@@ -103,7 +119,15 @@ public class KeyAndDoor : MonoBehaviour
 					
                         Destroy(keypon.gameObject);
 					    inHandKeypon = Instantiate(keyponInHand, player.transform);
-        			    inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
+						if(lastHorizontalFlag>0)
+						{
+							inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
+						}
+        			    else if(lastHorizontalFlag<0)
+						{
+							//inHandKeypon.transform.Rotate(0f, 180f, 0f);
+							inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
+						}
                         keyCounter++;
                         //
                         int keyponnum = PlayerPrefs.GetInt("Keypon");
@@ -123,7 +147,7 @@ public class KeyAndDoor : MonoBehaviour
                     {
                         Destroy(keypon.gameObject);
 					    inHandKeypon = Instantiate(keyponInHand, player.transform);
-        			    inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
+						inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
                         keyCounter++;
                         //
                         int keyponnum = PlayerPrefs.GetInt("Keypon");
