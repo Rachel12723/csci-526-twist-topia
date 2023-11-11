@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgroundLoop : MonoBehaviour{
-    public GameObject[] levels;
+    public GameObject[] levels; // Array of background layers
+    public float[] speedMultipliers; // Speed multipliers for each background layer
     private Camera mainCamera;
     private Vector2 screenBounds;
     public float choke;
-    public float scrollSpeed;
+
+    private Vector3 lastCameraPosition;
 
     void Start(){
         mainCamera = gameObject.GetComponent<Camera>();
@@ -15,6 +17,7 @@ public class BackgroundLoop : MonoBehaviour{
         foreach(GameObject obj in levels){
             LoadChildObjects(obj);
         }
+        lastCameraPosition = mainCamera.transform.position;
     }
     void LoadChildObjects(GameObject obj){
         float objectWidth = obj.GetComponent<SpriteRenderer>().bounds.size.x - choke;
@@ -44,17 +47,22 @@ public class BackgroundLoop : MonoBehaviour{
             }
         }
     }
-    void Update() {
-
-        Vector3 velocity = Vector3.zero;
-        Vector3 desiredPosition = transform.position + new Vector3(scrollSpeed, 0, 0);
-        Vector3 smoothPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, 0.3f);
-        transform.position = smoothPosition;
-
-    }
+    // void Update() {
+    //     Vector3 velocity = Vector3.zero;
+    //     Vector3 desiredPosition = levels.transform.position + new Vector3(scrollSpeed, 0, 0);
+    //     Vector3 smoothPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, 0.3f);
+    //     transform.position = smoothPosition;
+    // }
     void LateUpdate(){
-        foreach(GameObject obj in levels){
+        Vector3 cameraMovement = mainCamera.transform.position - lastCameraPosition;
+
+        for(int i = 0; i < levels.Length; i++) {
+            GameObject obj = levels[i];
+            float parallaxSpeed = (speedMultipliers.Length > i) ? speedMultipliers[i] : 1;
             RepositionChildObjects(obj);
-        } 
+            obj.transform.Translate(cameraMovement * parallaxSpeed);
+        }
+
+        lastCameraPosition = mainCamera.transform.position;
     }
 }
