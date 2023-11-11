@@ -45,8 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 0}
-  landMineList: []
+  landMineCubeList: []
   enemyManager: {fileID: 0}
   player: {fileID: 0}
   cameraState: {fileID: 0}
   platformCube: {fileID: 2768781668376798685, guid: b8f321fc497dc416eae767289df5e6c3, type: 3}
+  landMineCube: {fileID: 6273769249395676481, guid: 17df39202b80ac7428c9d5b28a8eb1c7, type: 3}
+  inputManager: {fileID: 0}
+  pickUpKeyCode: 101
+  setUpKeyCode: 102
