@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Input Manager
     public InputManager inputManager;
-    private int lastHorizontalFlag = 0;
+    private int lastHorizontalFlag = 1;
 
     void Start()
     {

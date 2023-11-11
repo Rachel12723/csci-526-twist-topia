@@ -86,9 +86,18 @@ public class KeyAndDoor : MonoBehaviour
     		// Check if the rotation has completed (3 full rotations, 1080 degrees)
     		if (rotationProgress >= 1080.0f)
     		{
-				Vector3 targetRotation = new Vector3(0f, 0f, 0f);
-				player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, 
-					Quaternion.Euler(targetRotation), rotationSpeed * Time.deltaTime * 4);
+				if(lastHorizontalFlag > 0)
+				{
+					Vector3 targetRotation = new Vector3(0f, 0f, 0f);
+					player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, 
+						Quaternion.Euler(targetRotation), rotationSpeed * Time.deltaTime * 4);
+				}
+				else if(lastHorizontalFlag < 0)
+				{
+					Vector3 targetRotation = new Vector3(0f, -180.0f, 0f);
+					player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, 
+						Quaternion.Euler(targetRotation), rotationSpeed * Time.deltaTime * 4);
+				}
 				hasCompletedFullRotation = false;
         		rotationProgress = 0.0f;
     		}
@@ -116,8 +125,8 @@ public class KeyAndDoor : MonoBehaviour
 						}
         			    else if(lastHorizontalFlag<0)
 						{
-							inHandKeypon.transform.Rotate(0f, 180f, 0f);
-							inHandKeypon.transform.localPosition = new Vector3(-xOffset, 0, -zOffset);
+							//inHandKeypon.transform.Rotate(0f, 180f, 0f);
+							inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
 						}
                         keyCounter++;
                         //
@@ -138,15 +147,7 @@ public class KeyAndDoor : MonoBehaviour
                     {
                         Destroy(keypon.gameObject);
 					    inHandKeypon = Instantiate(keyponInHand, player.transform);
-        			    if(lastHorizontalFlag>0)
-						{
-							inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
-						}
-        			    else if(lastHorizontalFlag<0)
-						{
-							inHandKeypon.transform.Rotate(0f, 180f, 0f);
-							inHandKeypon.transform.localPosition = new Vector3(-xOffset, 0, -zOffset);
-						}
+						inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
                         keyCounter++;
                         //
                         int keyponnum = PlayerPrefs.GetInt("Keypon");
