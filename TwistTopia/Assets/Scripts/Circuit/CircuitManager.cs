@@ -7,6 +7,8 @@ public class CircuitManager : MonoBehaviour
     public Transform player;
     public CameraState cameraState;
     public DirectionManager directionManager;
+    public InputManager inputManager;
+    public KeyCode rotateCircuitCode;
 
     // Start is called before the first frame update
     void Start()
