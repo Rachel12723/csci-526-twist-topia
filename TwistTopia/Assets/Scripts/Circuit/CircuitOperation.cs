@@ -8,7 +8,7 @@ public class CircuitOperation : MonoBehaviour
     private Transform player;
     private CameraState cameraState;
     // button for rotation
-    public KeyCode rotateCircuitCode;
+    private KeyCode rotateCircuitCode;
     public CircuitType type;
     // list for rotatable circuits
     public List<Transform> rotatableCircuits;
@@ -20,8 +20,9 @@ public class CircuitOperation : MonoBehaviour
     private bool circuitCompleted = false;
 
     private DirectionManager directionManager;
-    
-    
+    private InputManager inputManager;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,8 @@ public class CircuitOperation : MonoBehaviour
         player = circuitManager.player;
         cameraState = circuitManager.cameraState;
         directionManager = circuitManager.directionManager;
+        inputManager = circuitManager.inputManager;
+        rotateCircuitCode = circuitManager.rotateCircuitCode;
     }
 
     // Update is called once per frame
@@ -43,33 +46,36 @@ public class CircuitOperation : MonoBehaviour
         int state = PlayerPrefs.GetInt("state");
         if (state == 0 && Input.GetKeyDown(rotateCircuitCode))
         {
-            if (type == CircuitType.Up)
+            if (inputManager.GetAllowInteraction())
             {
-                if (cameraState.GetFacingDirection() == FacingDirection.Front)
+                if (type == CircuitType.Up)
                 {
-                    foreach (Transform rotatableCircuit in rotatableCircuits)
+                    if (cameraState.GetFacingDirection() == FacingDirection.Front)
                     {
-                        if (Mathf.Abs(player.transform.position.x - rotatableCircuit.position.x) < 0.5f && 
-                            Mathf.Abs(player.transform.position.y - rotatableCircuit.position.y) < 1.2f)
+                        foreach (Transform rotatableCircuit in rotatableCircuits)
                         {
-                            rotatableCircuit.Rotate(Vector3.up, rotateDegrees);
-                            break;
+                            if (Mathf.Abs(player.transform.position.x - rotatableCircuit.position.x) < 0.5f &&
+                                Mathf.Abs(player.transform.position.y - rotatableCircuit.position.y) < 1.2f)
+                            {
+                                rotatableCircuit.Rotate(Vector3.up, rotateDegrees);
+                                break;
+                            }
                         }
                     }
                 }
-            }
 
-            if (type == CircuitType.Front)
-            {
-                if (cameraState.GetFacingDirection() == FacingDirection.Up)
+                if (type == CircuitType.Front)
                 {
-                    foreach (Transform rotatableCircuit in rotatableCircuits)
+                    if (cameraState.GetFacingDirection() == FacingDirection.Up)
                     {
-                        if (Mathf.Abs(player.transform.position.x - rotatableCircuit.position.x) < 1.2f &&
-                            Mathf.Abs(player.transform.position.z - rotatableCircuit.position.z) < 1.2f)
+                        foreach (Transform rotatableCircuit in rotatableCircuits)
                         {
-                            rotatableCircuit.Rotate(Vector3.forward, rotateDegrees);
-                            break;
+                            if (Mathf.Abs(player.transform.position.x - rotatableCircuit.position.x) < 1.2f &&
+                                Mathf.Abs(player.transform.position.z - rotatableCircuit.position.z) < 1.2f)
+                            {
+                                rotatableCircuit.Rotate(Vector3.forward, rotateDegrees);
+                                break;
+                            }
                         }
                     }
                 }

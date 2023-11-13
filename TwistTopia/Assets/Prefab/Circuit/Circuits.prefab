@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5e76837ff0dbd14fae1374c1cb270a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  player: {fileID: 0}
+  cameraState: {fileID: 0}
+  directionManager: {fileID: 0}
+  rotateCircuitCode: 102
