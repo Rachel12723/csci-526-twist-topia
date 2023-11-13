@@ -7,10 +7,11 @@ public class InputManager : MonoBehaviour
     public bool allowMove = false;
     public bool allowShiftPerspective = false;
     public bool allowInteraction = false;
-    public TargetAnimation targetAnimation;
 
     public GameObject menuPanel;
     public CameraState cameraState;
+    public TargetAnimation targetAnimation;
+    public PlatformConsoleMananger platformConsoleMananger;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,7 @@ public class InputManager : MonoBehaviour
 
     void LateUpdate()
     {
-        if (menuPanel.activeSelf || cameraState.GetIsRebinding() || (targetAnimation && !targetAnimation.finished))
+        if (menuPanel.activeSelf || cameraState.GetIsRebinding() || (targetAnimation && !targetAnimation.finished) || (platformConsoleMananger && platformConsoleMananger.GetPlatformIsRotating()))
         {
             allowMove = false;
             allowShiftPerspective = false;

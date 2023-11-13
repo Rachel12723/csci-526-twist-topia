@@ -6,7 +6,7 @@ public class DirectionManager : MonoBehaviour
 {
     // public float cooldownDuration = 0.5f; // Cooldown duration in seconds
     // private float lastShiftTime = -1.0f; // Time when the perspective was last shifted
-    
+
     // Rotate
     public CameraState cameraState;
     public KeyCode rotateKeyCode;
@@ -44,7 +44,7 @@ public class DirectionManager : MonoBehaviour
 
     void Start()
     {
-        platformCubes= map.Find("Platform Cubes");
+        platformCubes = map.Find("Platform Cubes");
         blockCubes = map.Find("Block Cubes");
         invisibleCubes = map.Find("Invisible Cubes");
         for (int i = 0; i < blockCubes.childCount; i++)
@@ -54,11 +54,11 @@ public class DirectionManager : MonoBehaviour
 
         playerState = player.GetComponent<PlayerState>();
         playerReturn = player.GetComponent<PlayerReturn>();
-        
+
         playerReturn.SetFrontMinY(GetMinCubeYOfPlatformAndBlockCubes());
-        float upMinY=Mathf.Max(GetMaxCubeYOfPlatformAndBlockCubes() + 2f, player.transform.position.y + 1f);
+        float upMinY = Mathf.Max(GetMaxCubeYOfPlatformAndBlockCubes() + 2f, player.transform.position.y + 1f);
         playerReturn.SetUpMinY(upMinY);
-        invisibleCubesY = playerReturn.GetDropY()+upMinY;
+        invisibleCubesY = playerReturn.GetDropY() + upMinY;
 
         UpdateInvisibleCubes();
     }
@@ -143,7 +143,7 @@ public class DirectionManager : MonoBehaviour
     {
         if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
-            foreach(Transform platform in platformCubes)
+            foreach (Transform platform in platformCubes)
             {
                 if (platform.gameObject.activeSelf)
                 {
@@ -263,7 +263,7 @@ public class DirectionManager : MonoBehaviour
         }
         else if (cameraState.GetFacingDirection() == FacingDirection.Up)
         {
-            foreach(Transform platform in platformCubes)
+            foreach (Transform platform in platformCubes)
             {
                 if (platform.gameObject.activeSelf)
                 {
@@ -433,7 +433,7 @@ public class DirectionManager : MonoBehaviour
     {
         foreach (Transform cube in list)
         {
-            if (cube.position == newCube)
+            if (Vector3.Distance(cube.position, newCube) < 0.2f)
             {
                 return true;
             }
@@ -441,7 +441,7 @@ public class DirectionManager : MonoBehaviour
         return false;
     }
 
-    // Find if exists platform cube
+    // Find if exists platform or block cube
     private bool ExistCube(Transform transform, Vector3 newCube)
     {
         foreach (Transform cubes in transform)
@@ -450,7 +450,7 @@ public class DirectionManager : MonoBehaviour
             {
                 for (int i = 0; i < cubes.childCount; i++)
                 {
-                    if (cubes.GetChild(i).position == newCube)
+                    if (Vector3.Distance(cubes.GetChild(i).position, newCube) < 0.2f)
                     {
                         return true;
                     }
