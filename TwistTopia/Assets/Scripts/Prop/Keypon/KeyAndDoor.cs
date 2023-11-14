@@ -12,7 +12,7 @@ public class KeyAndDoor : MonoBehaviour
 	public GameObject keyponInHand;
 	private GameObject inHandKeypon;
     private int keyCounter = 0;
-    public UnityEngine.UI.Text keyText;
+    //public UnityEngine.UI.Text keyText;
     public CameraState cameraState;
     public DirectionManager directionManager;
     public float WorldUnit = 1.000f;
@@ -46,7 +46,7 @@ public class KeyAndDoor : MonoBehaviour
     void Update()
     {
 		lastHorizontalFlag = playerMovement.getLastHorizontalFlag();
-        keyText.text = "Key: " + keyCounter;
+        //keyText.text = "Key: " + keyCounter;
 		PickUpKeypon();
 		if (inputManager.GetAllowInteraction())
 		{
@@ -118,7 +118,7 @@ public class KeyAndDoor : MonoBehaviour
                     {
 					
                         Destroy(keypon.gameObject);
-					    inHandKeypon = Instantiate(keyponInHand, player.transform);
+					   /* inHandKeypon = Instantiate(keyponInHand, player.transform);
 						if(lastHorizontalFlag>0)
 						{
 							inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
@@ -127,8 +127,9 @@ public class KeyAndDoor : MonoBehaviour
 						{
 							//inHandKeypon.transform.Rotate(0f, 180f, 0f);
 							inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
-						}
+						}*/
                         keyCounter++;
+                        PlayerPrefs.SetString("add", "key");
                         //
                         int keyponnum = PlayerPrefs.GetInt("Keypon");
                         PlayerPrefs.SetInt("Keypon", keyponnum + 1);
@@ -146,13 +147,14 @@ public class KeyAndDoor : MonoBehaviour
                         Mathf.Abs(keypon.position.x - player.transform.position.x) < WorldUnit + 0.25f)
                     {
                         Destroy(keypon.gameObject);
-					    inHandKeypon = Instantiate(keyponInHand, player.transform);
-						inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
+					    /*inHandKeypon = Instantiate(keyponInHand, player.transform);
+						inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);*/
                         keyCounter++;
                         //
                         int keyponnum = PlayerPrefs.GetInt("Keypon");
                         PlayerPrefs.SetInt("Keypon", keyponnum + 1);
                         //
+                        PlayerPrefs.SetString("add", "key");
                         Debug.Log("Keys:" + keyCounter);
                         break;
                     }
@@ -198,6 +200,7 @@ public class KeyAndDoor : MonoBehaviour
                 int keyponnum = PlayerPrefs.GetInt("Keypon");
                 PlayerPrefs.SetInt("Keypon", keyponnum - 1);
                 //
+                PlayerPrefs.SetString("minus", "key");
                 KeyponDestroyed();
                 Debug.Log("Keys:" + keyCounter);
                 break;
@@ -218,6 +221,7 @@ public class KeyAndDoor : MonoBehaviour
             int keyponnum = PlayerPrefs.GetInt("Keypon");
             PlayerPrefs.SetInt("Keypon", keyponnum - 1);
             //
+            PlayerPrefs.SetString("minus", "key");
             Debug.Log("Oops! Be careful! " + keyCounter);
         }
     }

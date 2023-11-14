@@ -1418,7 +1418,7 @@ GameObject:
   - component: {fileID: 6248221358611807182}
   - component: {fileID: 6893878530913976098}
   m_Layer: 0
-  m_Name: Instruction
+  m_Name: oldversion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

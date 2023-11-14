@@ -9,7 +9,7 @@ public class PlayerFrame : MonoBehaviour
     public KeyCode dropOffFrameCode;
     public int frameCounter = 0;
     public Transform frame;
-    public UnityEngine.UI.Text frameText;
+    //public UnityEngine.UI.Text frameText;
     public CameraState cameraState;
     public float WorldUnit = 1.000f;
     public int maxZ;
@@ -32,21 +32,21 @@ public class PlayerFrame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        frameText.text = "Frame: " + frameCounter;
+        //frameText.text = "Frame: " + frameCounter;
 
         if (inputManager.GetAllowInteraction())
         {
             if (!playerState.GetFrontIsDropping())
             {
                 int state = PlayerPrefs.GetInt("state");
-                if (state == 2 && Input.GetKeyDown(pickUpFrameCode))
+                if (Input.GetKeyDown(pickUpFrameCode))
                 {
                     Debug.Log(111);
                     if (frameCounter == 0)
                     {
                         PickUpFrame();
                     }
-                    else if (frameCounter > 0)
+                    else if (state == 2 && frameCounter > 0)
                     {
                         DropOffFrame();
                     }
@@ -69,6 +69,7 @@ public class PlayerFrame : MonoBehaviour
                     int framenum = PlayerPrefs.GetInt("Frame");
                     PlayerPrefs.SetInt("Frame", framenum + 1);
                     //
+                    PlayerPrefs.SetString("add", "frame");
                     // break;
                 }
             }
@@ -87,6 +88,7 @@ public class PlayerFrame : MonoBehaviour
             int framenum = PlayerPrefs.GetInt("Frame");
             PlayerPrefs.SetInt("Frame", framenum - 1);
             //
+            PlayerPrefs.SetString("minus", "frame");
             frameAction.ReleaseEnemy(true);
         }
 	}
@@ -100,5 +102,6 @@ public class PlayerFrame : MonoBehaviour
         //                   
         PlayerPrefs.SetInt("Frame", 0);
         //
+        PlayerPrefs.SetString("minus", "frame");
     }
 }
