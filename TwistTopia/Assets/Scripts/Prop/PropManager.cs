@@ -108,7 +108,7 @@ public class PropManager : MonoBehaviour
         {
             Destroy(inHandLandMine);
         }
-        else if (state != 3 && inHandKeypon != null)
+        else if (state != 3 && inHandLandMine != null)
         {
             Destroy(inHandLandMine);
         }
