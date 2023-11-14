@@ -16,6 +16,12 @@ public class CircuitOperation : MonoBehaviour
     public List<Transform> platforms;
     // degrees when circuit rotates
     private float rotateDegrees = 90.0f;
+    public bool circuitIsRotating = false;
+    private float rotationTime;
+    private float rotationX = 0f;
+    private float rotationY = 0f;
+    private float rotationZ = 0f;
+    private Transform circuitCube = null;
     // record if circuit is completed
     private bool circuitCompleted = false;
 
@@ -29,6 +35,7 @@ public class CircuitOperation : MonoBehaviour
         circuitManager = transform.parent.gameObject.GetComponent<CircuitManager>();
         player = circuitManager.player;
         cameraState = circuitManager.cameraState;
+        rotationTime = circuitManager.rotationTime;
         directionManager = circuitManager.directionManager;
         inputManager = circuitManager.inputManager;
         rotateCircuitCode = circuitManager.rotateCircuitCode;
@@ -46,7 +53,7 @@ public class CircuitOperation : MonoBehaviour
         int state = PlayerPrefs.GetInt("state");
         if (state == 0 && Input.GetKeyDown(rotateCircuitCode))
         {
-            if (inputManager.GetAllowInteraction())
+            if (inputManager.GetAllowInteraction() && !circuitIsRotating)
             {
                 if (type == CircuitType.Up)
                 {
@@ -57,7 +64,12 @@ public class CircuitOperation : MonoBehaviour
                             if (Mathf.Abs(player.transform.position.x - rotatableCircuit.position.x) < 0.5f &&
                                 Mathf.Abs(player.transform.position.y - rotatableCircuit.position.y) < 1.2f)
                             {
-                                rotatableCircuit.Rotate(Vector3.up, rotateDegrees);
+                                //rotatableCircuit.Rotate(Vector3.up, rotateDegrees);
+                                circuitCube = rotatableCircuit;
+                                rotationX = circuitCube.rotation.eulerAngles.x;
+                                rotationY = circuitCube.rotation.eulerAngles.y + rotateDegrees;
+                                rotationZ = circuitCube.rotation.eulerAngles.z;
+                                circuitIsRotating = true;
                                 break;
                             }
                         }
@@ -73,12 +85,27 @@ public class CircuitOperation : MonoBehaviour
                             if (Mathf.Abs(player.transform.position.x - rotatableCircuit.position.x) < 1.2f &&
                                 Mathf.Abs(player.transform.position.z - rotatableCircuit.position.z) < 1.2f)
                             {
-                                rotatableCircuit.Rotate(Vector3.forward, rotateDegrees);
+                                //rotatableCircuit.Rotate(Vector3.forward, rotateDegrees);
+                                circuitCube = rotatableCircuit;
+                                rotationX = circuitCube.rotation.eulerAngles.x;
+                                rotationY = circuitCube.rotation.eulerAngles.y;
+                                rotationZ = circuitCube.rotation.eulerAngles.z + rotateDegrees;
+                                circuitIsRotating = true;
                                 break;
                             }
                         }
                     }
                 }
+            }
+        }
+        if (circuitIsRotating && circuitCube)
+        {
+            circuitCube.rotation = Quaternion.RotateTowards(circuitCube.rotation, Quaternion.Euler(rotationX, rotationY, rotationZ), rotateDegrees / rotationTime * Time.deltaTime);
+            if (Quaternion.Angle(circuitCube.rotation, Quaternion.Euler(rotationX, rotationY, rotationZ)) < 1.0f)
+            {
+                circuitCube.rotation = Quaternion.Euler(rotationX, rotationY, rotationZ);
+                circuitIsRotating = false;
+                circuitCube = null;
             }
         }
     }
@@ -94,7 +121,8 @@ public class CircuitOperation : MonoBehaviour
                 {
                     Vector3 eulerAngles = rotatableCircuit.rotation.eulerAngles;
                     float yRotation = eulerAngles.y;
-                    if (yRotation != 0.0f)
+                    Debug.Log(yRotation);
+                    if (Mathf.Abs(yRotation) >= 0.01f)
                     {
                         judgeZero = false;
                         break;
@@ -118,7 +146,7 @@ public class CircuitOperation : MonoBehaviour
                 {
                     Vector3 eulerAngles = rotatableCircuit.rotation.eulerAngles;
                     float zRotation = eulerAngles.z;
-                    if (zRotation != 0.0f)
+                    if (Mathf.Abs(zRotation) >= 0.01f)
                     {
                         judgeZero = false;
                         break;

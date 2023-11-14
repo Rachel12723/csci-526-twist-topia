@@ -86,7 +86,6 @@ public class PlatformRotation : MonoBehaviour
                 {
                     platform.rotation = Quaternion.Euler(rotationX, rotationY, rotationZ);
                 }
-                Debug.Log(111);
                 directionManager.UpdateInvisibleCubes();
             }
         }
