@@ -13,9 +13,14 @@ public class LandMineManager : MonoBehaviour
     public CameraState cameraState;
     public GameObject platformCube;
     public GameObject landMineCube;
+    public GameObject landMineInHand;
+    private GameObject inHandLandMine;
+    private float xOffset = 0.5f;
+    private float zOffset = -0.85f;
     public InputManager inputManager;
     public KeyCode pickUpKeyCode;
     public KeyCode setUpKeyCode;
+    public int landMineCounter = 0;
     private Transform unactivatedLandMine = null;
     // Start is called before the first frame update
     void Start()
@@ -67,6 +72,9 @@ public class LandMineManager : MonoBehaviour
                                 && Mathf.Abs(player.transform.position.y - landMineProp.position.y) <= 0.2f)
                             {
                                 landMineProp.gameObject.SetActive(false);
+                                inHandLandMine = Instantiate(landMineInHand, player.transform);
+                                inHandLandMine.transform.localPosition = new Vector3(xOffset, 0, zOffset);
+                                landMineCounter++;
                                 return;
                             }
                         }
@@ -76,6 +84,9 @@ public class LandMineManager : MonoBehaviour
                                 && Mathf.Abs(player.transform.position.z - landMineProp.position.z) <= 0.5f)
                             {
                                 landMineProp.gameObject.SetActive(false);
+                                inHandLandMine = Instantiate(landMineInHand, player.transform);
+                                inHandLandMine.transform.localPosition = new Vector3(xOffset, 0, zOffset);
+                                landMineCounter++;
                                 return;
                             }
                         }
@@ -112,6 +123,7 @@ public class LandMineManager : MonoBehaviour
 
                                         Destroy(cube.gameObject);
                                         Destroy(landMineProp.gameObject);
+                                        landMineCounter--;
                                         return;
                                     }
                                 }

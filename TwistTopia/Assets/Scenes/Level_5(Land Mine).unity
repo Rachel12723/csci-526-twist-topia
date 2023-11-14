@@ -29720,6 +29720,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1832472124}
     - target: {fileID: 4883502251698980690, guid: bc006ec815147a24c8f50ce3053667bc, type: 3}
+      propertyPath: landMineInHand
+      value: 
+      objectReference: {fileID: 2451054984838483845, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
+    - target: {fileID: 4883502251698980690, guid: bc006ec815147a24c8f50ce3053667bc, type: 3}
       propertyPath: PickUpDropOffKeyCode
       value: 101
       objectReference: {fileID: 0}
