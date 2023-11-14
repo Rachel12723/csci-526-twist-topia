@@ -82,6 +82,10 @@ public class PlatformRotation : MonoBehaviour
             }
             if (!platformConsoleMananger.GetPlatformIsRotating())
             {
+                foreach (Transform platform in platforms)
+                {
+                    platform.rotation = Quaternion.Euler(rotationX, rotationY, rotationZ);
+                }
                 Debug.Log(111);
                 directionManager.UpdateInvisibleCubes();
             }
