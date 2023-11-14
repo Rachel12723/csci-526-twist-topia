@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class KeyAndDoor : MonoBehaviour
 {
+    public KeyCode pickUpKeyCode;
     public KeyCode unlockSlashCode;
     public Transform player;
     public Transform blocks;
@@ -47,9 +48,9 @@ public class KeyAndDoor : MonoBehaviour
     {
 		lastHorizontalFlag = playerMovement.getLastHorizontalFlag();
         //keyText.text = "Key: " + keyCounter;
-		PickUpKeypon();
 		if (inputManager.GetAllowInteraction())
 		{
+		    PickUpKeypon();
             int state = PlayerPrefs.GetInt("state");
 
             if (state == 1 && Input.GetKeyDown(unlockSlashCode) && keyCounter > 0)
@@ -107,7 +108,7 @@ public class KeyAndDoor : MonoBehaviour
 	
 	private void PickUpKeypon()
     {
-        if (keypons != null)
+        if (Input.GetKeyDown(pickUpKeyCode) && keypons != null)
         {
             if (cameraState.GetFacingDirection() == FacingDirection.Front)
             {

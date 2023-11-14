@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4883502251698980701}
-  - component: {fileID: 4883502251698980690}
   m_Layer: 0
   m_Name: Land Mines
   m_TagString: Untagged
@@ -32,26 +31,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4883502251698980690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4883502251698980700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dfb68a4e5d09f646ab5765dded64386, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  map: {fileID: 0}
-  landMineCubeList: []
-  enemyManager: {fileID: 0}
-  player: {fileID: 0}
-  cameraState: {fileID: 0}
-  platformCube: {fileID: 2768781668376798685, guid: b8f321fc497dc416eae767289df5e6c3, type: 3}
-  landMineCube: {fileID: 6273769249395676481, guid: 17df39202b80ac7428c9d5b28a8eb1c7, type: 3}
-  landMineProp: {fileID: 2451054984838483845, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
-  inputManager: {fileID: 0}
-  pickUpKeyCode: 101
-  setUpKeyCode: 102

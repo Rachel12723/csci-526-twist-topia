@@ -9,6 +9,7 @@ public class CircuitManager : MonoBehaviour
     public DirectionManager directionManager;
     public InputManager inputManager;
     public KeyCode rotateCircuitCode;
+    public float rotationTime = 0.5f;
 
     // Start is called before the first frame update
     void Start()

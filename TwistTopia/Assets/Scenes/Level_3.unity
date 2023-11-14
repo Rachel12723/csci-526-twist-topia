@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18321,7 +18321,7 @@ PrefabInstance:
     - target: {fileID: 3063042670810198590, guid: c113988f8b34af744a4b2fcdb876e09d, type: 3}
       propertyPath: keyText
       value: 
-      objectReference: {fileID: 1853153501}
+      objectReference: {fileID: 0}
     - target: {fileID: 3063042670810198590, guid: c113988f8b34af744a4b2fcdb876e09d, type: 3}
       propertyPath: keypons
       value: 
@@ -18341,6 +18341,10 @@ PrefabInstance:
     - target: {fileID: 5226394394778598049, guid: c113988f8b34af744a4b2fcdb876e09d, type: 3}
       propertyPath: m_Name
       value: Props
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998928553317774013, guid: c113988f8b34af744a4b2fcdb876e09d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6521434881454757677, guid: c113988f8b34af744a4b2fcdb876e09d, type: 3}
       propertyPath: m_Enabled
@@ -22803,17 +22807,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1472842016242882932, guid: 8c782845463ea014392d6c2bda20041e, type: 3}
   m_PrefabInstance: {fileID: 1853153499}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1853153501 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1472842016138250845, guid: 8c782845463ea014392d6c2bda20041e, type: 3}
-  m_PrefabInstance: {fileID: 1853153499}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1853153502 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3915469363268271322, guid: 8c782845463ea014392d6c2bda20041e, type: 3}
@@ -25850,7 +25843,7 @@ PrefabInstance:
     - target: {fileID: 5374383691766773540, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
       propertyPath: keyText
       value: 
-      objectReference: {fileID: 1853153501}
+      objectReference: {fileID: 0}
     - target: {fileID: 5374383691766773540, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
       propertyPath: keypons
       value: 

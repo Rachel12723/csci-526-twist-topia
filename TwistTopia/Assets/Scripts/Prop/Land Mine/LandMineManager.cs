@@ -22,6 +22,7 @@ public class LandMineManager : MonoBehaviour
     public KeyCode setUpKeyCode;
     public int landMineCounter = 0;
     private Transform unactivatedLandMine = null;
+    private Transform landMines;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +38,7 @@ public class LandMineManager : MonoBehaviour
                 }
             }
         }
+        landMines = transform.Find("Land Mines");
     }
 
     // Update is called once per frame
@@ -62,7 +64,7 @@ public class LandMineManager : MonoBehaviour
         {
             if (inputManager.GetAllowInteraction())
             {
-                foreach(Transform landMineProp in transform)
+                foreach(Transform landMineProp in landMines)
                 {
                     if (landMineProp.gameObject.activeSelf)
                     {
@@ -111,7 +113,7 @@ public class LandMineManager : MonoBehaviour
             {
                 if (cameraState.GetFacingDirection() == FacingDirection.Up)
                 {
-                    foreach (Transform landMineProp in transform)
+                    foreach (Transform landMineProp in landMines)
                     {
                         if (!landMineProp.gameObject.activeSelf)
                         {
