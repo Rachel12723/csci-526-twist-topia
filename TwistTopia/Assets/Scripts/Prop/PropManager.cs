@@ -22,7 +22,7 @@ public class PropManager : MonoBehaviour
     public Transform player;
     //public GameObject bagtext;
     string [] bagArray = new string[4];
-
+    public InputManager inputManager;
     public static int itemidx;
     public Sprite key;
     public Sprite frame;
@@ -72,21 +72,44 @@ public class PropManager : MonoBehaviour
         int num = PlayerPrefs.GetInt(bagArray[state]);
 
         //select
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {           
-            OnButtonClick(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (inputManager.GetAllowInteraction())
         {
-            OnButtonClick(1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            OnButtonClick(2);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            OnButtonClick(3);
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                OnButtonClick(0);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                OnButtonClick(1);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                OnButtonClick(2);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                OnButtonClick(3);
+            }
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                int i;
+                for(i = 0; i < 4; i++)
+                {
+                  
+                    Image buttonImage = bagbuttonselect[i].GetComponent<Image>();
+                    if (buttonImage.color == newColor)
+                    {
+                        //Debug.Log(i);
+                        OnButtonClick((i + 1) % 4);
+                        break;
+                    }
+                }
+                if (i == 4)
+                {
+                    OnButtonClick(0);
+                }
+                //OnButtonClick(3);
+            }
         }
 
         //keypon
@@ -159,6 +182,7 @@ public class PropManager : MonoBehaviour
                     TextMeshProUGUI buttonText = bagbutton[i].GetComponentInChildren<TextMeshProUGUI>();
                     buttonText.text = kvp.Value.ToString();
                     Image image = bagbutton[i].GetComponent<Image>();
+                    OnButtonClick(i);
                     
                     if (item == "key")
                     {
@@ -183,6 +207,7 @@ public class PropManager : MonoBehaviour
         TextMeshProUGUI buttonTextt = bagbutton[i].GetComponentInChildren<TextMeshProUGUI>();
         buttonTextt.text = "1";
         Image imagee = bagbutton[i].GetComponent<Image>();
+        OnButtonClick(i);
         if (item == "key")
         {
             imagee.sprite = key;
