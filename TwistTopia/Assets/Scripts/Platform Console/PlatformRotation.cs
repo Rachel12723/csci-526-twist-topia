@@ -15,6 +15,7 @@ public class PlatformRotation : MonoBehaviour
     public float rotationY = 0f;
     public float rotationZ = 0f;
     public List<Transform> platforms;
+    private bool isRotating = false;
 
     // Start is called before the first frame update
     void Start()
@@ -65,9 +66,10 @@ public class PlatformRotation : MonoBehaviour
                             rotationX -= 90f;
                             rotationX %= 360f;
                         }
+                        isRotating = true;
+                        platformConsoleMananger.SetPlatformIsRotating(true);
                         //rotationX += 90f;
                         //rotationX %= 360f;
-                        platformConsoleMananger.SetPlatformIsRotating(true);
                         //foreach (Transform platform in platforms)
                         //{
                         //    platform.rotation = Quaternion.Euler(platform.rotation.eulerAngles.x, platform.rotation.eulerAngles.y, platform.rotation.eulerAngles.z + 90);
@@ -82,6 +84,7 @@ public class PlatformRotation : MonoBehaviour
                     {
                         rotationY += 90f;
                         rotationY %= 360f;
+                        isRotating = true;
                         platformConsoleMananger.SetPlatformIsRotating(true);
                         //foreach (Transform platform in platforms)
                         //{
@@ -92,23 +95,24 @@ public class PlatformRotation : MonoBehaviour
                 }
             }
         }
-        if (platformConsoleMananger.GetPlatformIsRotating())
+        if (isRotating)
         {
             foreach (Transform platform in platforms)
             {
                 platform.rotation = Quaternion.RotateTowards(platform.rotation, Quaternion.Euler(rotationX, rotationY, rotationZ), 90 / rotationTime * Time.deltaTime);
                 if (Quaternion.Angle(platform.rotation, Quaternion.Euler(rotationX, rotationY, rotationZ))<1.0f)
                 {
-                    platformConsoleMananger.SetPlatformIsRotating(false);
+                    isRotating = false;
                 }
             }
-            if (!platformConsoleMananger.GetPlatformIsRotating())
+            if (!isRotating)
             {
                 foreach (Transform platform in platforms)
                 {
                     platform.rotation = Quaternion.Euler(rotationX, rotationY, rotationZ);
                 }
                 directionManager.UpdateInvisibleCubes();
+                platformConsoleMananger.SetPlatformIsRotating(false);
             }
         }
     }
