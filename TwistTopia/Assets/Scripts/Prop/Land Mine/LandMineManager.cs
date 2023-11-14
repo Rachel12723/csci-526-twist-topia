@@ -74,9 +74,12 @@ public class LandMineManager : MonoBehaviour
                                 && Mathf.Abs(player.transform.position.y - landMineProp.position.y) <= 0.2f)
                             {
                                 landMineProp.gameObject.SetActive(false);
-                                inHandLandMine = Instantiate(landMineInHand, player.transform);
-                                inHandLandMine.transform.localPosition = new Vector3(xOffset, 0, zOffset);
+                                /*inHandLandMine = Instantiate(landMineInHand, player.transform);
+                                inHandLandMine.transform.localPosition = new Vector3(xOffset, 0, zOffset);*/
                                 landMineCounter++;
+                                int landminenum = PlayerPrefs.GetInt("Landmine");
+                                PlayerPrefs.SetInt("Landmine", landminenum + 1);
+                                PlayerPrefs.SetString("add", "landmine");
                                 return;
                             }
                         }
@@ -86,9 +89,12 @@ public class LandMineManager : MonoBehaviour
                                 && Mathf.Abs(player.transform.position.z - landMineProp.position.z) <= 0.5f)
                             {
                                 landMineProp.gameObject.SetActive(false);
-                                inHandLandMine = Instantiate(landMineInHand, player.transform);
-                                inHandLandMine.transform.localPosition = new Vector3(xOffset, 0, zOffset);
+                                /*inHandLandMine = Instantiate(landMineInHand, player.transform);
+                                inHandLandMine.transform.localPosition = new Vector3(xOffset, 0, zOffset);*/
                                 landMineCounter++;
+                                int landminenum = PlayerPrefs.GetInt("Landmine");
+                                PlayerPrefs.SetInt("Landmine", landminenum + 1);
+                                PlayerPrefs.SetString("add", "landmine");
                                 return;
                             }
                         }
@@ -100,7 +106,8 @@ public class LandMineManager : MonoBehaviour
 
     private void SetUpLandMine()
     {
-        if (Input.GetKeyDown(setUpKeyCode))
+        int state = PlayerPrefs.GetInt("state");
+        if (state == 3 && Input.GetKeyDown(setUpKeyCode))
         {
             if (inputManager.GetAllowInteraction())
             {
@@ -126,6 +133,9 @@ public class LandMineManager : MonoBehaviour
                                         Destroy(cube.gameObject);
                                         Destroy(landMineProp.gameObject);
                                         landMineCounter--;
+                                        int landminenum = PlayerPrefs.GetInt("Landmine");
+                                        PlayerPrefs.SetInt("Landmine", landminenum - 1);
+                                        PlayerPrefs.SetString("minus", "landmine");
                                         return;
                                     }
                                 }

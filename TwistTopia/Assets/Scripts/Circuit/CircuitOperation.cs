@@ -13,7 +13,7 @@ public class CircuitOperation : MonoBehaviour
     // list for rotatable circuits
     public List<Transform> rotatableCircuits;
 
-    public Transform platform;
+    public List<Transform> platforms;
     // degrees when circuit rotates
     private float rotateDegrees = 90.0f;
     // record if circuit is completed
@@ -138,7 +138,10 @@ public class CircuitOperation : MonoBehaviour
     {
         if (circuitCompleted)
         {
-            platform.gameObject.SetActive(true);
+            foreach (Transform platform in platforms)
+            {
+                platform.gameObject.SetActive(true);
+            }
             directionManager.UpdateInvisibleCubes();
         }
             
