@@ -45,7 +45,28 @@ public class PlatformRotation : MonoBehaviour
                     if (Mathf.Abs(transform.position.x - player.position.x) < 0.5f
                         && Mathf.Abs(transform.position.y - player.position.y) < 1.2f)
                     {
-                        rotationZ += 90f;
+                        if (rotationY == 0f)
+                        {
+                            rotationZ -= 90f;
+                            rotationZ %= 360f;
+                        }
+                        else if(rotationY == 90f)
+                        {
+                            rotationX += 90f;
+                            rotationX %= 360f;
+                        }
+                        else if (rotationY == 180f)
+                        {
+                            rotationZ += 90f;
+                            rotationZ %= 360f;
+                        }
+                        else if (rotationY == 270f)
+                        {
+                            rotationX -= 90f;
+                            rotationX %= 360f;
+                        }
+                        //rotationX += 90f;
+                        //rotationX %= 360f;
                         platformConsoleMananger.SetPlatformIsRotating(true);
                         //foreach (Transform platform in platforms)
                         //{
@@ -60,6 +81,7 @@ public class PlatformRotation : MonoBehaviour
                         && Mathf.Abs(transform.position.z - player.position.z) < 1.2f)
                     {
                         rotationY += 90f;
+                        rotationY %= 360f;
                         platformConsoleMananger.SetPlatformIsRotating(true);
                         //foreach (Transform platform in platforms)
                         //{
