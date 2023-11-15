@@ -47,6 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7406cb712b85bc74ea25edb0d5947aeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationX: 0
+  rotationY: 0
+  rotationZ: 0
+  platforms: []
 --- !u!33 &8993736395396641886
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -75,7 +79,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 949756b5718e4f449981c740dd44a6e9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
