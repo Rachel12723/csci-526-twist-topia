@@ -25,6 +25,7 @@ public class PropManager : MonoBehaviour
     public InputManager inputManager;
     public static int itemidx;
     public Sprite key;
+    public Sprite keyup;
     public Sprite frame;
     public Sprite landmine;
     public Sprite none;
