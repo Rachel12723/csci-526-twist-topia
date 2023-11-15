@@ -31,6 +31,7 @@ public class PropManager : MonoBehaviour
     public Sprite none;
     public Button[] bagbutton;
     public Button[] bagbuttonselect;
+    public CameraState cameraState;
     public List<KeyValuePair<string, int>> mybaglist;
     Color oldColor = new Color(200f / 255f, 139f / 255f, 73f / 255f);
     Color newColor = new Color(239f / 255f, 237f / 255f, 87f / 255f);
@@ -158,6 +159,24 @@ public class PropManager : MonoBehaviour
             PlayerPrefs.SetString("minus", "");
             Debug.Log("haha");
 
+        }
+
+        //keyup or front
+        for (int i = 0; i < 4; i++)
+        {
+            Image image = bagbutton[i].GetComponent<Image>();
+            if (image.sprite == key || image.sprite == keyup)
+            {
+                if (cameraState.GetFacingDirection() == FacingDirection.Front)
+                {
+                    image.sprite = key;
+                }
+                else
+                {
+                    image.sprite = keyup;
+                }
+            }
+                    
         }
     }
 

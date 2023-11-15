@@ -1826,7 +1826,7 @@ MonoBehaviour:
   panel: {fileID: 3893235306994978093}
   wasd: {fileID: 1802727548264662258}
   ad: {fileID: 8466549824490741709}
-  cameraState: {fileID: 0}
+  cameraState: {fileID: 4323709130184260892, guid: 44ec08f8c54080845b7ca74737ee9cf9, type: 3}
   f1: {fileID: 6463505276691464658}
   f2: {fileID: 5227063202788280844}
   shift1: {fileID: 1744354633203072448}
@@ -1863,6 +1863,7 @@ MonoBehaviour:
   - {fileID: 7760317434528571043}
   - {fileID: 4129588937890206136}
   - {fileID: 2867198007029299283}
+  cameraState: {fileID: 4323709130184260892, guid: 44ec08f8c54080845b7ca74737ee9cf9, type: 3}
 --- !u!1 &3893235306994978093
 GameObject:
   m_ObjectHideFlags: 0
