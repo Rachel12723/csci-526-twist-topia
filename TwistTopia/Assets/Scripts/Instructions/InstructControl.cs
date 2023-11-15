@@ -15,6 +15,8 @@ public class InstructControl : MonoBehaviour
     public GameObject shift1;
     public GameObject shift2;
 
+    public GameObject bagkey;
+
     private bool show = true;
     private string sceneName;
     //private FacingDirection direction;
@@ -45,6 +47,7 @@ public class InstructControl : MonoBehaviour
                 wasd.SetActive(true);
                 ad.SetActive(false);
             }
+            bagkey.SetActive(true);
         }
             
     }
@@ -63,6 +66,7 @@ public class InstructControl : MonoBehaviour
         {
             wasd.SetActive(false);
             ad.SetActive(false);
+            bagkey.SetActive(false);
         }
         EventSystem.current.SetSelectedGameObject(null);
     }

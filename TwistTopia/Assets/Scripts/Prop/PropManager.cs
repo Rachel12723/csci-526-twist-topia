@@ -15,8 +15,13 @@ public class PropManager : MonoBehaviour
     private float zOffset = -0.56f;
     private float xOffset_landmine = 0.5f;
     private float zOffset_landmine = -0.85f;
+    private float xOffset_frame = 0.67f;
+    private float yOffset_frame = 0.029f;
+    private float zOffset_frame = -0.81f;
     public GameObject keyponInHand;
     private GameObject inHandKeypon;
+    public GameObject frameInHand;
+    private GameObject inHandFrame;
     public GameObject LandMineInHand;
     private GameObject inHandLandMine;
     public Transform player;
@@ -25,11 +30,13 @@ public class PropManager : MonoBehaviour
     public InputManager inputManager;
     public static int itemidx;
     public Sprite key;
+    public Sprite keyup;
     public Sprite frame;
     public Sprite landmine;
     public Sprite none;
     public Button[] bagbutton;
     public Button[] bagbuttonselect;
+    public CameraState cameraState;
     public List<KeyValuePair<string, int>> mybaglist;
     Color oldColor = new Color(200f / 255f, 139f / 255f, 73f / 255f);
     Color newColor = new Color(239f / 255f, 237f / 255f, 87f / 255f);
@@ -39,7 +46,7 @@ public class PropManager : MonoBehaviour
     {
         itemidx = 0;
 
-        PlayerPrefs.SetInt("state", 0);//»º´æ£¿
+        PlayerPrefs.SetInt("state", 0);//ï¿½ï¿½ï¿½æ£¿
         //0:circuit; 1:keypon; 2:frame
         PlayerPrefs.SetInt("None", 1);
         PlayerPrefs.SetInt("Keypon", 0);
@@ -57,7 +64,7 @@ public class PropManager : MonoBehaviour
 
         for (int i = 0; i < bagbutton.Length; i++)
         {
-            int buttonIndex = i; // ´´½¨Ò»¸ö¾Ö²¿±äÁ¿À´±£´æ°´Å¥Ë÷Òý
+            int buttonIndex = i; // ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ°´Å¥ï¿½ï¿½ï¿½ï¿½
             bagbutton[i].onClick.AddListener(() => OnButtonClick(buttonIndex));
         }
 
@@ -140,6 +147,20 @@ public class PropManager : MonoBehaviour
             inHandLandMine = Instantiate(LandMineInHand, player.transform);
             inHandLandMine.transform.localPosition = new Vector3(xOffset_landmine, 0, zOffset_landmine);
         }
+        //frame
+        if (state == 2 && num == 0 && inHandLandMine != null)
+        {
+            Destroy(inHandLandMine);
+        }
+        else if (state != 2 && inHandLandMine != null)
+        {
+            Destroy(inHandLandMine);
+        }
+        else if (state == 2 && num > 0 && inHandLandMine == null)
+        {
+            inHandFrame = Instantiate(frameInHand, player.transform);
+            inHandFrame.transform.localPosition = new Vector3(xOffset_frame, yOffset_frame, zOffset_frame);
+        }
 
         string item = PlayerPrefs.GetString("add");
         if (item != "")
@@ -157,6 +178,24 @@ public class PropManager : MonoBehaviour
             PlayerPrefs.SetString("minus", "");
             Debug.Log("haha");
 
+        }
+
+        //keyup or front
+        for (int i = 0; i < 4; i++)
+        {
+            Image image = bagbutton[i].GetComponent<Image>();
+            if (image.sprite == key || image.sprite == keyup)
+            {
+                if (cameraState.GetFacingDirection() == FacingDirection.Front)
+                {
+                    image.sprite = key;
+                }
+                else
+                {
+                    image.sprite = keyup;
+                }
+            }
+                    
         }
     }
 
@@ -197,7 +236,7 @@ public class PropManager : MonoBehaviour
                         image.sprite = landmine;
                     }
                     Color tempColor = image.color;
-                    tempColor.a = 1f; // 1f ±íÊ¾²»Í¸Ã÷
+                    tempColor.a = 1f; // 1f ï¿½ï¿½Ê¾ï¿½ï¿½Í¸ï¿½ï¿½
                     image.color = tempColor;
                     return;
                 }
@@ -221,7 +260,7 @@ public class PropManager : MonoBehaviour
             imagee.sprite = landmine;
         }
         Color tempColorr = imagee.color;
-        tempColorr.a = 1f; // 1f ±íÊ¾²»Í¸Ã÷
+        tempColorr.a = 1f; // 1f ï¿½ï¿½Ê¾ï¿½ï¿½Í¸ï¿½ï¿½
         imagee.color = tempColorr;
 
         Image buttonImage = bagbuttonselect[i].GetComponent<Image>();
@@ -271,7 +310,7 @@ public class PropManager : MonoBehaviour
                     mybaglist.RemoveAt(i);
                     //image.sprite = none; 
                     //Color tempColor = image.color;
-                    //tempColor.a = 0f; // 1f ±íÊ¾²»Í¸Ã÷
+                    //tempColor.a = 0f; // 1f ï¿½ï¿½Ê¾ï¿½ï¿½Í¸ï¿½ï¿½
                    // image.color = tempColor;
                     //buttonText.text = "";
                   /*  Image buttonImage = bagbuttonselect[i].GetComponent<Image>();
@@ -305,7 +344,7 @@ public class PropManager : MonoBehaviour
                     image.sprite = landmine;
                 }
                 Color tempColor = image.color;
-                tempColor.a = 1f; // 1f ±íÊ¾²»Í¸Ã÷
+                tempColor.a = 1f; // 1f ï¿½ï¿½Ê¾ï¿½ï¿½Í¸ï¿½ï¿½
                 image.color = tempColor;
             }
             else
@@ -314,7 +353,7 @@ public class PropManager : MonoBehaviour
                 image.sprite = none;
                 buttonText.text = "";
                 Color tempColorr = image.color;
-                tempColorr.a = 0f; // 1f ±íÊ¾²»Í¸Ã÷
+                tempColorr.a = 0f; // 1f ï¿½ï¿½Ê¾ï¿½ï¿½Í¸ï¿½ï¿½
                 image.color = tempColorr;
             }
         }
