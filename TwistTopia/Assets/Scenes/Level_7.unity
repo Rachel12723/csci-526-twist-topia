@@ -10988,6 +10988,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: db87746129cc599478e1ae8cecedefd7, type: 3}
     - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: cameraState
+      value: 
+      objectReference: {fileID: 1448936508}
+    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: inputManager
       value: 
       objectReference: {fileID: 143874785}
