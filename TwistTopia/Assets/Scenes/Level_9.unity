@@ -2807,6 +2807,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -12.479429
       objectReference: {fileID: 0}
+    - target: {fileID: 1039708612349473671, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: m_text
+      value: 'Welcome to TwistTopia
+
+        Level 9'
+      objectReference: {fileID: 0}
     - target: {fileID: 1118259029628993996, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 2996
@@ -2825,7 +2831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1892819814931497346, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: m_text
-      value: Level 1
+      value: Level 9
       objectReference: {fileID: 0}
     - target: {fileID: 3604949766776459057, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: m_Name
@@ -2839,6 +2845,14 @@ PrefabInstance:
       propertyPath: cameraState
       value: 
       objectReference: {fileID: 1533480950}
+    - target: {fileID: 6862590582912310359, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6862590582912310359, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 242.979
+      objectReference: {fileID: 0}
     - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: player
       value: 
