@@ -13987,7 +13987,7 @@ PrefabInstance:
     - target: {fileID: 1886843159436924447, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
       propertyPath: checkpoints
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 993640776}
     - target: {fileID: 1886843159436924447, guid: a65fee3a31707f94a8c8b1c1baf24afc, type: 3}
       propertyPath: frameAction
       value: 
