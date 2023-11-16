@@ -16,6 +16,7 @@ public class PlayerReturn : MonoBehaviour
     public FadingInfo deathInfo;
     public FrameAction frameAction;
     public PlayerFrame playerFrame;
+    public Transform checkpoints;
 
     void Start()
     {
@@ -45,6 +46,8 @@ public class PlayerReturn : MonoBehaviour
                 }
             }
         }
+
+        UpdateCheckPoint();
     }
 
     public void ResetPlayer()
@@ -70,6 +73,41 @@ public class PlayerReturn : MonoBehaviour
             frameAction.ReleaseEnemy(false);
         }
 
+    }
+
+    private void UpdateCheckPoint()
+    {
+        if (cameraState.GetFacingDirection() == FacingDirection.Front)
+        {
+            if (checkpoints != null)
+            {
+                foreach (Transform checkpoint in checkpoints)
+                {
+                    if (Mathf.Abs(transform.position.x - checkpoint.position.x) < 0.5f &&
+                        Mathf.Abs(transform.position.y - checkpoint.position.y) < 0.5f)
+                    {
+                        SetCheckPoint(new Vector3(checkpoint.position.x, checkpoint.position.y, transform.position.z));
+                        break;
+                    }
+                }
+            }
+        }
+        else if (cameraState.GetFacingDirection() == FacingDirection.Up)
+        {
+            if (checkpoints != null)
+            {
+                foreach (Transform checkpoint in checkpoints)
+                {
+                    if (Mathf.Abs(transform.position.x - checkpoint.position.x) < 1.0f &&
+                        Mathf.Abs(transform.position.z - checkpoint.position.z) < 1.0f)
+                    {
+                        SetCheckPoint(new Vector3(checkpoint.position.x, checkpoint.position.y, checkpoint.position.z));
+                        break;
+                    }
+                }
+            }
+            
+        }
     }
 
     public void SetCheckPoint(Vector3 checkPoint)
