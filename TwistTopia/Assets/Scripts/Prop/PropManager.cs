@@ -148,15 +148,15 @@ public class PropManager : MonoBehaviour
             inHandLandMine.transform.localPosition = new Vector3(xOffset_landmine, 0, zOffset_landmine);
         }
         //frame
-        if (state == 2 && num == 0 && inHandLandMine != null)
+        if (state == 2 && num == 0 && inHandFrame != null)
         {
-            Destroy(inHandLandMine);
+            Destroy(inHandFrame);
         }
-        else if (state != 2 && inHandLandMine != null)
+        else if (state != 2 && inHandFrame != null)
         {
-            Destroy(inHandLandMine);
+            Destroy(inHandFrame);
         }
-        else if (state == 2 && num > 0 && inHandLandMine == null)
+        else if (state == 2 && num > 0 && inHandFrame == null)
         {
             inHandFrame = Instantiate(frameInHand, player.transform);
             inHandFrame.transform.localPosition = new Vector3(xOffset_frame, yOffset_frame, zOffset_frame);
@@ -291,6 +291,7 @@ public class PropManager : MonoBehaviour
     public void minusitem(string item)
     {
         int i = 0;
+        int idx = 0;
         for (i = 0; i < mybaglist.Count; i++)
         {
             Debug.Log(i);
@@ -298,6 +299,7 @@ public class PropManager : MonoBehaviour
             Debug.Log("Key: " + kvp.Key + ", Value: " + kvp.Value);
             if (kvp.Key == item)
             {
+                idx = i;
                 kvp = new KeyValuePair<string, int>(kvp.Key, kvp.Value - 1);
                 Debug.Log("Key: " + kvp.Key + ", Value: " + kvp.Value);
                 mybaglist[i] = kvp;
@@ -308,6 +310,7 @@ public class PropManager : MonoBehaviour
                 {
                     
                     mybaglist.RemoveAt(i);
+
                     //image.sprite = none; 
                     //Color tempColor = image.color;
                     //tempColor.a = 0f; // 1f ��ʾ��͸��
@@ -357,6 +360,7 @@ public class PropManager : MonoBehaviour
                 image.color = tempColorr;
             }
         }
+        OnButtonClick(idx);
     }
 
     void OnButtonClick(int buttonIndex)
