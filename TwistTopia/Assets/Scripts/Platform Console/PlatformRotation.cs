@@ -37,7 +37,8 @@ public class PlatformRotation : MonoBehaviour
 
     private void RotatePlatform()
     {
-        if (Input.GetKeyDown(platformRotationKeyCode))
+        int state = PlayerPrefs.GetInt("state");
+        if (Input.GetKeyDown(platformRotationKeyCode) && state == 0)
         {
             if (inputManager.GetAllowInteraction())
             {
