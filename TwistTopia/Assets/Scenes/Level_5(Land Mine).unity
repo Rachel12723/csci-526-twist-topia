@@ -28675,11 +28675,11 @@ PrefabInstance:
       objectReference: {fileID: 1832472124}
     - target: {fileID: 6521434881454757677, guid: c113988f8b34af744a4b2fcdb876e09d, type: 3}
       propertyPath: pickUpFrameCode
-      value: 101
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 6521434881454757677, guid: c113988f8b34af744a4b2fcdb876e09d, type: 3}
       propertyPath: dropOffFrameCode
-      value: 101
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 8214964131922734340, guid: c113988f8b34af744a4b2fcdb876e09d, type: 3}
       propertyPath: m_RootOrder
