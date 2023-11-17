@@ -260,6 +260,10 @@ MonoBehaviour:
   directionManager: {fileID: 0}
   cameraState: {fileID: 0}
   inputManager: {fileID: 0}
+  leftLeg: {fileID: 1995868387546464662}
+  rightLeg: {fileID: 2925126458869050196}
+  legMoveSpeed: 5
+  legRotationAmount: 30
 --- !u!114 &1886843159436924418
 MonoBehaviour:
   m_ObjectHideFlags: 0
