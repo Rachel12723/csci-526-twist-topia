@@ -15,6 +15,7 @@ public class PlatformRotation : MonoBehaviour
     public float rotationY = 0f;
     public float rotationZ = 0f;
     public List<Transform> platforms;
+    private List<Vector3> rotations;
     private bool isRotating = false;
 
     // Start is called before the first frame update
@@ -27,6 +28,7 @@ public class PlatformRotation : MonoBehaviour
         platformRotationKeyCode = platformConsoleMananger.platformRotationKeyCode;
         cameraState = platformConsoleMananger.cameraState;
         rotationTime = platformConsoleMananger.rotationTime;
+        rotations = new List<Vector3>();
     }
 
     // Update is called once per frame
@@ -47,35 +49,28 @@ public class PlatformRotation : MonoBehaviour
                     if (Mathf.Abs(transform.position.x - player.position.x) < 0.5f
                         && Mathf.Abs(transform.position.y - player.position.y) < 1.2f)
                     {
-                        if (rotationY == 0f)
+                        rotations.Clear();
+                        foreach (Transform platform in platforms)
                         {
-                            rotationZ -= 90f;
-                            rotationZ %= 360f;
-                        }
-                        else if(rotationY == 90f)
-                        {
-                            rotationX += 90f;
-                            rotationX %= 360f;
-                        }
-                        else if (rotationY == 180f)
-                        {
-                            rotationZ += 90f;
-                            rotationZ %= 360f;
-                        }
-                        else if (rotationY == 270f)
-                        {
-                            rotationX -= 90f;
-                            rotationX %= 360f;
+                            if (platform.rotation.eulerAngles.y == 0f)
+                            {
+                                rotations.Add(new Vector3(platform.rotation.eulerAngles.x, 0f, (platform.rotation.eulerAngles.z + 270f) % 360f));
+                            }
+                            else if (platform.rotation.eulerAngles.y == 90f)
+                            {
+                                rotations.Add(new Vector3((platform.rotation.eulerAngles.x+90f)%360f, 90f, platform.rotation.eulerAngles.z));
+                            }
+                            else if (platform.rotation.eulerAngles.y == 180f)
+                            {
+                                rotations.Add(new Vector3(platform.rotation.eulerAngles.x, 180f, (platform.rotation.eulerAngles.z + 90f) % 360f));
+                            }
+                            else if (platform.rotation.eulerAngles.y == 270f)
+                            {
+                                rotations.Add(new Vector3((platform.rotation.eulerAngles.x + 270f) % 360f, 270f, platform.rotation.eulerAngles.z));
+                            }
                         }
                         isRotating = true;
                         platformConsoleMananger.SetPlatformIsRotating(true);
-                        //rotationX += 90f;
-                        //rotationX %= 360f;
-                        //foreach (Transform platform in platforms)
-                        //{
-                        //    platform.rotation = Quaternion.Euler(platform.rotation.eulerAngles.x, platform.rotation.eulerAngles.y, platform.rotation.eulerAngles.z + 90);
-                        //}
-                        //directionManager.UpdateInvisibleCubes();
                     }
                 }
                 else if (cameraState.GetFacingDirection() == FacingDirection.Up)
@@ -83,34 +78,32 @@ public class PlatformRotation : MonoBehaviour
                     if (Mathf.Abs(transform.position.x - player.position.x) < 1.2f
                         && Mathf.Abs(transform.position.z - player.position.z) < 1.2f)
                     {
-                        rotationY += 90f;
-                        rotationY %= 360f;
+                        rotations.Clear();
+                        foreach (Transform platform in platforms)
+                        {
+                            rotations.Add(new Vector3(platform.rotation.eulerAngles.x, (platform.rotation.eulerAngles.y + 90f) % 360f, platform.rotation.eulerAngles.z));
+                        }
                         isRotating = true;
                         platformConsoleMananger.SetPlatformIsRotating(true);
-                        //foreach (Transform platform in platforms)
-                        //{
-                        //    platform.rotation = Quaternion.Euler(platform.rotation.eulerAngles.x, platform.rotation.eulerAngles.y + 90, platform.rotation.eulerAngles.z);
-                        //}
-                        //directionManager.UpdateInvisibleCubes();
                     }
                 }
             }
         }
         if (isRotating)
         {
-            foreach (Transform platform in platforms)
+            for(int i = 0;i<platforms.Count;i++)
             {
-                platform.rotation = Quaternion.RotateTowards(platform.rotation, Quaternion.Euler(rotationX, rotationY, rotationZ), 90 / rotationTime * Time.deltaTime);
-                if (Quaternion.Angle(platform.rotation, Quaternion.Euler(rotationX, rotationY, rotationZ))<1.0f)
+                platforms[i].rotation = Quaternion.RotateTowards(platforms[i].rotation, Quaternion.Euler(rotations[i]), 90 / rotationTime * Time.deltaTime);
+                if (Quaternion.Angle(platforms[i].rotation, Quaternion.Euler(rotations[i])) < 1.0f)
                 {
                     isRotating = false;
                 }
             }
             if (!isRotating)
             {
-                foreach (Transform platform in platforms)
+                for (int i = 0; i < platforms.Count; i++)
                 {
-                    platform.rotation = Quaternion.Euler(rotationX, rotationY, rotationZ);
+                    platforms[i].rotation = Quaternion.Euler(rotations[i]);
                 }
                 directionManager.UpdateInvisibleCubes();
                 platformConsoleMananger.SetPlatformIsRotating(false);
