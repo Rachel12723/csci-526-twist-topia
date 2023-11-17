@@ -6,18 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class InstructControl : MonoBehaviour
 {
-    public GameObject panel;
-    public GameObject wasd;
-    public GameObject ad;
+    //public GameObject panel;
+    //public GameObject wasd;
+    //public GameObject ad;
     public CameraState cameraState;
-    public GameObject f1;
-    public GameObject f2;
-    public GameObject shift1;
-    public GameObject shift2;
+    public GameObject f;
+    
+    public GameObject shift;
+    
 
     public GameObject bagkey;
 
-    private bool show = true;
+    private bool show = false;
     private string sceneName;
     //private FacingDirection direction;
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public class InstructControl : MonoBehaviour
         ad.SetActive(true);*/
 
 
-        StartCoroutine(HidePanelAfterSeconds(1.5f));
+        StartCoroutine(HidePanelAfterSeconds(5f));
 
 
     }
@@ -37,25 +37,21 @@ public class InstructControl : MonoBehaviour
     {
         if (show)
         {
-            if (cameraState.GetFacingDirection() == FacingDirection.Front)
-            {
-                wasd.SetActive(false);
-                ad.SetActive(true);
-            }
-            else
-            {
-                wasd.SetActive(true);
-                ad.SetActive(false);
-            }
             bagkey.SetActive(true);
+            f.SetActive(true);
+            shift.SetActive(true);
         }
             
     }
     IEnumerator HidePanelAfterSeconds(float seconds)
     {
-        panel.SetActive(true);
-        yield return new WaitForSeconds(seconds); 
-        panel.SetActive(false); 
+        bagkey.SetActive(true);
+        f.SetActive(true);
+        shift.SetActive(true);
+        yield return new WaitForSeconds(seconds);
+        bagkey.SetActive(false);
+        f.SetActive(false);
+        shift.SetActive(false);
     }
 
     public void OnButtonClick()
@@ -64,9 +60,11 @@ public class InstructControl : MonoBehaviour
         Debug.Log(show);
         if (!show)
         {
-            wasd.SetActive(false);
-            ad.SetActive(false);
+            //wasd.SetActive(false);
+            //ad.SetActive(false);
             bagkey.SetActive(false);
+            f.SetActive(false);
+            shift.SetActive(false);
         }
         EventSystem.current.SetSelectedGameObject(null);
     }
