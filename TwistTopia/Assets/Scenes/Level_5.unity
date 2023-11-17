@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.1341472, b: 0.121078566, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -16737,10 +16737,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1392004758}
     - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
-      propertyPath: frameEmpty
-      value: 
-      objectReference: {fileID: 2100000, guid: 786c8e1e26d79458988ceca065b7fc23, type: 2}
-    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: cameraState
       value: 
       objectReference: {fileID: 1972112748}
@@ -16748,10 +16744,6 @@ PrefabInstance:
       propertyPath: frameAction
       value: 
       objectReference: {fileID: 480427717}
-    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
-      propertyPath: frameCaught
-      value: 
-      objectReference: {fileID: 2100000, guid: 1ed082596e5214773b6249116e4c1704, type: 2}
     - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: inputManager
       value: 

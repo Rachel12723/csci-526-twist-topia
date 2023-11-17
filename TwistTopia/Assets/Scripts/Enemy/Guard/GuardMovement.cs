@@ -24,6 +24,8 @@ public class GuardMovement : MonoBehaviour
     private Transform keys;
     private GameObject key;
 
+    private GameObject exclamation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +49,7 @@ public class GuardMovement : MonoBehaviour
             key = guardManager.key;
         }
 
-
+        exclamation = transform.Find("Exclamation").gameObject;
 
     }
 
@@ -70,6 +72,10 @@ public class GuardMovement : MonoBehaviour
                     outsideMinPosition.z = transform.position.z;
                     outsideMaxPosition.z = transform.position.z;
                     outsideTargetPosition.z = transform.position.z;
+                    if (!exclamation.activeSelf)
+                    {
+                        exclamation.SetActive(true);
+                    }
                 }
                 else
                 {
@@ -87,6 +93,10 @@ public class GuardMovement : MonoBehaviour
                     if (targetPosition != outsideTargetPosition)
                     {
                         targetPosition = outsideTargetPosition;
+                    }
+                    if (exclamation.activeSelf)
+                    {
+                        exclamation.SetActive(false);
                     }
                 }
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
