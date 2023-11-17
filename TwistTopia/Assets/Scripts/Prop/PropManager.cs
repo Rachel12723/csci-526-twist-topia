@@ -15,7 +15,7 @@ public class PropManager : MonoBehaviour
     private float zOffset = -0.56f;
     private float xOffset_landmine = 0.5f;
     private float zOffset_landmine = -0.85f;
-    private float xOffset_frame = 0.67f;
+    private float xOffset_frame = 0.53f;
     private float yOffset_frame = 0.029f;
     private float zOffset_frame = -0.81f;
     public GameObject keyponInHand;

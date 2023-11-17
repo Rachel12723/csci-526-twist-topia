@@ -39,6 +39,15 @@ public class PlayerMovement : MonoBehaviour
     // Input Manager
     public InputManager inputManager;
     private int lastHorizontalFlag = 1;
+    
+    // Animation
+    public GameObject leftLeg; 
+    public GameObject rightLeg; 
+
+    public float legMoveSpeed = 5f; 
+    public float legRotationAmount = 30f; 
+
+
 
     void Start()
     {
@@ -102,7 +111,29 @@ public class PlayerMovement : MonoBehaviour
             TurnRound();
             // TouchEnemy();
             ReachGoal();
+            
+            if (Mathf.Abs(Horizontal) > 0 || Mathf.Abs(Vertical) > 0) 
+            {
+                AnimateLegs();
+            }
+            else
+            {
+                StopLegAnimation(); 
+            }
         }
+    }
+    
+    private void AnimateLegs()
+    {
+        float legRotation = Mathf.Sin(Time.time * legMoveSpeed) * legRotationAmount;
+        leftLeg.transform.localEulerAngles = new Vector3(0, 0, legRotation);
+        rightLeg.transform.localEulerAngles = new Vector3(0, 0, -legRotation);
+    }
+
+    private void StopLegAnimation()
+    {
+        leftLeg.transform.localEulerAngles = Vector3.zero;
+        rightLeg.transform.localEulerAngles = Vector3.zero;
     }
     private void TouchEnemy()
     {
