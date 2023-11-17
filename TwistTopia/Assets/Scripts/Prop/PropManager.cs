@@ -22,6 +22,9 @@ public class PropManager : MonoBehaviour
     private GameObject inHandKeypon;
     public GameObject frameInHand;
     private GameObject inHandFrame;
+    public FrameAction frameAction;
+    public Material frameEmpty; // Assign this material in the Inspector
+    public Material frameCaught; 
     public GameObject LandMineInHand;
     private GameObject inHandLandMine;
     public Transform player;
@@ -159,6 +162,8 @@ public class PropManager : MonoBehaviour
         else if (state == 2 && num > 0 && inHandFrame == null)
         {
             inHandFrame = Instantiate(frameInHand, player.transform);
+            Renderer instanceRenderer = inHandFrame.gameObject.GetComponent<Renderer>();
+            instanceRenderer.material = frameAction.frameState ? frameCaught : frameEmpty;
             inHandFrame.transform.localPosition = new Vector3(xOffset_frame, yOffset_frame, zOffset_frame);
         }
 

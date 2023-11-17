@@ -18,6 +18,7 @@ public class FrameAction : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public Sprite frameWithEnemy;
     public Sprite frameWithoutEnemy;
+    public bool frameState = false;
 
     private bool needRelease = false;
     public float releaseTime = 3f;
@@ -96,6 +97,7 @@ public class FrameAction : MonoBehaviour
         patrol.gameObject.SetActive(false);
         this.patrol = patrol;
         // Destroy(enemyModel);
+        frameState = true;
         spriteRenderer.sprite = frameWithEnemy; // change the frame's appearance to indicate the enemy is captured
     }
     
@@ -147,6 +149,7 @@ public class FrameAction : MonoBehaviour
                 patrol = null;
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 needRelease = false;
+                frameState = false;
                 spriteRenderer.sprite = frameWithoutEnemy;
             }
         }

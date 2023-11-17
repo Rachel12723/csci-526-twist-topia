@@ -16725,6 +16725,10 @@ PrefabInstance:
       value: Instruction_bag
       objectReference: {fileID: 0}
     - target: {fileID: 6248221358611807182, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: bagkey
+      value: 
+      objectReference: {fileID: 1247749185}
+    - target: {fileID: 6248221358611807182, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: cameraState
       value: 
       objectReference: {fileID: 1972112748}
@@ -16733,9 +16737,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1392004758}
     - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: frameEmpty
+      value: 
+      objectReference: {fileID: 2100000, guid: 786c8e1e26d79458988ceca065b7fc23, type: 2}
+    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: cameraState
       value: 
       objectReference: {fileID: 1972112748}
+    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: frameAction
+      value: 
+      objectReference: {fileID: 480427717}
+    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: frameCaught
+      value: 
+      objectReference: {fileID: 2100000, guid: 1ed082596e5214773b6249116e4c1704, type: 2}
     - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: inputManager
       value: 
@@ -20663,6 +20679,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8f321fc497dc416eae767289df5e6c3, type: 3}
+--- !u!1 &1247749185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 923907091204027370, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+  m_PrefabInstance: {fileID: 966064812}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1250629957
 PrefabInstance:
   m_ObjectHideFlags: 0
