@@ -1846,6 +1846,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyponInHand: {fileID: 5620782111523224109, guid: d6e1f5a7899424257a6d17fd0fae0ace, type: 3}
   frameInHand: {fileID: 2451054984838483845, guid: 25668a5675e22495c90ee7c0613f83c4, type: 3}
+  frameAction: {fileID: 0}
+  frameEmpty: {fileID: 2100000, guid: 786c8e1e26d79458988ceca065b7fc23, type: 2}
+  frameCaught: {fileID: 2100000, guid: 1ed082596e5214773b6249116e4c1704, type: 2}
   LandMineInHand: {fileID: 2451054984838483845, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
   player: {fileID: 0}
   inputManager: {fileID: 25965987153395677, guid: 490fc6855e0c72f4489ce1ebcc6d8858, type: 3}
