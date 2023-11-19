@@ -52,22 +52,23 @@ public class PlatformRotation : MonoBehaviour
                         rotations.Clear();
                         foreach (Transform platform in platforms)
                         {
-                            if (platform.rotation.eulerAngles.y == 0f)
-                            {
-                                rotations.Add(new Vector3(platform.rotation.eulerAngles.x, 0f, (platform.rotation.eulerAngles.z + 270f) % 360f));
-                            }
-                            else if (platform.rotation.eulerAngles.y == 90f)
-                            {
-                                rotations.Add(new Vector3((platform.rotation.eulerAngles.x+90f)%360f, 90f, platform.rotation.eulerAngles.z));
-                            }
-                            else if (platform.rotation.eulerAngles.y == 180f)
-                            {
-                                rotations.Add(new Vector3(platform.rotation.eulerAngles.x, 180f, (platform.rotation.eulerAngles.z + 90f) % 360f));
-                            }
-                            else if (platform.rotation.eulerAngles.y == 270f)
-                            {
-                                rotations.Add(new Vector3((platform.rotation.eulerAngles.x + 270f) % 360f, 270f, platform.rotation.eulerAngles.z));
-                            }
+                            Debug.Log(platform.rotation.eulerAngles);
+                            //if (Mathf.Abs(platform.rotation.eulerAngles.y - 0f) < 1f)
+                            //{
+                            //    rotations.Add(new Vector3(platform.rotation.eulerAngles.x, 0f, (platform.rotation.eulerAngles.z + 270f) % 360f));
+                            //}
+                            //else if (Mathf.Abs(platform.rotation.eulerAngles.y - 90f) < 1f)
+                            //{
+                            //    rotations.Add(new Vector3((platform.rotation.eulerAngles.x+90f)%360f, 90f, platform.rotation.eulerAngles.z));
+                            //}
+                            //else if (Mathf.Abs(platform.rotation.eulerAngles.y - 180f) < 1f)
+                            //{
+                            //    rotations.Add(new Vector3(platform.rotation.eulerAngles.x, 180f, (platform.rotation.eulerAngles.z + 90f) % 360f));
+                            //}
+                            //else if (Mathf.Abs(platform.rotation.eulerAngles.y - 270f) < 1f)
+                            //{
+                            //    rotations.Add(new Vector3((platform.rotation.eulerAngles.x + 270f) % 360f, 270f, platform.rotation.eulerAngles.z));
+                            //}
                         }
                         isRotating = true;
                         platformConsoleMananger.SetPlatformIsRotating(true);
@@ -93,18 +94,18 @@ public class PlatformRotation : MonoBehaviour
         {
             for(int i = 0;i<platforms.Count;i++)
             {
-                platforms[i].rotation = Quaternion.RotateTowards(platforms[i].rotation, Quaternion.Euler(rotations[i]), 90 / rotationTime * Time.deltaTime);
-                if (Quaternion.Angle(platforms[i].rotation, Quaternion.Euler(rotations[i])) < 1.0f)
-                {
+                //platforms[i].rotation = Quaternion.RotateTowards(platforms[i].rotation, Quaternion.Euler(rotations[i]), 90 / rotationTime * Time.deltaTime);
+                //if (Quaternion.Angle(platforms[i].rotation, Quaternion.Euler(rotations[i])) < 1.0f)
+                //{
                     isRotating = false;
-                }
+                //}
             }
             if (!isRotating)
             {
-                for (int i = 0; i < platforms.Count; i++)
-                {
-                    platforms[i].rotation = Quaternion.Euler(rotations[i]);
-                }
+                //for (int i = 0; i < platforms.Count; i++)
+                //{
+                //    platforms[i].rotation = Quaternion.Euler(rotations[i]);
+                //}
                 directionManager.UpdateInvisibleCubes();
                 platformConsoleMananger.SetPlatformIsRotating(false);
             }
