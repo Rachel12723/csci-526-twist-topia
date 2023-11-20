@@ -15,7 +15,7 @@ public class PlatformRotation : MonoBehaviour
     public float rotationY = 0f;
     public float rotationZ = 0f;
     public List<Transform> platforms;
-    private List<Vector3> rotations;
+    private List<Quaternion> rotations;
     private bool isRotating = false;
 
     // Start is called before the first frame update
@@ -28,7 +28,7 @@ public class PlatformRotation : MonoBehaviour
         platformRotationKeyCode = platformConsoleMananger.platformRotationKeyCode;
         cameraState = platformConsoleMananger.cameraState;
         rotationTime = platformConsoleMananger.rotationTime;
-        rotations = new List<Vector3>();
+        rotations = new List<Quaternion>();
     }
 
     // Update is called once per frame
@@ -52,23 +52,8 @@ public class PlatformRotation : MonoBehaviour
                         rotations.Clear();
                         foreach (Transform platform in platforms)
                         {
-                            Debug.Log(platform.rotation.eulerAngles);
-                            //if (Mathf.Abs(platform.rotation.eulerAngles.y - 0f) < 1f)
-                            //{
-                            //    rotations.Add(new Vector3(platform.rotation.eulerAngles.x, 0f, (platform.rotation.eulerAngles.z + 270f) % 360f));
-                            //}
-                            //else if (Mathf.Abs(platform.rotation.eulerAngles.y - 90f) < 1f)
-                            //{
-                            //    rotations.Add(new Vector3((platform.rotation.eulerAngles.x+90f)%360f, 90f, platform.rotation.eulerAngles.z));
-                            //}
-                            //else if (Mathf.Abs(platform.rotation.eulerAngles.y - 180f) < 1f)
-                            //{
-                            //    rotations.Add(new Vector3(platform.rotation.eulerAngles.x, 180f, (platform.rotation.eulerAngles.z + 90f) % 360f));
-                            //}
-                            //else if (Mathf.Abs(platform.rotation.eulerAngles.y - 270f) < 1f)
-                            //{
-                            //    rotations.Add(new Vector3((platform.rotation.eulerAngles.x + 270f) % 360f, 270f, platform.rotation.eulerAngles.z));
-                            //}
+                            Vector3 axis = RotationVector3(platform.rotation.eulerAngles, FacingDirection.Front);
+                            rotations.Add(platform.rotation * Quaternion.AngleAxis(90f, axis));
                         }
                         isRotating = true;
                         platformConsoleMananger.SetPlatformIsRotating(true);
@@ -82,7 +67,8 @@ public class PlatformRotation : MonoBehaviour
                         rotations.Clear();
                         foreach (Transform platform in platforms)
                         {
-                            rotations.Add(new Vector3(platform.rotation.eulerAngles.x, (platform.rotation.eulerAngles.y + 90f) % 360f, platform.rotation.eulerAngles.z));
+                            Vector3 axis = RotationVector3(platform.rotation.eulerAngles, FacingDirection.Up);
+                            rotations.Add(platform.rotation * Quaternion.AngleAxis(90f, axis));
                         }
                         isRotating = true;
                         platformConsoleMananger.SetPlatformIsRotating(true);
@@ -92,23 +78,201 @@ public class PlatformRotation : MonoBehaviour
         }
         if (isRotating)
         {
-            for(int i = 0;i<platforms.Count;i++)
+            for (int i = 0; i < platforms.Count; i++)
             {
-                //platforms[i].rotation = Quaternion.RotateTowards(platforms[i].rotation, Quaternion.Euler(rotations[i]), 90 / rotationTime * Time.deltaTime);
-                //if (Quaternion.Angle(platforms[i].rotation, Quaternion.Euler(rotations[i])) < 1.0f)
-                //{
+                platforms[i].rotation = Quaternion.RotateTowards(platforms[i].rotation, rotations[i], 90 / rotationTime * Time.deltaTime);
+                if (Quaternion.Angle(platforms[i].rotation, rotations[i]) < 1.0f)
+                {
                     isRotating = false;
-                //}
+                }
             }
             if (!isRotating)
             {
-                //for (int i = 0; i < platforms.Count; i++)
-                //{
-                //    platforms[i].rotation = Quaternion.Euler(rotations[i]);
-                //}
+                for (int i = 0; i < platforms.Count; i++)
+                {
+                    platforms[i].rotation = rotations[i];
+                }
                 directionManager.UpdateInvisibleCubes();
                 platformConsoleMananger.SetPlatformIsRotating(false);
             }
         }
+    }
+
+    private Vector3 RotationVector3(Vector3 rotation, FacingDirection facingDirection)
+    {
+        float x = (rotation.x + 360f) % 360f;
+        float y = (rotation.y + 360f) % 360f;
+        float z = (rotation.z + 360f) % 360f;
+        if (facingDirection == FacingDirection.Front)
+        {
+            if ((Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 180) < 0.1f))
+            {
+                return new Vector3(1f, 0f, 0f);
+            }
+            if ((Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 0) < 0.1f))
+            {
+                return new Vector3(-1f, 0f, 0f);
+            }
+            if ((Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 90) < 0.1f))
+            {
+                return new Vector3(0f, 1f, 0f);
+            }
+            if ((Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 270) < 0.1f))
+            {
+                return new Vector3(0f, -1f, 0f);
+            }
+            if ((Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 270) < 0.1f))
+            {
+                return new Vector3(0f, 0f, 1f);
+            }
+            if ((Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 270) < 0.1f))
+            {
+                return new Vector3(0f, 0f, -1f);
+            }
+        }
+        else if (facingDirection == FacingDirection.Up)
+        {
+            if ((Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 270) < 0.1f))
+            {
+                return new Vector3(1f, 0f, 0f);
+            }
+            if ((Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 90) < 0.1f))
+            {
+                return new Vector3(-1f, 0f, 0f);
+            }
+            if ((Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 180) < 0.1f))
+            {
+                return new Vector3(0f, 1f, 0f);
+            }
+            if ((Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 0) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 180) < 0.1f && Mathf.Abs(z - 0) < 0.1f))
+            {
+                return new Vector3(0f, -1f, 0f);
+            }
+            if ((Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 270) < 0.1f && Mathf.Abs(z - 270) < 0.1f))
+            {
+                return new Vector3(0f, 0f, 1f);
+            }
+            if ((Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 0) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 90) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 180) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 270) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 0) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 90) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 180) < 0.1f) ||
+                (Mathf.Abs(y - 270) < 0.1f && Mathf.Abs(x - 90) < 0.1f && Mathf.Abs(z - 270) < 0.1f))
+            {
+                return new Vector3(0f, 0f, -1f);
+            }
+        }
+        return Vector3.zero;
     }
 }
