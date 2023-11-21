@@ -2187,7 +2187,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'TwistTopia
 
-        Level 6'
+        Level 8'
       objectReference: {fileID: 0}
     - target: {fileID: 1472842017243216305, guid: 8c782845463ea014392d6c2bda20041e, type: 3}
       propertyPath: m_Pivot.x
