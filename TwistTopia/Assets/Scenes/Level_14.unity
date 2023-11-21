@@ -12185,7 +12185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5127518956500587172, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1.999939
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: player
@@ -12241,7 +12241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7511708765508166834, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1.999939
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
@@ -14287,7 +14287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3512289286987848920, guid: 06139199344396b4790809640705fdc0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 3512289286987848920, guid: 06139199344396b4790809640705fdc0, type: 3}
       propertyPath: m_LocalRotation.w
