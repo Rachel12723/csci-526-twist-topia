@@ -119,16 +119,17 @@ public class KeyAndDoor : MonoBehaviour
                     {
 					
                         Destroy(keypon.gameObject);
-					   /* inHandKeypon = Instantiate(keyponInHand, player.transform);
-						if(lastHorizontalFlag>0)
-						{
-							inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
-						}
-        			    else if(lastHorizontalFlag<0)
-						{
-							//inHandKeypon.transform.Rotate(0f, 180f, 0f);
-							inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
-						}*/
+                        PlayerPrefs.SetInt("keystate", 1);
+                        /* inHandKeypon = Instantiate(keyponInHand, player.transform);
+                         if(lastHorizontalFlag>0)
+                         {
+                             inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
+                         }
+                         else if(lastHorizontalFlag<0)
+                         {
+                             //inHandKeypon.transform.Rotate(0f, 180f, 0f);
+                             inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
+                         }*/
                         keyCounter++;
                         PlayerPrefs.SetString("add", "key");
                         //
