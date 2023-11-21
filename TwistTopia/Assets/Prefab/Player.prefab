@@ -692,6 +692,7 @@ MonoBehaviour:
   frameAction: {fileID: 0}
   playerFrame: {fileID: 0}
   checkpoints: {fileID: 0}
+  lightMaterial: {fileID: 2100000, guid: 8e7c7953bfe1f5e4e828b9dffa4f21a8, type: 2}
 --- !u!143 &1886843159436924419
 CharacterController:
   m_ObjectHideFlags: 0
