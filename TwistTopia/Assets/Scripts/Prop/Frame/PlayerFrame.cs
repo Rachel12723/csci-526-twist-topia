@@ -8,6 +8,8 @@ public class PlayerFrame : MonoBehaviour
     private Transform platformCubes;
     public Transform map;
     public List<Transform> landMineCubeList;
+    public Transform keypons;
+
     public KeyCode pickUpFrameCode;
     public KeyCode dropOffFrameCode;
     public int frameCounter = 0;
@@ -103,7 +105,7 @@ public class PlayerFrame : MonoBehaviour
         {
             foreach (Transform landMineProp in landMines)
             {
-                Debug.Log("JInlail");
+               /* Debug.Log("JInlail");*/
                 if (landMineProp.gameObject.activeSelf)
                 {
                     
@@ -112,7 +114,6 @@ public class PlayerFrame : MonoBehaviour
                         if (Mathf.Abs(player.transform.position.x - landMineProp.position.x) <= 0.5f
                             && Mathf.Abs(player.transform.position.y - landMineProp.position.y) <= 0.2f)
                         {
-                            Debug.Log("ÓÖJInlail");
                             PlayerPrefs.SetInt("landstate", 0);
                             return;
                         }
@@ -124,6 +125,25 @@ public class PlayerFrame : MonoBehaviour
             if (landstate == 1)
             {
                 PlayerPrefs.SetInt("landstate", 0);
+                return;
+            }
+            if (keypons != null)
+            {
+                foreach (Transform keypon in keypons)
+                {
+                    if (Mathf.Abs(keypon.position.y - player.transform.position.y) < WorldUnit + 0.5f &&
+                        Mathf.Abs(keypon.position.x - player.transform.position.x) < WorldUnit + 0.5f)
+                    {
+
+                        PlayerPrefs.SetInt("keystate", 0);
+                        return;
+                    }
+                }
+            }
+            int keystate = PlayerPrefs.GetInt("keystate");
+            if (keystate == 1)
+            {
+                PlayerPrefs.SetInt("keystate", 0);
                 return;
             }
             // Transform frame = frames.GetChild(0);
