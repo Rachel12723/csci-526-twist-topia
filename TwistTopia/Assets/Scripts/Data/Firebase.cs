@@ -24,7 +24,7 @@ public class Firebase : MonoBehaviour
     private long start_time;
     private long end_time;
 
-
+/*
     //level 1
     private const int NUM1 = 9;
     private double [] platform_time1 = new double[NUM1]{0,0,0,0,0,0,0,0,0};
@@ -44,10 +44,10 @@ public class Firebase : MonoBehaviour
     private string [] platform_cube_all3 = new string[NUM3]{"","","","","","","","",""};
  
     //level 4
-    private const int NUM4 = 10;
-    private double [] platform_time4 = new double[NUM4]{0,0,0,0,0,0,0,0,0,0};
-    private string [] platform_cube4 = new string[NUM4]{"","","","","","","","","",""};
-    private string [] platform_cube_all4 = new string[NUM4]{"","","","","","","","","",""};
+    private const int NUM4 = 17;
+    private double [] platform_time4 = new double[NUM4]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    private string [] platform_cube4 = new string[NUM4]{"","","","","","","","","","","","","","","","",""};
+    private string [] platform_cube_all4 = new string[NUM4]{"","","","","","","","","","","","","","","","",""};
 
 
     //level 5
@@ -61,10 +61,10 @@ public class Firebase : MonoBehaviour
     private const int NUM6 = 14;
     private double [] platform_time6 = new double[NUM6]{0,0,0,0,0,0,0,0,0,0,0,0,0,0};
     private string [] platform_cube6 = new string[NUM6]{"","","","","","","","","","","","","",""};
-    private string [] platform_cube_all6 = new string[NUM6]{"","","","","","","","","","","","","",""};
+    private string [] platform_cube_all6 = new string[NUM6]{"","","","","","","","","","","","","",""};*/
 
 
-    private int NUM;
+    private int NUM = -1;
     private double [] platform_time;
     private string [] platform_cube;
     private string [] platform_cube_all;
@@ -102,10 +102,11 @@ public class Firebase : MonoBehaviour
         
         Transform platformSetTransform = GameObject.Find("Platform Cubes").transform;
         for(int i =0; i<platformSetTransform.childCount;i++){
-            if(!is_falling)
+            if (!is_falling)
                 break;
             GameObject platform = platformSetTransform.GetChild(i).gameObject;
             Transform platformTransform =platform.transform;
+            //Debug.Log(">>>>>>>>>>>platformSetTransform.childCount: "+platformSetTransform.childCount);
             for(int j=0; j<platformTransform.childCount;j++){
 	            GameObject cube = platformTransform.GetChild(j).gameObject;
                 if(j>=platform_cube_all[i].Split('_').Length){
@@ -125,8 +126,8 @@ public class Firebase : MonoBehaviour
                             platform_cube[i]+="_"+cube.transform.position;
                             priv_cube = ""+cube.transform.position;
                         }
-                        
-	            }
+
+                }
             }              
         }
          
@@ -213,6 +214,21 @@ public class Firebase : MonoBehaviour
             Debug.Log(">>>>>>>>>>"+scene.name+">>>>>>>>>"+priv_scene_name);
             start_time = System.DateTime.Now.Ticks;
         }
+        Transform platformTotal = GameObject.Find("Platform Cubes").transform;
+        if (NUM != platformTotal.childCount || scene.name != priv_scene_name)
+        {
+            NUM = platformTotal.childCount;
+            platform_time = new double[NUM];
+            platform_cube = new string[NUM];
+            platform_cube_all = new string[NUM];
+            for (int i = 0; i < NUM; i++)
+            {
+                platform_time[i] = 0;
+                platform_cube[i] = "";
+                platform_cube_all[i] = "";
+            }
+            int.TryParse(scene.name.Split('_')[1], out scene_num);
+        }
 
         priv_scene_name = scene.name;
         goal = GameObject.FindGameObjectWithTag("Goal");
@@ -224,7 +240,8 @@ public class Firebase : MonoBehaviour
             drop_pos[2]=0;
         }
 
-        if(scene.name == "Level_1"){
+
+        /*if (scene.name == "Level_1"){
             NUM = NUM1;
             platform_time = platform_time1;
             platform_cube = platform_cube1;
@@ -268,7 +285,7 @@ public class Firebase : MonoBehaviour
         }
         else{
             yield break;
-        }
+        }*/
 
         SetPlatformNum();
 
