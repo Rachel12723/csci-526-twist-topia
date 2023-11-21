@@ -88,8 +88,8 @@ public class LevelSelector : MonoBehaviour
         }
         else if (levelIndex == 6)
         {
-            SceneManager.LoadScene("Level_6");
-            Time.timeScale = 1f;
+            /*SceneManager.LoadScene("Level_6");
+            Time.timeScale = 1f;*/
         }
         else if (levelIndex == 7)
         {
@@ -103,8 +103,8 @@ public class LevelSelector : MonoBehaviour
         }
         else if (levelIndex == 9)
         {
-            SceneManager.LoadScene("Level_9");
-            Time.timeScale = 1f;
+          /*  SceneManager.LoadScene("Level_9");
+            Time.timeScale = 1f;*/
         }
         else if (levelIndex == 10)
         {
@@ -123,8 +123,8 @@ public class LevelSelector : MonoBehaviour
         }
         else if (levelIndex == 13)
         {
-            SceneManager.LoadScene("Level_13");
-            Time.timeScale = 1f;
+            /*SceneManager.LoadScene("Level_13");
+            Time.timeScale = 1f;*/
         }
         else if (levelIndex == 14)
         {
@@ -133,8 +133,8 @@ public class LevelSelector : MonoBehaviour
         }
         else if (levelIndex == 15)
         {
-            SceneManager.LoadScene("Level_15");
-            Time.timeScale = 1f;
+            /*SceneManager.LoadScene("Level_15");
+            Time.timeScale = 1f;*/
         }
 
 
