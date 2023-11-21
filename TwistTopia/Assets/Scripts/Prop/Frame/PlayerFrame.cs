@@ -103,22 +103,25 @@ public class PlayerFrame : MonoBehaviour
 	private void DropOffFrame(){
         if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
-            foreach (Transform landMineProp in landMines)
+            if (landMines != null)
             {
-               /* Debug.Log("JInlail");*/
-                if (landMineProp.gameObject.activeSelf)
+                foreach (Transform landMineProp in landMines)
                 {
-                    
-                    if (cameraState.GetFacingDirection() == FacingDirection.Front)
+                    /* Debug.Log("JInlail");*/
+                    if (landMineProp.gameObject.activeSelf)
                     {
-                        if (Mathf.Abs(player.transform.position.x - landMineProp.position.x) <= 0.5f
-                            && Mathf.Abs(player.transform.position.y - landMineProp.position.y) <= 0.2f)
-                        {
-                            PlayerPrefs.SetInt("landstate", 0);
-                            return;
-                        }
-                    }
 
+                        if (cameraState.GetFacingDirection() == FacingDirection.Front)
+                        {
+                            if (Mathf.Abs(player.transform.position.x - landMineProp.position.x) <= 0.5f
+                                && Mathf.Abs(player.transform.position.y - landMineProp.position.y) <= 0.2f)
+                            {
+                                PlayerPrefs.SetInt("landstate", 0);
+                                return;
+                            }
+                        }
+
+                    }
                 }
             }
             int landstate = PlayerPrefs.GetInt("landstate");
