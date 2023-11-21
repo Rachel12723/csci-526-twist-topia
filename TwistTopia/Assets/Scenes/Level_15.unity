@@ -4598,6 +4598,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1472842015946229052, guid: 8c782845463ea014392d6c2bda20041e, type: 3}
+      propertyPath: m_text
+      value: TwistTopia level 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1472842017243216305, guid: 8c782845463ea014392d6c2bda20041e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
