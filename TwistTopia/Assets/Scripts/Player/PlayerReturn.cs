@@ -17,6 +17,7 @@ public class PlayerReturn : MonoBehaviour
     public FrameAction frameAction;
     public PlayerFrame playerFrame;
     public Transform checkpoints;
+    public Material lightMaterial;
 
     void Start()
     {
@@ -87,6 +88,7 @@ public class PlayerReturn : MonoBehaviour
                         Mathf.Abs(transform.position.y - checkpoint.position.y) < 0.5f)
                     {
                         SetCheckPoint(new Vector3(checkpoint.position.x, checkpoint.position.y, transform.position.z));
+                        checkpoint.Find("Light").gameObject.GetComponent<Renderer>().material = lightMaterial;
                         break;
                     }
                 }
@@ -102,6 +104,7 @@ public class PlayerReturn : MonoBehaviour
                         Mathf.Abs(transform.position.z - checkpoint.position.z) < 1.0f)
                     {
                         SetCheckPoint(new Vector3(checkpoint.position.x, checkpoint.position.y, checkpoint.position.z));
+                        checkpoint.Find("Light").gameObject.GetComponent<Renderer>().material = lightMaterial;
                         break;
                     }
                 }
