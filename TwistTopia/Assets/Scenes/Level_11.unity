@@ -1267,7 +1267,7 @@ PrefabInstance:
     - target: {fileID: 4222037521632504072, guid: 0e9ef5e36826dbf44b5b6bd63237f31d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d8d61d9d7d86aa1408af62e510813e63, type: 2}
+      objectReference: {fileID: 2100000, guid: 02ad14a7047adae408f4e38d6dd86312, type: 2}
     - target: {fileID: 4283951296764488783, guid: 0e9ef5e36826dbf44b5b6bd63237f31d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1791,7 +1791,7 @@ PrefabInstance:
     - target: {fileID: 4222037521632504072, guid: 0e9ef5e36826dbf44b5b6bd63237f31d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d3b1f3f011b721c4fa192b27df2d89de, type: 2}
+      objectReference: {fileID: 2100000, guid: b0d2cb2696e39f443ad7014511afbcf6, type: 2}
     - target: {fileID: 4283951296764488783, guid: 0e9ef5e36826dbf44b5b6bd63237f31d, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2888,11 +2888,11 @@ PrefabInstance:
     - target: {fileID: 1521680221482929034, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1504381470}
     - target: {fileID: 1521680221482929034, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: playerCamera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1533480951}
     - target: {fileID: 1892819814931497346, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: m_text
       value: Level 9
@@ -4039,7 +4039,7 @@ PrefabInstance:
     - target: {fileID: 4222037521632504072, guid: 0e9ef5e36826dbf44b5b6bd63237f31d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e777dcc90afe5dc4f8e5202b45c42413, type: 2}
+      objectReference: {fileID: 2100000, guid: 27369cc4b14c3b94dbfd8990a3ccb43c, type: 2}
     - target: {fileID: 4283951296764488783, guid: 0e9ef5e36826dbf44b5b6bd63237f31d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -5489,7 +5489,7 @@ PrefabInstance:
     - target: {fileID: 4222037521632504072, guid: 0e9ef5e36826dbf44b5b6bd63237f31d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c7bc33e6b28a95449aad5abe3f10bef1, type: 2}
+      objectReference: {fileID: 2100000, guid: 9e85acb0da8a1db429d3d8a2ff382bbf, type: 2}
     - target: {fileID: 4283951296764488783, guid: 0e9ef5e36826dbf44b5b6bd63237f31d, type: 3}
       propertyPath: m_RootOrder
       value: 3
