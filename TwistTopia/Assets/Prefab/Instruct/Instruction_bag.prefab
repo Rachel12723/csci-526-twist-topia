@@ -481,7 +481,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2614.2432, y: -22.00003}
+  m_AnchoredPosition: {x: 2613.2014, y: -21.839}
   m_SizeDelta: {x: -607.386, y: -116.0767}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1325812752675740189
@@ -772,7 +772,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -324.10217, y: -61}
+  m_AnchoredPosition: {x: -324.08102, y: -61.066105}
   m_SizeDelta: {x: 1060.669, y: 49.709}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5603805791269711200
@@ -803,7 +803,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SHIFT
+  m_text: SHIFT PERSPECTIVE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
@@ -1226,7 +1226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3604949766776459057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.377574, y: 12.235191, z: 18.41021}
+  m_LocalPosition: {x: 5, y: 12, z: 18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3192,7 +3192,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 516.651, y: 270}
+  m_AnchoredPosition: {x: 516.5, y: 270}
   m_SizeDelta: {x: 811.3334, y: 424}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2908779470038935321
@@ -3820,7 +3820,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -325.2, y: -23.535065}
+  m_AnchoredPosition: {x: -325.3312, y: -23.847872}
   m_SizeDelta: {x: 600, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8480667654879541307
