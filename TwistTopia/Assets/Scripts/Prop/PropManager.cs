@@ -50,6 +50,7 @@ public class PropManager : MonoBehaviour
         itemidx = 0;
 
         PlayerPrefs.SetInt("state", 0);//���棿
+        PlayerPrefs.SetInt("landstate", 0);
         //0:circuit; 1:keypon; 2:frame
         PlayerPrefs.SetInt("None", 1);
         PlayerPrefs.SetInt("Keypon", 0);

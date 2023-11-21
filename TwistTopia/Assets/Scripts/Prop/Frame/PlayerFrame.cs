@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerFrame : MonoBehaviour
 {
     // player action keyCode
+    private Transform platformCubes;
+    public Transform map;
+    public List<Transform> landMineCubeList;
     public KeyCode pickUpFrameCode;
     public KeyCode dropOffFrameCode;
     public int frameCounter = 0;
@@ -21,12 +24,29 @@ public class PlayerFrame : MonoBehaviour
 
     public InputManager inputManager;
 
+    //
+    private Transform landMines;
+
     void Start()
     {
         // Debug.Log(" x"+frame.position.x+" y"+frame.position.y+" z"+frame.position.z);
         originalPos = frame.position;
         playerState = player.GetComponent<PlayerState>();
         frameAction = frame.gameObject.GetComponent<FrameAction>();
+
+        //
+        platformCubes = map.Find("Platform Cubes");
+        foreach (Transform platform in platformCubes)
+        {
+            foreach (Transform cube in platform)
+            {
+                if (cube.CompareTag("Land Mine"))
+                {
+                    landMineCubeList.Add(cube);
+                }
+            }
+        }
+        landMines = transform.Find("Land Mines");
     }
 
     // Update is called once per frame
@@ -61,6 +81,8 @@ public class PlayerFrame : MonoBehaviour
         {
             if (cameraState.GetFacingDirection() == FacingDirection.Front)
             {
+                
+               
                 if (frame.gameObject.activeSelf && Mathf.Abs(frame.position.x - player.transform.position.x) < WorldUnit + 0.5f)
                 {
                     frame.gameObject.SetActive(false);
@@ -79,6 +101,31 @@ public class PlayerFrame : MonoBehaviour
 	private void DropOffFrame(){
         if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
+            foreach (Transform landMineProp in landMines)
+            {
+                Debug.Log("JInlail");
+                if (landMineProp.gameObject.activeSelf)
+                {
+                    
+                    if (cameraState.GetFacingDirection() == FacingDirection.Front)
+                    {
+                        if (Mathf.Abs(player.transform.position.x - landMineProp.position.x) <= 0.5f
+                            && Mathf.Abs(player.transform.position.y - landMineProp.position.y) <= 0.2f)
+                        {
+                            Debug.Log("ÓÖJInlail");
+                            PlayerPrefs.SetInt("landstate", 0);
+                            return;
+                        }
+                    }
+
+                }
+            }
+            int landstate = PlayerPrefs.GetInt("landstate");
+            if (landstate == 1)
+            {
+                PlayerPrefs.SetInt("landstate", 0);
+                return;
+            }
             // Transform frame = frames.GetChild(0);
             Vector3 playerCurrPos = player.transform.position;
             frame.position = new Vector3(playerCurrPos.x, playerCurrPos.y + yOffset - 1, maxZ);

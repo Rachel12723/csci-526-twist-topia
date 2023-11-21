@@ -74,6 +74,7 @@ public class LandMineManager : MonoBehaviour
                                 && Mathf.Abs(player.transform.position.y - landMineProp.position.y) <= 0.2f)
                             {
                                 landMineProp.gameObject.SetActive(false);
+                                PlayerPrefs.SetInt("landstate", 1);
                                 /*inHandLandMine = Instantiate(landMineInHand, player.transform);
                                 inHandLandMine.transform.localPosition = new Vector3(xOffset, 0, zOffset);*/
                                 landMineCounter++;
@@ -89,6 +90,7 @@ public class LandMineManager : MonoBehaviour
                                 && Mathf.Abs(player.transform.position.z - landMineProp.position.z) <= 0.5f)
                             {
                                 landMineProp.gameObject.SetActive(false);
+                                
                                 /*inHandLandMine = Instantiate(landMineInHand, player.transform);
                                 inHandLandMine.transform.localPosition = new Vector3(xOffset, 0, zOffset);*/
                                 landMineCounter++;
