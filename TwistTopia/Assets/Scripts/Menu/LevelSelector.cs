@@ -58,12 +58,12 @@ public class LevelSelector : MonoBehaviour
 
         if (levelIndex == 0)
         {
-            SceneManager.LoadScene("Tutorial_1");
+            SceneManager.LoadScene("Level_0(Tutorial)_1");
             Time.timeScale = 1f;
         }
         else if (levelIndex == 1)
         {
-            SceneManager.LoadScene("Level_1");
+            SceneManager.LoadScene("Level_0(Tutorial)_2");
             Time.timeScale = 1f;
         }
         else if (levelIndex == 2)
@@ -89,6 +89,51 @@ public class LevelSelector : MonoBehaviour
         else if (levelIndex == 6)
         {
             SceneManager.LoadScene("Level_6");
+            Time.timeScale = 1f;
+        }
+        else if (levelIndex == 7)
+        {
+            SceneManager.LoadScene("Level_7");
+            Time.timeScale = 1f;
+        }
+        else if (levelIndex == 8)
+        {
+            SceneManager.LoadScene("Level_8");
+            Time.timeScale = 1f;
+        }
+        else if (levelIndex == 9)
+        {
+            SceneManager.LoadScene("Level_9");
+            Time.timeScale = 1f;
+        }
+        else if (levelIndex == 10)
+        {
+            SceneManager.LoadScene("Level_10");
+            Time.timeScale = 1f;
+        }
+        else if (levelIndex == 11)
+        {
+            SceneManager.LoadScene("Level_11");
+            Time.timeScale = 1f;
+        }
+        else if (levelIndex == 12)
+        {
+            SceneManager.LoadScene("Level_12");
+            Time.timeScale = 1f;
+        }
+        else if (levelIndex == 13)
+        {
+            SceneManager.LoadScene("Level_13");
+            Time.timeScale = 1f;
+        }
+        else if (levelIndex == 14)
+        {
+            SceneManager.LoadScene("Level_14");
+            Time.timeScale = 1f;
+        }
+        else if (levelIndex == 15)
+        {
+            SceneManager.LoadScene("Level_15");
             Time.timeScale = 1f;
         }
 
