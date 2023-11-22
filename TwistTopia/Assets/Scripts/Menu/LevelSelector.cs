@@ -136,6 +136,11 @@ public class LevelSelector : MonoBehaviour
             /*SceneManager.LoadScene("Level_15");
             Time.timeScale = 1f;*/
         }
+        else
+        {
+            SceneManager.LoadScene("Main_Menu");
+            Time.timeScale = 1f;
+        }
 
 
     }
