@@ -61,7 +61,7 @@ public class MainMenuController : MonoBehaviour
     {
         if (levelId == 0)
         {
-            SceneManager.LoadScene("Tutorial_1");
+            SceneManager.LoadScene("Level_0(Tutorial)_1");
         }
         else
         {
