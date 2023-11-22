@@ -49,7 +49,7 @@ public class InstructControl : MonoBehaviour
         f.SetActive(true);
         shift.SetActive(true);
         yield return new WaitForSeconds(seconds);
-        bagkey.SetActive(false);
+        //bagkey.SetActive(false);
         f.SetActive(false);
         shift.SetActive(false);
     }
