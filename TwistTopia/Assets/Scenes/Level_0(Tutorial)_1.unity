@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.1341472, b: 0.121078566, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2538,6 +2538,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1472842016242882935, guid: 8c782845463ea014392d6c2bda20041e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -5.173828
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472842016242882935, guid: 8c782845463ea014392d6c2bda20041e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -5.397522
       objectReference: {fileID: 0}
@@ -3022,7 +3026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6174146021192183631, guid: a14b24479980e4fabaaba7caea2f24ee, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.1
       objectReference: {fileID: 0}
     - target: {fileID: 6174146021192183631, guid: a14b24479980e4fabaaba7caea2f24ee, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3030,7 +3034,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6174146021192183631, guid: a14b24479980e4fabaaba7caea2f24ee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -13.3
       objectReference: {fileID: 0}
     - target: {fileID: 6174146021192183631, guid: a14b24479980e4fabaaba7caea2f24ee, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3058,6 +3062,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6174146021192183631, guid: a14b24479980e4fabaaba7caea2f24ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6927399584830727798, guid: a14b24479980e4fabaaba7caea2f24ee, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 18.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6927399584830727798, guid: a14b24479980e4fabaaba7caea2f24ee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -27
+      objectReference: {fileID: 0}
+    - target: {fileID: 6927399584830727798, guid: a14b24479980e4fabaaba7caea2f24ee, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
