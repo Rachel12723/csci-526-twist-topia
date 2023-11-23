@@ -1272,7 +1272,8 @@ MonoBehaviour:
   inputManager: {fileID: 25965987153395677, guid: 490fc6855e0c72f4489ce1ebcc6d8858, type: 3}
   key: {fileID: 21300000, guid: 18ecfd4094868974bbf322d21b36c64b, type: 3}
   keyup: {fileID: 21300000, guid: 5f062ed2354911a43b111394d1196f3e, type: 3}
-  frame: {fileID: 21300000, guid: 50a947e39c924a34190e2127f6d76ebb, type: 3}
+  frameEmptySprite: {fileID: -745625594, guid: 80e837f32eb284102b9c94d8fd76e0c7, type: 3}
+  frameCaughtSprite: {fileID: 746983765, guid: 80e837f32eb284102b9c94d8fd76e0c7, type: 3}
   landmine: {fileID: 21300000, guid: e23503612539fbc458700c12cb464187, type: 3}
   none: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   bagbutton:

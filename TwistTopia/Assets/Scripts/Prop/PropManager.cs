@@ -34,7 +34,8 @@ public class PropManager : MonoBehaviour
     public static int itemidx;
     public Sprite key;
     public Sprite keyup;
-    public Sprite frame;
+    public Sprite frameEmptySprite;
+    public Sprite frameCaughtSprite;
     public Sprite landmine;
     public Sprite none;
     public Button[] bagbutton;
@@ -236,7 +237,7 @@ public class PropManager : MonoBehaviour
                     }
                     else if (item == "frame")
                     {
-                        image.sprite = frame;
+                        image.sprite = frameAction.frameState ? frameCaughtSprite : frameEmptySprite;
                     }
                     else if (item == "landmine")
                     {
@@ -260,7 +261,7 @@ public class PropManager : MonoBehaviour
         }
         else if (item == "frame")
         {
-            imagee.sprite = frame;
+            imagee.sprite = frameAction.frameState ? frameCaughtSprite : frameEmptySprite;
         }
         else if (item == "landmine")
         {
@@ -347,7 +348,7 @@ public class PropManager : MonoBehaviour
                 }
                 else if (kvpp.Key == "frame")
                 {
-                    image.sprite = frame;
+                    image.sprite = frameAction.frameState ? frameCaughtSprite : frameEmptySprite;
                 }
                 else if (kvpp.Key == "landmine")
                 {
@@ -394,7 +395,7 @@ public class PropManager : MonoBehaviour
             {
                 PlayerPrefs.SetInt("state", 1);
             }
-            else if(image.sprite == frame)
+            else if(image.sprite == frameCaughtSprite || image.sprite == frameEmptySprite)
             {
                 PlayerPrefs.SetInt("state", 2);
             }
