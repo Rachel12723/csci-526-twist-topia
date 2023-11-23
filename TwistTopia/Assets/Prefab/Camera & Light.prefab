@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5007202786739403128}
   - component: {fileID: 708610751839162529}
   - component: {fileID: 6915119701175970629}
+  - component: {fileID: 2572558178239002747}
   m_Layer: 6
   m_Name: Skydome Camera
   m_TagString: MainCamera
@@ -84,6 +85,15 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2401184134698157764}
   m_Enabled: 1
+--- !u!45 &2572558178239002747
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2401184134698157764}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: 6b624b44294c2404090344daad8cb901, type: 2}
 --- !u!1 &4323709129260341837
 GameObject:
   m_ObjectHideFlags: 0
