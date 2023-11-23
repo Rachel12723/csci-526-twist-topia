@@ -133,7 +133,8 @@ public class LandMineManager : MonoBehaviour
                                         unactivatedLandMine = newLandMineCube.transform;
 
                                         Destroy(cube.gameObject);
-                                        Destroy(landMineProp.gameObject);
+                                        //Destroy(landMineProp.gameObject);
+                                        landMineProp.gameObject.SetActive(true);
                                         landMineCounter--;
                                         int landminenum = PlayerPrefs.GetInt("Landmine");
                                         PlayerPrefs.SetInt("Landmine", landminenum - 1);
@@ -179,7 +180,14 @@ public class LandMineManager : MonoBehaviour
                 if (Mathf.Abs(landMine.position.x - player.transform.position.x) < 0.5f &&
                     Mathf.Abs(landMine.position.z - player.transform.position.z) < 0.5f)
                 {
+                    GameObject newPlatformCube = Instantiate(platformCube) as GameObject;
+                    newPlatformCube.transform.position = landMine.position;
+                    newPlatformCube.transform.SetParent(landMine.parent);
+
+                    landMineCubeList.Remove(landMine);
+                    Destroy(landMine.gameObject);
                     playerReturn.ResetPlayer();
+                    return;
                 }
             }
         }
