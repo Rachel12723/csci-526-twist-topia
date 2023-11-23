@@ -1091,7 +1091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7857088938759104034
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1452,14 +1452,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30fa17719352f8c45b5efbe6def278fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 3893235306994978093}
-  wasd: {fileID: 1802727548264662258}
-  ad: {fileID: 8466549824490741709}
   cameraState: {fileID: 0}
-  f1: {fileID: 6463505276691464658}
-  f2: {fileID: 5227063202788280844}
-  shift1: {fileID: 1744354633203072448}
-  shift2: {fileID: 4845947744298557982}
+  f: {fileID: 0}
+  shift: {fileID: 0}
+  bagkey: {fileID: 0}
 --- !u!114 &6893878530913976098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1472,7 +1468,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50de9256fa8be034abd5dc099dbd1dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bagtext: {fileID: 3311021364143880221}
+  keyponInHand: {fileID: 0}
+  frameInHand: {fileID: 0}
+  frameAction: {fileID: 0}
+  frameEmpty: {fileID: 0}
+  frameCaught: {fileID: 0}
+  LandMineInHand: {fileID: 0}
+  player: {fileID: 0}
+  inputManager: {fileID: 0}
+  key: {fileID: 0}
+  keyup: {fileID: 0}
+  frameEmptySprite: {fileID: 0}
+  frameCaughtSprite: {fileID: 0}
+  landmine: {fileID: 0}
+  none: {fileID: 0}
+  bagbutton: []
+  bagbuttonselect: []
+  cameraState: {fileID: 0}
 --- !u!1 &3893235306994978093
 GameObject:
   m_ObjectHideFlags: 0
