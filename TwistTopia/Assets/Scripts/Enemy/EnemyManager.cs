@@ -51,8 +51,8 @@ public class EnemyManager : MonoBehaviour
                 // Reset player
                 if (cameraState.GetFacingDirection() == FacingDirection.Front)
                 {
-                    if (Mathf.Abs(enemy.transform.position.x - player.transform.position.x) <= 1f &&
-                        Mathf.Abs(enemy.transform.position.y - player.transform.position.y) <= 1f)
+                    if (Mathf.Abs(enemy.transform.position.x - player.transform.position.x) <= 1.15f &&
+                        Mathf.Abs(enemy.transform.position.y - player.transform.position.y) <= 1.15f)
                     {
                         playerReturn.ResetPlayer();
                     }

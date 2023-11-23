@@ -1267,7 +1267,7 @@ MonoBehaviour:
   frameAction: {fileID: 0}
   frameEmpty: {fileID: 2100000, guid: 786c8e1e26d79458988ceca065b7fc23, type: 2}
   frameCaught: {fileID: 2100000, guid: 1ed082596e5214773b6249116e4c1704, type: 2}
-  LandMineInHand: {fileID: 2451054984838483845, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
+  LandMineInHand: {fileID: 3918796071104211542, guid: de1237e4b0e130743802fb34aaf80487, type: 3}
   player: {fileID: 0}
   inputManager: {fileID: 25965987153395677, guid: 490fc6855e0c72f4489ce1ebcc6d8858, type: 3}
   key: {fileID: 21300000, guid: 18ecfd4094868974bbf322d21b36c64b, type: 3}

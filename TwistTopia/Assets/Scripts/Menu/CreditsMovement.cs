@@ -5,7 +5,7 @@ using UnityEngine;
 public class CreditsMovement : MonoBehaviour
 {
     public float speed = 10f;
-    public float maxZ = 0f;
+    public float maxZ = -8f;
     public List<Transform> credits;
     private List<Vector3> original;
     // Start is called before the first frame update

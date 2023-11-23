@@ -13,8 +13,9 @@ public class PropManager : MonoBehaviour
     //public TMPro.TextMeshProUGUI bagtext;
     private float xOffset = 1.2f;
     private float zOffset = -0.56f;
-    private float xOffset_landmine = 0.5f;
-    private float zOffset_landmine = -0.85f;
+    private float xOffset_landmine = 0.4f;
+    private float yOffset_landmine = -0.3f;
+    private float zOffset_landmine = -0.6f;
     private float xOffset_frame = 0.53f;
     private float yOffset_frame = 0.029f;
     private float zOffset_frame = -0.81f;
@@ -151,7 +152,8 @@ public class PropManager : MonoBehaviour
         else if (state == 3 && num > 0 && inHandLandMine == null)
         {
             inHandLandMine = Instantiate(LandMineInHand, player.transform);
-            inHandLandMine.transform.localPosition = new Vector3(xOffset_landmine, 0, zOffset_landmine);
+            inHandLandMine.GetComponent<LandMinePropRotation>().enabled = false;
+            inHandLandMine.transform.localPosition = new Vector3(xOffset_landmine, yOffset_landmine, zOffset_landmine);
         }
         //frame
         if (state == 2 && num == 0 && inHandFrame != null)
@@ -287,7 +289,8 @@ public class PropManager : MonoBehaviour
             else if (item == "landmine")
             {
                 inHandLandMine = Instantiate(LandMineInHand, player.transform);
-                inHandLandMine.transform.localPosition = new Vector3(xOffset_landmine, 0, zOffset_landmine);
+                inHandLandMine.GetComponent<LandMinePropRotation>().enabled = false;
+                inHandLandMine.transform.localPosition = new Vector3(xOffset_landmine, yOffset_landmine, zOffset_landmine);
                 PlayerPrefs.SetInt("state", 3);
             }
         }
