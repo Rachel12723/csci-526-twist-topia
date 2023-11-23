@@ -24077,6 +24077,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1633032351}
     - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: inputManager
+      value: 
+      objectReference: {fileID: 900764056}
+    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: keyponInHand
       value: 
       objectReference: {fileID: 5620782111523224109, guid: d6e1f5a7899424257a6d17fd0fae0ace, type: 3}
