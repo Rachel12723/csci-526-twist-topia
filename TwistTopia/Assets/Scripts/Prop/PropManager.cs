@@ -11,8 +11,9 @@ using TMPro;
 public class PropManager : MonoBehaviour
 {
     //public TMPro.TextMeshProUGUI bagtext;
-    private float xOffset = 1.2f;
-    private float zOffset = -0.56f;
+    private float xOffset = 0.8f;
+    private float yOffset = -0.2f;
+    private float zOffset = -0.5f;
     private float xOffset_landmine = 0.4f;
     private float yOffset_landmine = -0.3f;
     private float zOffset_landmine = -0.6f;
@@ -138,7 +139,8 @@ public class PropManager : MonoBehaviour
         else if(state == 1 && num > 0 && inHandKeypon == null)
         {
             inHandKeypon = Instantiate(keyponInHand, player.transform);
-            inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
+            inHandKeypon.GetComponent<PropAnimation>().enabled = false;
+            inHandKeypon.transform.localPosition = new Vector3(xOffset, yOffset, zOffset);
         }
         //landmine
         if (state == 3 && num == 0 && inHandLandMine != null)
@@ -152,7 +154,7 @@ public class PropManager : MonoBehaviour
         else if (state == 3 && num > 0 && inHandLandMine == null)
         {
             inHandLandMine = Instantiate(LandMineInHand, player.transform);
-            inHandLandMine.GetComponent<LandMinePropRotation>().enabled = false;
+            inHandLandMine.GetComponent<PropAnimation>().enabled = false;
             inHandLandMine.transform.localPosition = new Vector3(xOffset_landmine, yOffset_landmine, zOffset_landmine);
         }
         //frame
@@ -279,7 +281,8 @@ public class PropManager : MonoBehaviour
             if (item == "key")
             {
                 inHandKeypon = Instantiate(keyponInHand, player.transform);
-                inHandKeypon.transform.localPosition = new Vector3(xOffset, 0, zOffset);
+                inHandKeypon.GetComponent<PropAnimation>().enabled = false;
+                inHandKeypon.transform.localPosition = new Vector3(xOffset, yOffset, zOffset);
                 PlayerPrefs.SetInt("state", 1);
             }
             else if (item == "frame")
@@ -289,7 +292,7 @@ public class PropManager : MonoBehaviour
             else if (item == "landmine")
             {
                 inHandLandMine = Instantiate(LandMineInHand, player.transform);
-                inHandLandMine.GetComponent<LandMinePropRotation>().enabled = false;
+                inHandLandMine.GetComponent<PropAnimation>().enabled = false;
                 inHandLandMine.transform.localPosition = new Vector3(xOffset_landmine, yOffset_landmine, zOffset_landmine);
                 PlayerPrefs.SetInt("state", 3);
             }

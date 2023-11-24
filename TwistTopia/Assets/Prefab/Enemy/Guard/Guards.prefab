@@ -45,10 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  player: {fileID: 0}
-  cameraState: {fileID: 0}
-  map: {fileID: 0}
-  landMines: []
   keys: {fileID: 0}
-  key: {fileID: 5620782111523224109, guid: d6e1f5a7899424257a6d17fd0fae0ace, type: 3}
-  platformCube: {fileID: 2768781668376798685, guid: b8f321fc497dc416eae767289df5e6c3, type: 3}
+  key: {fileID: 5568230345991796879, guid: 558da413522f5ca4ba89b507cf082f96, type: 3}
