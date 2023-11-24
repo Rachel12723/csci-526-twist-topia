@@ -1333,6 +1333,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2768781667106891590, guid: b8f321fc497dc416eae767289df5e6c3, type: 3}
   m_PrefabInstance: {fileID: 1574890803}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &164818719
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1937021911}
+    m_Modifications:
+    - target: {fileID: 3918796071104211541, guid: de1237e4b0e130743802fb34aaf80487, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918796071104211541, guid: de1237e4b0e130743802fb34aaf80487, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918796071104211541, guid: de1237e4b0e130743802fb34aaf80487, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918796071104211541, guid: de1237e4b0e130743802fb34aaf80487, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918796071104211541, guid: de1237e4b0e130743802fb34aaf80487, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918796071104211541, guid: de1237e4b0e130743802fb34aaf80487, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918796071104211541, guid: de1237e4b0e130743802fb34aaf80487, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918796071104211541, guid: de1237e4b0e130743802fb34aaf80487, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918796071104211541, guid: de1237e4b0e130743802fb34aaf80487, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918796071104211541, guid: de1237e4b0e130743802fb34aaf80487, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918796071104211541, guid: de1237e4b0e130743802fb34aaf80487, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3918796071104211542, guid: de1237e4b0e130743802fb34aaf80487, type: 3}
+      propertyPath: m_Name
+      value: Land Mine Prop
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: de1237e4b0e130743802fb34aaf80487, type: 3}
 --- !u!4 &165368278 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2768781667106891590, guid: b8f321fc497dc416eae767289df5e6c3, type: 3}
@@ -8542,63 +8599,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1432625337453129028, guid: 8bfc9f84c90ce864c86154fd3ed115d1, type: 3}
   m_PrefabInstance: {fileID: 364384857}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1125338213
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1937021911}
-    m_Modifications:
-    - target: {fileID: 2451054984838483833, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2451054984838483833, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2451054984838483833, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2451054984838483833, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 2451054984838483833, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2451054984838483833, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2451054984838483833, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2451054984838483833, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2451054984838483833, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2451054984838483833, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2451054984838483833, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2451054984838483845, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
-      propertyPath: m_Name
-      value: Land Mine Prop
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 49e830a6abd2e50418b2e58ed5dbf558, type: 3}
 --- !u!4 &1127636577 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2891919664492639619, guid: fca8d403a2653bf4583f26c2487d3ff6, type: 3}

@@ -1262,7 +1262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50de9256fa8be034abd5dc099dbd1dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyponInHand: {fileID: 5620782111523224109, guid: d6e1f5a7899424257a6d17fd0fae0ace, type: 3}
+  keyponInHand: {fileID: 5568230345991796879, guid: 558da413522f5ca4ba89b507cf082f96, type: 3}
   frameInHand: {fileID: 2451054984838483845, guid: 25668a5675e22495c90ee7c0613f83c4, type: 3}
   frameAction: {fileID: 0}
   frameEmpty: {fileID: 2100000, guid: 786c8e1e26d79458988ceca065b7fc23, type: 2}

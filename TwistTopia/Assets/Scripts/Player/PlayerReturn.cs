@@ -106,6 +106,7 @@ public class PlayerReturn : MonoBehaviour
                         checkpointsState[i++] = true;
                         break;
                     }
+                    i++;
                 }
             }
         }
@@ -125,6 +126,7 @@ public class PlayerReturn : MonoBehaviour
                         checkpointsState[i++] = true;
                         break;
                     }
+                    i++;
                 }
             }
 
