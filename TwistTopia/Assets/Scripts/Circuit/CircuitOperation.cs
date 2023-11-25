@@ -63,7 +63,8 @@ public class CircuitOperation : MonoBehaviour
                     {
                         foreach (Transform rotatableCircuit in rotatableCircuits)
                         {
-                            if (Mathf.Abs(player.transform.position.x - rotatableCircuit.position.x) < 0.5f &&
+                            if (rotatableCircuit.gameObject.activeSelf &&
+                                Mathf.Abs(player.transform.position.x - rotatableCircuit.position.x) < 0.5f &&
                                 Mathf.Abs(player.transform.position.y - rotatableCircuit.position.y) < 1.2f)
                             {
                                 //rotatableCircuit.Rotate(Vector3.up, rotateDegrees);
@@ -84,7 +85,8 @@ public class CircuitOperation : MonoBehaviour
                     {
                         foreach (Transform rotatableCircuit in rotatableCircuits)
                         {
-                            if (Mathf.Abs(player.transform.position.x - rotatableCircuit.position.x) < 1.2f &&
+                            if (rotatableCircuit.gameObject.activeSelf &&
+                                Mathf.Abs(player.transform.position.x - rotatableCircuit.position.x) < 1.2f &&
                                 Mathf.Abs(player.transform.position.z - rotatableCircuit.position.z) < 1.2f)
                             {
                                 //rotatableCircuit.Rotate(Vector3.forward, rotateDegrees);
