@@ -59,13 +59,6 @@ public class MainMenuController : MonoBehaviour
 
     public void LoadScene(int levelId)
     {
-        if (levelId == 0)
-        {
-            SceneManager.LoadScene("Level_0(Tutorial)_1");
-        }
-        else
-        {
-            SceneManager.LoadScene("Level_"+levelId);
-        }
+        SceneManager.LoadScene("Level_"+levelId);
     }
 }
