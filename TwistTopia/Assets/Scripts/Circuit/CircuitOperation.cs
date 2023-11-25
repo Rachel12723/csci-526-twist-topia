@@ -27,6 +27,7 @@ public class CircuitOperation : MonoBehaviour
 
     private DirectionManager directionManager;
     private InputManager inputManager;
+    private FadingInfo circuitInfo;
 
 
     // Start is called before the first frame update
@@ -39,6 +40,7 @@ public class CircuitOperation : MonoBehaviour
         directionManager = circuitManager.directionManager;
         inputManager = circuitManager.inputManager;
         rotateCircuitCode = circuitManager.rotateCircuitCode;
+        circuitInfo = circuitManager.circuitInfo;
     }
 
     // Update is called once per frame
@@ -172,6 +174,6 @@ public class CircuitOperation : MonoBehaviour
             }
             directionManager.UpdateInvisibleCubes();
         }
-            
+        circuitInfo.SetIsShowed(true);
     }
 }

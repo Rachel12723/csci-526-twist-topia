@@ -5987,6 +5987,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d6a8b84db71db34cb483a18ff9a710d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &308622094 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3131923424056456335, guid: 8c782845463ea014392d6c2bda20041e, type: 3}
+  m_PrefabInstance: {fileID: 308622091}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d6a8b84db71db34cb483a18ff9a710d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &309395878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11209,10 +11220,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 659752464}
-    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
-      propertyPath: landmine
-      value: 
-      objectReference: {fileID: 21300000, guid: db87746129cc599478e1ae8cecedefd7, type: 3}
     - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: cameraState
       value: 
@@ -35704,6 +35711,10 @@ PrefabInstance:
       propertyPath: cameraState
       value: 
       objectReference: {fileID: 1448936508}
+    - target: {fileID: 5434183177082952091, guid: 9b24a0e9c45ab444d833822c1a7da2c1, type: 3}
+      propertyPath: circuitInfo
+      value: 
+      objectReference: {fileID: 308622094}
     - target: {fileID: 5434183177082952091, guid: 9b24a0e9c45ab444d833822c1a7da2c1, type: 3}
       propertyPath: inputManager
       value: 

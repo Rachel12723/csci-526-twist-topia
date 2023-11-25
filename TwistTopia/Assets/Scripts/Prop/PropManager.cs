@@ -397,7 +397,7 @@ public class PropManager : MonoBehaviour
         if (buttonIndex < mybaglist.Count)
         {
             Image image = bagbutton[buttonIndex].GetComponent<Image>();
-            if (image.sprite == key)
+            if (image.sprite == key || image.sprite == keyup)
             {
                 PlayerPrefs.SetInt("state", 1);
             }
