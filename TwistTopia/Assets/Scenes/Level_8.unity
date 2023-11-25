@@ -16078,6 +16078,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d6a8b84db71db34cb483a18ff9a710d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1430216069 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3131923424056456335, guid: 8c782845463ea014392d6c2bda20041e, type: 3}
+  m_PrefabInstance: {fileID: 1430216066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d6a8b84db71db34cb483a18ff9a710d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1435247413 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2768781667106891590, guid: b8f321fc497dc416eae767289df5e6c3, type: 3}
@@ -23763,6 +23774,10 @@ PrefabInstance:
       propertyPath: cameraState
       value: 
       objectReference: {fileID: 618224156}
+    - target: {fileID: 5434183177082952091, guid: 9b24a0e9c45ab444d833822c1a7da2c1, type: 3}
+      propertyPath: circuitInfo
+      value: 
+      objectReference: {fileID: 1430216069}
     - target: {fileID: 5434183177082952091, guid: 9b24a0e9c45ab444d833822c1a7da2c1, type: 3}
       propertyPath: inputManager
       value: 
