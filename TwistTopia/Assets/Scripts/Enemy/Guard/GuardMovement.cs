@@ -61,7 +61,7 @@ public class GuardMovement : MonoBehaviour
             //Movement
             if (!cameraState.GetIsRotating() && !playerState.positionUpdating)
             {
-                if (player.transform.position.x >= minRange.x - 1f && player.transform.position.x <= maxRange.x + 1f  && player.transform.position.z >= minRange.z - 1f && player.transform.position.z <= maxRange.z + 1f)
+                if (player.transform.position.x >= minRange.x - 0.5f && player.transform.position.x <= maxRange.x + 0.5f  && player.transform.position.z >= minRange.z - 0.5f && player.transform.position.z <= maxRange.z + 0.5f)
                 {
                     if (cameraState.GetFacingDirection() == FacingDirection.Front)
                     {

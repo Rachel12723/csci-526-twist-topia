@@ -29,7 +29,7 @@ public class LevelSelector : MonoBehaviour
 
         for (int i = 0; i < levelButtons.Length; i++)
         {
-            int levelIndex = i;
+            int levelIndex = i+1;
             levelButtons[i].onClick.AddListener(() => LoadLevel(levelIndex));
 
         }
@@ -56,85 +56,90 @@ public class LevelSelector : MonoBehaviour
             }
         }*/
 
-        if (levelIndex == 0)
+        //if (levelIndex == 0)
+        //{
+        //    SceneManager.LoadScene("Level_0(Tutorial)_1");
+        //    Time.timeScale = 1f;
+        //}
+        //else if (levelIndex == 1)
+        //{
+        //    SceneManager.LoadScene("Level_0(Tutorial)_2");
+        //    Time.timeScale = 1f;
+        //}
+        //else if (levelIndex == 2)
+        //{
+        //    SceneManager.LoadScene("Level_2");
+        //    Time.timeScale = 1f;
+        //}
+        //else if (levelIndex == 3)
+        //{
+        //    SceneManager.LoadScene("Level_3");
+        //    Time.timeScale = 1f;
+        //}
+        //else if (levelIndex == 4)
+        //{
+        //    SceneManager.LoadScene("Level_4");
+        //    Time.timeScale = 1f;
+        //}
+        //else if (levelIndex == 5)
+        //{
+        //    SceneManager.LoadScene("Level_5");
+        //    Time.timeScale = 1f;
+        //}
+        //else if (levelIndex == 6)
+        //{
+        //    /*SceneManager.LoadScene("Level_6");
+        //    Time.timeScale = 1f;*/
+        //}
+        //else if (levelIndex == 7)
+        //{
+        //    SceneManager.LoadScene("Level_7");
+        //    Time.timeScale = 1f;
+        //}
+        //else if (levelIndex == 8)
+        //{
+        //    SceneManager.LoadScene("Level_8");
+        //    Time.timeScale = 1f;
+        //}
+        //else if (levelIndex == 9)
+        //{
+        //  /*  SceneManager.LoadScene("Level_9");
+        //    Time.timeScale = 1f;*/
+        //}
+        //else if (levelIndex == 10)
+        //{
+        //    SceneManager.LoadScene("Level_10");
+        //    Time.timeScale = 1f;
+        //}
+        //else if (levelIndex == 11)
+        //{
+        //    SceneManager.LoadScene("Level_11");
+        //    Time.timeScale = 1f;
+        //}
+        //else if (levelIndex == 12)
+        //{
+        //    SceneManager.LoadScene("Level_12");
+        //    Time.timeScale = 1f;
+        //}
+        //else if (levelIndex == 13)
+        //{
+        //    /*SceneManager.LoadScene("Level_13");
+        //    Time.timeScale = 1f;*/
+        //}
+        //else if (levelIndex == 14)
+        //{
+        //    SceneManager.LoadScene("Level_14");
+        //    Time.timeScale = 1f;
+        //}
+        //else if (levelIndex == 15)
+        //{
+        //    /*SceneManager.LoadScene("Level_15");
+        //    Time.timeScale = 1f;*/
+        //}
+        if(levelIndex>=1 && levelIndex <= 16)
         {
-            SceneManager.LoadScene("Level_0(Tutorial)_1");
+            SceneManager.LoadScene("Level_"+levelIndex);
             Time.timeScale = 1f;
-        }
-        else if (levelIndex == 1)
-        {
-            SceneManager.LoadScene("Level_0(Tutorial)_2");
-            Time.timeScale = 1f;
-        }
-        else if (levelIndex == 2)
-        {
-            SceneManager.LoadScene("Level_2");
-            Time.timeScale = 1f;
-        }
-        else if (levelIndex == 3)
-        {
-            SceneManager.LoadScene("Level_3");
-            Time.timeScale = 1f;
-        }
-        else if (levelIndex == 4)
-        {
-            SceneManager.LoadScene("Level_4");
-            Time.timeScale = 1f;
-        }
-        else if (levelIndex == 5)
-        {
-            SceneManager.LoadScene("Level_5");
-            Time.timeScale = 1f;
-        }
-        else if (levelIndex == 6)
-        {
-            /*SceneManager.LoadScene("Level_6");
-            Time.timeScale = 1f;*/
-        }
-        else if (levelIndex == 7)
-        {
-            SceneManager.LoadScene("Level_7");
-            Time.timeScale = 1f;
-        }
-        else if (levelIndex == 8)
-        {
-            SceneManager.LoadScene("Level_8");
-            Time.timeScale = 1f;
-        }
-        else if (levelIndex == 9)
-        {
-          /*  SceneManager.LoadScene("Level_9");
-            Time.timeScale = 1f;*/
-        }
-        else if (levelIndex == 10)
-        {
-            SceneManager.LoadScene("Level_10");
-            Time.timeScale = 1f;
-        }
-        else if (levelIndex == 11)
-        {
-            SceneManager.LoadScene("Level_11");
-            Time.timeScale = 1f;
-        }
-        else if (levelIndex == 12)
-        {
-            SceneManager.LoadScene("Level_12");
-            Time.timeScale = 1f;
-        }
-        else if (levelIndex == 13)
-        {
-            /*SceneManager.LoadScene("Level_13");
-            Time.timeScale = 1f;*/
-        }
-        else if (levelIndex == 14)
-        {
-            SceneManager.LoadScene("Level_14");
-            Time.timeScale = 1f;
-        }
-        else if (levelIndex == 15)
-        {
-            /*SceneManager.LoadScene("Level_15");
-            Time.timeScale = 1f;*/
         }
         else
         {
