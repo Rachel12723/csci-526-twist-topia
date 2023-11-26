@@ -22,7 +22,11 @@ public class MainMenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (PlayerPrefs.GetInt("End") == 1)
+        {
+            PlayerPrefs.SetInt("End", 0);
+            ShowCreditsPanel();
+        }
     }
 
     public void ShowMainPanel()

@@ -190,14 +190,20 @@ public class PlayerMovement : MonoBehaviour
 	}
 	public void LoadScene(string sceneName)
     {
-        int level = PlayerPrefs.GetInt("Level");
-        char lastChar = sceneName[sceneName.Length - 1];
-        int lastDigit = int.Parse(lastChar.ToString());
-        if (lastDigit - 1 > level)
+        if (sceneName != "Main_Menu")
         {
-            PlayerPrefs.SetInt("Level", lastDigit - 1);
+            int level = PlayerPrefs.GetInt("Level");
+            char lastChar = sceneName[sceneName.Length - 1];
+            int lastDigit = int.Parse(lastChar.ToString());
+            if (lastDigit - 1 > level)
+            {
+                PlayerPrefs.SetInt("Level", lastDigit - 1);
+            }
         }
-
+        if (sceneName == "Main_Menu")
+        {
+            PlayerPrefs.SetInt("End", 1);
+        }
         SceneManager.LoadScene(sceneName);
     }
 
