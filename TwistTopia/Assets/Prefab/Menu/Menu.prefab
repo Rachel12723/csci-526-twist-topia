@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Circuit Matched!
+  m_text: 'Circuit Connected!
 
     New Platform Shows!'
   m_isRightToLeft: 0
