@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Tutorial_1_Old_Backup.unity
-    guid: 88eec61cb942e9c458c76e539c9c5ff3
   - enabled: 1
     path: Assets/Scenes/Main_Menu.unity
     guid: daf07255f1752ba45885e4285a621b70
@@ -31,22 +28,22 @@ EditorBuildSettings:
     guid: f09fb3b49eeb86f4bbf5c9f172a41605
   - enabled: 1
     path: Assets/Scenes/Level_7.unity
-    guid: 37476b7cd687b69428c58d2d3181dba6
+    guid: b9a837004ec194de6a9d01b1ffc1cd9e
   - enabled: 1
     path: Assets/Scenes/Level_8.unity
-    guid: 0ab8de72dee5a174a95b62f778aee9ad
+    guid: 111f5927986e44a4cba2074347a68db7
   - enabled: 1
     path: Assets/Scenes/Level_9.unity
-    guid: a5df345963440ac4a9c93c0d0952cf82
+    guid: 37476b7cd687b69428c58d2d3181dba6
   - enabled: 1
     path: Assets/Scenes/Level_10.unity
-    guid: 5681dcddf4c4941a7b965ed9cea64fe0
+    guid: 0ab8de72dee5a174a95b62f778aee9ad
   - enabled: 1
     path: Assets/Scenes/Level_11.unity
-    guid: 725ca087c307e4fb897188f221ad08a5
+    guid: a5df345963440ac4a9c93c0d0952cf82
   - enabled: 1
     path: Assets/Scenes/Level_12.unity
-    guid: 6bb14806257f7b04ca6f4ebb4a18b363
+    guid: 5681dcddf4c4941a7b965ed9cea64fe0
   - enabled: 1
     path: Assets/Scenes/Level_13.unity
     guid: 8246d1f7529481e499a70b4fc11aa74f
