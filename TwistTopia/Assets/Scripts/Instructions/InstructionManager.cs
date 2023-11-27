@@ -28,7 +28,7 @@ public class InstructionManager : MonoBehaviour
             // Debug.Log("instruction text: x " + difference.x + "y "+ difference.y + "z " + difference.z);
             
             // if (distance <= displayDistance)
-            if (Mathf.Abs(difference.x) <= displayDistance && Mathf.Abs(difference.y) <= displayDistance && Mathf.Abs(difference.z) <= displayDistance )
+            if (Mathf.Abs(difference.x) <= displayDistance && Mathf.Abs(difference.z) <= displayDistance )
             {
                 panel.SetActive(true);
             }
