@@ -270,6 +270,8 @@ public class PropManager : MonoBehaviour
                 {
                     foreach (Transform keypon in keypons)
                     {
+                        Debug.Log(Mathf.Abs(keypon.position.z - player.transform.position.z));
+                        Debug.Log(Mathf.Abs(keypon.position.x - player.transform.position.x));
                         if (Mathf.Abs(keypon.position.z - player.transform.position.z) < WorldUnit + 0.25f &&
                             Mathf.Abs(keypon.position.x - player.transform.position.x) < WorldUnit + 0.25f)
                         {

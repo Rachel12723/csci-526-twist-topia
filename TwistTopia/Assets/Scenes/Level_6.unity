@@ -8563,6 +8563,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 77951256}
+    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: cameraState
+      value: 
+      objectReference: {fileID: 1909290653}
     - target: {fileID: 7000818188782446622, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: m_RootOrder
       value: 9

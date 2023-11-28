@@ -83,6 +83,7 @@ public class LandMineManager : MonoBehaviour
                                 int landminenum = PlayerPrefs.GetInt("Landmine");
                                 PlayerPrefs.SetInt("Landmine", landminenum + 1);
                                 PlayerPrefs.SetString("add", "landmine");
+                                PlayerPrefs.SetInt("estate", 0);
                                 return;
                             }
                         }
@@ -99,6 +100,7 @@ public class LandMineManager : MonoBehaviour
                                 int landminenum = PlayerPrefs.GetInt("Landmine");
                                 PlayerPrefs.SetInt("Landmine", landminenum + 1);
                                 PlayerPrefs.SetString("add", "landmine");
+                                PlayerPrefs.SetInt("estate", 0);
                                 return;
                             }
                         }
@@ -106,7 +108,7 @@ public class LandMineManager : MonoBehaviour
                 }
             }
         }
-        PlayerPrefs.SetInt("estate", 0);
+        
     }
 
     private void SetUpLandMine()
