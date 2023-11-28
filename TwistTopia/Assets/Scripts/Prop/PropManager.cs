@@ -320,19 +320,14 @@ public class PropManager : MonoBehaviour
                 /*TextMeshProUGUI buttonText = bagbutton[i].GetComponentInChildren<TextMeshProUGUI>();
                 buttonText.text = kvp.Value.ToString();*/
                 //Image image = bagbutton[i].GetComponent<Image>();
-                if (kvp.Value == 0 && kvp.Key != "frame")
-                {
-                    
-                    mybaglist.RemoveAt(i);
+                /* if (kvp.Value == 0 && kvp.Key != "frame")
+                 {
 
-                    //image.sprite = none; 
-                    //Color tempColor = image.color;
-                    //tempColor.a = 0f; // 1f ��ʾ��͸��
-                   // image.color = tempColor;
-                    //buttonText.text = "";
-                  /*  Image buttonImage = bagbuttonselect[i].GetComponent<Image>();
-                    buttonImage.color = new Color(200f / 255f, 139f / 255f, 73f / 255f);*/
-                }
+                     mybaglist.RemoveAt(i);
+
+
+                 }*/
+                mybaglist.RemoveAt(i);
                 break;
             }
         }
