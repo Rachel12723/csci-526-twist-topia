@@ -108,7 +108,9 @@ public class KeyAndDoor : MonoBehaviour
 	
 	private void PickUpKeypon()
     {
-        if (Input.GetKeyDown(pickUpKeyCode) && keypons != null)
+        int estate = PlayerPrefs.GetInt("estate");
+        //if (Input.GetKeyDown(pickUpKeyCode) && keypons != null)
+        if (estate == 2)
         {
             if (cameraState.GetFacingDirection() == FacingDirection.Front)
             {
@@ -162,6 +164,7 @@ public class KeyAndDoor : MonoBehaviour
                     }
                 } 
             }
+            PlayerPrefs.SetInt("estate", 0);
 
         }
     }

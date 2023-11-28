@@ -47,12 +47,25 @@ public class PropManager : MonoBehaviour
     Color oldColor = new Color(200f / 255f, 139f / 255f, 73f / 255f);
     Color newColor = new Color(239f / 255f, 237f / 255f, 87f / 255f);
 
+    public Transform keypons;
+    public Transform frame;
+    public Transform map;
+    public Transform landMines;
+    private Transform platformCubes;
+    public List<Transform> landMineCubeList;
+    //public CameraState cameraState;
+    public KeyCode Ekey;
+    private PlayerState playerState;
+    //public GameObject playerr;
+    public float WorldUnit = 1.000f;
     // Start is called before the first frame update
     void Start()
     {
+        playerState = player.GetComponent<PlayerState>();
         itemidx = 0;
 
         PlayerPrefs.SetInt("state", 0);//���棿
+        PlayerPrefs.SetInt("estate", 0);
         PlayerPrefs.SetInt("landstate", 0);
         PlayerPrefs.SetInt("keystate", 0);
         //0:circuit; 1:keypon; 2:frame
@@ -75,6 +88,19 @@ public class PropManager : MonoBehaviour
             int buttonIndex = i; // ����һ���ֲ����������水ť����
             bagbutton[i].onClick.AddListener(() => OnButtonClick(buttonIndex));
         }
+
+        platformCubes = map.Find("Platform Cubes");
+        foreach (Transform platform in platformCubes)
+        {
+            foreach (Transform cube in platform)
+            {
+                if (cube.CompareTag("Land Mine"))
+                {
+                    landMineCubeList.Add(cube);
+                }
+            }
+        }
+        //landMines = GameObject.Find("Land Mines").transform;
 
 
 
@@ -209,6 +235,120 @@ public class PropManager : MonoBehaviour
             }
                     
         }
+
+        if (inputManager.GetAllowInteraction() && Input.GetKeyDown(Ekey))
+        {
+            if (!playerState.GetFrontIsDropping())
+            {
+                int flag1 = 0;
+                int flag2 = 0;
+                int flag3 = 0;
+                int flag4 = 0;
+                //选中画框时放画框
+                if (state == 2)
+                {
+                    //PlayerPrefs.SetInt("estate", 1);
+                    flag1 = 1;
+                }
+
+                //拿起keypon
+                if (cameraState.GetFacingDirection() == FacingDirection.Front && keypons != null)
+                {
+                    Debug.Log("pickupkeypon");
+                    foreach (Transform keypon in keypons)
+                    {
+                        if (Mathf.Abs(keypon.position.y - player.transform.position.y) < WorldUnit + 0.5f &&
+                            Mathf.Abs(keypon.position.x - player.transform.position.x) < WorldUnit + 0.5f)
+                        {
+                            flag2 = 1;
+                            Debug.Log("!!!yes");
+                            break;
+                        }
+                    }
+                }
+                else if (cameraState.GetFacingDirection() == FacingDirection.Up && keypons != null)
+                {
+                    foreach (Transform keypon in keypons)
+                    {
+                        if (Mathf.Abs(keypon.position.z - player.transform.position.z) < WorldUnit + 0.25f &&
+                            Mathf.Abs(keypon.position.x - player.transform.position.x) < WorldUnit + 0.25f)
+                        {
+                            flag2 = 1;
+                            Debug.Log("!!!yes");
+                            break;
+                        }
+                    }
+                }
+
+                //拿起画框
+                if (frame)
+                {
+                    if (cameraState.GetFacingDirection() == FacingDirection.Front)
+                    {
+
+
+                        if (frame.gameObject.activeSelf && Mathf.Abs(frame.position.x - player.transform.position.x) < WorldUnit + 0.5f)
+                        {
+                            flag3 = 1;
+                        }
+                    }
+                }
+                //拿起地雷
+                if (landMines != null)
+                {
+                   // Debug.Log("lanmind!!");
+                    foreach (Transform landMineProp in landMines)
+                    {
+                        if (landMineProp.gameObject.activeSelf)
+                        {
+                           
+                            if (cameraState.GetFacingDirection() == FacingDirection.Front)
+                            {
+                                Debug.Log(Mathf.Abs(player.transform.position.x - landMineProp.position.x));
+                                Debug.Log(Mathf.Abs(player.transform.position.y - landMineProp.position.y));
+                                if (Mathf.Abs(player.transform.position.x - landMineProp.position.x) <= 0.5f
+                                    && Mathf.Abs(player.transform.position.y - landMineProp.position.y) <= 0.2f)
+                                {
+                                    Debug.Log("lanmind!!");
+                                    flag4 = 1;
+                                }
+                            }
+                            else if (cameraState.GetFacingDirection() == FacingDirection.Up)
+                            {
+                                if (Mathf.Abs(player.transform.position.x - landMineProp.position.x) <= 0.5f
+                                    && Mathf.Abs(player.transform.position.z - landMineProp.position.z) <= 0.5f)
+                                {
+                                    flag4 = 1;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //
+                if(flag1 == 1)
+                {
+                    PlayerPrefs.SetInt("estate", 1);
+                }
+                else if (flag2 == 1)
+                {
+                    PlayerPrefs.SetInt("estate", 2);
+                }
+                else if (flag3 == 1)
+                {
+                    PlayerPrefs.SetInt("estate", 3);
+                }
+                else if (flag4 == 1)
+                {
+                    PlayerPrefs.SetInt("estate", 4);
+                }
+                Debug.Log("estate");
+                Debug.Log(PlayerPrefs.GetInt("estate"));
+
+
+
+            }
+        }
     }
 
    
@@ -320,7 +460,8 @@ public class PropManager : MonoBehaviour
                 /*TextMeshProUGUI buttonText = bagbutton[i].GetComponentInChildren<TextMeshProUGUI>();
                 buttonText.text = kvp.Value.ToString();*/
                 //Image image = bagbutton[i].GetComponent<Image>();
-                if (kvp.Value == 0 && kvp.Key != "frame")
+                //if (kvp.Value == 0 && kvp.Key != "frame")
+                if (kvp.Value == 0)
                 {
                     
                     mybaglist.RemoveAt(i);

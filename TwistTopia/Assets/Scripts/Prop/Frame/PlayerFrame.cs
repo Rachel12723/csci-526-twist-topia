@@ -55,8 +55,18 @@ public class PlayerFrame : MonoBehaviour
     void Update()
     {
         //frameText.text = "Frame: " + frameCounter;
+        int estate = PlayerPrefs.GetInt("estate");
+        int state = PlayerPrefs.GetInt("state");
+        if (frameCounter == 0 && estate == 3)
+        {
+            PickUpFrame();
+        }
+        else if (state == 2 && frameCounter > 0 && estate == 1)
+        {
+            DropOffFrame();
+        }
 
-        if (inputManager.GetAllowInteraction())
+        /*if (inputManager.GetAllowInteraction())
         {
             if (!playerState.GetFrontIsDropping())
             {
@@ -74,7 +84,7 @@ public class PlayerFrame : MonoBehaviour
                     }
                 }
             }
-        }
+        }*/
     }
 
 	private void PickUpFrame()
@@ -98,16 +108,18 @@ public class PlayerFrame : MonoBehaviour
                 }
             }
         }
+        PlayerPrefs.SetInt("estate", 0);
     }
 
 	private void DropOffFrame(){
+        Debug.Log("ø…“‘drop¡À£°");
         if (cameraState.GetFacingDirection() == FacingDirection.Front)
         {
-            if (landMines != null)
+            /*if (landMines != null)
             {
                 foreach (Transform landMineProp in landMines)
                 {
-                    /* Debug.Log("JInlail");*/
+                    *//* Debug.Log("JInlail");*//*
                     if (landMineProp.gameObject.activeSelf)
                     {
 
@@ -148,7 +160,7 @@ public class PlayerFrame : MonoBehaviour
             {
                 PlayerPrefs.SetInt("keystate", 0);
                 return;
-            }
+            }*/
             // Transform frame = frames.GetChild(0);
             Vector3 playerCurrPos = player.transform.position;
             frame.position = new Vector3(playerCurrPos.x, playerCurrPos.y + yOffset - 1, maxZ);
@@ -161,7 +173,8 @@ public class PlayerFrame : MonoBehaviour
             PlayerPrefs.SetString("minus", "frame");
             frameAction.ReleaseEnemy(true);
         }
-	}
+        PlayerPrefs.SetInt("estate", 0);
+    }
 
     public void ResetFrame()
     {
