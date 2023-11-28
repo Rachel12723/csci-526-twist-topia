@@ -11,7 +11,8 @@ public class InstructControl : MonoBehaviour
     //public GameObject ad;
     public CameraState cameraState;
     public GameObject f;
-    
+    public GameObject level;
+
     public GameObject shift;
     
 
@@ -48,10 +49,12 @@ public class InstructControl : MonoBehaviour
         bagkey.SetActive(true);
         f.SetActive(true);
         shift.SetActive(true);
+        level.SetActive(true);
         yield return new WaitForSeconds(seconds);
         //bagkey.SetActive(false);
         f.SetActive(false);
         shift.SetActive(false);
+        level.SetActive(false);
     }
 
     public void OnButtonClick()

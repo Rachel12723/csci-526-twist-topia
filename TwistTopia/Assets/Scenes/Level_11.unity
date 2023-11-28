@@ -6867,6 +6867,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Instruction_bag
       objectReference: {fileID: 0}
+    - target: {fileID: 4612979148442645234, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: m_text
+      value: Level 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6248221358611807182, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: cameraState
       value: 

@@ -329,21 +329,21 @@ public class PropManager : MonoBehaviour
                 }
 
                 //
-                if(flag1 == 1)
-                {
-                    PlayerPrefs.SetInt("estate", 1);
-                }
-                else if (flag2 == 1)
+                if(flag2 == 1)
                 {
                     PlayerPrefs.SetInt("estate", 2);
+                }
+                else if (flag4 == 1)
+                {
+                    PlayerPrefs.SetInt("estate", 4);
                 }
                 else if (flag3 == 1)
                 {
                     PlayerPrefs.SetInt("estate", 3);
                 }
-                else if (flag4 == 1)
+                else if (flag1 == 1)
                 {
-                    PlayerPrefs.SetInt("estate", 4);
+                    PlayerPrefs.SetInt("estate", 1);
                 }
                 Debug.Log("estate");
                 Debug.Log(PlayerPrefs.GetInt("estate"));
@@ -464,20 +464,14 @@ public class PropManager : MonoBehaviour
                 /*TextMeshProUGUI buttonText = bagbutton[i].GetComponentInChildren<TextMeshProUGUI>();
                 buttonText.text = kvp.Value.ToString();*/
                 //Image image = bagbutton[i].GetComponent<Image>();
-                //if (kvp.Value == 0 && kvp.Key != "frame")
-                if (kvp.Value == 0)
-                {
-                    
-                    mybaglist.RemoveAt(i);
+                /* if (kvp.Value == 0 && kvp.Key != "frame")
+                 {
 
-                    //image.sprite = none; 
-                    //Color tempColor = image.color;
-                    //tempColor.a = 0f; // 1f ��ʾ��͸��
-                   // image.color = tempColor;
-                    //buttonText.text = "";
-                  /*  Image buttonImage = bagbuttonselect[i].GetComponent<Image>();
-                    buttonImage.color = new Color(200f / 255f, 139f / 255f, 73f / 255f);*/
-                }
+                     mybaglist.RemoveAt(i);
+
+
+                 }*/
+                mybaglist.RemoveAt(i);
                 break;
             }
         }
