@@ -108,8 +108,12 @@ public class KeyAndDoor : MonoBehaviour
 	
 	private void PickUpKeypon()
     {
-        if (Input.GetKeyDown(pickUpKeyCode) && keypons != null)
+        int estate = PlayerPrefs.GetInt("estate");
+        Debug.Log("estate" + estate);
+        //if (Input.GetKeyDown(pickUpKeyCode) && keypons != null)
+        if (estate == 2)
         {
+            Debug.Log("estate == 2!!!");
             if (cameraState.GetFacingDirection() == FacingDirection.Front)
             {
                 foreach (Transform keypon in keypons)
@@ -162,6 +166,7 @@ public class KeyAndDoor : MonoBehaviour
                     }
                 } 
             }
+            PlayerPrefs.SetInt("estate", 0);
 
         }
     }

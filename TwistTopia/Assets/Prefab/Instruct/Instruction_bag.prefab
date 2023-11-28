@@ -1286,7 +1286,14 @@ MonoBehaviour:
   - {fileID: 7760317434528571043}
   - {fileID: 4129588937890206136}
   - {fileID: 2867198007029299283}
-  cameraState: {fileID: 4323709130184260892, guid: 44ec08f8c54080845b7ca74737ee9cf9, type: 3}
+  cameraState: {fileID: 0}
+  keypons: {fileID: 0}
+  frame: {fileID: 0}
+  map: {fileID: 0}
+  landMines: {fileID: 0}
+  landMineCubeList: []
+  Ekey: 101
+  WorldUnit: 1
 --- !u!1 &4287455229699896008
 GameObject:
   m_ObjectHideFlags: 0

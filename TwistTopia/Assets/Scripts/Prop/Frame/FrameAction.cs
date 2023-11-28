@@ -48,7 +48,7 @@ public class FrameAction : MonoBehaviour
             if (inputManager.GetAllowInteraction())
             {
                 int state = PlayerPrefs.GetInt("state");
-                if (state == 2 && Input.GetKeyDown(catchEnemy))
+                if (state == 0 && Input.GetKeyDown(catchEnemy))
                 {
                     if (cameraState.facingDirection == FacingDirection.Front)
                     {
