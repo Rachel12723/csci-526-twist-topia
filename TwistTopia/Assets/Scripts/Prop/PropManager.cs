@@ -329,21 +329,21 @@ public class PropManager : MonoBehaviour
                 }
 
                 //
-                if(flag1 == 1)
-                {
-                    PlayerPrefs.SetInt("estate", 1);
-                }
-                else if (flag2 == 1)
+                if(flag2 == 1)
                 {
                     PlayerPrefs.SetInt("estate", 2);
+                }
+                else if (flag4 == 1)
+                {
+                    PlayerPrefs.SetInt("estate", 4);
                 }
                 else if (flag3 == 1)
                 {
                     PlayerPrefs.SetInt("estate", 3);
                 }
-                else if (flag4 == 1)
+                else if (flag1 == 1)
                 {
-                    PlayerPrefs.SetInt("estate", 4);
+                    PlayerPrefs.SetInt("estate", 1);
                 }
                 Debug.Log("estate");
                 Debug.Log(PlayerPrefs.GetInt("estate"));
