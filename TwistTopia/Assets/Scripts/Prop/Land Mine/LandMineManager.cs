@@ -60,7 +60,9 @@ public class LandMineManager : MonoBehaviour
 
     private void pickUpLandMine()
     {
-        if (Input.GetKeyDown(pickUpKeyCode))
+        int estate = PlayerPrefs.GetInt("estate");
+        //if (Input.GetKeyDown(pickUpKeyCode))
+        if (estate == 4)
         {
             if (inputManager.GetAllowInteraction())
             {
@@ -81,6 +83,7 @@ public class LandMineManager : MonoBehaviour
                                 int landminenum = PlayerPrefs.GetInt("Landmine");
                                 PlayerPrefs.SetInt("Landmine", landminenum + 1);
                                 PlayerPrefs.SetString("add", "landmine");
+                                PlayerPrefs.SetInt("estate", 0);
                                 return;
                             }
                         }
@@ -97,6 +100,7 @@ public class LandMineManager : MonoBehaviour
                                 int landminenum = PlayerPrefs.GetInt("Landmine");
                                 PlayerPrefs.SetInt("Landmine", landminenum + 1);
                                 PlayerPrefs.SetString("add", "landmine");
+                                PlayerPrefs.SetInt("estate", 0);
                                 return;
                             }
                         }
@@ -104,6 +108,7 @@ public class LandMineManager : MonoBehaviour
                 }
             }
         }
+        
     }
 
     private void SetUpLandMine()

@@ -3523,6 +3523,14 @@ PrefabInstance:
       value: 242.979
       objectReference: {fileID: 0}
     - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 1258972248}
+    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: frame
+      value: 
+      objectReference: {fileID: 2085511627}
+    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 320354898}

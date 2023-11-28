@@ -4044,9 +4044,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 641109843}
     - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 744817664}
+    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: Ekey
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1886843160104961912}
+    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: keypons
+      value: 
+      objectReference: {fileID: 1704374066}
     - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: cameraState
       value: 
