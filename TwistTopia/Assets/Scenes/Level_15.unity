@@ -13477,9 +13477,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2087432383}
     - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: map
+      value: 
+      objectReference: {fileID: 1080163172}
+    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 3629834}
+    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: keypons
+      value: 
+      objectReference: {fileID: 1719485775}
+    - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
+      propertyPath: landMines
+      value: 
+      objectReference: {fileID: 1345588315}
     - target: {fileID: 6893878530913976098, guid: e5a775ba8c1d9c54da64c991e5fe8c8e, type: 3}
       propertyPath: cameraState
       value: 
