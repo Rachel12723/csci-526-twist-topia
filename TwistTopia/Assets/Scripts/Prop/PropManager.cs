@@ -464,14 +464,14 @@ public class PropManager : MonoBehaviour
                 /*TextMeshProUGUI buttonText = bagbutton[i].GetComponentInChildren<TextMeshProUGUI>();
                 buttonText.text = kvp.Value.ToString();*/
                 //Image image = bagbutton[i].GetComponent<Image>();
-                /* if (kvp.Value == 0 && kvp.Key != "frame")
+                 if (kvp.Value == 0)
                  {
 
                      mybaglist.RemoveAt(i);
 
 
-                 }*/
-                mybaglist.RemoveAt(i);
+                 }
+                //mybaglist.RemoveAt(i);
                 break;
             }
         }
