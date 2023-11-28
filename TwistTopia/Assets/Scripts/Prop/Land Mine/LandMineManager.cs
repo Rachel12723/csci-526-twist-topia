@@ -61,8 +61,8 @@ public class LandMineManager : MonoBehaviour
     private void pickUpLandMine()
     {
         int estate = PlayerPrefs.GetInt("estate");
-        if (Input.GetKeyDown(pickUpKeyCode))
-        //if (estate == 4)
+        //if (Input.GetKeyDown(pickUpKeyCode))
+        if (estate == 4)
         {
             if (inputManager.GetAllowInteraction())
             {

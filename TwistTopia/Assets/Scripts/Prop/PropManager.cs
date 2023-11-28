@@ -30,6 +30,7 @@ public class PropManager : MonoBehaviour
     public GameObject LandMineInHand;
     private GameObject inHandLandMine;
     public Transform player;
+    //public GameObject player;
     //public GameObject bagtext;
     string [] bagArray = new string[4];
     public InputManager inputManager;
@@ -346,6 +347,7 @@ public class PropManager : MonoBehaviour
                 }
                 Debug.Log("estate");
                 Debug.Log(PlayerPrefs.GetInt("estate"));
+              
 
 
 
